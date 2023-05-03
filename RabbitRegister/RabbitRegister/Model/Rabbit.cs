@@ -2,7 +2,7 @@
 
 namespace RabbitRegister.Model
 {
-    public class Rabbit : Breeder
+    public class Rabbit
     {
 
         public Breeder BreederRegNo { get; set; }
@@ -26,10 +26,6 @@ namespace RabbitRegister.Model
             Rating = rating;
             Sex = sex;
             Breedable = breedable;
-        }
-
-        public Rabbit(int breederRegNo, string name, string adress, int zipCode, string email, string phone) : base(breederRegNo, name, adress, zipCode, email, phone)
-        {
         }
     }
 }

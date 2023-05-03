@@ -4,6 +4,7 @@
     {
 
         public int ProductId { get; set; }
+        public Breeder BreederId { get; set; }
         public string ProductName { get; set; }
         public string Color { get; set; }
         public int amount { get; set; }
