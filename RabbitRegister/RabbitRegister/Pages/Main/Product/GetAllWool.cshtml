@@ -1,0 +1,100 @@
+﻿@page
+@model RabbitRegister.Pages.Main.Product.GetAllWoolModel
+@{
+}
+
+<!-- Product(Wool) Table on page-->
+<h1 class="frintfont-monospace text-center">Wool</h1>
+    
+<body>
+	<div class="container">
+		<h1>Accounts</h1>
+
+		<div class="row">
+			<div class="col-4"><h5>Search Name</h5></div>
+		</div>
+
+		<div class="row">
+			<div class="col-4">
+				<form method="post" class="form-inline">
+					<div class="input-group mb-3">
+@*						<input asp-for="SearchString" class="form-control mr-1" placeholder="Enter search term" />
+						<input type="submit" asp-page-handler="NameSearch" value="Search" class="btn btn-primary" />*@
+					</div>
+				</form>
+			</div>
+
+			<div class="col-5">
+				<form method="post" class="form-inline">
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+						</div>
+					</div>
+				</form>
+			</div>
+
+			<div class="col-2"></div>
+		</div>
+
+		<table class="table table-bordered table-hover" width="100%">
+			<thead>
+				<tr class="@*btn-secondary active*@">
+					<th>
+						Id
+					</th>
+					<th>
+						Name
+					</th>
+					<th>
+						Last Name
+					</th>
+					<th>
+						Email
+					</th>
+					<th>
+						Phone
+					</th>
+					<th>
+						Password
+					</th>
+					<th>
+						Edit | Delete
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+						<tr class="@*btn-secondary*@">
+							<td>
+								
+							</td>
+							<td>
+								
+							</td>
+							<td>
+								
+							</td>
+							<td>
+								
+							</td>
+							<td>
+								
+							</td>
+							<td>
+								
+							</td>
+							<td>
+								<a class="btn btn-primary btn-sm" type="button" title="Edit" asp-page="EditWool" asp-route-id=""><i class="fa fa-edit"></i></a>
+								<a class="btn btn-danger btn-sm " type="button" title="Delete" asp-page="DeleteWool" asp-route-id=""><i class="fa fa-trash"></i></a>
+							</td>
+						</tr>
+					}
+				}
+			</tbody>
+		</table>
+
+		@*<p>
+		<a class="btn btn-primary" asp-page="CreateAccount"> Create a new Account </a>
+		</p>*@
+
+	</div>
+</body>
