@@ -11,7 +11,7 @@
         {
         }
 
-        public Wool(int productId,int woolId, string productName, double weight, int quality, string color, int amount) : base(productId, productName, color, amount)
+        public Wool(int productId, int breederRegNo, int woolId, string productName, double weight, int quality, string color, int amount) : base(productId, breederRegNo, productName, color, amount)
         {
             WoolId = woolId;
             Weight = weight;
