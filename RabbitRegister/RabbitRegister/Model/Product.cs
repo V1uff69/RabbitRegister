@@ -4,7 +4,7 @@
     {
 
         public int ProductId { get; set; }
-        public Breeder BreederId { get; set; }
+        public int BreederRegNo { get; set; }
         public string ProductName { get; set; }
         public string Color { get; set; }
         public int amount { get; set; }
@@ -13,14 +13,13 @@
         {
         }
 
-        public Product(int productId, string productName, string color, int amount)
+        public Product(int productId, int breederRegNo, string productName, string color, int amount)
         {
             ProductId = productId;
+            BreederRegNo = breederRegNo;
             ProductName = productName;
             Color = color;
             this.amount = amount;
         }
-
-
     }
 }
