@@ -1,7 +1,15 @@
+using RabbitRegister.Model;
+using RabbitRegister.Services;
+using RabbitRegister.EFDbContext;
+using RabbitRegister.Services.ProductService;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddSingleton<IProductService, ProductService>(); //KIG PÅ DENNE IGEN, DETTE ER EN TEST!!
+builder.Services.AddDbContext<ItemDbContext>();
+builder.Services.AddTransient<DbGenericService<Yarn>, DbGenericService<Yarn>>();
 
 var app = builder.Build();
 

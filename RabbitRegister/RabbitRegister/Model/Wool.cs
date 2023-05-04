@@ -19,11 +19,13 @@ namespace RabbitRegister.Model
         {
         }
 
-        public Wool(int productId, int breederRegNo, int woolId, string productName, double weight, int quality, string color, int amount) : base(productId, breederRegNo, productName, color, amount)
+        public Wool(int productId, int breederRegNo, int woolId, string productName, double weight, int quality, string color, int amount, int price) : base(productId, breederRegNo, productName, color, amount, price)
         {
             WoolId = woolId;
             Weight = weight;
             Quality = quality;
+            
+            
         }
     }
 }
