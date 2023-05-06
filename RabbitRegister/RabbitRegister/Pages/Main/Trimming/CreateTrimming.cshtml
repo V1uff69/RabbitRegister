@@ -1,0 +1,59 @@
+﻿@page
+@model RabbitRegister.Pages.Main.Trimming.CreateTrimmingModel
+@{
+}
+
+<form method="post">
+	<div class="form-group">
+		<label asp-for="@Model.Trimming.RabbitRegNo" class="control-label"></label>
+		<input asp-for="@Model.Trimming.RabbitRegNo" class="form-control" />
+		<span asp-validation-for="@Model.Trimming.RabbitRegNo" class="text-danger"></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="@Model.Trimming.BreederRegNo" class="control-label"></label>
+		<input asp-for="@Model.Trimming.BreederRegNo" class="form-control" />
+		<span asp-validation-for="@Model.Trimming.BreederRegNo" class="text-danger"></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="@Model.Trimming.Date" class="control-label"></label>
+		<input asp-for="@Model.Trimming.Date" class="form-control" />
+		<span asp-validation-for="@Model.Trimming.Date" class="text-danger"></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="@Model.Trimming.TimeUsed" class="control-label"></label>
+		<input asp-for="@Model.Trimming.TimeUsed" class="form-control" />
+		<span asp-validation-for="@Model.Trimming.TimeUsed" class="text-danger"></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="@Model.Trimming.HairLengthByDayNinety" class="control-label"></label>
+		<input asp-for="@Model.Trimming.HairLengthByDayNinety" class="form-control" />
+		<span asp-validation-for="@Model.Trimming.HairLengthByDayNinety" class="text-danger"></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="@Model.Trimming.WoolDensity" class="control-label"></label>
+		<input asp-for="@Model.Trimming.WoolDensity" class="form-control" />
+		<span asp-validation-for="@Model.Trimming.WoolDensity" class="text-danger"></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="@Model.Trimming.FirstSortmentWeight" class="control-label"></label>
+		<input asp-for="@Model.Trimming.FirstSortmentWeight" class="form-control" />
+		<span asp-validation-for="@Model.Trimming.FirstSortmentWeight" class="text-danger"></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="@Model.Trimming.SecondSortmentWeight" class="control-label"></label>
+		<input asp-for="@Model.Trimming.SecondSortmentWeight" class="form-control" />
+		<span asp-validation-for="@Model.Trimming.SecondSortmentWeight" class="text-danger"></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="@Model.Trimming.DisposableWoolWeight" class="control-label"></label>
+		<input asp-for="@Model.Trimming.DisposableWoolWeight" class="form-control" />
+		<span asp-validation-for="@Model.Trimming.DisposableWoolWeight" class="text-danger"></span>
+	</div>
+
+
+	<p>
+		<div class="form-group">
+			<input type="submit" value="Create" class="btn btn-primary" />
+		</div>
+	</p>
+</form>

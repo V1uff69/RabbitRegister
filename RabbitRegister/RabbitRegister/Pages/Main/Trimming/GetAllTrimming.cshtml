@@ -3,26 +3,32 @@
 @{
     ViewData["Title"] = "Trimmings";
 }
+
+<p>
+    <a class="btn btn-primary" asp-page="CreateTrimming"> Opret ny klipning </a>
+</p>
+
 <h4 style="color:red"> List of Trimmings</h4>
-<table class="table table-bordered table-hover" width="100%">
+<table class="table table-bordered table-hover table-striped table-opacity" width="100%">
     <thead>
         <tr>
-            <th> TrimmingID </th>
-            <th> RabbitRegNo  </th>
-            <th> BreederRegNo  </th>
-            <th> Date </th>
-            <th> TimeUsed </th>
-            <th> HairLenghtByDayNinety </th>
-            <th> WoolDensity </th>
-            <th> FirstSortmentWeight </th>
-            <th> SecondSortmentWeight </th>
-            <th> DisposableWoolWeight </th>
+            <th> Klip ID </th>
+            <th> Kanin ID  </th>
+            <th> Avler ID  </th>
+            <th> Dato </th>
+            <th> Tid brugt </th>
+            <th> Hår Længde på dag 90 </th>
+            <th> Uld Densitet </th>
+            <th> 1. Sortering </th>
+            <th> 2. Sortering </th>
+            <th> Overskuds Uld </th>
+            <th> Actions </th>
         </tr>
     </thead>
     <tbody>
 
         @if (Model.trimmings != null)
-
+        {
             @foreach (var item in Model.trimmings)
             {
                 <tr>
@@ -36,6 +42,13 @@
                     <td> @item.FirstSortmentWeight </td>
                     <td> @item.SecondSortmentWeight </td>
                     <td> @item.DisposableWoolWeight </td>
+                    <td>
+                        <a class="btn btn-primary btn-sm" type="button" title="Edit" asp-page="EditTrimming" asp-route-id="@item.TrimmingId"><i class="fa fa-edit"></i></a>
+                        <a class="btn btn-danger btn-sm " type="button" title="Delete" asp-page="DeleteTrimming" asp-route-id="@item.TrimmingId"><i class="fa fa-trash"></i></a>
+                    </td>
                 </tr>
             }
+        }
+    </tbody>
 </table>
+

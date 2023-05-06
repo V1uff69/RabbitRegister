@@ -1,4 +1,6 @@
-﻿using RabbitRegister.Model;
+﻿using Microsoft.EntityFrameworkCore;
+using RabbitRegister.EFDbContext;
+using RabbitRegister.Model;
 
 namespace RabbitRegister.Services.TrimmingService
 {
@@ -23,11 +25,31 @@ namespace RabbitRegister.Services.TrimmingService
 			}
 			return null;
 		}
-		public void AddTrimming (Trimming trimming)
+		public async Task AddTrimmingAsync (Trimming trimming)
 		{
-			_trimmings.Add(trimming);
-			DbGenericService.AddObjectAsync(trimming);
+            await DbGenericService.AddObjectAsync(trimming);
+            _trimmings.Add(trimming);
 		}
-		public List<Trimming> GetTrimmings() { return _trimmings; }
-	}
+
+		public Trimming DeleteTrimming(int? trimmingId)
+		{
+			Trimming trimmingToBeDeleted = null;
+			foreach (Trimming trimming in _trimmings)
+			{
+				if (trimming.TrimmingId == trimmingId)
+				{
+					trimmingToBeDeleted = trimming;
+					break;
+				}
+			}
+
+			if (trimmingToBeDeleted != null)
+			{
+				_trimmings.Remove(trimmingToBeDeleted);
+				DbGenericService.DeleteObjectAsync(trimmingToBeDeleted);
+			}
+			return trimmingToBeDeleted;
+		}
+        public List<Trimming> GetTrimmings() { return _trimmings; }
+    }
 }
