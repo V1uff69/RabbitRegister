@@ -8,20 +8,20 @@
     
 <body>
 	<div class="container">
-		<h1>Accounts</h1>
+		<h1></h1>
 
 		<div class="row">
-			<div class="col-4"><h5>Search Name</h5></div>
+			<div class="col-4"><h5>Search</h5></div>
 		</div>
 
 		<div class="row">
 			<div class="col-4">
-				<form method="post" class="form-inline">
+@*				<form method="post" class="form-inline">
 					<div class="input-group mb-3">
-@*						<input asp-for="SearchString" class="form-control mr-1" placeholder="Enter search term" />
-						<input type="submit" asp-page-handler="NameSearch" value="Search" class="btn btn-primary" />*@
+						<input asp-for="SearchString" class="form-control mr-1" placeholder="Enter search term" />
+						<input type="submit" asp-page-handler="NameSearch" value="Search" class="btn btn-primary" />
 					</div>
-				</form>
+				</form>*@
 			</div>
 
 			<div class="col-5">
@@ -40,22 +40,31 @@
 			<thead>
 				<tr class="@*btn-secondary active*@">
 					<th>
-						Id
+						ProductId
 					</th>
 					<th>
-						Name
+						WoolId
 					</th>
 					<th>
-						Last Name
+						ProductName
 					</th>
 					<th>
-						Email
+						Weight
 					</th>
 					<th>
-						Phone
+						Quality
 					</th>
 					<th>
-						Password
+						Color
+					</th>
+					<th>
+						BreederRegNo
+					</th>
+					<th>
+						Amount
+					</th>
+					<th>
+						Price
 					</th>
 					<th>
 						Edit | Delete
@@ -63,24 +72,37 @@
 				</tr>
 			</thead>
 			<tbody>
+				@if (Model.Wools != null)
+				{
+					foreach (var wool in Model.Wools)
+					{
 						<tr class="@*btn-secondary*@">
 							<td>
-								
+								@wool.ProductId
 							</td>
 							<td>
-								
+								@wool.WoolId
 							</td>
 							<td>
-								
+								@wool.ProductName
 							</td>
 							<td>
-								
+								@wool.Weight
 							</td>
 							<td>
-								
+								@wool.Quality
 							</td>
 							<td>
-								
+								@wool.Color
+							</td>
+							<td>
+								@wool.BreederRegNo
+							</td>
+							<td>
+								@wool.Amount
+							</td>
+							<td>
+								@wool.Price
 							</td>
 							<td>
 								<a class="btn btn-primary btn-sm" type="button" title="Edit" asp-page="EditWool" asp-route-id=""><i class="fa fa-edit"></i></a>

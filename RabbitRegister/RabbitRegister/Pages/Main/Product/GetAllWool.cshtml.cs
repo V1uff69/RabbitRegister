@@ -8,20 +8,21 @@ namespace RabbitRegister.Pages.Main.Product
 {
     public class GetAllWoolModel : PageModel
     {
-        public IEnumerable<Wool> Wools { get; set; }
-        public Wool Wool { get; set; } = new Wool();
+        private IProductService _productService { get; set; }
+        public List<Model.Wool> Wools { get; set; }
 
-        private ProductService _productService;
-
-        public GetAllWoolModel(ProductService productService)
+        public GetAllWoolModel(IProductService productService)
         {
             _productService = productService;
         }
 
         public void OnGet()
         {
-          Wools = _productService.GetWools();    
+            Wools = _productService.GetWools();
         }
+        public void OnPost()
+        {
 
+        }
     }
 }

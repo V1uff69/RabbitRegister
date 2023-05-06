@@ -10,7 +10,8 @@ namespace RabbitRegister.Services.ProductService
 
 		public ProductService(DbGenericService<Wool> dbService)
 		{
-			_wools = _dbService.GetObjectsAsync().Result.ToList();
+			_wools = MockData.MockWool.GetMockWools();
+			//_wools = _dbService.GetObjectsAsync().Result.ToList();
 		}
 
 		public List<Wool> GetWools() { return _wools; }
