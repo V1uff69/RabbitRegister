@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RabbitRegister.EFDbContext;
 using RabbitRegister.Model;
+using System.Data.SqlTypes;
 
 namespace RabbitRegister.Services.TrimmingService
 {
@@ -29,6 +30,29 @@ namespace RabbitRegister.Services.TrimmingService
 		{
             await DbGenericService.AddObjectAsync(trimming);
             _trimmings.Add(trimming);
+		}
+		
+		public void UpdateTrimming(Trimming trimming)
+		{
+			if (trimming != null)
+			{
+				foreach (Trimming trim in _trimmings)
+				{
+					if (trim.TrimmingId == trimming.TrimmingId)
+					{
+						trim.RabbitRegNo = trimming.RabbitRegNo;
+						trim.BreederRegNo = trimming.BreederRegNo;
+						trim.Date = trimming.Date;
+						trim.TimeUsed = trimming.TimeUsed;
+						trim.HairLengthByDayNinety = trimming.HairLengthByDayNinety;
+						trim.WoolDensity = trimming.WoolDensity;
+						trim.FirstSortmentWeight = trimming.FirstSortmentWeight;
+						trim.SecondSortmentWeight = trimming.SecondSortmentWeight;
+						trim.DisposableWoolWeight = trimming.DisposableWoolWeight;
+					}
+				}
+				DbGenericService.UpdateObjectAsync(trimming);
+			}
 		}
 
 		public Trimming DeleteTrimming(int? trimmingId)
