@@ -1,7 +1,16 @@
+using RabbitRegister.EFDbContext;
+using RabbitRegister.Model;
+using RabbitRegister.Services;
+using RabbitRegister.Services.TrimmingService;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddSingleton<ITrimmingService, TrimmingService>();
+builder.Services.AddTransient<DbGenericService<Trimming>, DbGenericService<Trimming>>();
+builder.Services.AddDbContext<ItemDbContext>();
+
 
 var app = builder.Build();
 

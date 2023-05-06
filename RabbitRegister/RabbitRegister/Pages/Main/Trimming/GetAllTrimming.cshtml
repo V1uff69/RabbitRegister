@@ -1,0 +1,41 @@
+﻿@page
+@model RabbitRegister.Pages.Main.Trimming.GetAllTrimmingModel
+@{
+    ViewData["Title"] = "Trimmings";
+}
+<h4 style="color:red"> List of Trimmings</h4>
+<table class="table table-bordered table-hover" width="100%">
+    <thead>
+        <tr>
+            <th> TrimmingID </th>
+            <th> RabbitRegNo  </th>
+            <th> BreederRegNo  </th>
+            <th> Date </th>
+            <th> TimeUsed </th>
+            <th> HairLenghtByDayNinety </th>
+            <th> WoolDensity </th>
+            <th> FirstSortmentWeight </th>
+            <th> SecondSortmentWeight </th>
+            <th> DisposableWoolWeight </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @if (Model.trimmings != null)
+
+            @foreach (var item in Model.trimmings)
+            {
+                <tr>
+                    <td> @item.TrimmingId </td>
+                    <td> @item.RabbitRegNo </td>
+                    <td> @item.BreederRegNo </td>
+                    <td> @item.Date </td>
+                    <td> @item.TimeUsed </td>
+                    <td> @item.HairLengthByDayNinety </td>
+                    <td> @item.WoolDensity </td>
+                    <td> @item.FirstSortmentWeight </td>
+                    <td> @item.SecondSortmentWeight </td>
+                    <td> @item.DisposableWoolWeight </td>
+                </tr>
+            }
+</table>
