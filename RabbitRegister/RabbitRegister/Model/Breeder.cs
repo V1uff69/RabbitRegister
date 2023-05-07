@@ -1,9 +1,13 @@
-﻿namespace RabbitRegister.Model
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace RabbitRegister.Model
 {
     public class Breeder
     {
-
-        public int BreederRegNo { get; set; }
+        [Key]
+		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+		public int BreederRegNo { get; set; }
         public string Name { get; set; }
         public string Adress { get; set; }
         public int ZipCode { get; set; }

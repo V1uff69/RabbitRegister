@@ -2,7 +2,7 @@
 {
     public class Wool : Product
     {
-
+        [Display(Name = "WoolId")]
         public int WoolId { get; set; }
         public double Weight { get; set; }
         public int Quality { get; set; }
