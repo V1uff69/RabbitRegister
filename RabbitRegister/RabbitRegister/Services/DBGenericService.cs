@@ -31,23 +31,6 @@ namespace RabbitRegister.Services
             }
         }
 
-        public async Task UpdateObjectAsync(T obj)
-        {
-            using (var context = new ItemDbContext())
-            {
-                context.Set<T>().Update(obj);
-                await context.SaveChangesAsync();
-            }
-        }
-
-        public async Task<T> GetObjectByIdAsync(int id)
-        {
-            using (var context = new ItemDbContext())
-            {
-                return await context.Set<T>().FindAsync(id);
-            }
-        }
-
         public async Task SaveObjects(List<T> objs)
         {
             using (var context = new ItemDbContext())
@@ -60,6 +43,19 @@ namespace RabbitRegister.Services
 
                 context.SaveChanges();
             }
+        }
+
+        public async Task<T> GetObjectByIdAsync(int id)
+        {
+            using (var context = new ItemDbContext())
+            {
+                return await context.Set<T>().FindAsync(id);
+            }
+        }
+
+        public Task UpdateObjectAsync(T obj)
+        {
+            throw new NotImplementedException();
         }
     }
 }
