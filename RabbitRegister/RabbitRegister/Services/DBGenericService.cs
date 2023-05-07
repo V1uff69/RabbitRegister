@@ -38,20 +38,17 @@ namespace RabbitRegister.Services
 
         }
 
-        public async Task UpdateObjectAsync(T obj)
-		public async Task SaveObjects(List<T> objs)
+        public async Task SaveObjects(List<T> objs)
         {
             using (var context = new ItemDbContext())
             {
-                context.Set<T>().Update(obj);
-                await context.SaveChangesAsync();
-				foreach (T obj in objs)
-				{
-					context.Set<T>().Add(obj);
-					context.SaveChanges();
-				}
+                foreach (T obj in objs)
+                {
+                    context.Set<T>().Add(obj);
+                    context.SaveChanges();
+                }
 
-				context.SaveChanges();
+                context.SaveChanges();
             }
         }
 
@@ -63,21 +60,13 @@ namespace RabbitRegister.Services
             }
         }
 
-        public async Task SaveObjects(List<T> objs)
 
-		public async Task UpdateObjectAsync(T obj)
+        public async Task UpdateObjectAsync(T obj)
         {
             using (var context = new ItemDbContext())
             {
-                foreach (T obj in objs)
-                {
-                    context.Set<T>().Add(obj);
-                    context.SaveChanges();
-                }
-
-                context.SaveChanges();
-				context.Set<T>().Update(obj);
-				await context.SaveChangesAsync();
+                context.Set<T>().Update(obj);
+                await context.SaveChangesAsync();
             }
         }
     }
