@@ -1,4 +1,5 @@
-﻿using RabbitRegister.Model;
+﻿using RabbitRegister.MockData;
+using RabbitRegister.Model;
 
 namespace RabbitRegister.Services.ProductService
 {
@@ -16,8 +17,15 @@ namespace RabbitRegister.Services.ProductService
 		}
         public ProductService(DbGenericService<Yarn> dbYarnService)
         {
-            _yarns = _dbYarnService.GetObjectsAsync().Result.ToList();
+            _dbYarnService = dbYarnService;
+            _yarns = MockYarn.GetMockYarns();
+            //_yarns = _dbYarnService.GetObjectsAsync().Result.ToList();
                 
+        }
+
+        public ProductService()
+        {
+            _yarns = MockYarn.GetMockYarns();
         }
 
         public async Task AddYarnAsync(Yarn yarn)
@@ -52,7 +60,12 @@ namespace RabbitRegister.Services.ProductService
 
         public Yarn GetYarn(int yarnId)
         {
-            throw new NotImplementedException();
+            foreach (Yarn yarn in _yarns)
+            {
+                if (yarn.YarnId == yarnId)
+                    return yarn;
+            }
+            return null;
         }
 
 

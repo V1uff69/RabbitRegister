@@ -43,7 +43,12 @@
 <table class="table table-bordered table-hover table-striped table-opacity" width="60%">
 	<colgroup>
 		<col style="width : 7%">
-		<col style="width : 73%">
+		<col style="width : 10%">
+		<col style="width : 10%">
+		<col style="width : 10%">
+		<col style="width : 10%">
+		<col style="width : 10%">
+		<col style="width : 10%">
 		<col style="width : 10%">
 		<col style="width : 10%">
 	</colgroup>
@@ -61,14 +66,59 @@
 			<th>
 				<div class="d-flex justify-content-between p-0">
 					<div>
-						<h5>Name </h5>
+						<h5>Fiber </h5>
 					</div>
-					<div>
-						<a data-toggle="tooltip" title="Sort By Name" asp-page-handler="SortByName"><i class="fa fa-angle-up"></i></a>
-						<a data-toggle="tooltip" title="Sort By Name Descending" asp-page-handler="SortByNameDescending"><i class="fa fa-angle-down"></i></a>
-					</div>
+					
 				</div>
 
+			</th>
+			<th>
+				<div class="d-flex justify-content-between p-0">
+					<div>
+						<h5>NeedleSize </h5>
+					</div>
+					
+				</div>
+			</th>
+			<th>
+				<div class="d-flex justify-content-between p-0">
+					<div>
+						<h5>Length </h5>
+					</div>
+					
+				</div>
+			</th>
+			<th>
+				<div class="d-flex justify-content-between p-0">
+					<div>
+						<h5>Tension </h5>
+					</div>
+					
+				</div>
+			</th>
+			<th>
+				<div class="d-flex justify-content-between p-0">
+					<div>
+						<h5>Washing </h5>
+					</div>
+					
+				</div>
+			</th>
+			<th>
+				<div class="d-flex justify-content-between p-0">
+					<div>
+						<h5>Color </h5>
+					</div>
+					
+				</div>
+			</th>
+			<th>
+				<div class="d-flex justify-content-between p-0">
+					<div>
+						<h5>Amout </h5>
+					</div>
+					
+				</div>
 			</th>
 			<th>
 				<div class="d-flex justify-content-between p-0">
@@ -120,12 +170,16 @@
 						@yarn.price
 					</td>
 					<td>
-						@*<a class="btn btn-primary btn-sm" type="button" title="Edit" asp-page="EditYarn" asp-route-id="@"><i class="fa fa-edit"></i></a>
-						<a class="btn btn-danger btn-sm " type="button" title="Delete" asp-page="DeleteYarn" asp-route-id="@item.Id"><i class="fa fa-trash"></i></a>
-						<a class="btn btn-primary btn-sm " type="button" data-toggle="tooltip" data-placement="top" title="Order" asp-page="../Order/OrderItem" asp-route-id="@item.Id"><i class="fa fa-shopping-cart"></i></a>*@
+						<a class="btn btn-primary btn-sm" type="button" title="Edit" asp-page="EditYarn" asp-route-id="@yarn.YarnId"><i class="fa fa-edit"></i></a>
+						<a class="btn btn-danger btn-sm " type="button" title="Delete" asp-page="DeleteYarn" asp-route-id="@yarn.YarnId"><i class="fa fa-trash"></i></a>
+						@*<a class="btn btn-primary btn-sm " type="button" data-toggle="tooltip" data-placement="top" title="Order" asp-page="../Order/OrderItem" asp-route-id="@yarn.YarnId"><i class="fa fa-shopping-cart"></i></a>*@
 					</td>
 				</tr>
 			}
 		}
 	</tbody>
 </table>
+
+<p>
+	<a class="btn btn-primary" asp-page="CreateYarn"> Create a new Yarn </a>
+</p>

@@ -7,19 +7,19 @@ namespace RabbitRegister.Pages.Main.Product
 {
     public class GetAllYarnModel : PageModel
     {
-        public IEnumerable<Yarn> Yarns { get; set; }
-        public Yarn Yarn { get; set; } = new Yarn();
+		private IProductService _yarnService;
 
-        private ProductService _productService;
+		public GetAllYarnModel(IProductService productService)
+		{
+			_yarnService = productService;
+		}
 
-        public GetAllYarnModel(ProductService productService)
-        {
-            _productService = productService;
-        }
+		public List<Model.Yarn>? Yarns { get; private set; }
 
-        public void OnGet()
-        {
-            Yarns = _productService.GetYarns();
-        }
-    }
+
+		public void OnGet()
+		{
+			Yarns = _yarnService.GetYarns();
+		}
+	}
 }
