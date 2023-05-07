@@ -18,19 +18,24 @@ namespace RabbitRegister.Model
         public string Color { get; set; }
         [Display(Name = "Amount")]
         [Required(ErrorMessage = "Remember to add amount")]
-        public int amount { get; set; }
+        public int Amount { get; set; }
+        [Display(Name ="Price")]
+        [Required(ErrorMessage = "Remember to add price")]
+        public double Price { get; set; }
 
         public Product()
         {
         }
 
-        public Product(int productId, int breederRegNo, string productName, string color, int amount)
+        public Product(int productId, int breederRegNo, string productName, string color, int amount, double price)
         {
             ProductId = productId;
             BreederRegNo = breederRegNo;
             ProductName = productName;
             Color = color;
-            this.amount = amount;
+            this.Amount = amount;
+            Price = price;
+            
         }
     }
 }
