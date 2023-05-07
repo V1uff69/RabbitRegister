@@ -1,15 +1,37 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RabbitRegister.Model
 {
     public class Yarn : Product
     {
+        [Display(Name = "YarnId")]
+        [Required(ErrorMessage = "Remember to add Id to Yarn")]
+        [Range(typeof(int), "0", "10000", ErrorMessage = "Id must be between (1) and (2)")]
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int YarnId { get; set; }
-        public string Fiber { get; set; }
-        public double NeedleSize { get; set; }
-        public double Length { get; set; }
-        public string Tension { get; set; }
-        public string Washing { get; set; }
+
+		[Display(Name = "Fiber")]
+		[Required(ErrorMessage = "Remember to add Fiber to Yarn")]
+		public string Fiber { get; set; }
+
+		[Display(Name = "Needle Size")]
+		[Required(ErrorMessage = "Remember to add Needle Size to Yarn")]
+		public double NeedleSize { get; set; }
+
+		[Display(Name = "Length")]
+		[Required(ErrorMessage = "Remember to add Length to Yarn")]
+		public double Length { get; set; }
+
+		[Display(Name = "Tension")]
+		[Required(ErrorMessage = "Remember to add Tension to Yarn")]
+		public string Tension { get; set; }
+
+		[Display(Name = "Washing")]
+		[Required(ErrorMessage = "Remember to add Washing to Yarn")]
+		public string Washing { get; set; }
 
         public Yarn()
         {
