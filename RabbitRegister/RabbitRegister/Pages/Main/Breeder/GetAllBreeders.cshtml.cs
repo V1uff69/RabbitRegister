@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace RabbitRegister.Pages.Main.Breeder
 {
-    public class ViewAllBreedersModel : PageModel
+    public class GetAllBreedersModel : PageModel
     {
         public void OnGet()
         {

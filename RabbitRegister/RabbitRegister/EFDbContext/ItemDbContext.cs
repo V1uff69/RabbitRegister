@@ -8,6 +8,7 @@ namespace RabbitRegister.EFDbContext
 		protected override void OnConfiguring(DbContextOptionsBuilder options)
 		{
 			options.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=RabbitReg_DB; Integrated Security=True; Connect Timeout=30; Encrypt=False");
+			//options.UseSqlServer();
 		}
 
 		public DbSet<Rabbit> Rabbits { get; set; }
