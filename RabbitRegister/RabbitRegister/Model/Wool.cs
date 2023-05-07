@@ -5,7 +5,7 @@ namespace RabbitRegister.Model
 {
     public class Wool : Product
     {
-        [Key]
+        //[Key]
         [Display(Name = "WoolId")]
         public int WoolId { get; set; }
         [Display(Name = "Weight")]

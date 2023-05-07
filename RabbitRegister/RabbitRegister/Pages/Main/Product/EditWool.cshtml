@@ -1,0 +1,30 @@
+﻿@page "{id:int}"
+@model RabbitRegister.Pages.Main.Product.EditWoolModel
+@{
+}
+
+<form method="post">
+    <div class="from-group">
+        <label asp-for="Wool.ProductId" class="control-label"></label>
+        <input asp-for="Wool.ProductId" class="form-control" readonly="@(true)" />
+    </div>
+    <div class="from-group">
+        <label asp-for="Wool.WoolId" class="control-label"></label>
+        <input asp-for="Wool.WoolId" class="form-control" readonly="@(true)"/>
+    </div>
+    <div class="from-group">
+        <label asp-for="Wool.ProductName" class="control-label"></label>
+        <input asp-for="Wool.ProductName" class="form-control"/>
+        <span asp-validation-for="Wool.ProductName" class="text-danger"></span>
+    </div>
+
+    <p>
+        <div class="form-group">
+            <input type="submit" value="Update" class="btn btn-primary" />
+        </div>
+    </p>
+</form>
+
+<p>
+    <a asp-page="/Main/Product/GetAllWool">Back to List</a>
+</p>
