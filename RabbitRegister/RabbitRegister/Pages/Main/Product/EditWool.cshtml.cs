@@ -19,8 +19,6 @@ namespace RabbitRegister.Pages.Main.Product
         public IActionResult OnGet(int id)
         {
             Wool = _productService.GetWools(id);
-            if (Wool == null) 
-                return RedirectToPage("/NotFound");
 
             return Page();
         }
