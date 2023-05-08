@@ -1,4 +1,38 @@
-﻿@page
+﻿@page "{id:int}"
 @model RabbitRegister.Pages.Main.Product.DeleteWoolModel
 @{
+    ViewData["Title"] = "Delete Wool";
 }
+
+<h1>Delete Wool</h1>
+
+<h3>Are you sure you want to delete the selected Wool?</h3>
+<div>
+    <h4>Deleting...</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Wool.ProductId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Wool.ProductId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Wool.WoolId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Wool.WoolId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Wool.ProductName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Wool.ProductName)
+        </dd>
+    </dl>
+
+    <form method="post">
+        <input type="hidden" asp-for="Wool.WoolId" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> | <a asp-page="/Students/GetAllStudents">Back to List</a>
+    </form>
+</div>
