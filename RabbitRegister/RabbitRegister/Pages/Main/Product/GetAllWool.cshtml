@@ -106,7 +106,7 @@
 							</td>
 							<td>
 								<a class="btn btn-primary btn-sm" type="button" title="Edit" asp-page="/Main/Product/EditWool" asp-route-id="@wool.WoolId"><i class="fa fa-edit"></i></a>
-								<a class="btn btn-danger btn-sm " type="button" title="Delete" asp-page="DeleteWool" asp-route-id=""><i class="fa fa-trash"></i></a>
+								<a class="btn btn-danger btn-sm " type="button" title="Delete" asp-page="/Main/Product/DeleteWool" asp-route-id="@wool.WoolId"><i class="fa fa-trash"></i></a>
 							</td>
 						</tr>
 					}
@@ -115,7 +115,7 @@
 		</table>
 
 		<p>
-		<a class="btn btn-primary" asp-page="/Main/Product/CreateNew"> Create a new Product </a>
+		<a class="btn btn-primary" asp-page="/Main/Product/CreateWool"> Create a new Wool Product </a>
 		</p>
 
 	</div>

@@ -20,7 +20,7 @@ namespace RabbitRegister.Services.ProductService
 		}
 
 
-		public async Task AddItemAsync(Wool wool)
+		public async Task AddWoolAsync(Wool wool)
 		{
 			_wools.Add(wool);
 			await _dbService.AddObjectAsync(wool);
@@ -42,7 +42,7 @@ namespace RabbitRegister.Services.ProductService
 			}
 		}
 
-		public async Task<Wool> DeleteItemAsync(int? WoolId)
+		public async Task<Wool> DeleteWoolAsync(int? WoolId)
 		{
 			Wool woolToBeDeleted = null;
 			foreach (Wool w in _wools)

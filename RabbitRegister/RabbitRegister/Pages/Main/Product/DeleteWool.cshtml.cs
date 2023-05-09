@@ -1,14 +1,15 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using RabbitRegister.Model;
 using RabbitRegister.Services.ProductService;
 
 namespace RabbitRegister.Pages.Main.Product
 {
-    public class EditWoolModel : PageModel
+    public class DeleteWoolModel : PageModel
     {
         private IProductService _productService;
 
-        public EditWoolModel(IProductService productService)
+        public DeleteWoolModel(IProductService productService)
         {
             _productService = productService;
         }
@@ -23,14 +24,9 @@ namespace RabbitRegister.Pages.Main.Product
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        public IActionResult OnPost(int WoolId)
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
-
-            await _productService.UpdateWoolAsync(Wool);
+            _productService.DeleteWoolAsync(WoolId);
             return RedirectToPage("GetAllWool");
         }
     }
