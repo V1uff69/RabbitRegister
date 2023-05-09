@@ -23,13 +23,13 @@ namespace RabbitRegister.Model
         public DateTime Date { get; set; }
 
         [Display(Name = "Tid brugt i minutter")]
-        public double TimeUsed { get; set; }
+        public double? TimeUsed { get; set; }
 
         [Display(Name = "Hår længde på dag 90")]
-        public double HairLengthByDayNinety { get; set; }
+        public double? HairLengthByDayNinety { get; set; }
 
         [Display(Name = "Uld densitet")]
-        public string WoolDensity { get; set; }
+        public string? WoolDensity { get; set; }
 
         [Display(Name = "1. Sortering vægt")]
         [Required(ErrorMessage = "Der skal angives 1. Sortering vægt")]

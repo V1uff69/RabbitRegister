@@ -32,13 +32,13 @@ namespace RabbitRegister.Services.TrimmingService
             _trimmings.Add(trimming);
 		}
 		
-		public void UpdateTrimming(Trimming trimming)
+		public void UpdateTrimming(Trimming trimming, int id)
 		{
 			if (trimming != null)
 			{
 				foreach (Trimming trim in _trimmings)
 				{
-					if (trim.TrimmingId == trimming.TrimmingId)
+					if (trim.TrimmingId == id)
 					{
 						trim.RabbitRegNo = trimming.RabbitRegNo;
 						trim.BreederRegNo = trimming.BreederRegNo;
@@ -49,6 +49,7 @@ namespace RabbitRegister.Services.TrimmingService
 						trim.FirstSortmentWeight = trimming.FirstSortmentWeight;
 						trim.SecondSortmentWeight = trimming.SecondSortmentWeight;
 						trim.DisposableWoolWeight = trimming.DisposableWoolWeight;
+						break;
 					}
 				}
 				DbGenericService.UpdateObjectAsync(trimming);
