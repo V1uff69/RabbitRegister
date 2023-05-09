@@ -12,7 +12,7 @@ using RabbitRegister.EFDbContext;
 namespace RabbitRegister.Migrations
 {
     [DbContext(typeof(ItemDbContext))]
-    [Migration("20230509124625_RabbitReg")]
+    [Migration("20230509130121_RabbitReg")]
     partial class RabbitReg
     {
         /// <inheritdoc />
@@ -138,6 +138,46 @@ namespace RabbitRegister.Migrations
                     b.ToTable("Product");
 
                     b.UseTptMappingStrategy();
+                });
+
+            modelBuilder.Entity("RabbitRegister.Model.Trimming", b =>
+                {
+                    b.Property<int>("TrimmingId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TrimmingId"));
+
+                    b.Property<int>("BreederRegNo")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double>("DisposableWoolWeight")
+                        .HasColumnType("float");
+
+                    b.Property<double>("FirstSortmentWeight")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("HairLengthByDayNinety")
+                        .HasColumnType("float");
+
+                    b.Property<int>("RabbitRegNo")
+                        .HasColumnType("int");
+
+                    b.Property<double>("SecondSortmentWeight")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("TimeUsed")
+                        .HasColumnType("float");
+
+                    b.Property<string>("WoolDensity")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("TrimmingId");
+
+                    b.ToTable("Trimmings");
                 });
 
             modelBuilder.Entity("RabbitRegister.Model.Wool", b =>

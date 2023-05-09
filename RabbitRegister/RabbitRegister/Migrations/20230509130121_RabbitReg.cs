@@ -47,6 +47,27 @@ namespace RabbitRegister.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Trimmings",
+                columns: table => new
+                {
+                    TrimmingId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RabbitRegNo = table.Column<int>(type: "int", nullable: false),
+                    BreederRegNo = table.Column<int>(type: "int", nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    TimeUsed = table.Column<double>(type: "float", nullable: true),
+                    HairLengthByDayNinety = table.Column<double>(type: "float", nullable: true),
+                    WoolDensity = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FirstSortmentWeight = table.Column<double>(type: "float", nullable: false),
+                    SecondSortmentWeight = table.Column<double>(type: "float", nullable: false),
+                    DisposableWoolWeight = table.Column<double>(type: "float", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Trimmings", x => x.TrimmingId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Order",
                 columns: table => new
                 {
@@ -105,6 +126,9 @@ namespace RabbitRegister.Migrations
 
             migrationBuilder.DropTable(
                 name: "Order");
+
+            migrationBuilder.DropTable(
+                name: "Trimmings");
 
             migrationBuilder.DropTable(
                 name: "Wools");

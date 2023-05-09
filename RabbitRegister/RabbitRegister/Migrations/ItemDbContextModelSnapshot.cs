@@ -23,7 +23,6 @@ namespace RabbitRegister.Migrations
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("RabbitRegister.Model.Breeder", b =>
-            modelBuilder.Entity("RabbitRegister.Model.Trimming", b =>
                 {
                     b.Property<int>("BreederRegNo")
                         .ValueGeneratedOnAdd()
@@ -58,16 +57,13 @@ namespace RabbitRegister.Migrations
             modelBuilder.Entity("RabbitRegister.Model.Order", b =>
                 {
                     b.Property<int>("OrderId")
-                    b.Property<int>("TrimmingId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"));
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TrimmingId"));
 
                     b.Property<int>("City")
                         .HasMaxLength(50)
-                    b.Property<int>("BreederRegNo")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Date")
@@ -92,7 +88,6 @@ namespace RabbitRegister.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<double>("TotalPrice")
-                    b.Property<double>("DisposableWoolWeight")
                         .HasColumnType("float");
 
                     b.Property<int>("ZipCode")
@@ -125,7 +120,6 @@ namespace RabbitRegister.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("Price")
-                    b.Property<double>("FirstSortmentWeight")
                         .HasColumnType("float");
 
                     b.Property<string>("ProductName")
@@ -143,24 +137,58 @@ namespace RabbitRegister.Migrations
                     b.UseTptMappingStrategy();
                 });
 
-            modelBuilder.Entity("RabbitRegister.Model.Wool", b =>
+            modelBuilder.Entity("RabbitRegister.Model.Trimming", b =>
                 {
-                    b.HasBaseType("RabbitRegister.Model.Product");
+                    b.Property<int>("TrimmingId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TrimmingId"));
+
+                    b.Property<int>("BreederRegNo")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double>("DisposableWoolWeight")
+                        .HasColumnType("float");
+
+                    b.Property<double>("FirstSortmentWeight")
+                        .HasColumnType("float");
+
                     b.Property<double?>("HairLengthByDayNinety")
                         .HasColumnType("float");
 
-                    b.Property<int>("Quality")
                     b.Property<int>("RabbitRegNo")
                         .HasColumnType("int");
 
-                    b.Property<double>("Weight")
                     b.Property<double>("SecondSortmentWeight")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("TimeUsed")
+                        .HasColumnType("float");
+
+                    b.Property<string>("WoolDensity")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("TrimmingId");
+
+                    b.ToTable("Trimmings");
+                });
+
+            modelBuilder.Entity("RabbitRegister.Model.Wool", b =>
+                {
+                    b.HasBaseType("RabbitRegister.Model.Product");
+
+                    b.Property<int>("Quality")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Weight")
                         .HasColumnType("float");
 
                     b.ToTable("Wools");
                 });
-                    b.Property<double?>("TimeUsed")
-                        .HasColumnType("float");
 
             modelBuilder.Entity("RabbitRegister.Model.Order", b =>
                 {
@@ -169,12 +197,9 @@ namespace RabbitRegister.Migrations
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                    b.Property<string>("WoolDensity")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Navigation("Product");
                 });
-                    b.HasKey("TrimmingId");
 
             modelBuilder.Entity("RabbitRegister.Model.Wool", b =>
                 {
@@ -183,7 +208,6 @@ namespace RabbitRegister.Migrations
                         .HasForeignKey("RabbitRegister.Model.Wool", "ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                    b.ToTable("Trimmings");
                 });
 #pragma warning restore 612, 618
         }
