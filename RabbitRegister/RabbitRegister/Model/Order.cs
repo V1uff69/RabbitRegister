@@ -1,13 +1,20 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Linq;
 
 namespace RabbitRegister.Model
 {
+    [Table("Order")]
+    [PrimaryKey("OrderId")]
     public class Order
     {
-
+        
         public int OrderId { get; set; }
-        public List<OrderLine> OrderLines { get; set; }
+        public DateTime Date { get; set; }
+        [ForeignKey("ProductId")]
+        public int ProductId { get; set; }
+        public Product Product { get; set; }
         public double TotalPrice { get; set; }
         [Display(Name = "Name of recipient")]
         [Required(ErrorMessage = "Name is required to check out order"), MinLength(1), MaxLength(50)]
@@ -29,10 +36,10 @@ namespace RabbitRegister.Model
         {
         }
 
-        public Order(int orderId, List<OrderLine> orderLines, double totalPrice, string recipientName, string deliveryAddress, int city, int zipCode, string email)
+        public Order(int orderId, Product product, double totalPrice, string recipientName, string deliveryAddress, int city, int zipCode, string email)
         {
             OrderId = orderId;
-            OrderLines = orderLines;
+            Product = product;
             TotalPrice = totalPrice;
             RecipientName = recipientName;
             DeliveryAddress = deliveryAddress;

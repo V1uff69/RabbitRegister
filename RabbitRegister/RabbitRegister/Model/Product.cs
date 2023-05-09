@@ -5,9 +5,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RabbitRegister.Model
 {
+    [Table("Product")]
+    [PrimaryKey("ProductId")]
     public class Product
     {
-        //[PrimaryKey]
         [Display(Name = "ProductId")]
         public int ProductId { get; set; }
         [Display(Name = "BreederRegNo")]
