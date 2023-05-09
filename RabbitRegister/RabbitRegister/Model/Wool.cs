@@ -8,8 +8,6 @@ namespace RabbitRegister.Model
     [Table("Wools")]
     public class Wool : Product
     {
-        [Display(Name = "WoolId")]
-        public int WoolId { get; set; }
         [Display(Name = "Weight")]
         [Required(ErrorMessage = "Remember to add a weight")]
         public double Weight { get; set; }
@@ -21,9 +19,8 @@ namespace RabbitRegister.Model
         {
         }
 
-        public Wool(string productName, double weight, int quality, string color, int breederRegNo, int amount, double price) : base(breederRegNo, productName, color, amount, price)
+        public Wool(string productType, string productName, double weight, int quality, string color, int breederRegNo, int amount, double price) : base(productType, breederRegNo, productName, color, amount, price)
         {
-            WoolId = WoolId++;
             Weight = weight;
             Quality = quality;
             Price = price;

@@ -15,7 +15,7 @@ namespace RabbitRegister.Pages.Main.Product
         }
 
         [BindProperty]
-        public Model.Wool Wool { get; set; }
+        public Wool Wool { get; set; }
 
         public IActionResult OnGet(int id)
         {
@@ -24,9 +24,9 @@ namespace RabbitRegister.Pages.Main.Product
             return Page();
         }
 
-        public IActionResult OnPost(int WoolId)
+        public async Task<IActionResult> OnPostAsync(int Id)
         {
-            _productService.DeleteWoolAsync(WoolId);
+            await _productService.DeleteWoolAsync(Id);
             return RedirectToPage("GetAllWool");
         }
     }

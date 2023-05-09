@@ -5,12 +5,17 @@
 
 <form method="post">
     <div class="from-group">
+        <label asp-for="Wool.BreederRegNo" class="control-label"></label>
+        <input asp-for="Wool.BreederRegNo" class="form-control" />
+        <span asp-validation-for="Wool.BreederRegNo" class="text-danger"></span>
+    </div>
+    <div class="from-group">
         <label asp-for="Wool.ProductId" class="control-label"></label>
         <input asp-for="Wool.ProductId" class="form-control" readonly="@(true)" />
     </div>
     <div class="from-group">
-        <label asp-for="Wool.WoolId" class="control-label"></label>
-        <input asp-for="Wool.WoolId" class="form-control" readonly="@(true)"/>
+        <label asp-for="Wool.ProductType" class="control-label"></label>
+        <input asp-for="Wool.ProductType" class="form-control" readonly="@(true)"/>
     </div>
     <div class="from-group">
         <label asp-for="Wool.ProductName" class="control-label"></label>
@@ -31,11 +36,6 @@
         <label asp-for="Wool.Color" class="control-label"></label>
         <input asp-for="Wool.Color" class="form-control" />
         <span asp-validation-for="Wool.Color" class="text-danger"></span>
-    </div>
-    <div class="from-group">
-        <label asp-for="Wool.BreederRegNo" class="control-label"></label>
-        <input asp-for="Wool.BreederRegNo" class="form-control" />
-        <span asp-validation-for="Wool.BreederRegNo" class="text-danger"></span>
     </div>
     <div class="from-group">
         <label asp-for="Wool.Amount" class="control-label"></label>

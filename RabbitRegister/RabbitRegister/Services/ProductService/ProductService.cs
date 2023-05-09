@@ -15,15 +15,16 @@ namespace RabbitRegister.Services.ProductService
 
 		public ProductService(DbGenericService<Wool> dbService)
 		{
-			_wools = MockData.MockWool.GetMockWools();
-			//_wools = _dbService.GetObjectsAsync().Result.ToList();
+			_dbService = dbService;
+			//_wools = MockData.MockWool.GetMockWools();
+			_wools = _dbService.GetObjectsAsync().Result.ToList();
 		}
 
 
 		public async Task AddWoolAsync(Wool wool)
 		{
-			_wools.Add(wool);
 			await _dbService.AddObjectAsync(wool);
+			_wools.Add(wool);
 		}
 
 		public async Task UpdateWoolAsync(Wool wool)
@@ -32,22 +33,28 @@ namespace RabbitRegister.Services.ProductService
 			{
 				foreach (Wool w in _wools)
 				{
-					if (w.WoolId == wool.WoolId)
+					if (w.ProductId == wool.ProductId && w.ProductType == wool.ProductType)
 					{
 						w.ProductName = wool.ProductName;
+						w.Weight = wool.Weight;
+						w.Quality = wool.Quality;
+						w.Color = wool.Color;
+						w.BreederRegNo = wool.BreederRegNo;
+						w.Amount = wool.Amount;
 						w.Price = wool.Price;
+						break;
 					}
 				}
 				await _dbService.UpdateObjectAsync(wool);
 			}
 		}
 
-		public async Task<Wool> DeleteWoolAsync(int? WoolId)
+		public async Task<Wool> DeleteWoolAsync(int? Id)
 		{
 			Wool woolToBeDeleted = null;
 			foreach (Wool w in _wools)
 			{
-				if (w.WoolId == WoolId)
+				if (w.ProductId == Id)
 				{
 					woolToBeDeleted = w;
 					break;
@@ -67,7 +74,7 @@ namespace RabbitRegister.Services.ProductService
 		{
 			foreach (Wool w in _wools)
 			{
-				if (w.WoolId == id)
+				if (w.ProductId == id)
 					return w;
 			}
 			return null;

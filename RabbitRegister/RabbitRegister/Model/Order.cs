@@ -12,7 +12,7 @@ namespace RabbitRegister.Model
         
         public int OrderId { get; set; }
         public DateTime Date { get; set; }
-        [ForeignKey("ProductId")]
+        [ForeignKey(nameof(ProductId))]
         public int ProductId { get; set; }
         public Product Product { get; set; }
         public double TotalPrice { get; set; }

@@ -2,30 +2,33 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RabbitRegister.Model;
 using RabbitRegister.Services.ProductService;
+using System.Runtime.CompilerServices;
 
 namespace RabbitRegister.Pages.Main.Product
 {
     public class CreateWoolModel : PageModel
     {
-        private IProductService _productService;
+        private IProductService _productService { get; set; }
+        public List<Model.Wool> Wools { get; set; } 
+        public Wool Wool { get; set; } = new Wool();
 
         public CreateWoolModel(IProductService productService)
         {
             _productService = productService;
         }
 
-        [BindProperty]
-        public Model.Wool Wool { get; set; }
-
-        public void OnGet()
+        public IActionResult OnGet()
         {
+            return Page();
         }
 
-        public IActionResult OnPostAsync(Wool wool)
+        public async Task<IActionResult> OnPostAsync(Wool wool)
         {
-            _productService.AddWoolAsync(wool);
+            await _productService.AddWoolAsync(wool);
                 
             return RedirectToPage("GetAllWool");
+            
         }
+        
     }
 }

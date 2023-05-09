@@ -126,6 +126,10 @@ namespace RabbitRegister.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ProductType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("ProductId");
 
                     b.ToTable("Product");
@@ -142,9 +146,6 @@ namespace RabbitRegister.Migrations
 
                     b.Property<double>("Weight")
                         .HasColumnType("float");
-
-                    b.Property<int>("WoolId")
-                        .HasColumnType("int");
 
                     b.ToTable("Wools");
                 });

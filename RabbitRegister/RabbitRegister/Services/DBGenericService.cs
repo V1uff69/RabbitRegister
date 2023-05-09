@@ -53,9 +53,13 @@ namespace RabbitRegister.Services
             }
         }
 
-        public Task UpdateObjectAsync(T obj)
+        public async Task UpdateObjectAsync(T obj)
         {
-            throw new NotImplementedException();
+            using (var context = new ItemDbContext())
+            {
+                context.Set<T>().Update(obj);
+                await context.SaveChangesAsync();
+            }
         }
     }
 }

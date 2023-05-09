@@ -40,10 +40,13 @@
 			<thead>
 				<tr class="@*btn-secondary active*@">
 					<th>
+						BreederRegNo
+					</th>
+					<th>
 						ProductId
 					</th>
 					<th>
-						WoolId
+						ProductType
 					</th>
 					<th>
 						ProductName
@@ -56,9 +59,6 @@
 					</th>
 					<th>
 						Color
-					</th>
-					<th>
-						BreederRegNo
 					</th>
 					<th>
 						Amount
@@ -78,10 +78,13 @@
 					{
 						<tr class="@*btn-secondary*@">
 							<td>
+								@wool.BreederRegNo
+							</td>
+							<td>
 								@wool.ProductId
 							</td>
 							<td>
-								@wool.WoolId
+								@wool.ProductType
 							</td>
 							<td>
 								@wool.ProductName
@@ -96,17 +99,14 @@
 								@wool.Color
 							</td>
 							<td>
-								@wool.BreederRegNo
-							</td>
-							<td>
 								@wool.Amount
 							</td>
 							<td>
 								@wool.Price
 							</td>
 							<td>
-								<a class="btn btn-primary btn-sm" type="button" title="Edit" asp-page="/Main/Product/EditWool" asp-route-id="@wool.WoolId"><i class="fa fa-edit"></i></a>
-								<a class="btn btn-danger btn-sm " type="button" title="Delete" asp-page="/Main/Product/DeleteWool" asp-route-id="@wool.WoolId"><i class="fa fa-trash"></i></a>
+								<a class="btn btn-primary btn-sm" type="button" title="Edit" asp-page="/Main/Product/EditWool" asp-route-id="@wool.ProductId"><i class="fa fa-edit"></i></a>
+								<a class="btn btn-danger btn-sm " type="button" title="Delete" asp-page="/Main/Product/DeleteWool" asp-route-id="@wool.ProductId"><i class="fa fa-trash"></i></a>
 							</td>
 						</tr>
 					}
