@@ -6,12 +6,6 @@ namespace RabbitRegister.Services.ProductService
 	public class ProductService : IProductService
 	{
 
-
-		/// <summary>
-		/// Wool Service
-		/// </summary>
-	public class ProductService : IProductService
-	{
 		private List<Wool> _wools;
 		private List<Yarn> _yarns;
 
@@ -24,11 +18,12 @@ namespace RabbitRegister.Services.ProductService
 			//_wools = MockData.MockWool.GetMockWools();
 			_wools = _dbService.GetObjectsAsync().Result.ToList();
 		}
-		public ProductService(DbGenericService<Yarn> dbYarnService)
-		{
-			_dbYarnService = dbYarnService;
-			//_yarns = MockYarn.GetMockYarns();
-			_yarns = dbYarnService.GetObjectsAsync().Result.ToList();
+			public ProductService(DbGenericService<Yarn> dbYarnService)
+			{
+				_dbYarnService = dbYarnService;
+				//_yarns = MockYarn.GetMockYarns();
+				_yarns = dbYarnService.GetObjectsAsync().Result.ToList();
+			}
 
 
 		public async Task AddWoolAsync(Wool wool)
@@ -78,7 +73,20 @@ namespace RabbitRegister.Services.ProductService
 
 			return woolToBeDeleted;
 		}
+		
+		public List<Wool> GetWools() { return _wools; }
+
+		public Wool GetWools(int id)
+		{
+			foreach (Wool w in _wools)
+			{
+				if (w.ProductId == id)
+					return w;
+			}
+			return null;
 		}
+
+		public List<Yarn> GetYarns() { return _yarns; }
 		public async Task AddYarnAsync(Yarn yarn)
 		{
 			await _dbYarnService.AddObjectAsync(yarn);
@@ -132,27 +140,14 @@ namespace RabbitRegister.Services.ProductService
 						i.Length = yarn.Length;
 						i.Tension = yarn.Tension;
 						i.Washing = yarn.Washing;
-						i.amount = yarn.amount;
+						i.Amount = yarn.Amount;
 						i.Color = yarn.Color;
-						i.price = yarn.price;
+						i.Price = yarn.Price;
 						break;
 					}
 				}
 				_dbYarnService.UpdateObjectAsync(yarn);
 			}
 		}
-		public List<Wool> GetWools() { return _wools; }
-
-		public Wool GetWools(int id)
-		{
-			foreach (Wool w in _wools)
-			{
-				if (w.ProductId == id)
-					return w;
-			}
-			return null;
-		}
-
-		public List<Yarn> GetYarns() { return _yarns; }
 	}
 }
