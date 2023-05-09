@@ -1,14 +1,18 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RabbitRegister.Model
 {
     public class Product
     {
-        [Key]
+        //[PrimaryKey]
         [Display(Name = "ProductId")]
         public int ProductId { get; set; }
         [Display(Name = "BreederRegNo")]
         [Required(ErrorMessage ="Breeder Registration Number is required")]
+        //[ForeignKey]
         public int BreederRegNo { get; set; }
         [Display(Name = "Product name")]
         [Required(ErrorMessage = "Remember to add a product name")]
@@ -27,9 +31,9 @@ namespace RabbitRegister.Model
         {
         }
 
-        public Product(int productId, int breederRegNo, string productName, string color, int amount, double price)
+        public Product(int breederRegNo, string productName, string color, int amount, double price)
         {
-            ProductId = productId;
+            ProductId = ProductId++;
             BreederRegNo = breederRegNo;
             ProductName = productName;
             Color = color;

@@ -15,7 +15,7 @@ namespace RabbitRegister.Model
         {
         }
 
-        public Yarn(int productId, int breederRegNo, int yarnId, string productName, string fiber, double needleSize, double length, string tension, string washing, string color, int amount, double price) : base(productId, breederRegNo, productName, color, amount, price)
+        public Yarn(int breederRegNo, int yarnId, string productName, string fiber, double needleSize, double length, string tension, string washing, string color, int amount, double price) : base(breederRegNo, productName, color, amount, price)
         {
             YarnId = yarnId;
             Fiber = fiber;
