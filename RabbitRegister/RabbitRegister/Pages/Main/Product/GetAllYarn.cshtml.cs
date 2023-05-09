@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using RabbitRegister.Model;
 using RabbitRegister.Services.ProductService;
 
 namespace RabbitRegister.Pages.Main.Product
@@ -14,7 +13,7 @@ namespace RabbitRegister.Pages.Main.Product
 			_yarnService = productService;
 		}
 
-		public List<Model.Yarn>? Yarns { get; private set; }
+		public List<Model.Yarn>? Yarns { get; set; }
 
 
 		public void OnGet()

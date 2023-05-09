@@ -16,23 +16,15 @@ namespace RabbitRegister.Pages.Main.Product
 		[BindProperty]
 		public Model.Yarn Yarn { get; set; }
 
-		public IActionResult OnGet(int yarnId)
+		public IActionResult OnGet(int Id)
 		{
-			Yarn = _yarnService.GetYarn(yarnId);
-			if (Yarn == null)
-				return RedirectToPage("/NotFound");
-
+			Yarn = _yarnService.GetYarn(Id);
 			return Page();
 		}
 
-		public async Task<IActionResult> OnPostAsync()
+		public IActionResult OnPost(int id)
 		{
-			if (!ModelState.IsValid)
-			{
-				return Page();
-			}
-
-			await _yarnService.UpdateYarnAsync(Yarn);
+			_yarnService.UpdateYarnAsync(Yarn, id);
 			return RedirectToPage("GetAllYarn");
 		}
 	}

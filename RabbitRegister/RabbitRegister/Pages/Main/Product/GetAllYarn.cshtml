@@ -143,8 +143,7 @@
 			{
 				<tr class="btn-secondary">
 					<td>
-						@yarn.YarnId
-					</td>
+						@yarn.YarnId</td>
 					<td>
 						@yarn.Fiber
 					</td>
@@ -171,7 +170,7 @@
 					</td>
 					<td>
 						<a class="btn btn-primary btn-sm" type="button" title="Edit" asp-page="EditYarn" asp-route-id="@yarn.YarnId"><i class="fa fa-edit"></i></a>
-						<a class="btn btn-danger btn-sm " type="button" title="Delete" asp-page="DeleteYarn" asp-route-id="@yarn.YarnId"><i class="fa fa-trash"></i></a>
+						<a class="btn btn-danger btn-sm " type="button" title="Delete" asp-page="/Main/Product/DeleteYarn" asp-route-id="@yarn.YarnId"><i class="fa fa-trash"></i></a>
 						@*<a class="btn btn-primary btn-sm " type="button" data-toggle="tooltip" data-placement="top" title="Order" asp-page="../Order/OrderItem" asp-route-id="@yarn.YarnId"><i class="fa fa-shopping-cart"></i></a>*@
 					</td>
 				</tr>

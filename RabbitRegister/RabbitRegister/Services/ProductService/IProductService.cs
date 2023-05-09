@@ -8,9 +8,9 @@ namespace RabbitRegister.Services.ProductService
         List<Wool> GetWools();
         List<Yarn> GetYarns();
         Task AddYarnAsync(Yarn yarn);
-        Task UpdateYarnAsync(Yarn yarn);
+        void UpdateYarnAsync(Yarn yarn, int id);
         Yarn GetYarn(int yarnId);
-        Task<Yarn> DeleteYarnAsync(int? YarnId);
+        Task<Yarn> DeleteYarnAsync(int? Id);
 
     }
 }

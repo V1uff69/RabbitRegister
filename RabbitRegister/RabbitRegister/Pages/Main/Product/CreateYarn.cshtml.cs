@@ -22,12 +22,8 @@ namespace RabbitRegister.Pages.Main.Product
 			return Page();
 		}
 
-		public async Task<IActionResult> OnPostAsync()
+		public async Task<IActionResult> OnPostAsync(Yarn yarn)
 		{
-			if (!ModelState.IsValid)
-			{
-				return Page();
-			}
 			await _yarnService.AddYarnAsync(Yarn);
 			return RedirectToPage("GetAllYarn");
 		}

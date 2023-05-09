@@ -7,11 +7,10 @@ namespace RabbitRegister.EFDbContext
 	{
 		protected override void OnConfiguring(DbContextOptionsBuilder options)
 		{
-			//options.UseSqlServer();
+			options.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=RabbitRegister; Integrated Security=True; Connect Timeout=30; Encrypt=False");
 		}
-
-		public DbSet<Wool> Wools { get; set; }
-		public DbSet<Breeder> Breeders { get; set; }
-		public DbSet<Order> Orders { get; set; }
+		public DbSet<Yarn> Yarns { get; set; }
+		public DbSet<Product> Products { get; set; }
+		
 	}
 }

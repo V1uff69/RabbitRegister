@@ -9,6 +9,15 @@
 		<input asp-for="Yarn.YarnId" class="form-control" readonly="@(true)" />
 	</div>
 	<div class="form-group">
+		<label asp-for="Yarn.BreederRegNo" class="control-lable"></label>
+		<input asp-for="Yarn.BreederRegNo" class="form-control" readonly="@(true)"/>
+	</div>
+	<div class="form-group">
+		<label asp-for="Yarn.ProductName" class="control-lable"></label>
+		<input asp-for="Yarn.ProductName" class="form-control" />
+		<span asp-validation-for="Yarn.ProductName" class="text-danger"></span>
+	</div>
+	<div class="form-group">
 		<label asp-for="Yarn.Fiber" class="control-lable"></label>
 		<input asp-for="Yarn.Fiber" class="form-control" />
 		<span asp-validation-for="Yarn.Fiber" class="text-danger"></span>
@@ -57,5 +66,5 @@
 </form>
 
 <p>
-	<a asp-page="/Item/GetAllItems">Back to List</a>
+	<a asp-page="/Main/Product/GetAllYarn">Back to List</a>
 </p>

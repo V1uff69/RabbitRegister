@@ -6,6 +6,7 @@ namespace RabbitRegister.Pages.Main.Product
 {
     public class DeleteYarnModel : PageModel
     {
+
 		private IProductService _yarnService;
 
 		public DeleteYarnModel(IProductService productService)
@@ -16,22 +17,20 @@ namespace RabbitRegister.Pages.Main.Product
 		[BindProperty]
 		public Model.Yarn Yarn { get; set; }
 
+		public static int Id { get; set; }
+		public int YarnId = Id;
 
 		public IActionResult OnGet(int YarnId)
 		{
 			Yarn = _yarnService.GetYarn(YarnId);
-			if (Yarn == null)
-				return RedirectToPage("/NotFound");
+			
 
 			return Page();
 		}
 
-		public async Task<IActionResult> OnPostAsync()
+		public IActionResult OnPost(int Id)
 		{
-			Model.Yarn deletedYarn = await _yarnService.DeleteYarnAsync(Yarn.YarnId);
-			if (deletedYarn == null)
-				return RedirectToPage("/NotFound");
-
+			_yarnService.DeleteYarnAsync(Id);
 			return RedirectToPage("GetAllYarn");
 		}
 	}

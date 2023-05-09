@@ -1,16 +1,17 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RabbitRegister.Model
 {
+    [Table("Yarns")]
     public class Yarn : Product
     {
+        
         [Display(Name = "YarnId")]
         [Required(ErrorMessage = "Remember to add Id to Yarn")]
         [Range(typeof(int), "0", "10000", ErrorMessage = "Id must be between (1) and (2)")]
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int YarnId { get; set; }
 
 		[Display(Name = "Fiber")]
