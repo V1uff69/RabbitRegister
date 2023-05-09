@@ -12,8 +12,8 @@ using RabbitRegister.EFDbContext;
 namespace RabbitRegister.Migrations
 {
     [DbContext(typeof(ItemDbContext))]
-    [Migration("20230506150010_Rab2")]
-    partial class Rab2
+    [Migration("20230509104026_Rab1")]
+    partial class Rab1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -45,7 +45,7 @@ namespace RabbitRegister.Migrations
                     b.Property<double>("FirstSortmentWeight")
                         .HasColumnType("float");
 
-                    b.Property<double>("HairLengthByDayNinety")
+                    b.Property<double?>("HairLengthByDayNinety")
                         .HasColumnType("float");
 
                     b.Property<int>("RabbitRegNo")
@@ -54,11 +54,10 @@ namespace RabbitRegister.Migrations
                     b.Property<double>("SecondSortmentWeight")
                         .HasColumnType("float");
 
-                    b.Property<double>("TimeUsed")
+                    b.Property<double?>("TimeUsed")
                         .HasColumnType("float");
 
                     b.Property<string>("WoolDensity")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("TrimmingId");

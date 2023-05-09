@@ -42,7 +42,7 @@ namespace RabbitRegister.Migrations
                     b.Property<double>("FirstSortmentWeight")
                         .HasColumnType("float");
 
-                    b.Property<double>("HairLengthByDayNinety")
+                    b.Property<double?>("HairLengthByDayNinety")
                         .HasColumnType("float");
 
                     b.Property<int>("RabbitRegNo")
@@ -51,11 +51,10 @@ namespace RabbitRegister.Migrations
                     b.Property<double>("SecondSortmentWeight")
                         .HasColumnType("float");
 
-                    b.Property<double>("TimeUsed")
+                    b.Property<double?>("TimeUsed")
                         .HasColumnType("float");
 
                     b.Property<string>("WoolDensity")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("TrimmingId");

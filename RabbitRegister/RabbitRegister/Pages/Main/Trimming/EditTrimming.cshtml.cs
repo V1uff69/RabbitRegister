@@ -21,7 +21,7 @@ namespace RabbitRegister.Pages.Main.Trimming
 
         public IActionResult OnPost(int id)
         {
-            _trimmingService.UpdateTrimming(Trimming);
+            _trimmingService.UpdateTrimming(Trimming, id);
             return RedirectToPage("GetAllTrimming");
         }
     }
