@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RabbitRegister.EFDbContext;
+using RabbitRegister.Model;
 
 namespace RabbitRegister.Services
 {
@@ -39,8 +40,16 @@ namespace RabbitRegister.Services
                 await context.SaveChangesAsync();
             }
         }
+		public async Task UpdateObjectAsync1(Product obj)
+		{
+			using (var context = new ItemDbContext())
+			{
+				context.Set<Product>().Update(obj);
+				await context.SaveChangesAsync();
+			}
+		}
 
-        public async Task<T> GetObjectByIdAsync(int id)
+		public async Task<T> GetObjectByIdAsync(int id)
         {
             using (var context = new ItemDbContext())
             {

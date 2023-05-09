@@ -60,13 +60,13 @@ namespace RabbitRegister.Services.ProductService
 		}
 
 
-		public void UpdateYarnAsync(Yarn yarn, int id)
+		public void UpdateYarnAsync(Yarn yarn)
 		{
 			if (yarn != null)
 			{
 				foreach (Yarn i in _yarns)
 				{
-					if (i.YarnId == id)
+					if (i.YarnId == yarn.YarnId)
 					{
 						i.BreederRegNo = yarn.BreederRegNo;
 						i.ProductName = yarn.ProductName;

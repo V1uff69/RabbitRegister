@@ -22,9 +22,9 @@ namespace RabbitRegister.Pages.Main.Product
 			return Page();
 		}
 
-		public IActionResult OnPost(int id)
+		public IActionResult OnPost()
 		{
-			_yarnService.UpdateYarnAsync(Yarn, id);
+			_yarnService.UpdateYarnAsync(Yarn);
 			return RedirectToPage("GetAllYarn");
 		}
 	}

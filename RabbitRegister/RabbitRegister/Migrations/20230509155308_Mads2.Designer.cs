@@ -11,8 +11,8 @@ using RabbitRegister.EFDbContext;
 namespace RabbitRegister.Migrations
 {
     [DbContext(typeof(ItemDbContext))]
-    [Migration("20230509114953_Rab1")]
-    partial class Rab1
+    [Migration("20230509155308_Mads2")]
+    partial class Mads2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,7 +24,7 @@ namespace RabbitRegister.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("RabbitRegister.Model.Product", b =>
+            modelBuilder.Entity("RabbitRegister.Model.Yarn", b =>
                 {
                     b.Property<int>("ProductId")
                         .ValueGeneratedOnAdd()
@@ -39,27 +39,6 @@ namespace RabbitRegister.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ProductName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("amount")
-                        .HasColumnType("int");
-
-                    b.Property<int>("price")
-                        .HasColumnType("int");
-
-                    b.HasKey("ProductId");
-
-                    b.ToTable("Products");
-
-                    b.UseTptMappingStrategy();
-                });
-
-            modelBuilder.Entity("RabbitRegister.Model.Yarn", b =>
-                {
-                    b.HasBaseType("RabbitRegister.Model.Product");
-
                     b.Property<string>("Fiber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -69,6 +48,10 @@ namespace RabbitRegister.Migrations
 
                     b.Property<double>("NeedleSize")
                         .HasColumnType("float");
+
+                    b.Property<string>("ProductName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Tension")
                         .IsRequired()
@@ -81,16 +64,15 @@ namespace RabbitRegister.Migrations
                     b.Property<int>("YarnId")
                         .HasColumnType("int");
 
-                    b.ToTable("Yarns");
-                });
+                    b.Property<int>("amount")
+                        .HasColumnType("int");
 
-            modelBuilder.Entity("RabbitRegister.Model.Yarn", b =>
-                {
-                    b.HasOne("RabbitRegister.Model.Product", null)
-                        .WithOne()
-                        .HasForeignKey("RabbitRegister.Model.Yarn", "ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Property<int>("price")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProductId");
+
+                    b.ToTable("Yarns");
                 });
 #pragma warning restore 612, 618
         }
