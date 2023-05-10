@@ -16,6 +16,7 @@ namespace RabbitRegister.EFDbContext
         public DbSet<Trimming> Trimmings { get; set; }
 		public DbSet<Yarn> Yarns { get; set; }
 		public DbSet<Product> Products { get; set; }
+		public DbSet<Rabbit> Rabbits { get; set; }
 		
 	}
 }
