@@ -17,10 +17,7 @@ body {
     margin-bottom: 60px;
     background-image: url("../Images/Website/RabbitWallpaper.jpg");
     background-color: #cccccc;
-}
-
-{
-    background-color: white;
+    background-position: center;
 }
 
 table{
