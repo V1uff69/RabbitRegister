@@ -1,0 +1,70 @@
+﻿@page
+@model RabbitRegister.Pages.Main.Product.StoreModel
+@{
+}
+
+
+<!--  Shopping Basket -->
+<div class="d-flex flex-row-reverse bd-highlight">
+    <div class="p-2 bd-highlight">
+        <a class="btn btn-success" asp-page="Basket">Shopping Basket</a>
+    </div>
+</div>
+
+
+<!--  Product tabel on the website -->
+<h1 class="font-monospace text-center">Products</h1>
+
+    <body>
+    <table class="table table-bordered table-hover table-striped">
+        <tr>
+            <td></td>         
+        </tr>
+    </table>
+
+
+    <!--  Wool Info, price, name... -->
+    <div>
+
+        <div style="width: 100%" class="d-flex flex-wrap justify-content-center">
+            @if (@Model.Wools != null)
+            {
+            foreach (var Wool in Model.Wools)
+            {
+              <div class="p-2 text-center container rounded border border-dark" style="max-width: 25%; margin-left: 50px" >
+                        <p class="font-monospace"> Name: @Wool.ProductName </p>
+                    <img src="ImgString" style="max-width: 200px; height: auto">
+                        <p class="font-monospace"> Price: @Wool.Price kr </p>
+                        <p class="font-monospace"> Stock: @Wool.Amount</p>
+
+                        @{
+
+                                     <a class="btn btn-primary btn-sm" type="button" title="Edit" asp-page="/Store/Merch/EditMerch" asp-route-id="@Wool.ProductId"><i class="fa fa-edit"></i></a>
+                                     <a class="btn btn-danger btn-sm" type="button" title="Delete" asp-page="/Store/Merch/DeleteMerch" asp-route-id="@Wool.ProductId"><i class="fa fa-trash"></i></a>
+                              <a class="btn btn-success" asp-page="/Store/OrderSystem/ShoppingCart" asp-route-id="@Wool.ProductId" asp-page-handler="AddToCart"> <i class="fa fa-cart-plus"></i> </a>
+
+                    }
+              </div>
+            }
+
+            }
+        </div>
+    </div>
+      
+      <br />
+
+     <table class="table table-bordered table-hover table-striped">
+        <tr>
+            <td></td>     
+        </tr>
+    </table>
+
+
+
+    <br />
+    <br />
+
+
+
+
+    </body>
