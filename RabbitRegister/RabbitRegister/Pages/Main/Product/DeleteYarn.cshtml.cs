@@ -17,8 +17,6 @@ namespace RabbitRegister.Pages.Main.Product
 		[BindProperty]
 		public Model.Yarn Yarn { get; set; }
 
-		public static int Id { get; set; }
-		public int YarnId = Id;
 
 		public IActionResult OnGet(int YarnId)
 		{

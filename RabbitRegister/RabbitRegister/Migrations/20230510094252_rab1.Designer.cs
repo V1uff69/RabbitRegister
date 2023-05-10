@@ -12,8 +12,8 @@ using RabbitRegister.EFDbContext;
 namespace RabbitRegister.Migrations
 {
     [DbContext(typeof(ItemDbContext))]
-    [Migration("20230510093236_Rab1")]
-    partial class Rab1
+    [Migration("20230510094252_rab1")]
+    partial class rab1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
