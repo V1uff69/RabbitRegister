@@ -14,5 +14,16 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background-image: url("../Images/Website/RabbitWallpaper.jpg");
+    background-color: #cccccc;
+}
+
+{
+    background-color: white;
+}
+
+table{
+    background-color: white;
+    width: fit-content;
 }
