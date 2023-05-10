@@ -12,8 +12,8 @@ using RabbitRegister.EFDbContext;
 namespace RabbitRegister.Migrations
 {
     [DbContext(typeof(ItemDbContext))]
-    [Migration("20230510093236_Rab1")]
-    partial class Rab1
+    [Migration("20230510104258_rab1")]
+    partial class rab1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -138,6 +138,55 @@ namespace RabbitRegister.Migrations
                     b.ToTable("Products");
 
                     b.UseTptMappingStrategy();
+                });
+
+            modelBuilder.Entity("RabbitRegister.Model.Rabbit", b =>
+                {
+                    b.Property<int>("RabbitRegNo")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CauseOfDeath")
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<string>("Color")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateOfBirth")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DeadOrAlive")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IsForSale")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Race")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double?>("Rating")
+                        .HasColumnType("float");
+
+                    b.Property<int>("Sex")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SuitableForBreeding")
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<double?>("Weight")
+                        .HasColumnType("float");
+
+                    b.HasKey("RabbitRegNo");
+
+                    b.ToTable("Rabbits");
                 });
 
             modelBuilder.Entity("RabbitRegister.Model.Trimming", b =>

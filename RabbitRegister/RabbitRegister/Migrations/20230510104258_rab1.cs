@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace RabbitRegister.Migrations
 {
     /// <inheritdoc />
-    public partial class Rab1 : Migration
+    public partial class rab1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -44,6 +44,28 @@ namespace RabbitRegister.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Products", x => x.ProductId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Rabbits",
+                columns: table => new
+                {
+                    RabbitRegNo = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Race = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Color = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Sex = table.Column<int>(type: "int", nullable: false),
+                    DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Weight = table.Column<double>(type: "float", nullable: true),
+                    Rating = table.Column<double>(type: "float", nullable: true),
+                    DeadOrAlive = table.Column<int>(type: "int", nullable: false),
+                    IsForSale = table.Column<int>(type: "int", nullable: false),
+                    SuitableForBreeding = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
+                    CauseOfDeath = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Rabbits", x => x.RabbitRegNo);
                 });
 
             migrationBuilder.CreateTable(
@@ -149,6 +171,9 @@ namespace RabbitRegister.Migrations
 
             migrationBuilder.DropTable(
                 name: "Order");
+
+            migrationBuilder.DropTable(
+                name: "Rabbits");
 
             migrationBuilder.DropTable(
                 name: "Trimmings");
