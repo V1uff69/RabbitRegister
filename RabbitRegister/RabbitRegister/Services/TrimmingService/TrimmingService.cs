@@ -14,7 +14,7 @@ namespace RabbitRegister.Services.TrimmingService
 		public TrimmingService(DbGenericService<Trimming> dbGenericService)
 		{
 			DbGenericService = dbGenericService;
-			_trimmings = dbGenericService.GetObjectsAsync().Result.ToList();
+			_trimmings = DbGenericService.GetObjectsAsync().Result.ToList();
 		}
 
 		public Trimming GetTrimming(int id)
