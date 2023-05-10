@@ -91,7 +91,6 @@ namespace RabbitRegister.Services.ProductService
 		{
 			await _dbYarnService.AddObjectAsync(yarn);
 			_yarns.Add(yarn);
-
 		}
 
 		public async Task<Yarn> DeleteYarnAsync(int? Id)

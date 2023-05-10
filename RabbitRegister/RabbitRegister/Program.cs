@@ -15,19 +15,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddSingleton<IProductService, ProductService>();
-builder.Services.AddDbContext<ItemDbContext>();
-builder.Services.AddTransient<DbGenericService<Wool>, DbGenericService<Wool>>();
-builder.Services.AddTransient<DbGenericService<Wool>, DbGenericService<Wool>>();
-builder.Services.Configure<CookiePolicyOptions>(options => {
 builder.Services.AddSingleton<ITrimmingService, TrimmingService>();
-builder.Services.AddTransient<DbGenericService<Trimming>, DbGenericService<Trimming>>();
 builder.Services.AddDbContext<ItemDbContext>();
-builder.Services.AddDbContext<ItemDbContext>();
-builder.Services.AddTransient<DbGenericService<Yarn>, DbGenericService<Yarn>>();
-	// This lambda determines whether user consent for non-essential cookies is needed for a given request. options.CheckConsentNeeded = context => true; 
-	options.MinimumSameSitePolicy = SameSiteMode.None;
+builder.Services.AddTransient<DbGenericService<Wool>, DbGenericService<Wool>>();
 
-});
+builder.Services.AddTransient<DbGenericService<Trimming>, DbGenericService<Trimming>>();
 
 var app = builder.Build();
 
