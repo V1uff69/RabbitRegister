@@ -1,5 +1,5 @@
 ﻿@page
-@model RabbitRegister.Pages.Main.Rabbit.ViewAllRabbitsModel
+@model RabbitRegister.Pages.Main.Rabbit.GetAllRabbitsModel
 @{
 }
 
@@ -45,8 +45,8 @@
 
 </div>
 
-<table class="table table-bordered table-hover table-striped table-opacity" width="60%">
-	<colgroup>
+<table class="table table-bordered table-hover table-striped table-opacity" width="100%">
+@*	<colgroup>
 		<col style="width : 5%">
 		<col style="width : 20%">
 		<col style="width : 15%">
@@ -59,7 +59,7 @@
 		<col style="width : 15%">
 		<col style="width : 15%">
 		<col style="width : 15%">
-	</colgroup>
+	</colgroup>*@
 	<thead>
 		<tr class="btn-secondary active">
 			<th>
@@ -173,10 +173,10 @@
 					<div>
 						<h5>For Sale </h5>
 					</div>
-					<div>
+				@*	<div>
 						<a data-toggle="tooltip" title="Sort By IsForSale" asp-page-handler="SortIsForSale"><i class="fa fa-angle-up"></i></a>
 						<a data-toggle="tooltip" title="Sort By IsForSale Descending" asp-page-handler="SortByIsForSaleDescending"><i class="fa fa-angle-down"></i></a>
-					</div>
+					</div>*@
 				</div>
 			</th>
 
@@ -185,10 +185,10 @@
 					<div>
 						<h5>Suitability </h5>
 					</div>
-					<div>
+		@*			<div>
 						<a data-toggle="tooltip" title="Sort By SuitableForBreeding" asp-page-handler="SortSuitableForBreeding"><i class="fa fa-angle-up"></i></a>
 						<a data-toggle="tooltip" title="Sort By SuitableForBreeding Descending" asp-page-handler="SortBySuitableForBreedingDescending"><i class="fa fa-angle-down"></i></a>
-					</div>
+					</div>*@
 				</div>
 			</th>
 
@@ -197,10 +197,10 @@
 					<div>
 						<h5>DeathCause </h5>
 					</div>
-					<div>
+@*					<div>
 						<a data-toggle="tooltip" title="Sort By CauseOfDeath" asp-page-handler="SortCauseOfDeath"><i class="fa fa-angle-up"></i></a>
 						<a data-toggle="tooltip" title="Sort By CauseOfDeath Descending" asp-page-handler="SortByCauseOfDeath"><i class="fa fa-angle-down"></i></a>
-					</div>
+					</div>*@
 				</div>
 			</th>
 

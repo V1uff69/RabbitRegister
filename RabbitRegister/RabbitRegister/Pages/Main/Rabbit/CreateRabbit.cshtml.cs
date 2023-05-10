@@ -34,7 +34,7 @@ namespace RabbitRegister.Pages.Main.Rabbit
                 return Page();
             }
             await _rabbitService.AddRabbitAsync(Rabbit);
-            return RedirectToPage("ViewAllRabbits");
+            return RedirectToPage("GetAllRabbits");
         }
     }
 }

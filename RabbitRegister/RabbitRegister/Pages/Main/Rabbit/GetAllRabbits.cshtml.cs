@@ -4,11 +4,11 @@ using RabbitRegister.Services.RabbitService;
 
 namespace RabbitRegister.Pages.Main.Rabbit
 {
-    public class ViewAllRabbitsModel : PageModel
+    public class GetAllRabbitsModel : PageModel
     {
 		private IRabbitService _rabbitService;
 
-		public ViewAllRabbitsModel(IRabbitService rabbitService)
+		public GetAllRabbitsModel(IRabbitService rabbitService)
 		{
 			_rabbitService = rabbitService;
 		}

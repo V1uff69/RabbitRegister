@@ -33,7 +33,7 @@ namespace RabbitRegister.Pages.Main.Rabbit
 			}
 
 			await _rabbitService.UpdateRabbitAsync(Rabbit, id);
-			return RedirectToPage("ViewAllRabbits");
+			return RedirectToPage("GetAllRabbits");
 		}
 	}
 }

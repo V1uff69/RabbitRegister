@@ -32,7 +32,7 @@ namespace RabbitRegister.Pages.Main.Rabbit
 			//if (deletedRabbit == null)
 			//	return RedirectToPage("/NotFound"); //NotFound er ikke defineret endnu
 
-			return RedirectToPage("ViewAllRabbits");
+			return RedirectToPage("GetAllRabbits");
 		}
 	}
 }
