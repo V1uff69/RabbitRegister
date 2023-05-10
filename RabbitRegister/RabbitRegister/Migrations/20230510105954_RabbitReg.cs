@@ -99,7 +99,8 @@ namespace RabbitRegister.Migrations
                 {
                     ProductId = table.Column<int>(type: "int", nullable: false),
                     Weight = table.Column<double>(type: "float", nullable: false),
-                    Quality = table.Column<int>(type: "int", nullable: false)
+                    Quality = table.Column<int>(type: "int", nullable: false),
+                    ImgString = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {

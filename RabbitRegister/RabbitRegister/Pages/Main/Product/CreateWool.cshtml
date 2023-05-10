@@ -49,13 +49,13 @@
     </div>
     <div class="from-group">
         <label asp-for="@Model.Wool.ImgString" class="control-label"></label>
-        <input asp-for="@Model.Wool.ImgString" class="form-control" />
+        <input asp-for="@Model.Wool.ImgString" value="/Images/Products/Wool/" class="form-control" />
         <span asp-validation-for="@Model.Wool.ImgString" class="text-danger"></span>
     </div>
 
-    <p>
+    <p align="center">
         <div class="form-group">
-            <input type="submit" value="Create" class="btn btn-primary" />
+            <input type="submit" style="background-color:green;margin-left:auto;margin-right:auto;display:block;width:100%;border-radius:8px" value="Create" class="btn btn-primary text-center" />
         </div>
     </p>
 </form>

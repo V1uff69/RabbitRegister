@@ -181,6 +181,9 @@ namespace RabbitRegister.Migrations
                 {
                     b.HasBaseType("RabbitRegister.Model.Product");
 
+                    b.Property<string>("ImgString")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Quality")
                         .HasColumnType("int");
 

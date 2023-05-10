@@ -12,7 +12,7 @@ using RabbitRegister.EFDbContext;
 namespace RabbitRegister.Migrations
 {
     [DbContext(typeof(ItemDbContext))]
-    [Migration("20230510080714_RabbitReg")]
+    [Migration("20230510105954_RabbitReg")]
     partial class RabbitReg
     {
         /// <inheritdoc />
@@ -183,6 +183,9 @@ namespace RabbitRegister.Migrations
             modelBuilder.Entity("RabbitRegister.Model.Wool", b =>
                 {
                     b.HasBaseType("RabbitRegister.Model.Product");
+
+                    b.Property<string>("ImgString")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Quality")
                         .HasColumnType("int");
