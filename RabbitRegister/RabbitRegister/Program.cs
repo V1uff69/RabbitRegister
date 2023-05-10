@@ -18,7 +18,7 @@ builder.Services.AddSingleton<IProductService, ProductService>();
 builder.Services.AddSingleton<ITrimmingService, TrimmingService>();
 builder.Services.AddDbContext<ItemDbContext>();
 builder.Services.AddTransient<DbGenericService<Wool>, DbGenericService<Wool>>();
-
+builder.Services.AddTransient<DbGenericService<Yarn>, DbGenericService<Yarn>>();
 builder.Services.AddTransient<DbGenericService<Trimming>, DbGenericService<Trimming>>();
 
 var app = builder.Build();
