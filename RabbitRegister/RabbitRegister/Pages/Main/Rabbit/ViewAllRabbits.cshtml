@@ -48,9 +48,17 @@
 <table class="table table-bordered table-hover table-striped table-opacity" width="60%">
 	<colgroup>
 		<col style="width : 5%">
-		<col style="width : 77%">
-		<col style="width : 9%">
-		<col style="width : 9%">
+		<col style="width : 20%">
+		<col style="width : 15%">
+		<col style="width : 15%">
+		<col style="width : 15%">
+		<col style="width : 15%">
+		<col style="width : 15%">
+		<col style="width : 15%">
+		<col style="width : 15%">
+		<col style="width : 15%">
+		<col style="width : 15%">
+		<col style="width : 15%">
 	</colgroup>
 	<thead>
 		<tr class="btn-secondary active">
@@ -63,6 +71,7 @@
 					</div>
 				</div>
 			</th>
+
 			<th>
 				<div class="d-flex justify-content-between p-0">
 					<div>
@@ -73,8 +82,68 @@
 						<a data-toggle="tooltip" title="Sort By Name Descending" asp-page-handler="SortByNameDescending"><i class="fa fa-angle-down"></i></a>
 					</div>
 				</div>
-
 			</th>
+
+			<th>
+				<div class="d-flex justify-content-between p-0">
+					<div>
+						<h5>Race </h5>
+					</div>
+					<div>
+						<a data-toggle="tooltip" title="Sort By Race" asp-page-handler="SortByRace"><i class="fa fa-angle-up"></i></a>
+						<a data-toggle="tooltip" title="Sort By Race Descending" asp-page-handler="SortByRaceDescending"><i class="fa fa-angle-down"></i></a>
+					</div>
+				</div>
+			</th>
+
+			<th>
+				<div class="d-flex justify-content-between p-0">
+					<div>
+						<h5>Color </h5>
+					</div>
+					<div>
+						<a data-toggle="tooltip" title="Sort By Color" asp-page-handler="SortByColor"><i class="fa fa-angle-up"></i></a>
+						<a data-toggle="tooltip" title="Sort By Color Descending" asp-page-handler="SortByColorDescending"><i class="fa fa-angle-down"></i></a>
+					</div>
+				</div>
+			</th>
+
+			<th>
+				<div class="d-flex justify-content-between p-0">
+					<div>
+						<h5>Sex </h5>
+					</div>
+					<div>
+						<a data-toggle="tooltip" title="Sort By Sex" asp-page-handler="SortBySex"><i class="fa fa-angle-up"></i></a>
+						<a data-toggle="tooltip" title="Sort By Sex Descending" asp-page-handler="SortBySexDescending"><i class="fa fa-angle-down"></i></a>
+					</div>
+				</div>
+			</th>
+
+			<th>
+				<div class="d-flex justify-content-between p-0">
+					<div>
+						<h5>Date of Birth </h5>
+					</div>
+					<div>
+						<a data-toggle="tooltip" title="Sort By DateOfBirth" asp-page-handler="SortByDateOfBirth"><i class="fa fa-angle-up"></i></a>
+						<a data-toggle="tooltip" title="Sort By DateOfBirth Descending" asp-page-handler="SortByDateOfBirthDescending"><i class="fa fa-angle-down"></i></a>
+					</div>
+				</div>
+			</th>
+
+			<th>
+				<div class="d-flex justify-content-between p-0">
+					<div>
+						<h5>Weight </h5>
+					</div>
+					<div>
+						<a data-toggle="tooltip" title="Sort By Weight" asp-page-handler="SortByWeight"><i class="fa fa-angle-up"></i></a>
+						<a data-toggle="tooltip" title="Sort By Weight Descending" asp-page-handler="SortByWeight"><i class="fa fa-angle-down"></i></a>
+					</div>
+				</div>
+			</th>
+
 			<th>
 				<div class="d-flex justify-content-between p-0">
 					<div>
@@ -86,8 +155,59 @@
 					</div>
 				</div>
 			</th>
+
 			<th>
-				<h5>Action</h5>
+				<div class="d-flex justify-content-between p-0">
+					<div>
+						<h5>Dead/Alive </h5>
+					</div>
+					<div>
+						<a data-toggle="tooltip" title="Sort By DeadOrAlive" asp-page-handler="SortDeadOrAlive"><i class="fa fa-angle-up"></i></a>
+						<a data-toggle="tooltip" title="Sort By DeadOrAlive Descending" asp-page-handler="SortByDeadOrAliveDescending"><i class="fa fa-angle-down"></i></a>
+					</div>
+				</div>
+			</th>
+
+			<th>
+				<div class="d-flex justify-content-between p-0">
+					<div>
+						<h5>For Sale </h5>
+					</div>
+					<div>
+						<a data-toggle="tooltip" title="Sort By IsForSale" asp-page-handler="SortIsForSale"><i class="fa fa-angle-up"></i></a>
+						<a data-toggle="tooltip" title="Sort By IsForSale Descending" asp-page-handler="SortByIsForSaleDescending"><i class="fa fa-angle-down"></i></a>
+					</div>
+				</div>
+			</th>
+
+			<th>
+				<div class="d-flex justify-content-between p-0">
+					<div>
+						<h5>Suitability </h5>
+					</div>
+					<div>
+						<a data-toggle="tooltip" title="Sort By SuitableForBreeding" asp-page-handler="SortSuitableForBreeding"><i class="fa fa-angle-up"></i></a>
+						<a data-toggle="tooltip" title="Sort By SuitableForBreeding Descending" asp-page-handler="SortBySuitableForBreedingDescending"><i class="fa fa-angle-down"></i></a>
+					</div>
+				</div>
+			</th>
+
+			<th>
+				<div class="d-flex justify-content-between p-0">
+					<div>
+						<h5>DeathCause </h5>
+					</div>
+					<div>
+						<a data-toggle="tooltip" title="Sort By CauseOfDeath" asp-page-handler="SortCauseOfDeath"><i class="fa fa-angle-up"></i></a>
+						<a data-toggle="tooltip" title="Sort By CauseOfDeath Descending" asp-page-handler="SortByCauseOfDeath"><i class="fa fa-angle-down"></i></a>
+					</div>
+				</div>
+			</th>
+
+			
+
+			<th>
+				<h5>Handlinger</h5>
 			</th>
 		</tr>
 	</thead>
@@ -104,8 +224,36 @@
 						@rabbit.Name
 					</td>
 					<td>
+						@rabbit.Race
+					</td>
+					<td>
+						@rabbit.Color
+					</td>
+					<td>
+						@rabbit.Sex
+					</td>
+					<td>
+						@rabbit.DateOfBirth
+					</td>
+					<td>
+						@rabbit.Weight
+					</td>
+					<td>
 						@rabbit.Rating
 					</td>
+					<td>
+						@rabbit.DeadOrAlive
+					</td>
+					<td>
+						@rabbit.IsForSale
+					</td>
+					<td>
+						@rabbit.SuitableForBreeding
+					</td>
+					<td>
+						@rabbit.CauseOfDeath
+					</td>
+
 					<td>
 						<a class="btn btn-primary btn-sm" type="button" title="Edit" asp-page="EditRabbit" asp-route-id="@rabbit.RabbitRegNo"><i class="fa fa-edit"></i></a>
 						<a class="btn btn-danger btn-sm " type="button" title="Delete" asp-page="DeleteRabbit" asp-route-id="@rabbit.RabbitRegNo"><i class="fa fa-trash"></i></a>

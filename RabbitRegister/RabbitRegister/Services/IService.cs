@@ -8,6 +8,5 @@
 		Task UpdateObjectAsync(T obj);
 		Task<T> GetObjectByIdAsync(int id);
 		Task SaveObjects(List<T> objs);
-
 	}
 }

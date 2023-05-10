@@ -3,12 +3,16 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using RabbitRegister.Model;
 using RabbitRegister.Services.RabbitService;
+using System.Drawing;
+using System.Collections.Generic;
+
 
 namespace RabbitRegister.Pages.Main.Rabbit
 {
     public class CreateRabbitModel : PageModel
     {
         private IRabbitService _rabbitService;
+
 
         public CreateRabbitModel(IRabbitService rabbitService)
         {
@@ -30,7 +34,7 @@ namespace RabbitRegister.Pages.Main.Rabbit
                 return Page();
             }
             await _rabbitService.AddRabbitAsync(Rabbit);
-            return RedirectToPage("GetAllItems");
+            return RedirectToPage("ViewAllRabbits");
         }
     }
 }

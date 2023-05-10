@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using RabbitRegister.Migrations;
 using RabbitRegister.Model;
+using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 
 namespace RabbitRegister.Services.RabbitService
@@ -44,21 +47,49 @@ namespace RabbitRegister.Services.RabbitService
 			return null;
 		}
 
-		public async Task UpdateRabbitAsync(Rabbit rabbit)
-		{
-			if (rabbit != null)
-			{
-				foreach (Rabbit r in _rabbits)
-				{
-					if (r.RabbitRegNo == rabbit.RabbitRegNo)
-					{
-						r.Name = rabbit.Name;
-						r.Rating = rabbit.Rating;
-					}
-				}
-				await _dbGenericService.UpdateObjectAsync(rabbit);
-			}
-		}
+        public async Task UpdateRabbitAsync(Rabbit rabbit, int id)
+        {
+            if (rabbit != null)
+            {
+                foreach (Rabbit r in _rabbits)
+                {
+                    if (r.RabbitRegNo == id)
+                    {
+                        r.Name = rabbit.Name;
+                        r.Race = rabbit.Race;
+                        r.Color = rabbit.Color;
+                        r.Sex = rabbit.Sex;
+                        r.DateOfBirth = rabbit.DateOfBirth;
+                        r.Weight = rabbit.Weight;
+                        r.Rating = rabbit.Rating;
+                        r.DeadOrAlive = rabbit.DeadOrAlive;
+                        r.IsForSale = rabbit.IsForSale;
+                        r.SuitableForBreeding = rabbit.SuitableForBreeding;
+                        r.CauseOfDeath = rabbit.CauseOfDeath;
+                        break;
+                    }
+                }
+                await _dbGenericService.UpdateObjectAsync(rabbit);
+            }
+        }
+
+  //      public async Task UpdateRabbitAsync(Rabbit rabbit)
+		//{
+		//	if (rabbit != null)
+		//	{
+		//		foreach (Rabbit r in _rabbits)
+		//		{
+		//			if (r.RabbitRegNo == rabbit.RabbitRegNo)
+		//			{
+		//				r.Name = rabbit.Name;
+		//				r.Race = rabbit.Race;
+		//				r.Color = rabbit.Color;
+		//				r.Rating = rabbit.Rating;
+		//			}
+		//		}
+		//		await _dbGenericService.UpdateObjectAsync(rabbit);
+		//	}
+		//}
 
 		public async Task<Rabbit> DeleteRabbitAsync(int? rabbitId)
 		{
@@ -179,7 +210,7 @@ namespace RabbitRegister.Services.RabbitService
 
 		public async Task<List<string>> GetValidColorsForAngoraAsync()
 		{
-			return await Task.FromResult(new List<string> { "Agouti", "Chinchilla", "JapanskBlå", "Sort", "Blå", "Brun", "Lilac", "Rød", "Californisk Hvid", "Havana", "Isabella", "Madagaskar" });
+			return await Task.FromResult(new List<string> { "Agouti", "Chinchilla", "Japansk Blå", "Sort", "Blå", "Brun", "Lilac", "Rød", "Californisk Hvid", "Havana", "Isabella", "Madagaskar" });
 		}
 
 		public async Task<List<string>> GetValidColorsForSatinAngoraAsync()
@@ -187,18 +218,18 @@ namespace RabbitRegister.Services.RabbitService
 			return await Task.FromResult(new List<string> { "Agouti", "Chinchilla", "JapanskBlå", "Sort", "Blå", "Brun", "Lilac", "Rød", "Californisk Hvid" });
 		}
 
-		public async Task<List<string>> GetValidColorsForRaceAsync(RabbitRace race)
-		{
-			switch (race)
-			{
-				case RabbitRace.Angora:
-					return await GetValidColorsForAngoraAsync();
-				case RabbitRace.SatinAngora:
-					return await GetValidColorsForSatinAngoraAsync();
-				default:
-					return new List<string>();
-			}
-		}	
+		//public async Task<List<string>> GetValidColorsForRaceAsync(Rabbit race)
+		//{
+		//	switch (race)
+		//	{
+		//		case Rabbit.PossibleRaces[1]:
+		//			return await GetValidColorsForAngoraAsync();
+		//		case RabbitRace.SatinAngora:
+		//			return await GetValidColorsForSatinAngoraAsync();
+		//		default:
+		//			return new List<string>();
+		//	}
+		//}	
 
 	}
 

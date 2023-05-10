@@ -11,10 +11,11 @@ namespace RabbitRegister.EFDbContext
 			//options.UseSqlServer();
 		}
 
-		public DbSet<Rabbit> Rabbits { get; set; }
-		public DbSet<Wool> Wools { get; set; }
 		public DbSet<Breeder> Breeders { get; set; }
-		public DbSet<Order> Orders { get; set; }
+		public DbSet<Rabbit> Rabbits { get; set; }
+		public DbSet<Trimming> Trimmings { get; set; }
+		//public DbSet<Wool> Wools { get; set; }
+		//public DbSet<Order> Orders { get; set; }
 	}
 
 }

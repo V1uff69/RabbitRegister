@@ -6,8 +6,9 @@ namespace RabbitRegister.Model
     public class Breeder
     {
         [Key]
-		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+		[DatabaseGenerated(DatabaseGeneratedOption.None)]
 		public int BreederRegNo { get; set; }
+
         public string Name { get; set; }
         public string Adress { get; set; }
         public int ZipCode { get; set; }

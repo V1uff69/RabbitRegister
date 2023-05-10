@@ -7,7 +7,7 @@ namespace RabbitRegister.Services.RabbitService
 
 		List<Rabbit> GetRabbits();
 		Task AddRabbitAsync(Rabbit rabbit);
-		Task UpdateRabbitAsync(Rabbit rabbit);
+		Task UpdateRabbitAsync(Rabbit rabbit, int id);
 		Rabbit GetRabbit(int id);
 		Task<Rabbit> DeleteRabbitAsync(int? rabbitId);
 		IEnumerable<Rabbit> NameSearch(string str);
@@ -20,7 +20,7 @@ namespace RabbitRegister.Services.RabbitService
 		IEnumerable<Rabbit> SortByRatingDescending();
 		Task<List<string>> GetValidColorsForAngoraAsync();
 		Task<List<string>> GetValidColorsForSatinAngoraAsync();
-		Task<List<string>> GetValidColorsForRaceAsync(RabbitRace race);
+		//Task<List<string>> GetValidColorsForRaceAsync(Race race);
 
 
 	}
