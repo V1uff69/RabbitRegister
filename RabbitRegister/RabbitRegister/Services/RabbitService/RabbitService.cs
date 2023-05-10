@@ -47,7 +47,7 @@ namespace RabbitRegister.Services.RabbitService
 			return null;
 		}
 
-        public async Task UpdateRabbitAsync(Rabbit rabbit, int id)
+        public async Task UpdateRabbitAsync(Rabbit rabbit, int id) // int id tilføjet
         {
             if (rabbit != null)
             {
@@ -66,30 +66,13 @@ namespace RabbitRegister.Services.RabbitService
                         r.IsForSale = rabbit.IsForSale;
                         r.SuitableForBreeding = rabbit.SuitableForBreeding;
                         r.CauseOfDeath = rabbit.CauseOfDeath;
-                        break;
+                        break;									// break tilføjet
                     }
                 }
                 await _dbGenericService.UpdateObjectAsync(rabbit);
             }
         }
 
-  //      public async Task UpdateRabbitAsync(Rabbit rabbit)
-		//{
-		//	if (rabbit != null)
-		//	{
-		//		foreach (Rabbit r in _rabbits)
-		//		{
-		//			if (r.RabbitRegNo == rabbit.RabbitRegNo)
-		//			{
-		//				r.Name = rabbit.Name;
-		//				r.Race = rabbit.Race;
-		//				r.Color = rabbit.Color;
-		//				r.Rating = rabbit.Rating;
-		//			}
-		//		}
-		//		await _dbGenericService.UpdateObjectAsync(rabbit);
-		//	}
-		//}
 
 		public async Task<Rabbit> DeleteRabbitAsync(int? rabbitId)
 		{
