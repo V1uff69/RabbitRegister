@@ -18,6 +18,9 @@ namespace RabbitRegister.Model
         [Required(ErrorMessage = "Der skal angives et Avler ID")]
         public int BreederRegNo { get; set; }
 
+        [Display(Name = "Kaninens Navn")]
+        public string? Name { get; set; }
+
         [Display(Name = "Dato")]
         [Required(ErrorMessage = "Der skal angives en Dato")]
         public DateTime Date { get; set; }
@@ -47,13 +50,14 @@ namespace RabbitRegister.Model
         {
         }
 
-        public Trimming(int trimmingId, int rabbitRegNo, int breederRegNo, DateTime date, double timeUsed, double hairLengthByDayNinety, string woolDensity, double firstSortmentWeight, double secondSortmentWeight, double disposableWoolWeight)
+        public Trimming(int trimmingId, int rabbitRegNo, int breederRegNo, string name, DateTime date, double timeUsed, double hairLengthByDayNinety, string woolDensity, double firstSortmentWeight, double secondSortmentWeight, double disposableWoolWeight)
         {
             TrimmingId = trimmingId;
             RabbitRegNo = rabbitRegNo;
             BreederRegNo = breederRegNo;
+            Name = name;
             Date = date;
-            TimeUsed = TimeUsed;
+            TimeUsed = timeUsed;
             HairLengthByDayNinety = hairLengthByDayNinety;
             WoolDensity = woolDensity;
             FirstSortmentWeight = firstSortmentWeight;

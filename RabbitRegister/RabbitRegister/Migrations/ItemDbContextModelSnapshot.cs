@@ -209,6 +209,9 @@ namespace RabbitRegister.Migrations
                     b.Property<double?>("HairLengthByDayNinety")
                         .HasColumnType("float");
 
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("RabbitRegNo")
                         .HasColumnType("int");
 

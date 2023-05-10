@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace RabbitRegister.Migrations
 {
     /// <inheritdoc />
-    public partial class Rab1 : Migration
+    public partial class rab1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -76,6 +76,7 @@ namespace RabbitRegister.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     RabbitRegNo = table.Column<int>(type: "int", nullable: false),
                     BreederRegNo = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     TimeUsed = table.Column<double>(type: "float", nullable: true),
                     HairLengthByDayNinety = table.Column<double>(type: "float", nullable: true),

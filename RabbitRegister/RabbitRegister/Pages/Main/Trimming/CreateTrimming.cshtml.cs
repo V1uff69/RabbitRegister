@@ -29,6 +29,10 @@ namespace RabbitRegister.Pages.Main.Trimming
         //}
         public async Task<IActionResult> OnPostAsync()
         {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
             await _trimmingService.AddTrimmingAsync(Trimming);
             return RedirectToPage("GetAllTrimming");
         }
