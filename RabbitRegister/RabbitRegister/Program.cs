@@ -8,7 +8,6 @@ using RabbitRegister.Services.TrimmingService;
 using RabbitRegister.Services.RabbitService;
 using RabbitRegister.Services.UserService;
 using Microsoft.AspNetCore.Http;
-using RabbitRegister.Services.JsonFileService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,7 +20,6 @@ builder.Services.AddSingleton<UserService, UserService>();
 builder.Services.AddDbContext<ItemDbContext>();
 builder.Services.AddTransient<DbGenericService<Wool>, DbGenericService<Wool>>();
 builder.Services.AddTransient<DbGenericService<Yarn>, DbGenericService<Yarn>>();
-builder.Services.AddTransient<JsonFileService<User>>();
 builder.Services.AddTransient<UserDbService, UserDbService>();
 builder.Services.AddTransient<DbGenericService<Trimming>, DbGenericService<Trimming>>();
 builder.Services.AddTransient<DbGenericService<Rabbit>, DbGenericService<Rabbit>>();
