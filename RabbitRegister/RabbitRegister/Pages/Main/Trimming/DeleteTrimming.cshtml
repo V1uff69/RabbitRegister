@@ -1,13 +1,44 @@
-﻿@page
+﻿@page "{id:int}"
 @model RabbitRegister.Pages.Main.Trimming.DeleteTrimmingModel
 @{
 }
 
-<h1>Delete Confirmation></h1>
-<div class="alert alert-danger">
-	<h5>Er du sikker på du vil fjerne denne klipning? - @Model.Trimming.TrimmingId</h5>
-	<form method="post">
-		<button type="submit" class="btn btn-danger">Yes</button>
-		<a class="btn btn-primary" asp-page="/Main/Trimming/GetAllTrimming">No</a>
-	</form>
+<h1>Delete Trimming</h1>
+
+<h3>Are you sure you want to delete the selected Trimming?</h3>
+<div>
+    <h4>Deleting...</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Trimming.TrimmingId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Trimming.TrimmingId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Trimming.RabbitRegNo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Trimming.RabbitRegNo)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Trimming.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Trimming.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Trimming.Date)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Trimming.Date)
+        </dd>
+    </dl>
+
+    <form method="post">
+        <input type="hidden" asp-for="Trimming.TrimmingId" />
+        <button type="submit" class="btn btn-danger">Yes</button>
+        <a class="btn btn-primary" asp-page="/Main/Trimming/GetAllTrimming">No</a>
+    </form>
 </div>
