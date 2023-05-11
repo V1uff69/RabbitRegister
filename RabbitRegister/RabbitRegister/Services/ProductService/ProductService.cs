@@ -94,7 +94,7 @@ namespace RabbitRegister.Services.ProductService
 			Yarn yarnToBeDeleted = null;
 			foreach (Yarn yarn in _yarns)
 			{
-				if (yarn.YarnId == Id)
+				if (yarn.ProductId == Id)
 				{
 					yarnToBeDeleted = yarn;
 					break;
@@ -113,7 +113,7 @@ namespace RabbitRegister.Services.ProductService
 		{
 			foreach (Yarn yarn in _yarns)
 			{
-				if (yarn.YarnId == yarnId)
+				if (yarn.ProductId == yarnId)
 					return yarn;
 			}
 			return null;
@@ -126,7 +126,7 @@ namespace RabbitRegister.Services.ProductService
 			{
 				foreach (Yarn i in _yarns)
 				{
-					if (i.YarnId == id)
+					if (i.ProductId == yarn.ProductId && i.ProductType == yarn.ProductType)
 					{
 						i.BreederRegNo = yarn.BreederRegNo;
 						i.ProductName = yarn.ProductName;

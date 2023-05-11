@@ -12,7 +12,7 @@ using RabbitRegister.EFDbContext;
 namespace RabbitRegister.Migrations
 {
     [DbContext(typeof(ItemDbContext))]
-    [Migration("20230510135747_rab1")]
+    [Migration("20230511074533_rab1")]
     partial class rab1
     {
         /// <inheritdoc />
@@ -135,7 +135,7 @@ namespace RabbitRegister.Migrations
 
                     b.HasKey("ProductId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Product");
 
                     b.UseTptMappingStrategy();
                 });
@@ -266,9 +266,6 @@ namespace RabbitRegister.Migrations
                     b.Property<string>("Washing")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("YarnId")
-                        .HasColumnType("int");
 
                     b.ToTable("Yarns");
                 });

@@ -132,7 +132,7 @@ namespace RabbitRegister.Migrations
 
                     b.HasKey("ProductId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Product");
 
                     b.UseTptMappingStrategy();
                 });
@@ -263,9 +263,6 @@ namespace RabbitRegister.Migrations
                     b.Property<string>("Washing")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("YarnId")
-                        .HasColumnType("int");
 
                     b.ToTable("Yarns");
                 });

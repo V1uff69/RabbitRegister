@@ -29,7 +29,7 @@ namespace RabbitRegister.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Products",
+                name: "Product",
                 columns: table => new
                 {
                     ProductId = table.Column<int>(type: "int", nullable: false)
@@ -43,7 +43,7 @@ namespace RabbitRegister.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Products", x => x.ProductId);
+                    table.PrimaryKey("PK_Product", x => x.ProductId);
                 });
 
             migrationBuilder.CreateTable(
@@ -109,9 +109,9 @@ namespace RabbitRegister.Migrations
                 {
                     table.PrimaryKey("PK_Order", x => x.OrderId);
                     table.ForeignKey(
-                        name: "FK_Order_Products_ProductId",
+                        name: "FK_Order_Product_ProductId",
                         column: x => x.ProductId,
-                        principalTable: "Products",
+                        principalTable: "Product",
                         principalColumn: "ProductId",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -128,9 +128,9 @@ namespace RabbitRegister.Migrations
                 {
                     table.PrimaryKey("PK_Wools", x => x.ProductId);
                     table.ForeignKey(
-                        name: "FK_Wools_Products_ProductId",
+                        name: "FK_Wools_Product_ProductId",
                         column: x => x.ProductId,
-                        principalTable: "Products",
+                        principalTable: "Product",
                         principalColumn: "ProductId",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -140,7 +140,6 @@ namespace RabbitRegister.Migrations
                 columns: table => new
                 {
                     ProductId = table.Column<int>(type: "int", nullable: false),
-                    YarnId = table.Column<int>(type: "int", nullable: false),
                     Fiber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     NeedleSize = table.Column<double>(type: "float", nullable: false),
                     Length = table.Column<double>(type: "float", nullable: false),
@@ -151,9 +150,9 @@ namespace RabbitRegister.Migrations
                 {
                     table.PrimaryKey("PK_Yarns", x => x.ProductId);
                     table.ForeignKey(
-                        name: "FK_Yarns_Products_ProductId",
+                        name: "FK_Yarns_Product_ProductId",
                         column: x => x.ProductId,
-                        principalTable: "Products",
+                        principalTable: "Product",
                         principalColumn: "ProductId",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -186,7 +185,7 @@ namespace RabbitRegister.Migrations
                 name: "Yarns");
 
             migrationBuilder.DropTable(
-                name: "Products");
+                name: "Product");
         }
     }
 }
