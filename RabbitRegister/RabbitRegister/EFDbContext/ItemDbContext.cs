@@ -7,6 +7,14 @@ namespace RabbitRegister.EFDbContext
 	{
 		protected override void OnConfiguring(DbContextOptionsBuilder options)
 		{
+<<<<<<<<< Temporary merge branch 1
+			options.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=RabbitRegister; Integrated Security=True; Connect Timeout=30; Encrypt=False");
+		}
+		public DbSet<Yarn> Yarns { get; set; }
+		public DbSet<Product> Products { get; set; }
+		
+	}
+=========
 			options.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=RabbitRegisterDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
 		}
 
@@ -14,9 +22,6 @@ namespace RabbitRegister.EFDbContext
 		public DbSet<Breeder> Breeders { get; set; }
 		public DbSet<Order> Orders { get; set; }
         public DbSet<Trimming> Trimmings { get; set; }
-		public DbSet<Yarn> Yarns { get; set; }
-		public DbSet<Product> Products { get; set; }
-		public DbSet<Rabbit> Rabbits { get; set; }
-		
-	}
+    }
+>>>>>>>>> Temporary merge branch 2
 }
