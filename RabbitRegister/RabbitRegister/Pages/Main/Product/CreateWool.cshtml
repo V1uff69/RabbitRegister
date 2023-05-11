@@ -2,7 +2,7 @@
 @model RabbitRegister.Pages.Main.Product.CreateWoolModel
 @{
 }
-
+<div class="create-form">
 <form method="post">
     <div class="from-group">
         <label asp-for="@Model.Wool.BreederRegNo" class="control-label"></label>
@@ -59,6 +59,7 @@
         </div>
     </p>
 </form>
+</div>
 
 <p>
     <a asp-page="/Main/Product/GetAllWool">Back to List</a>
