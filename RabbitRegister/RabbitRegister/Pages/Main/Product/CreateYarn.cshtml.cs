@@ -15,7 +15,7 @@ namespace RabbitRegister.Pages.Main.Product
 		}
 
 		[BindProperty]
-		public Model.Yarn Yarn { get; set; }
+		public Yarn Yarn { get; set; } = new Yarn();
 
 		public IActionResult OnGet()
 		{
@@ -24,7 +24,7 @@ namespace RabbitRegister.Pages.Main.Product
 
 		public async Task<IActionResult> OnPostAsync(Yarn yarn)
 		{
-			await _yarnService.AddYarnAsync(Yarn);
+			await _yarnService.AddYarnAsync(yarn);
 			return RedirectToPage("GetAllYarn");
 		}
 	}

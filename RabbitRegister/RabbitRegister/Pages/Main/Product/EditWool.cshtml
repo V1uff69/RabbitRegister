@@ -2,7 +2,7 @@
 @model RabbitRegister.Pages.Main.Product.EditWoolModel
 @{
 }
-
+<div class="create-form">
 <form method="post">
     <div class="from-group">
         <img src="@Model.Wool.ImgString" style="max-width: 50%;margin-left:auto;margin-right:auto;display:block">
@@ -62,7 +62,7 @@
         </div>
     </p>
 </form>
-
+</div>
 <p>
-    <a asp-page="/Main/Product/GetAllWool">Back to List</a>
+    <button onclick="history.back()">Go Back</button>
 </p>

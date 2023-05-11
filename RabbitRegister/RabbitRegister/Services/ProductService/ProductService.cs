@@ -43,6 +43,7 @@ namespace RabbitRegister.Services.ProductService
 						w.BreederRegNo = wool.BreederRegNo;
 						w.Amount = wool.Amount;
 						w.Price = wool.Price;
+						w.ImgString = wool.ImgString;
 						break;
 					}
 				}

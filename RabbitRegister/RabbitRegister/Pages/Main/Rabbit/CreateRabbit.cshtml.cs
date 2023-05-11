@@ -4,7 +4,7 @@ using RabbitRegister.Services.RabbitService;
 
 namespace RabbitRegister.Pages.Main.Rabbit
 {
-    public class CreateRabbitModel : PageModel
+	public class CreateRabbitModel : PageModel
     {
         private IRabbitService _rabbitService;
 
@@ -15,14 +15,14 @@ namespace RabbitRegister.Pages.Main.Rabbit
         }
 
         [BindProperty]
-        public Model.Rabbit Rabbit { get; set; }
+        public Model.Rabbit Rabbit { get; set; } = new Model.Rabbit();
 
         public IActionResult OnGet()
         {
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(Model.Rabbit Rabbit)
         {
             if (!ModelState.IsValid)
             {

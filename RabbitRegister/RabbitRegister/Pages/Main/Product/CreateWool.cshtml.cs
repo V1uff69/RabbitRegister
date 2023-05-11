@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RabbitRegister.Model;
 using RabbitRegister.Services.ProductService;
-using System.Runtime.CompilerServices;
 
 namespace RabbitRegister.Pages.Main.Product
 {
@@ -24,7 +23,11 @@ namespace RabbitRegister.Pages.Main.Product
 
         public async Task<IActionResult> OnPostAsync(Wool wool)
         {
-            await _productService.AddWoolAsync(wool);
+			if (!ModelState.IsValid)
+			{
+				return Page();
+			}
+			await _productService.AddWoolAsync(wool);
                 
             return RedirectToPage("GetAllWool");
             
