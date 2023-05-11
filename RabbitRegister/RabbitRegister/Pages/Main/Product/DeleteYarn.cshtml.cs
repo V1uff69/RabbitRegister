@@ -18,9 +18,9 @@ namespace RabbitRegister.Pages.Main.Product
 		public Model.Yarn Yarn { get; set; }
 
 
-		public IActionResult OnGet(int YarnId)
+		public IActionResult OnGet(int Id)
 		{
-			Yarn = _yarnService.GetYarn(YarnId);
+			Yarn = _yarnService.GetYarn(Id);
 			
 
 			return Page();

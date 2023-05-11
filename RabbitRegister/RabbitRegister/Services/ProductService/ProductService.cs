@@ -109,11 +109,11 @@ namespace RabbitRegister.Services.ProductService
 			return yarnToBeDeleted;
 		}
 
-		public Yarn GetYarn(int yarnId)
+		public Yarn GetYarn(int Id)
 		{
 			foreach (Yarn yarn in _yarns)
 			{
-				if (yarn.ProductId == yarnId)
+				if (yarn.ProductId == Id)
 					return yarn;
 			}
 			return null;
