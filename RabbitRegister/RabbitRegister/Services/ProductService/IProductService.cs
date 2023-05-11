@@ -4,8 +4,22 @@ namespace RabbitRegister.Services.ProductService
 {
     public interface IProductService
     {
+        /// <summary>
+        /// Wool
+        /// </summary>
+        /// <param name="wool"></param>
+        /// <returns></returns>
+		Task AddWoolAsync(Wool wool);
+		Task<Wool> DeleteWoolAsync(int? Id);
+        Task UpdateWoolAsync(Wool wool);
+		List<Wool> GetWools();
+		Wool GetWools(int id);
+	
 
-        List<Wool> GetWools();
+        /// <summary>
+        /// Yarn
+        /// </summary>
+        /// <returns></returns>
         List<Yarn> GetYarns();
         Task AddYarnAsync(Yarn yarn);
         void UpdateYarnAsync(Yarn yarn);

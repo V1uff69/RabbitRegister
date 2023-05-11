@@ -1,61 +1,54 @@
 ﻿@page
 @model RabbitRegister.Pages.Main.Product.GetAllWoolModel
 @{
-}
+ }
 
 <!-- Product(Wool) Table on page-->
 <h1 class="frintfont-monospace text-center">Wool</h1>
     
 <body>
-	<div class="container">
-		<h1>Accounts</h1>
+	<div class="container-all">
+		<h1></h1>
+			<p class="from-group">
+				<a class="btn btn-primary text-center" style="background-color:green;margin-left:auto;margin-right:auto;display:block;margin-top:1%" asp-page="/Main/Product/CreateWool"> Create a new Wool Product </a>
+			</p>
 
-		<div class="row">
-			<div class="col-4"><h5>Search Name</h5></div>
-		</div>
 
-		<div class="row">
-			<div class="col-4">
-				<form method="post" class="form-inline">
-					<div class="input-group mb-3">
-@*						<input asp-for="SearchString" class="form-control mr-1" placeholder="Enter search term" />
-						<input type="submit" asp-page-handler="NameSearch" value="Search" class="btn btn-primary" />*@
-					</div>
-				</form>
-			</div>
-
-			<div class="col-5">
-				<form method="post" class="form-inline">
-					<div class="input-group mb-3">
-						<div class="input-group-prepend">
-						</div>
-					</div>
-				</form>
-			</div>
-
-			<div class="col-2"></div>
-		</div>
-
-		<table class="table table-bordered table-hover" width="100%">
+		<table class="table table-bordered table-hover">
 			<thead>
 				<tr class="@*btn-secondary active*@">
 					<th>
+						Breeder
+					</th>
+					<th>
 						Id
+					</th>
+					<th>
+						Type
 					</th>
 					<th>
 						Name
 					</th>
 					<th>
-						Last Name
+						Weight
 					</th>
 					<th>
-						Email
+						Quality
 					</th>
 					<th>
-						Phone
+						Color
 					</th>
 					<th>
-						Password
+						Amount
+					</th>
+					<th>
+						Price
+					</th>
+@*					<th>
+						ImgString
+					</th>*@
+					<th>
+						Image
 					</th>
 					<th>
 						Edit | Delete
@@ -63,38 +56,53 @@
 				</tr>
 			</thead>
 			<tbody>
+				@if (Model.Wools != null)
+				{
+					foreach (var wool in Model.Wools)
+					{
 						<tr class="@*btn-secondary*@">
+							<td style="vertical-align:middle"  >
+								@wool.BreederRegNo
+							</td style="vertical-align:middle">
+							<td style="vertical-align:middle">
+								@wool.ProductId
+							</td>
+							<td style="vertical-align:middle">
+								@wool.ProductType
+							</td>
+							<td style="vertical-align:middle">
+								@wool.ProductName
+							</td>
+							<td style="vertical-align:middle">
+								@wool.Weight
+							</td>
+							<td style="vertical-align:middle">
+								@wool.Quality
+							</td>
+							<td style="vertical-align:middle">
+								@wool.Color
+							</td>
+							<td style="vertical-align:middle">
+								@wool.Amount
+							</td>
+							<td style="vertical-align:middle">
+								@wool.Price
+							</td>
+@*							<td style="vertical-align:middle">
+								@wool.ImgString
+							</td>*@
 							<td>
-								
+								<img src="@wool.ImgString" style="max-width: 100px; height: auto">
 							</td>
 							<td>
-								
-							</td>
-							<td>
-								
-							</td>
-							<td>
-								
-							</td>
-							<td>
-								
-							</td>
-							<td>
-								
-							</td>
-							<td>
-								<a class="btn btn-primary btn-sm" type="button" title="Edit" asp-page="EditWool" asp-route-id=""><i class="fa fa-edit"></i></a>
-								<a class="btn btn-danger btn-sm " type="button" title="Delete" asp-page="DeleteWool" asp-route-id=""><i class="fa fa-trash"></i></a>
+								<a class="btn btn-primary btn-sm" type="button" title="Edit" asp-page="/Main/Product/EditWool" asp-route-id="@wool.ProductId"><i class="fa fa-edit"></i></a>
+								<a class="btn btn-danger btn-sm " type="button" title="Delete" asp-page="/Main/Product/DeleteWool" asp-route-id="@wool.ProductId"><i class="fa fa-trash"></i></a>
 							</td>
 						</tr>
 					}
 				}
 			</tbody>
 		</table>
-
-		@*<p>
-		<a class="btn btn-primary" asp-page="CreateAccount"> Create a new Account </a>
-		</p>*@
 
 	</div>
 </body>

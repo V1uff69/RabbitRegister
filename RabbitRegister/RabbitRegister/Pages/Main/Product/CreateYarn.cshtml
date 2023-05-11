@@ -4,21 +4,24 @@
 }
 
 <form method="post">
+	<div class="from-group">
+		<label asp-for="@Model.Yarn.ProductId" class="control-label"></label>
+		<input asp-for="@Model.Yarn.ProductId" class="form-control" readonly="@(true)" />
+	</div>
 	<div class="form-group">
 		<label asp-for="@Model.Yarn.BreederRegNo" class="control-label"></label>
 		<input asp-for="@Model.Yarn.BreederRegNo" class="form-control" />
 		<span asp-validation-for="@Model.Yarn.BreederRegNo" class="text-danger"></span>
 	</div>
 	<div class="form-group">
+		<label asp-for="@Model.Yarn.ProductType" class="control-label"></label>
+		<input asp-for="@Model.Yarn.ProductType" value="Yarn" class="form-control" readonly="@(true)"/>
+	</div>
+	<div class="form-group">
 		<label asp-for="@Model.Yarn.ProductName" class="control-label"></label>
 		<input asp-for="@Model.Yarn.ProductName" class="form-control" />
 		<span asp-validation-for="@Model.Yarn.ProductName" class="text-danger"></span>
 	</div>
-	 <div class="form-group">
-		 <label asp-for="@Model.Yarn.YarnId" class="control-label"></label>
-		 <input asp-for="@Model.Yarn.YarnId" class="form-control"/>
-		 <span asp-validation-for="@Model.Yarn.YarnId" class="text-danger"></span>
-	 </div>
 	<div class="form-group">
 		<label asp-for="@Model.Yarn.Fiber" class="control-label"></label>
 		<input asp-for="@Model.Yarn.Fiber" class="form-control" />
@@ -45,19 +48,19 @@
 		<span asp-validation-for="@Model.Yarn.Washing" class="text-danger"></span>
 	</div>
 	<div class="form-group">
-		<label asp-for="@Model.Yarn.amount" class="control-label"></label>
-		<input asp-for="@Model.Yarn.amount" class="form-control" />
-		<span asp-validation-for="@Model.Yarn.amount" class="text-danger"></span>
-	</div>
-	<div class="form-group">
 		<label asp-for="@Model.Yarn.Color" class="control-label"></label>
 		<input asp-for="@Model.Yarn.Color" class="form-control" />
 		<span asp-validation-for="@Model.Yarn.Color" class="text-danger"></span>
 	</div>
 	<div class="form-group">
-		<label asp-for="@Model.Yarn.price" class="control-label"></label>
-		<input asp-for="@Model.Yarn.price" class="form-control" />
-		<span asp-validation-for="@Model.Yarn.price" class="text-danger"></span>
+		<label asp-for="@Model.Yarn.Amount" class="control-label"></label>
+		<input asp-for="@Model.Yarn.Amount" class="form-control" />
+		<span asp-validation-for="@Model.Yarn.Amount" class="text-danger"></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="@Model.Yarn.Price" class="control-label"></label>
+		<input asp-for="@Model.Yarn.Price" class="form-control" />
+		<span asp-validation-for="@Model.Yarn.Price" class="text-danger"></span>
 	</div>
 
 	<p>
@@ -69,5 +72,5 @@
 </form>
 
 <p>
-	<a asp-page="/Main/Product/GetAllYarn">Back to List</a>
+	<button onclick="history.back()">Go Back</button>
 </p>

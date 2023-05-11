@@ -5,212 +5,53 @@
 
 <h1>Yarn</h1>
 
-
-@*<div class="row">
-	<div class="col-4">
-		<form method="post" class="form-inline">
-			<div class="input-group mb-3">
-				<input asp-for="SearchString" class="form-control mr-1" placeholder="Enter search term" />
-				<input type="submit" asp-page-handler="NameSearch" value="Search" class="btn btn-primary" />
-			</div>
-		</form>
-	</div>
-	<div class="col-3"></div>
-	<div class="col-5">
-		<form method="post" class="form-inline">
-			<div class="input-group mb-3">
-				<div class="input-group-prepend">
-					<span class="input-group-text">Min</span>
-				</div>
-				<input asp-for="MinPrice" class="form-control me-2" />
-				<div class="input-group-prepend">
-					<span class="input-group-text">Max</span>
-				</div>
-				<input asp-for="MaxPrice" class="form-control me-2" />
-				<input type="submit" asp-page-handler="PriceFilter" value="Filter" class="btn btn-primary" />
-			</div>
-		</form>
-	</div>
-
-
-</div>*@
-
 <table class="table table-bordered table-hover table-striped table-opacity" width="100%">
-@*    <colgroup>
-        <col style="width : 7%">
-        <col style="width : 10%">
-        <col style="width : 10%">
-        <col style="width : 10%">
-        <col style="width : 10%">
-        <col style="width : 10%">
-        <col style="width : 10%">
-        <col style="width : 10%">
-        <col style="width : 10%">
-    </colgroup>*@
-    <thead>
-        <tr class="btn-secondary active">
-            <th>
-                <div class="d-flex justify-content-between p-0">
-                    <div><h5>Yarn Id</h5></div>
-                    <div>
-                        <a data-toggle="tooltip" title="Sort By Id" asp-page-handler="SortById"><i class="fa fa-angle-up"></i></a>
-                        <a data-toggle="tooltip" title="Sort By Id Descending" asp-page-handler="SortByIdDescending"><i class="fa fa-angle-down"></i></a>
-                    </div>
-                </div>
-            </th>
-            <th>
-                <div class="d-flex justify-content-between p-0">
-                    <div>
-                        <h5>Product Id </h5>
-                    </div>
-
-                </div>
-
-            </th>
-            <th>
-                <div class="d-flex justify-content-between p-0">
-                    <div>
-                        <h5>BreederRegNo </h5>
-                    </div>
-
-                </div>
-
-            </th>
-            <th>
-                <div class="d-flex justify-content-between p-0">
-                    <div>
-                        <h5>Product Name </h5>
-                    </div>
-
-                </div>
-
-            </th>
-            <th>
-                <div class="d-flex justify-content-between p-0">
-                    <div>
-                        <h5>Fiber </h5>
-                    </div>
-
-                </div>
-
-            </th>
-            <th>
-                <div class="d-flex justify-content-between p-0">
-                    <div>
-                        <h5>NeedleSize </h5>
-                    </div>
-
-                </div>
-            </th>
-            <th>
-                <div class="d-flex justify-content-between p-0">
-                    <div>
-                        <h5>Length </h5>
-                    </div>
-
-                </div>
-            </th>
-            <th>
-                <div class="d-flex justify-content-between p-0">
-                    <div>
-                        <h5>Tension </h5>
-                    </div>
-
-                </div>
-            </th>
-            <th>
-                <div class="d-flex justify-content-between p-0">
-                    <div>
-                        <h5>Washing </h5>
-                    </div>
-
-                </div>
-            </th>
-            <th>
-                <div class="d-flex justify-content-between p-0">
-                    <div>
-                        <h5>Color </h5>
-                    </div>
-
-                </div>
-            </th>
-            <th>
-                <div class="d-flex justify-content-between p-0">
-                    <div>
-                        <h5>Amout </h5>
-                    </div>
-
-                </div>
-            </th>
-            <th>
-                <div class="d-flex justify-content-between p-0">
-                    <div>
-                        <h5>Price </h5>
-                    </div>
-                    <div>
-                        <a data-toggle="tooltip" title="Sort By Price" asp-page-handler="SortByPrice"><i class="fa fa-angle-up"></i></a>
-                        <a data-toggle="tooltip" title="Sort By Price Descending" asp-page-handler="SortByPriceDescending"><i class="fa fa-angle-down"></i></a>
-                    </div>
-                </div>
-            </th>
-            <th>
-                <h5>Action</h5>
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @if (Model.Yarns != null)
-        {
-            foreach (var yarn in Model.Yarns)
-            {
-                <tr class="btn-secondary">
-                    <td>
-                        @yarn.YarnId
-                    </td>
-                    <td>
-                        @yarn.ProductId
-                    </td>
-                    <td>
-                        @yarn.BreederRegNo
-                    </td>
-                    <td>
-                        @yarn.ProductName
-                    </td>
-                    <td>
-                        @yarn.Fiber
-                    </td>
-                    <td>
-                        @yarn.NeedleSize
-                    </td>
-                    <td>
-                        @yarn.Length
-                    </td>
-                    <td>
-                        @yarn.Tension
-                    </td>
-                    <td>
-                        @yarn.Washing
-                    </td>
-                    <td>
-                        @yarn.Color
-                    </td>
-                    <td>
-                        @yarn.amount
-                    </td>
-                    <td>
-                        @yarn.price
-                    </td>
-                    <td>
-                        <a class="btn btn-primary btn-sm" type="button" title="Edit" asp-page="EditYarn" asp-route-id="@yarn.YarnId"><i class="fa fa-edit"></i></a>
-                        <a class="btn btn-danger btn-sm " type="button" title="Delete" asp-page="/Main/Product/DeleteYarn" asp-route-id="@yarn.YarnId"><i class="fa fa-trash"></i></a>
-                        @*<a class="btn btn-primary btn-sm " type="button" data-toggle="tooltip" data-placement="top" title="Order" asp-page="../Order/OrderItem" asp-route-id="@yarn.YarnId"><i class="fa fa-shopping-cart"></i></a>*@
-                    </td>
-                </tr>
-            }
-        }
-    </tbody>
+	<thead>
+		<tr>
+			<th> Product Id </th>
+			<th> BreederRegno </th>
+			<th> Product Type </th>
+			<th> Product Name </th>
+			<th> Fiber </th>
+			<th> NeedleSize </th>
+			<th> Length </th>
+			<th> Tension </th>
+			<th> Washing </th>
+			<th> Color </th>
+			<th> Amount </th>
+			<th> Price </th>
+			<th> Action </th>
+		</tr>
+	</thead>
+	<tbody>
+		@if (Model.Yarns != null)
+		{
+			foreach (var yarn in Model.Yarns)
+			{
+				<tr>
+					<td>@yarn.ProductId</td>
+					<td>@yarn.BreederRegNo</td>
+					<td>@yarn.ProductType</td>
+					<td>@yarn.ProductName</td>
+					<td>@yarn.Fiber</td>
+					<td>@yarn.NeedleSize</td>
+					<td>@yarn.Length</td>
+					<td>@yarn.Tension</td>
+					<td>@yarn.Washing</td>
+					<td>@yarn.Color</td>
+					<td>@yarn.Amount</td>
+					<td>@yarn.Price</td>
+					<td>
+						<a class="btn btn-primary btn-sm" type="button" title="Edit" asp-page="EditYarn" asp-route-id="@yarn.ProductId"><i class="fa fa-edit"></i></a>
+						<a class="btn btn-danger btn-sm " type="button" title="Delete" asp-page="/Main/Product/DeleteYarn" asp-route-id="@yarn.ProductId"><i class="fa fa-trash"></i></a>
+						@*<a class="btn btn-primary btn-sm " type="button" data-toggle="tooltip" data-placement="top" title="Order" asp-page="../Order/OrderItem" asp-route-id="@yarn.YarnId"><i class="fa fa-shopping-cart"></i></a>*@
+					</td>
+				</tr>
+			}
+		}
+	</tbody>
 </table>
 
 <p>
-    <a class="btn btn-primary" asp-page="CreateYarn"> Create a new Yarn </a>
+	<a class="btn btn-primary" asp-page="CreateYarn"> Create a new Yarn </a>
 </p>

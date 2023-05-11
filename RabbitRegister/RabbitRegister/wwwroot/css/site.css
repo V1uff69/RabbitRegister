@@ -13,6 +13,34 @@ html {
   min-height: 100%;
 }
 
+header {
+    position: sticky; top: 0;
+}
+
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background-image: url("../Images/Website/RabbitWallpaper.jpg");
+    background-color: pink;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+table {
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+.create-form {
+
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+footer {
+    background-color: pink;
 }
