@@ -42,6 +42,7 @@ namespace RabbitRegister.Services.TrimmingService
 					{
 						trim.RabbitRegNo = trimming.RabbitRegNo;
 						trim.BreederRegNo = trimming.BreederRegNo;
+						trim.Name = trimming.Name;
 						trim.Date = trimming.Date;
 						trim.TimeUsed = trimming.TimeUsed;
 						trim.HairLengthByDayNinety = trimming.HairLengthByDayNinety;

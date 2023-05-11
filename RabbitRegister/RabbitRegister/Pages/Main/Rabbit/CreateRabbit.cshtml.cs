@@ -4,11 +4,12 @@ using RabbitRegister.Services.RabbitService;
 
 namespace RabbitRegister.Pages.Main.Rabbit
 {
-    public class EditRabbitModel : PageModel
+    public class CreateRabbitModel : PageModel
     {
         private IRabbitService _rabbitService;
 
-        public EditRabbitModel(IRabbitService rabbitService)
+
+        public CreateRabbitModel(IRabbitService rabbitService)
         {
             _rabbitService = rabbitService;
         }
@@ -16,23 +17,18 @@ namespace RabbitRegister.Pages.Main.Rabbit
         [BindProperty]
         public Model.Rabbit Rabbit { get; set; }
 
-        public IActionResult OnGet(int id)
+        public IActionResult OnGet()
         {
-            Rabbit = _rabbitService.GetRabbit(id);
-            //if (Rabbit == null)
-            //    return RedirectToPage("/NotFound"); //NotFound er ikke defineret endnu
-
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(int id)
+        public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
-
-            await _rabbitService.UpdateRabbitAsync(Rabbit, id);
+            await _rabbitService.AddRabbitAsync(Rabbit);
             return RedirectToPage("GetAllRabbits");
         }
     }

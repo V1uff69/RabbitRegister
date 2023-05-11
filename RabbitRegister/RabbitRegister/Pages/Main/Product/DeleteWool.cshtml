@@ -33,6 +33,7 @@
 
     <form method="post">
         <input type="hidden" asp-for="Wool.ProductId" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> | <a asp-page="/Students/GetAllStudents">Back to List</a>
+        <button type="submit" class="btn btn-danger">Yes</button>
+        <a class="btn btn-primary" asp-page="/Main/Product/GetAllWool">No</a>
     </form>
 </div>

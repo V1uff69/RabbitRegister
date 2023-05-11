@@ -4,13 +4,10 @@
 }
 
 <form method="post">
+
 	<div class="form-group">
 		<label asp-for="Yarn.ProductId" class="control-lable"></label>
 		<input asp-for="Yarn.ProductId" class="form-control" readonly="@(true)" />
-	</div>
-	<div class="form-group">
-		<label asp-for="Yarn.YarnId" class="control-lable"></label>
-		<input asp-for="Yarn.YarnId" class="form-control" readonly="@(true)" />
 	</div>
 	<div class="form-group">
 		<label asp-for="Yarn.BreederRegNo" class="control-lable"></label>
@@ -18,8 +15,8 @@
 	</div>
 	<div class="form-group">
 		<label asp-for="Yarn.ProductType" class="control-lable"></label>
-		<input asp-for="Yarn.ProductType" class="form-control" />
-		<span asp-validation-for="Yarn.ProductType" class="text-danger"></span>
+		<input asp-for="Yarn.ProductType" class="form-control" readonly="@(true)"/>
+
 	</div>
 	<div class="form-group">
 		<label asp-for="Yarn.ProductName" class="control-lable"></label>
@@ -52,14 +49,14 @@
 		<span asp-validation-for="Yarn.Washing" class="text-danger"></span>
 	</div>
 	<div class="form-group">
-		<label asp-for="Yarn.Amount" class="control-lable"></label>
-		<input asp-for="Yarn.Amount" class="form-control" />
-		<span asp-validation-for="Yarn.Amount" class="text-danger"></span>
-	</div>
-	<div class="form-group">
 		<label asp-for="Yarn.Color" class="control-lable"></label>
 		<input asp-for="Yarn.Color" class="form-control" />
 		<span asp-validation-for="Yarn.Color" class="text-danger"></span>
+	</div>
+	<div class="form-group">
+		<label asp-for="Yarn.Amount" class="control-lable"></label>
+		<input asp-for="Yarn.Amount" class="form-control" />
+		<span asp-validation-for="Yarn.Amount" class="text-danger"></span>
 	</div>
 	<div class="form-group">
 		<label asp-for="Yarn.Price" class="control-lable"></label>

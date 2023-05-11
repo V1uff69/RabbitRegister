@@ -1,5 +1,5 @@
 ﻿@page
-@model RabbitRegister.Pages.Main.Rabbit.EditRabbitModel
+@model RabbitRegister.Pages.Main.Rabbit.CreateRabbitModel
 @{
 }
 
@@ -9,7 +9,6 @@
         <input asp-for="@Model.Rabbit.RabbitRegNo" class="form-control" />
         <span asp-validation-for="@Model.Rabbit.RabbitRegNo" class="text-danger"></span>
     </div>
-
     <div class="form-group">
         <label asp-for="@Model.Rabbit.Name" class="control-label"></label>
         <input asp-for="@Model.Rabbit.Name" class="form-control" />
@@ -74,9 +73,10 @@
         <input asp-for="@Model.Rabbit.CauseOfDeath" class="form-control" />
         <span asp-validation-for="@Model.Rabbit.CauseOfDeath" class="text-danger"></span>
     </div>
+
     <p>
         <div class="form-group">
-            <input type="submit" value="Update" class="btn btn-primary" />
+            <input type="submit" value="Create" class="btn btn-primary" />
         </div>
     </p>
 </form>

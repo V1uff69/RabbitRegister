@@ -8,12 +8,6 @@ namespace RabbitRegister.Model
     [Table("Yarns")]
     public class Yarn : Product
     {
-        
-        [Display(Name = "YarnId")]
-        [Required(ErrorMessage = "Remember to add Id to Yarn")]
-        [Range(typeof(int), "0", "10000", ErrorMessage = "Id must be between (1) and (2)")]
-        public int YarnId { get; set; }
-
 		[Display(Name = "Fiber")]
 		[Required(ErrorMessage = "Remember to add Fiber to Yarn")]
 		public string Fiber { get; set; }
@@ -38,9 +32,8 @@ namespace RabbitRegister.Model
         {
         }
 
-        public Yarn(string productType, int breederRegNo, int yarnId, string productName, string fiber, double needleSize, double length, string tension, string washing, string color, int amount, double price) : base(productType, breederRegNo, productName, color, amount, price)
+        public Yarn(string productType, int breederRegNo, string productName, string fiber, double needleSize, double length, string tension, string washing, string color, int amount, double price) : base(productType, breederRegNo, productName, color, amount, price)
         {
-            YarnId = yarnId;
             Fiber = fiber;
             NeedleSize = needleSize;
             Length = length;

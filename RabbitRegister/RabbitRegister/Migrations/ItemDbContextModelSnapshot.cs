@@ -132,9 +132,58 @@ namespace RabbitRegister.Migrations
 
                     b.HasKey("ProductId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Product");
 
                     b.UseTptMappingStrategy();
+                });
+
+            modelBuilder.Entity("RabbitRegister.Model.Rabbit", b =>
+                {
+                    b.Property<int>("RabbitRegNo")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CauseOfDeath")
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<string>("Color")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateOfBirth")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DeadOrAlive")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IsForSale")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Race")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double?>("Rating")
+                        .HasColumnType("float");
+
+                    b.Property<int>("Sex")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SuitableForBreeding")
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<double?>("Weight")
+                        .HasColumnType("float");
+
+                    b.HasKey("RabbitRegNo");
+
+                    b.ToTable("Rabbits");
                 });
 
             modelBuilder.Entity("RabbitRegister.Model.Trimming", b =>
@@ -159,6 +208,9 @@ namespace RabbitRegister.Migrations
 
                     b.Property<double?>("HairLengthByDayNinety")
                         .HasColumnType("float");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("RabbitRegNo")
                         .HasColumnType("int");
@@ -214,9 +266,6 @@ namespace RabbitRegister.Migrations
                     b.Property<string>("Washing")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("YarnId")
-                        .HasColumnType("int");
 
                     b.ToTable("Yarns");
                 });
