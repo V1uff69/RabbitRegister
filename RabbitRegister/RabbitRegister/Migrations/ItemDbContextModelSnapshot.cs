@@ -253,6 +253,9 @@ namespace RabbitRegister.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ImgString")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<double>("Length")
                         .HasColumnType("float");
 

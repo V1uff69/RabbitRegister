@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace RabbitRegister.Migrations
 {
     /// <inheritdoc />
-    public partial class RabbitReg : Migration
+    public partial class rab1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -145,7 +145,8 @@ namespace RabbitRegister.Migrations
                     NeedleSize = table.Column<double>(type: "float", nullable: false),
                     Length = table.Column<double>(type: "float", nullable: false),
                     Tension = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Washing = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Washing = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImgString = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
