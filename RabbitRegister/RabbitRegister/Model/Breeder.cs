@@ -1,5 +1,10 @@
-﻿namespace RabbitRegister.Model
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace RabbitRegister.Model
 {
+    [Table("Breeder")]
+    [PrimaryKey("BreederRegNo")]
     public class Breeder
     {
 

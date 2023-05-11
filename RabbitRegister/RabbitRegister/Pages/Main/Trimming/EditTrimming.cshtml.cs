@@ -21,6 +21,10 @@ namespace RabbitRegister.Pages.Main.Trimming
 
         public IActionResult OnPost(int id)
         {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
             _trimmingService.UpdateTrimming(Trimming, id);
             return RedirectToPage("GetAllTrimming");
         }

@@ -1,0 +1,57 @@
+﻿@page
+@model RabbitRegister.Pages.Main.Product.GetAllYarnModel
+@{
+}
+
+<h1>Yarn</h1>
+
+<table class="table table-bordered table-hover table-striped table-opacity" width="100%">
+	<thead>
+		<tr>
+			<th> Product Id </th>
+			<th> BreederRegno </th>
+			<th> Product Type </th>
+			<th> Product Name </th>
+			<th> Fiber </th>
+			<th> NeedleSize </th>
+			<th> Length </th>
+			<th> Tension </th>
+			<th> Washing </th>
+			<th> Color </th>
+			<th> Amount </th>
+			<th> Price </th>
+			<th> Action </th>
+		</tr>
+	</thead>
+	<tbody>
+		@if (Model.Yarns != null)
+		{
+			foreach (var yarn in Model.Yarns)
+			{
+				<tr>
+					<td>@yarn.ProductId</td>
+					<td>@yarn.BreederRegNo</td>
+					<td>@yarn.ProductType</td>
+					<td>@yarn.ProductName</td>
+					<td>@yarn.Fiber</td>
+					<td>@yarn.NeedleSize</td>
+					<td>@yarn.Length</td>
+					<td>@yarn.Tension</td>
+					<td>@yarn.Washing</td>
+					<td>@yarn.Color</td>
+					<td>@yarn.Amount</td>
+					<td>@yarn.Price</td>
+					<td>
+						<a class="btn btn-primary btn-sm" type="button" title="Edit" asp-page="EditYarn" asp-route-id="@yarn.ProductId"><i class="fa fa-edit"></i></a>
+						<a class="btn btn-danger btn-sm " type="button" title="Delete" asp-page="/Main/Product/DeleteYarn" asp-route-id="@yarn.ProductId"><i class="fa fa-trash"></i></a>
+						@*<a class="btn btn-primary btn-sm " type="button" data-toggle="tooltip" data-placement="top" title="Order" asp-page="../Order/OrderItem" asp-route-id="@yarn.YarnId"><i class="fa fa-shopping-cart"></i></a>*@
+					</td>
+				</tr>
+			}
+		}
+	</tbody>
+</table>
+
+<p>
+	<a class="btn btn-primary" asp-page="CreateYarn"> Create a new Yarn </a>
+</p>

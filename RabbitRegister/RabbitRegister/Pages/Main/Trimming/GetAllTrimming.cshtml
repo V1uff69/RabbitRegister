@@ -5,7 +5,7 @@
 }
 
 <p>
-    <a class="btn btn-primary" asp-page="CreateTrimming"> Opret ny klipning </a>
+    <a class="btn btn-primary" asp-page="/Main/Trimming/CreateTrimming"> Opret ny klipning </a>
 </p>
 
 <h4 style="color:red"> List of Trimmings</h4>
@@ -15,6 +15,7 @@
             <th> Klip ID </th>
             <th> Kanin ID  </th>
             <th> Avler ID  </th>
+            <th> Navn  </th>
             <th> Dato </th>
             <th> Tid brugt </th>
             <th> Hår Længde på dag 90 </th>
@@ -35,6 +36,7 @@
                     <td> @item.TrimmingId </td>
                     <td> @item.RabbitRegNo </td>
                     <td> @item.BreederRegNo </td>
+                    <td> @item.Name </td>
                     <td> @item.Date </td>
                     <td> @item.TimeUsed </td>
                     <td> @item.HairLengthByDayNinety </td>

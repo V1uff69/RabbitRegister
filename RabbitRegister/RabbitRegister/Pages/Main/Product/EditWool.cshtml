@@ -1,0 +1,68 @@
+﻿@page "{id:int}"
+@model RabbitRegister.Pages.Main.Product.EditWoolModel
+@{
+}
+<div class="create-form">
+<form method="post">
+    <div class="from-group">
+        <img src="@Model.Wool.ImgString" style="max-width: 50%;margin-left:auto;margin-right:auto;display:block">
+    </div>
+    <div class="from-group">
+        <label asp-for="Wool.BreederRegNo" class="control-label"></label>
+        <input asp-for="Wool.BreederRegNo" class="form-control" />
+        <span asp-validation-for="Wool.BreederRegNo" class="text-danger"></span>
+    </div>
+    <div class="from-group">
+        <label asp-for="Wool.ProductId" class="control-label"></label>
+        <input asp-for="Wool.ProductId" class="form-control" readonly="@(true)" />
+    </div>
+    <div class="from-group">
+        <label asp-for="Wool.ProductType" class="control-label"></label>
+        <input asp-for="Wool.ProductType" class="form-control" readonly="@(true)"/>
+    </div>
+    <div class="from-group">
+        <label asp-for="Wool.ProductName" class="control-label"></label>
+        <input asp-for="Wool.ProductName" class="form-control"/>
+        <span asp-validation-for="Wool.ProductName" class="text-danger"></span>
+    </div>
+    <div class="from-group">
+        <label asp-for="Wool.Weight" class="control-label"></label>
+        <input asp-for="Wool.Weight" class="form-control" />
+        <span asp-validation-for="Wool.Weight" class="text-danger"></span>
+    </div>
+    <div class="from-group">
+        <label asp-for="Wool.Quality" class="control-label"></label>
+        <input asp-for="Wool.Quality" class="form-control" />
+        <span asp-validation-for="Wool.Quality" class="text-danger"></span>
+    </div>
+    <div class="from-group">
+        <label asp-for="Wool.Color" class="control-label"></label>
+        <input asp-for="Wool.Color" class="form-control" />
+        <span asp-validation-for="Wool.Color" class="text-danger"></span>
+    </div>
+    <div class="from-group">
+        <label asp-for="Wool.Amount" class="control-label"></label>
+        <input asp-for="Wool.Amount" class="form-control" />
+        <span asp-validation-for="Wool.Amount" class="text-danger"></span>
+    </div>
+    <div class="from-group">
+        <label asp-for="Wool.Price" class="control-label"></label>
+        <input asp-for="Wool.Price" class="form-control" />
+        <span asp-validation-for="Wool.Price" class="text-danger"></span>
+    </div>
+        <div class="from-group">
+        <label asp-for="Wool.ImgString" class="control-label"></label>
+        <input asp-for="Wool.ImgString" class="form-control" />
+        <span asp-validation-for="Wool.ImgString" class="text-danger"></span>
+    </div>
+
+    <p>
+        <div class="form-group">
+            <input type="submit" style="background-color:green;margin-left:auto;margin-right:auto;display:block;width:100%;border-radius:8px"  value="Update" class="btn btn-primary" />
+        </div>
+    </p>
+</form>
+</div>
+<p>
+    <button onclick="history.back()">Go Back</button>
+</p>
