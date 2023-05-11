@@ -5,25 +5,22 @@
 
 <h1>Yarn</h1>
 
-<table class="table table-bordered table-hover table-striped table-opacity" width="60%">
+<table class="table table-bordered table-hover table-striped table-opacity" width="100%">
 	<thead>
-		<tr class="btn-secondary active">
-			<th><div class="d-flex justify-content-between p-0"><div><h5>Product Id </h5></div></div></th>
-			<th><div class="d-flex justify-content-between p-0"><div><h5>BreederRegNo </h5></div></div></th>
-			<th><div class="d-flex justify-content-between p-0"><div><h5>Product Type </h5></div></div></th>
-			<th><div class="d-flex justify-content-between p-0"><div><h5>Product Name </h5></div></div></th>
-			<th><div class="d-flex justify-content-between p-0"><div><h5>Fiber </h5></div></div></th>
-			<th><div class="d-flex justify-content-between p-0"><div><h5>NeedleSize </h5></div></div></th>
-			<th><div class="d-flex justify-content-between p-0"><div><h5>Length </h5></div></div></th>
-			<th><div class="d-flex justify-content-between p-0"><div><h5>Tension </h5></div></div></th>
-			<th><div class="d-flex justify-content-between p-0"><div><h5>Washing </h5></div></div></th>
-			<th><div class="d-flex justify-content-between p-0"><div><h5>Color </h5></div></div></th>
-			<th><div class="d-flex justify-content-between p-0"><div><h5>Amout </h5></div></div></th>
-			<th><div class="d-flex justify-content-between p-0"><div><h5>Price </h5></div><div>
-						<a data-toggle="tooltip" title="Sort By Price" asp-page-handler="SortByPrice"><i class="fa fa-angle-up"></i></a>
-						<a data-toggle="tooltip" title="Sort By Price Descending" asp-page-handler="SortByPriceDescending"><i class="fa fa-angle-down"></i></a>
-					</div></div></th>
-			<th><h5>Action</h5></th>
+		<tr>
+			<th> Product Id </th>
+			<th> BreederRegno </th>
+			<th> Product Type </th>
+			<th> Product Name </th>
+			<th> Fiber </th>
+			<th> NeedleSize </th>
+			<th> Length </th>
+			<th> Tension </th>
+			<th> Washing </th>
+			<th> Color </th>
+			<th> Amount </th>
+			<th> Price </th>
+			<th> Action </th>
 		</tr>
 	</thead>
 	<tbody>
@@ -31,7 +28,7 @@
 		{
 			foreach (var yarn in Model.Yarns)
 			{
-				<tr class="btn-secondary">
+				<tr>
 					<td>@yarn.ProductId</td>
 					<td>@yarn.BreederRegNo</td>
 					<td>@yarn.ProductType</td>
