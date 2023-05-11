@@ -12,7 +12,7 @@ using RabbitRegister.EFDbContext;
 namespace RabbitRegister.Migrations
 {
     [DbContext(typeof(ItemDbContext))]
-    [Migration("20230511103520_rab1")]
+    [Migration("20230511125504_rab1")]
     partial class rab1
     {
         /// <inheritdoc />
@@ -93,6 +93,9 @@ namespace RabbitRegister.Migrations
                     b.Property<double>("TotalPrice")
                         .HasColumnType("float");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
                     b.Property<int>("ZipCode")
                         .HasMaxLength(4)
                         .HasColumnType("int");
@@ -100,6 +103,8 @@ namespace RabbitRegister.Migrations
                     b.HasKey("OrderId");
 
                     b.HasIndex("ProductId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Order");
                 });
@@ -232,6 +237,28 @@ namespace RabbitRegister.Migrations
                     b.ToTable("Trimmings");
                 });
 
+            modelBuilder.Entity("RabbitRegister.Model.User", b =>
+                {
+                    b.Property<int>("UserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("UserId");
+
+                    b.ToTable("Users");
+                });
+
             modelBuilder.Entity("RabbitRegister.Model.Wool", b =>
                 {
                     b.HasBaseType("RabbitRegister.Model.Product");
@@ -284,6 +311,10 @@ namespace RabbitRegister.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("RabbitRegister.Model.User", null)
+                        .WithMany("Orders")
+                        .HasForeignKey("UserId");
+
                     b.Navigation("Product");
                 });
 
@@ -303,6 +334,11 @@ namespace RabbitRegister.Migrations
                         .HasForeignKey("RabbitRegister.Model.Yarn", "ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("RabbitRegister.Model.User", b =>
+                {
+                    b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618
         }
