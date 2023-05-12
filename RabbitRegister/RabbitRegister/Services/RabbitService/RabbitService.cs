@@ -1,4 +1,5 @@
-﻿using RabbitRegister.Model;
+﻿using Microsoft.EntityFrameworkCore;
+using RabbitRegister.Model;
 
 namespace RabbitRegister.Services.RabbitService
 {
@@ -142,6 +143,10 @@ namespace RabbitRegister.Services.RabbitService
             return _rabbits.OrderByDescending(obj => obj.Rating);
         }
 
-        public List<Rabbit> GetRabbits() { return _rabbits; }
+        public List<Rabbit> GetRabbits()
+        { 
+            _rabbits = _dbGenericService.GetObjectsAsync().Result.ToList(); 
+            return _rabbits;
+        }
     }
 }
