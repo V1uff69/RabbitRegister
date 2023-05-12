@@ -8,15 +8,46 @@
     <a class="btn btn-primary" asp-page="/Main/Trimming/CreateTrimming"> Opret ny klipning </a>
 </p>
 
+<form method="post" class="form-inline">
+    <div class="input-group mb-3">
+        <input asp-for="SearchString" class="form-control mr-1" placeholder="Enter search term" />
+        <input type="submit" asp-page-handler="NameSearch" value="Search" class="btn btn-primary" />
+    </div>
+</form>
+<form method="post" class="form-inline">
+    <div class="input-group mb-3">
+        <input asp-for="SearchId" class="form-control mr-1" placeholder="Enter search term" />
+        <input type="submit" asp-page-handler="RabbitIdSearch" value="Search" class="btn btn-primary" />
+    </div>
+</form>
+
 <h4 style="color:red"> List of Trimmings</h4>
 <table class="table table-bordered table-hover table-striped table-opacity" width="100%">
     <thead>
         <tr>
-            <th> Klip ID </th>
-            <th> Kanin ID  </th>
+            <th>
+                Klip ID
+                <div>
+                    <a data-toggle="tooltip" title="Sort By Id" asp-page-handler="SortById"><i class="fa fa-angle-up"></i></a>
+                    <a data-toggle="tooltip" title="Sort By Id Descending" asp-page-handler="SortByIdDescending"><i class="fa fa-angle-down"></i></a>
+                </div>
+            </th>
+            <th>
+                Kanin ID
+                <div>
+                    <a data-toggle="tooltip" title="Sort By Id" asp-page-handler="SortByRabbitId"><i class="fa fa-angle-up"></i></a>
+                    <a data-toggle="tooltip" title="Sort By Id Descending" asp-page-handler="SortByRabbitIdDescending"><i class="fa fa-angle-down"></i></a>
+                </div>
+            </th>
             <th> Avler ID  </th>
             <th> Navn  </th>
-            <th> Dato </th>
+            <th>
+                Dato
+                <div>
+                    <a data-toggle="tooltip" title="Sort By Id" asp-page-handler="SortByDate"><i class="fa fa-angle-up"></i></a>
+                    <a data-toggle="tooltip" title="Sort By Id Descending" asp-page-handler="SortByDateDescending"><i class="fa fa-angle-down"></i></a>
+                </div>
+            </th>
             <th> Tid brugt </th>
             <th> Hår Længde på dag 90 </th>
             <th> Uld Densitet </th>
@@ -53,4 +84,3 @@
         }
     </tbody>
 </table>
-

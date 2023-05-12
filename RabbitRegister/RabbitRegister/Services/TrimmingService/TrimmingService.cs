@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using RabbitRegister.EFDbContext;
 using RabbitRegister.Model;
 using System.Data.SqlTypes;
@@ -76,6 +77,60 @@ namespace RabbitRegister.Services.TrimmingService
 			}
 			return trimmingToBeDeleted;
 		}
+
+        public IEnumerable<Trimming> SortById()
+        {
+            return _trimmings.OrderBy(r => r.TrimmingId);
+        }
+
+        public IEnumerable<Trimming> SortByIdDescending()
+        {
+            return _trimmings.OrderByDescending(r => r.TrimmingId);
+        }
+
+        public IEnumerable<Trimming> SortByRabbitId()
+        {
+            return _trimmings.OrderBy(r => r.RabbitRegNo);
+        }
+
+        public IEnumerable<Trimming> SortByRabbitIdDescending()
+        {
+            return _trimmings.OrderByDescending(r => r.RabbitRegNo);
+        }
+
+        public IEnumerable<Trimming> SortByDate()
+        {
+            return _trimmings.OrderBy(r => r.Date);
+        }
+
+        public IEnumerable<Trimming> SortByDateDescending()
+        {
+            return _trimmings.OrderByDescending(r => r.Date);
+        }
+
+        public IEnumerable<Trimming> NameSearch(string str)
+        {
+            if (string.IsNullOrEmpty(str))
+            {
+                return _trimmings;
+            }
+            else
+            {
+                return _trimmings.Where(Trimming => Trimming.Name.ToLower().Contains(str.ToLower()));
+            }
+        }
+
+        public IEnumerable<Trimming> RabbitIdSearch(int id)
+        {
+            if (id == 0)
+            {
+                return _trimmings;
+            }
+            else
+            {
+                return _trimmings.Where(Trimming => Trimming.RabbitRegNo == id);
+            }
+        }
         public List<Trimming> GetTrimmings() { return _trimmings; }
     }
 }
