@@ -5,259 +5,57 @@
 
 <h1>Rabbits</h1>
 
-<div class="row">
-    <div class="col-7"><h5>Search Name</h5></div>
-    <div class="col-4"><h5>Filter Rating</h5></div>
-    <div class="col-1"></div>
+
+<!--  Shopping Basket -->
+<div class="d-flex flex-row-reverse bd-highlight">
+    <div class="p-2 bd-highlight">
+        <a class="btn btn-success" asp-page="Basket">Shopping Basket</a>
+    </div>
 </div>
 
-<div class="row">
-    <div class="col-4">
-        <form method="post" class="form-inline">
-            <div class="input-group mb-3">
-                <input asp-for="SearchString" class="form-control mr-1" placeholder="Enter search term" />
-                <input type="submit" asp-page-handler="NameSearch" value="Search" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-
-    <p>
-        <a class="btn btn-primary" asp-page="CreateRabbit"> Create new Rabbit </a>
-    </p>
-
-    <div class="col-3"></div>
-    <div class="col-5">
-        <form method="post" class="form-inline">
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Min</span>
-                </div>
-                <input asp-for="MinRating" class="form-control me-2" />
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Max</span>
-                </div>
-                <input asp-for="MaxRating" class="form-control me-2" />
-                <input type="submit" asp-page-handler="RatingFilter" value="Filter" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
+<p>
+    <a class="btn btn-primary" asp-page="CreateRabbit"> Create new Rabbit </a>
+</p>
 
 
-</div>
+<body>
+    <!--  Title Info, RabbitRegNo og Name... -->
+    <div>
+        <table class="table table-bordered table-hover table-striped">
+            <tr>
+                <td></td>
+            </tr>
+        </table>
 
-<table class="table table-bordered table-hover table-striped table-opacity" width="100%">
-    @*    <colgroup>
-    <col style="width : 5%">
-    <col style="width : 20%">
-    <col style="width : 15%">
-    <col style="width : 15%">
-    <col style="width : 15%">
-    <col style="width : 15%">
-    <col style="width : 15%">
-    <col style="width : 15%">
-    <col style="width : 15%">
-    <col style="width : 15%">
-    <col style="width : 15%">
-    <col style="width : 15%">
-    </colgroup>*@
-
-    <thead>
-        <tr class="btn-secondary active">
-            <th>
-                <div class="d-flex justify-content-between p-0">
-                    <div><h5>Id </h5></div>
-                    <div>
-                        <a data-toggle="tooltip" title="Sort By Id" asp-page-handler="SortById"><i class="fa fa-angle-up"></i></a>
-                        <a data-toggle="tooltip" title="Sort By Id Descending" asp-page-handler="SortByIdDescending"><i class="fa fa-angle-down"></i></a>
-                    </div>
-                </div>
-            </th>
-
-            <th>
-                <div class="d-flex justify-content-between p-0">
-                    <div>
-                        <h5>Name </h5>
-                    </div>
-                    <div>
-                        <a data-toggle="tooltip" title="Sort By Name" asp-page-handler="SortByName"><i class="fa fa-angle-up"></i></a>
-                        <a data-toggle="tooltip" title="Sort By Name Descending" asp-page-handler="SortByNameDescending"><i class="fa fa-angle-down"></i></a>
-                    </div>
-                </div>
-            </th>
-
-            <th>
-                <div class="d-flex justify-content-between p-0">
-                    <div>
-                        <h5>Race </h5>
-                    </div>
-                    <div>
-                        <a data-toggle="tooltip" title="Sort By Race" asp-page-handler="SortByRace"><i class="fa fa-angle-up"></i></a>
-                        <a data-toggle="tooltip" title="Sort By Race Descending" asp-page-handler="SortByRaceDescending"><i class="fa fa-angle-down"></i></a>
-                    </div>
-                </div>
-            </th>
-            <th>
-                <div class="d-flex justify-content-between p-0">
-                    <div>
-                        <h5>Color </h5>
-                    </div>
-                    <div>
-                        <a data-toggle="tooltip" title="Sort By Color" asp-page-handler="SortByColor"><i class="fa fa-angle-up"></i></a>
-                        <a data-toggle="tooltip" title="Sort By Color Descending" asp-page-handler="SortByColorDescending"><i class="fa fa-angle-down"></i></a>
-                    </div>
-                </div>
-            </th>
-
-            <th>
-                <div class="d-flex justify-content-between p-0">
-                    <div>
-                        <h5>Sex </h5>
-                    </div>
-                    <div>
-                        <a data-toggle="tooltip" title="Sort By Sex" asp-page-handler="SortBySex"><i class="fa fa-angle-up"></i></a>
-                        <a data-toggle="tooltip" title="Sort By Sex Descending" asp-page-handler="SortBySexDescending"><i class="fa fa-angle-down"></i></a>
-                    </div>
-                </div>
-            </th>
-
-            <th>
-                <div class="d-flex justify-content-between p-0">
-                    <div>
-                        <h5>Date of Birth </h5>
-                    </div>
-                    <div>
-                        <a data-toggle="tooltip" title="Sort By DateOfBirth" asp-page-handler="SortByDateOfBirth"><i class="fa fa-angle-up"></i></a>
-                        <a data-toggle="tooltip" title="Sort By DateOfBirth Descending" asp-page-handler="SortByDateOfBirthDescending"><i class="fa fa-angle-down"></i></a>
-                    </div>
-                </div>
-            </th>
-            <th>
-                <div class="d-flex justify-content-between p-0">
-                    <div>
-                        <h5>Weight </h5>
-                    </div>
-                    @*<div>
-                    <a data-toggle="tooltip" title="Sort By Weight" asp-page-handler="SortByWeight"><i class="fa fa-angle-up"></i></a>
-                    <a data-toggle="tooltip" title="Sort By Weight Descending" asp-page-handler="SortByWeight"><i class="fa fa-angle-down"></i></a>
-                    </div>*@
-                </div>
-            </th>
-
-            <th>
-                <div class="d-flex justify-content-between p-0">
-                    <div>
-                        <h5>Rating </h5>
-                    </div>
-                    @*<div>
-                    <a data-toggle="tooltip" title="Sort By Rating" asp-page-handler="SortByRating"><i class="fa fa-angle-up"></i></a>
-                    <a data-toggle="tooltip" title="Sort By Rating Descending" asp-page-handler="SortByRatingDescending"><i class="fa fa-angle-down"></i></a>
-                    </div>*@
-                </div>
-            </th>
-
-            <th>
-                <div class="d-flex justify-content-between p-0">
-                    <div>
-                        <h5>Dead/Alive </h5>
-                    </div>
-                    @*<div>
-                    <a data-toggle="tooltip" title="Sort By DeadOrAlive" asp-page-handler="SortDeadOrAlive"><i class="fa fa-angle-up"></i></a>
-                    <a data-toggle="tooltip" title="Sort By DeadOrAlive Descending" asp-page-handler="SortByDeadOrAliveDescending"><i class="fa fa-angle-down"></i></a>
-                    </div>*@
-                </div>
-            </th>
-            <th>
-                <div class="d-flex justify-content-between p-0">
-                    <div>
-                        <h5>For Sale </h5>
-                    </div>
-                    @*    <div>
-                    <a data-toggle="tooltip" title="Sort By IsForSale" asp-page-handler="SortIsForSale"><i class="fa fa-angle-up"></i></a>
-                    <a data-toggle="tooltip" title="Sort By IsForSale Descending" asp-page-handler="SortByIsForSaleDescending"><i class="fa fa-angle-down"></i></a>
-                    </div>*@
-                </div>
-            </th>
-
-            <th>
-                <div class="d-flex justify-content-between p-0">
-                    <div>
-                        <h5>Suitability </h5>
-                    </div>
-                    @*            <div>
-                    <a data-toggle="tooltip" title="Sort By SuitableForBreeding" asp-page-handler="SortSuitableForBreeding"><i class="fa fa-angle-up"></i></a>
-                    <a data-toggle="tooltip" title="Sort By SuitableForBreeding Descending" asp-page-handler="SortBySuitableForBreedingDescending"><i class="fa fa-angle-down"></i></a>
-                    </div>*@
-                </div>
-            </th>
-            <th>
-                <div class="d-flex justify-content-between p-0">
-                    <div>
-                        <h5>DeathCause </h5>
-                    </div>
-                    @*                    <div>
-                    <a data-toggle="tooltip" title="Sort By CauseOfDeath" asp-page-handler="SortCauseOfDeath"><i class="fa fa-angle-up"></i></a>
-                    <a data-toggle="tooltip" title="Sort By CauseOfDeath Descending" asp-page-handler="SortByCauseOfDeath"><i class="fa fa-angle-down"></i></a>
-                    </div>*@
-                </div>
-            </th>
-
-
-
-            <th>
-                <h5>Handlinger</h5>
-            </th>
-        </tr>
-    </thead>
-
-    <tbody>
-        @if (Model.Rabbits != null)
-        {
-            foreach (var rabbit in Model.Rabbits)
+        <div style="width: 100%" class="d-flex flex-wrap justify-content-center">
+            @if (@Model.Rabbits != null)
             {
-                <tr class="btn-secondary">
-                    <td>
-                        @rabbit.RabbitRegNo
-                    </td>
-                    <td>
-                        @rabbit.Name
-                    </td>
-                    <td>
-                        @rabbit.Race
-                    </td>
-                    <td>
-                        @rabbit.Color
-                    </td>
-                    <td>
-                        @rabbit.Sex
-                    </td>
-                    <td>
-                        @rabbit.DateOfBirth
-                    </td>
-                    <td>
-                        @rabbit.Weight
-                    </td>
-                    <td>
-                        @rabbit.Rating
-                    </td>
-                    <td>
-                        @rabbit.DeadOrAlive
-                    </td>
-                    <td>
-                        @rabbit.IsForSale
-                    </td>
-                    <td>
-                        @rabbit.SuitableForBreeding
-                    </td>
-                    <td>
-                        @rabbit.CauseOfDeath
-                    </td>
+                foreach (var Rabbit in Model.Rabbits)
+                {
+    <div class="p-2 text-center container rounded border border-dark" style="max-width: 25%; margin-left: 50px; background-color: white;">
+        <p class="font-monospace"> RabbitRegNo: @Rabbit.RabbitRegNo </p>
+        <img src="@Rabbit.ImageString" style="max-width: 200px; height: auto">
+        <p class="font-monospace"> Name: @Rabbit.Name </p>
+        <p class="font-monospace"> Race: @Rabbit.Race </p>
+        <a class="btn btn-primary btn-sm" type="button" title="Edit" asp-page="/Main/Rabbit/EditRabbit" asp-route-id="@Rabbit.RabbitRegNo"><i class="fa fa-edit"></i></a>
+        <a class="btn btn-danger btn-sm" type="button" title="Delete" asp-page="/Main/Rabbit/DeletRabbit" asp-route-id="@Rabbit.RabbitRegNo"><i class="fa fa-trash"></i></a>
+        <a class="btn btn-success" asp-page="/Main/Rabbit/RabbitProfile" asp-route-id="@Rabbit.RabbitRegNo"><i class="fa fa-info"></i></a>
+    </div>
+}
 
-                    <td>
-                        <a class="btn btn-primary btn-sm" type="button" title="Edit" asp-page="EditRabbit" asp-route-id="@rabbit.RabbitRegNo"><i class="fa fa-edit"></i></a>
-                        <a class="btn btn-danger btn-sm " type="button" title="Delete" asp-page="DeleteRabbit" asp-route-id="@rabbit.RabbitRegNo"><i class="fa fa-trash"></i></a>
-                    </td>
-                </tr>
             }
-        }
-    </tbody>
-</table>
+        </div>
+    </div>
+
+    <br />
+
+    <table class="table table-bordered table-hover table-striped">
+        <tr>
+            <td></td>
+        </tr>
+    </table>
+
+    <br />
+    <br />
+
+</body>

@@ -12,7 +12,7 @@ using RabbitRegister.EFDbContext;
 namespace RabbitRegister.Migrations
 {
     [DbContext(typeof(ItemDbContext))]
-    [Migration("20230511090634_RabbitReg")]
+    [Migration("20230511111522_RabbitReg")]
     partial class RabbitReg
     {
         /// <inheritdoc />
@@ -159,6 +159,9 @@ namespace RabbitRegister.Migrations
                     b.Property<int>("DeadOrAlive")
                         .HasColumnType("int");
 
+                    b.Property<string>("ImageString")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("IsForSale")
                         .HasColumnType("int");
 
@@ -171,8 +174,8 @@ namespace RabbitRegister.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double?>("Rating")
-                        .HasColumnType("float");
+                    b.Property<float?>("Rating")
+                        .HasColumnType("real");
 
                     b.Property<int>("Sex")
                         .HasColumnType("int");
@@ -181,8 +184,8 @@ namespace RabbitRegister.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
-                    b.Property<double?>("Weight")
-                        .HasColumnType("float");
+                    b.Property<float?>("Weight")
+                        .HasColumnType("real");
 
                     b.HasKey("RabbitRegNo");
 

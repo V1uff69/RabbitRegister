@@ -56,12 +56,13 @@ namespace RabbitRegister.Migrations
                     Color = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Sex = table.Column<int>(type: "int", nullable: false),
                     DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Weight = table.Column<double>(type: "float", nullable: true),
-                    Rating = table.Column<double>(type: "float", nullable: true),
+                    Weight = table.Column<float>(type: "real", nullable: true),
+                    Rating = table.Column<float>(type: "real", nullable: true),
                     DeadOrAlive = table.Column<int>(type: "int", nullable: false),
                     IsForSale = table.Column<int>(type: "int", nullable: false),
                     SuitableForBreeding = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
-                    CauseOfDeath = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true)
+                    CauseOfDeath = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
+                    ImageString = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {

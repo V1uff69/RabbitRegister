@@ -55,6 +55,7 @@ namespace RabbitRegister.Services.RabbitService
                         r.IsForSale = rabbit.IsForSale;
                         r.SuitableForBreeding = rabbit.SuitableForBreeding;
                         r.CauseOfDeath = rabbit.CauseOfDeath;
+                        r.ImageString = rabbit.ImageString;
                         break;                                    // break tilføjet
                     }
                 }
