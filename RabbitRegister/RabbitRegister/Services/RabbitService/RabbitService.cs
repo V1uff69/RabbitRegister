@@ -1,4 +1,5 @@
-﻿using RabbitRegister.Model;
+﻿using RabbitRegister.MockData;
+using RabbitRegister.Model;
 
 namespace RabbitRegister.Services.RabbitService
 {
@@ -12,17 +13,19 @@ namespace RabbitRegister.Services.RabbitService
         {
             _dbGenericService = dbGenericService;
             _rabbits = _dbGenericService.GetObjectsAsync().Result.ToList();
+
+            //_rabbits = MockRabbit.GetMockRabbits();
+            //foreach (var rabbit in _rabbits)
+            //{
+            //    _dbGenericService.AddObjectAsync(rabbit).Wait();
+            //}
         }
 
-        public RabbitService()
-        {
-
-        }
+        public RabbitService()  {    }
 
         public async Task AddRabbitAsync(Rabbit rabbit)
         {
             _rabbits.Add(rabbit);
-            //DbService.AddRabbit(rabbit);
             await _dbGenericService.AddObjectAsync(rabbit);
         }
 

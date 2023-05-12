@@ -46,10 +46,15 @@ namespace RabbitRegister.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("RabbitId")
+                        .HasColumnType("int");
+
                     b.Property<int>("ZipCode")
                         .HasColumnType("int");
 
                     b.HasKey("BreederRegNo");
+
+                    b.HasIndex("RabbitId");
 
                     b.ToTable("Breeder");
                 });
@@ -140,6 +145,9 @@ namespace RabbitRegister.Migrations
             modelBuilder.Entity("RabbitRegister.Model.Rabbit", b =>
                 {
                     b.Property<int>("RabbitRegNo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BreederRegNo")
                         .HasColumnType("int");
 
                     b.Property<string>("CauseOfDeath")
@@ -271,6 +279,17 @@ namespace RabbitRegister.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.ToTable("Yarns");
+                });
+
+            modelBuilder.Entity("RabbitRegister.Model.Breeder", b =>
+                {
+                    b.HasOne("RabbitRegister.Model.Rabbit", "Rabbit")
+                        .WithMany()
+                        .HasForeignKey("RabbitId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Rabbit");
                 });
 
             modelBuilder.Entity("RabbitRegister.Model.Order", b =>
