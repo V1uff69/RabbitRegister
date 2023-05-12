@@ -22,6 +22,7 @@
 			<th> Color </th>
 			<th> Amount </th>
 			<th> Price </th>
+			<th> Image </th>
 			<th> Action </th>
 		</tr>
 	</thead>
@@ -43,6 +44,7 @@
 					<td>@yarn.Color</td>
 					<td>@yarn.Amount</td>
 					<td>@yarn.Price</td>
+					<td><img src="@yarn.ImgString" style="max-width: 100px; height: auto"></td>
 					<td>
 						<a class="btn btn-primary btn-sm" type="button" title="Edit" asp-page="EditYarn" asp-route-id="@yarn.ProductId"><i class="fa fa-edit"></i></a>
 						<a class="btn btn-danger btn-sm " type="button" title="Delete" asp-page="/Main/Product/DeleteYarn" asp-route-id="@yarn.ProductId"><i class="fa fa-trash"></i></a>
