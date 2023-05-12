@@ -9,7 +9,7 @@ namespace RabbitRegister.Services.ProductService
         /// </summary>
         /// <param name="wool"></param>
         /// <returns></returns>
-		Task AddWoolAsync(Wool wool);
+        Task AddWoolAsync(Wool wool);
 		Task<Wool> DeleteWoolAsync(int? Id);
         Task UpdateWoolAsync(Wool wool);
 		List<Wool> GetWools();

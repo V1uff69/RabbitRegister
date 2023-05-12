@@ -19,14 +19,16 @@ namespace RabbitRegister.Pages.Main.Product
         }
         public IActionResult OnGet(int Id)
         {
-            if (yarn.ProductType == "Yarn")
-            {
-                yarn = _productService.GetYarn(Id);
-            }
-            else { 
-                if (wool.ProductType == "Wool")
-                wool = _productService.GetWools(Id);
-            }
+           wool = _productService.GetWools(Id);
+            yarn = _productService.GetYarn(Id);
+            //if (yarn.ProductType == "Yarn")
+            //{
+            //    yarn = _productService.GetYarn(Id);
+            //}
+            //else { 
+            //    if (wool.ProductType == "Wool")
+            //    wool = _productService.GetWools(Id);
+            //}
             return Page();
         }
     }

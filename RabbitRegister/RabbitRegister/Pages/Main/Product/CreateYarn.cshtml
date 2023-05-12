@@ -2,8 +2,9 @@
 @model RabbitRegister.Pages.Main.Product.CreateYarnModel
 @{
 }
-
+<div class="create-form">
 <form method="post">
+		<h1 style="text-align:center">Create Yarn</h1>
 	<div class="from-group">
 		<label asp-for="@Model.Yarn.ProductId" class="control-label"></label>
 		<input asp-for="@Model.Yarn.ProductId" class="form-control" readonly="@(true)" />
@@ -63,14 +64,13 @@
 		<span asp-validation-for="@Model.Yarn.Price" class="text-danger"></span>
 	</div>
 
-	<p>
-		<div class="form-group">
-			<input type="submit" value="Create" class="btn btn-primary" />
-		</div>
-	</p>
+    <p align="center">
+        <div class="form-group">
+            <input type="submit" style="background-color:green;color:white;margin-left:auto;margin-right:auto;display:block;width:100%;border-radius:8px" value="Create" class="btn text-center" />
+            <br />
+            <input type="submit" asp-page="/Main/Product/GetAllYarn" class="btn text-center" style="background-color:red;color:white;margin-left:auto;margin-right:auto;display:block;width:100%;border-radius:8px" value="Cancel" />
+        </div>
+    </p>
 	
 </form>
-
-<p>
-	<button onclick="history.back()">Go Back</button>
-</p>
+</div>
