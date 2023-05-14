@@ -27,7 +27,6 @@ namespace RabbitRegister.Model
     public class Rabbit
     {
 
-
         [Display(Name = "Kanin ID")]
         [Required(ErrorMessage = "Din kanins skal have et ID")]
         [Range(typeof(int), "1", "9999", ErrorMessage = "Kaninens ID skal være imellem {1} og {2} tal")]
@@ -35,16 +34,15 @@ namespace RabbitRegister.Model
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int RabbitRegNo { get; set; }
 
+        [Display(Name = "Avler-nr: ")]
+        [Required(ErrorMessage = "Avler ID SKAL udfyldes (4 cifre)")]
+        [ForeignKey(nameof(BreederRegNo))]
+        public int BreederRegNo { get; set; }
 
         [Display(Name = "Kælenavn: ")]
         [Required(ErrorMessage = "Kaninen skal have et navn"), MaxLength(20)]
         public string Name { get; set; }
 
-        public static readonly List<string> PossibleRaces = new List<string>
-        {
-        "Angora",
-        "Satin Angora"
-        };
 
         [Display(Name = "Race: ")]
         [Required(ErrorMessage = "Kaninen skal have en race")]
@@ -62,12 +60,12 @@ namespace RabbitRegister.Model
         public DateTime DateOfBirth { get; set; }
 
         [Display(Name = "Vægt i kilo: ")]
-        [Range(typeof(double), minimum: "0", maximum: "10", ErrorMessage = "Vægten må have værdier imellem: {1} og {2}")]
-        public double? Weight { get; set; }
+        [Range(typeof(float), minimum: "0", maximum: "10", ErrorMessage = "Vægten må have værdier imellem: {1} og {2}")]
+        public float? Weight { get; set; }
 
         [Display(Name = "Rating: ")]
-        [Range(typeof(double), minimum: "0", maximum: "100", ErrorMessage = "Kaninens bedømmelse må ligge imellem: {1} og {2}")]
-        public double? Rating { get; set; } = null;
+        [Range(typeof(float), minimum: "0", maximum: "100", ErrorMessage = "Kaninens bedømmelse må ligge imellem: {1} og {2}")]
+        public float? Rating { get; set; } = null;
 
         [Display(Name = "AveKanin (Alive/Dead): ")]
         [Required(ErrorMessage = "Der skal oplyses om kaninen er død eller levende")]
@@ -85,12 +83,15 @@ namespace RabbitRegister.Model
         [MaxLength(300)]
         public string? CauseOfDeath { get; set; } = null;
 
+        [Display(Name = "Image (Billednavn + type)")]
+        public string? ImageString { get; set; }
+
         public Rabbit() { }
 
-        public Rabbit(int rabbitRegNo, string name, string race, string color, Sex sex, DateTime dateOfBirth, double? weight, double? rating, DeadOrAlive deadOrAlive, IsForSale isForSale, string? suitableForBreeding, string? causeOfDeath)
+        public Rabbit(int rabbitRegNo, int breederRegNo, string name, string race, string color, Sex sex, DateTime dateOfBirth, float? weight, float? rating, DeadOrAlive deadOrAlive, IsForSale isForSale, string? suitableForBreeding, string? causeOfDeath)
         {
             RabbitRegNo = rabbitRegNo;
-            //BreederRegNo = breederRegNo;
+            BreederRegNo = breederRegNo;
             Name = name;
             Race = race;
             Color = color;

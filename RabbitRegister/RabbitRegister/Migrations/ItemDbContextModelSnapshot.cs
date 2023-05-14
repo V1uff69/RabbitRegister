@@ -46,10 +46,15 @@ namespace RabbitRegister.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("RabbitId")
+                        .HasColumnType("int");
+
                     b.Property<int>("ZipCode")
                         .HasColumnType("int");
 
                     b.HasKey("BreederRegNo");
+
+                    b.HasIndex("RabbitId");
 
                     b.ToTable("Breeder");
                 });
@@ -142,6 +147,9 @@ namespace RabbitRegister.Migrations
                     b.Property<int>("RabbitRegNo")
                         .HasColumnType("int");
 
+                    b.Property<int>("BreederRegNo")
+                        .HasColumnType("int");
+
                     b.Property<string>("CauseOfDeath")
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
@@ -156,6 +164,9 @@ namespace RabbitRegister.Migrations
                     b.Property<int>("DeadOrAlive")
                         .HasColumnType("int");
 
+                    b.Property<string>("ImageString")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("IsForSale")
                         .HasColumnType("int");
 
@@ -168,8 +179,8 @@ namespace RabbitRegister.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double?>("Rating")
-                        .HasColumnType("float");
+                    b.Property<float?>("Rating")
+                        .HasColumnType("real");
 
                     b.Property<int>("Sex")
                         .HasColumnType("int");
@@ -178,8 +189,8 @@ namespace RabbitRegister.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
-                    b.Property<double?>("Weight")
-                        .HasColumnType("float");
+                    b.Property<float?>("Weight")
+                        .HasColumnType("real");
 
                     b.HasKey("RabbitRegNo");
 
@@ -268,6 +279,17 @@ namespace RabbitRegister.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.ToTable("Yarns");
+                });
+
+            modelBuilder.Entity("RabbitRegister.Model.Breeder", b =>
+                {
+                    b.HasOne("RabbitRegister.Model.Rabbit", "Rabbit")
+                        .WithMany()
+                        .HasForeignKey("RabbitId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Rabbit");
                 });
 
             modelBuilder.Entity("RabbitRegister.Model.Order", b =>
