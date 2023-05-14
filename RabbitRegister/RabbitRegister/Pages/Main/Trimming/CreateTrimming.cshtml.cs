@@ -16,9 +16,13 @@ namespace RabbitRegister.Pages.Main.Trimming
 
         [BindProperty]
         public Model.Trimming Trimming { get; set; } = new Model.Trimming();
-        
+
+        [FromQuery(Name = "RabbitRegNo")]
+        public int RabbitRegNoFromQuery { get; set; }
+
         public IActionResult OnGet()
         {
+            Trimming.RabbitRegNo = RabbitRegNoFromQuery;
             return Page();
         }
         //public IActionResult OnPost()

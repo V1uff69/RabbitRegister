@@ -7,13 +7,13 @@
 
 <form method="post" class="form-inline">
     <div class="input-group mb-3">
-        <input asp-for="SearchString" class="form-control mr-1" placeholder="Enter search term" />
+        <input asp-for="SearchString" class="form-control mr-1" placeholder="Søg efter navn" />
         <input type="submit" asp-page-handler="NameSearch" value="Search" class="btn btn-primary" />
     </div>
 </form>
 <form method="post" class="form-inline">
     <div class="input-group mb-3">
-        <input asp-for="SearchId" class="form-control mr-1" placeholder="Enter search term" />
+        <input asp-for="SearchId" class="form-control mr-1" placeholder="Søg efter Kanin ID" />
         <input type="submit" asp-page-handler="RabbitIdSearch" value="Search" class="btn btn-primary" />
     </div>
 </form>
@@ -60,9 +60,9 @@
     </thead>
     <tbody>
 
-        @if (Model.trimmings != null)
+        @if (Model.Trimmings != null)
         {
-            @foreach (var item in Model.trimmings)
+            @foreach (var item in Model.Trimmings)
             {
                 <tr>
                     <td> @item.TrimmingId </td>
