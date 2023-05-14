@@ -1,8 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using RabbitRegister.EFDbContext;
 using RabbitRegister.Model;
 using RabbitRegister.Services.TrimmingService;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace RabbitRegister.Pages.Main.Trimming
 {
