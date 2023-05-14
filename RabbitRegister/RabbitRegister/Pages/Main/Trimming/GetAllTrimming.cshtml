@@ -4,12 +4,6 @@
     ViewData["Title"] = "Trimmings";
 }
 
-<form action="/Main/Trimming/ShowTrimmingForRabbit" method="get">
-    <label for="rabbitRegNo">Search trimmings for rabbit:</label>
-    <input type="text" id="RabbitRegNo" name="RabbitRegNo" placeholder="Enter Rabbit Reg No" />
-    <button type="submit">Search</button>
-</form>
-
 <form method="post" class="form-inline">
     <div class="input-group mb-3">
         <input asp-for="SearchString" class="form-control mr-1" placeholder="Søg efter navn" />

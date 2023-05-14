@@ -5,7 +5,6 @@ namespace RabbitRegister.Model
 {
     public class Trimming
     {
-        public Rabbit Rabbit { get; set; }
         [Key]
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
