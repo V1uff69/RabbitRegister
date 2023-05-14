@@ -12,13 +12,8 @@ using RabbitRegister.EFDbContext;
 namespace RabbitRegister.Migrations
 {
     [DbContext(typeof(ItemDbContext))]
-<<<<<<<< HEAD:RabbitRegister/RabbitRegister/Migrations/20230511133814_rab1.Designer.cs
-    [Migration("20230511133814_rab1")]
-    partial class rab1
-========
-    [Migration("20230512202513_RabbitReg")]
-    partial class RabbitReg
->>>>>>>> Mikkel:RabbitRegister/RabbitRegister/Migrations/20230512202513_RabbitReg.Designer.cs
+    [Migration("20230514072035_Rab1")]
+    partial class Rab1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

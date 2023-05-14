@@ -4,9 +4,6 @@
     ViewData["Title"] = "Trimmings";
 }
 
-<p>
-    <a class="btn btn-primary" asp-page="/Main/Trimming/CreateTrimming"> Opret ny klipning </a>
-</p>
 
 <form method="post" class="form-inline">
     <div class="input-group mb-3">
@@ -20,6 +17,10 @@
         <input type="submit" asp-page-handler="RabbitIdSearch" value="Search" class="btn btn-primary" />
     </div>
 </form>
+
+<p>
+    <a class="btn btn-primary" asp-page="/Main/Trimming/CreateTrimming"> Opret ny klipning </a>
+</p>
 
 <h4 style="color:red"> List of Trimmings</h4>
 <table class="table table-bordered table-hover table-striped table-opacity" width="100%">
