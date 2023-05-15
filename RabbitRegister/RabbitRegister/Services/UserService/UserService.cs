@@ -28,5 +28,7 @@ namespace RabbitRegister.Services.UserService
             return Users.Find(user => user.UserName == username);
         }
         
+
+
     }
 }

@@ -50,6 +50,16 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.Use(async (context, next) =>
+{
+    if (context.User.Identity.IsAuthenticated && !context.User.HasClaim(c => c.Type == "IsAdmin" && c.Value == "true"))
+    {
+        context.Response.Redirect("/AccessDenied");
+        return;
+    }
+    await next.Invoke();
+});
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
