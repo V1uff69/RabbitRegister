@@ -12,7 +12,7 @@ using RabbitRegister.EFDbContext;
 namespace RabbitRegister.Migrations
 {
     [DbContext(typeof(ItemDbContext))]
-    [Migration("20230514072035_Rab1")]
+    [Migration("20230515085757_Rab1")]
     partial class Rab1
     {
         /// <inheritdoc />
@@ -224,6 +224,7 @@ namespace RabbitRegister.Migrations
                         .HasColumnType("float");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("RabbitRegNo")

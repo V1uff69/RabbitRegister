@@ -19,7 +19,8 @@ namespace RabbitRegister.Model
         public int BreederRegNo { get; set; }
 
         [Display(Name = "Kaninens Navn")]
-        public string? Name { get; set; }
+        [Required(ErrorMessage = "Der skal angives et Kanin Navn")]
+        public string Name { get; set; }
 
         [Display(Name = "Dato")]
         [Required(ErrorMessage = "Der skal angives en Dato")]

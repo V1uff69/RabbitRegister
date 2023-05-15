@@ -61,7 +61,7 @@ namespace RabbitRegister.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     RabbitRegNo = table.Column<int>(type: "int", nullable: false),
                     BreederRegNo = table.Column<int>(type: "int", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     TimeUsed = table.Column<double>(type: "float", nullable: true),
                     HairLengthByDayNinety = table.Column<double>(type: "float", nullable: true),

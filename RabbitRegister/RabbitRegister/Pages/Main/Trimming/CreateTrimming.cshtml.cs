@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using RabbitRegister.Services.RabbitService;
 using RabbitRegister.Services.TrimmingService;
 
 namespace RabbitRegister.Pages.Main.Trimming
@@ -8,37 +9,50 @@ namespace RabbitRegister.Pages.Main.Trimming
     {
 
         private ITrimmingService _trimmingService;
+        private IRabbitService _rabbitService;
 
-        public CreateTrimmingModel(ITrimmingService trimmingService)
+        public CreateTrimmingModel(ITrimmingService trimmingService, IRabbitService rabbitService)
         {
             _trimmingService = trimmingService;
+            _rabbitService = rabbitService;
         }
+
+        //[BindProperty]
+        //public Model.Trimming Trimming { get; set; } = new Model.Trimming();
 
         [BindProperty]
         public Model.Trimming Trimming { get; set; } = new Model.Trimming();
 
-        //[FromQuery(Name = "RabbitRegNo")]
-        //public int RabbitRegNoFromQuery { get; set; }
-        //[FromQuery(Name = "BreederRegNo")]
-        //public int BreederRegNoFromQuery { get; set; }
-        //[FromQuery(Name = "Name")]
-        //public string RabbitNameFromQuery { get; set; }
-
-        public IActionResult OnGet()
+        public IActionResult OnGet(int id)
         {
-            //Trimming.RabbitRegNo = RabbitRegNoFromQuery;
-            //Trimming.BreederRegNo = BreederRegNoFromQuery;
-            //Trimming.Name = RabbitNameFromQuery;
+            if (id > 0)
+            {
+                Model.Rabbit RabbitOb = _rabbitService.GetRabbit(id);
+                Trimming.RabbitRegNo = RabbitOb.RabbitRegNo;
+                Trimming.BreederRegNo = RabbitOb.BreederRegNo;
+                Trimming.Name = RabbitOb.Name;
+            }
+
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(Model.Trimming Trimming)
+        //public async Task<IActionResult> OnPostAsync()
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return Page();
+        //    }
+        //    await _trimmingService.AddTrimmingAsync(Trimming);
+        //    return RedirectToPage("GetAllTrimming");
+        //}
+
+        public async Task<IActionResult> OnPostAsync(Model.Trimming  trimming)
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
-            await _trimmingService.AddTrimmingAsync(Trimming);
+            await _trimmingService.AddTrimmingAsync(trimming);
             return RedirectToPage("GetAllTrimming");
         }
     }
