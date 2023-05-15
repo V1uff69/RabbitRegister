@@ -3,9 +3,6 @@
 @{
 }
 <body>
-<p>
-    <a asp-page="/Main/Product/GetAllWool" class="btn btn-primary" style="position:fixed">Back to List</a>
-</p>
 <div class="create-form">
 <form method="post">
     <h1 style="text-align:center">Create Wool</h1>
@@ -60,7 +57,9 @@
 
     <p align="center">
         <div class="form-group">
-            <input type="submit" style="background-color:green;margin-left:auto;margin-right:auto;display:block;width:100%;border-radius:8px" value="Create" class="btn btn-primary text-center" />
+            <input type="submit" style="background-color:green;color:white;margin-left:auto;margin-right:auto;display:block;width:100%;border-radius:8px" value="Create" class="btn text-center" />
+            <br />
+            <input type="submit" asp-page="/Main/Product/GetAllWool" class="btn text-center" style="background-color:red;color:white;margin-left:auto;margin-right:auto;display:block;width:100%;border-radius:8px" value="Cancel" />
         </div>
     </p>
 </form>

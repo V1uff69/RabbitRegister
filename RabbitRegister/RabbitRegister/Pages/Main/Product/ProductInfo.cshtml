@@ -1,0 +1,40 @@
+﻿@page "[id:int]"
+@model RabbitRegister.Pages.Main.Product.ProductInfoModel
+@{
+}
+
+<html>
+<head>
+    <title>Product Information</title>
+</head>
+<body>
+    @if (Model.wool != null)
+    {
+        <h1>@Model.wool.ProductName</h1>
+        <img src="@Model.wool.ImgString" alt="Product Image" style="max-width: 500px; height: auto">
+        <p>Description:</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae magna felis. Integer ac nibh eu nulla condimentum mattis. Nam vulputate, metus in convallis euismod, elit elit volutpat elit, vel tincidunt enim odio ut libero. </p>
+        <ul>
+            <li>Feature 1</li>
+            <li>Feature 2</li>
+            <li>Feature 3</li>
+        </ul>
+        <p>Price: $99.99</p>
+        <button>Add to Cart</button>
+    }
+    @if (Model.yarn != null)
+    {
+        <h1>@Model.yarn.ProductName</h1>
+        <img src="@Model.yarn.ImgString" alt="Product Image" style="max-width: 500px; min-width: 500px; height: auto">
+        <p>Description:</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae magna felis. Integer ac nibh eu nulla condimentum mattis. Nam vulputate, metus in convallis euismod, elit elit volutpat elit, vel tincidunt enim odio ut libero. </p>
+        <ul>
+            <li>Feature 1</li>
+            <li>Feature 2</li>
+            <li>Feature 3</li>
+        </ul>
+        <p>Price: $99.99</p>
+        <button>Add to Cart</button>
+    }
+</body>
+</html>

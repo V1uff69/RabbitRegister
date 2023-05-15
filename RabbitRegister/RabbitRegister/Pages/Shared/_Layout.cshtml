@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using RabbitRegister.Pages.Main.LogIn
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -29,24 +30,59 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Main/Product/Store">Store</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Main/Product/GetAllWool">Wool</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Main/Product/GetAllYarn">Yarn</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Main/Rabbit/GetAllRabbits">My Rabbits</a>
-                        </li>
+                        
+                        
+                        @{
+                            if (Context.User.Identity != null && Context.User.Identity.Name == "admin")
+                            {
+                                            <li class="nav-item">
+                                                <a class="nav-link text-dark" asp-area="" asp-page="/Main/Admin/CreateUser">Create User</a>
+                                            </li>
+                            }
+                        }
+                        </ul>
+                        <ul class="navbar-nav">
+                        @{
+                            if (Context.User.Identity.Name == null)
+                            {
+                                                <li class="nav-item">
+                                                    <a class="nav-link text-dark" asp-area="" asp-page="/Main/LogIn/LogInPage">Login</a>
+                                                </li>
+                            }
+                            else
+                            {
+
+                                                <li class="nav-item">
+                                                    <a class="nav-link text-dark" asp-area="" asp-page="/Main/Product/GetAllWool">Wool</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link text-dark" asp-area="" asp-page="/Main/Product/GetAllYarn">Yarn</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link text-dark" asp-area="" asp-page="/Main/Rabbit/GetAllRabbits">My Rabbits</a>
+                                                </li>
+
+                                                <li class="nav-item nav-link text-white me-3">
+                                                    User: @Context.User.Identity.Name
+                                                </li>
+
+                                                <li class="nav-item">
+                                                    <a class="nav-link text-dark" asp-area="" asp-page="/Main/LogIn/LogOutPage">Logout</a>
+                                                </li>
+                            }
+                        }
+                        </ul>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
+    <div class="layer">
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
+    </div>
     </div>
 
     <footer class="border-top footer text-muted">
