@@ -17,9 +17,6 @@ namespace RabbitRegister.Pages.Main.Trimming
             _rabbitService = rabbitService;
         }
 
-        //[BindProperty]
-        //public Model.Trimming Trimming { get; set; } = new Model.Trimming();
-
         [BindProperty]
         public Model.Trimming Trimming { get; set; } = new Model.Trimming();
 
@@ -46,7 +43,7 @@ namespace RabbitRegister.Pages.Main.Trimming
         //    return RedirectToPage("GetAllTrimming");
         //}
 
-        public async Task<IActionResult> OnPostAsync(Model.Trimming  trimming)
+        public async Task<IActionResult> OnPostAsync(Model.Trimming trimming)
         {
             if (!ModelState.IsValid)
             {
