@@ -15,70 +15,68 @@
 <!--  Product tabel on the website -->
 <h1 class="font-monospace text-center">Products</h1>
 
-    <body>
+<body>
     <!--  Wool Info, price, name... -->
     <div>
-        <table class="table table-bordered table-hover table-striped">
-            <tr>
-                <td></td>
-            </tr>
-        </table>
-
-        <div style="width: 100%" class="d-flex flex-wrap justify-content-center">
+        <div style="width: 100%" class="d-flex flex-wrap flex-row justify-content-center">
             @if (@Model.Wools != null)
             {
-            foreach (var Wool in Model.Wools)
-            {
-              <div class="p-2 text-center container rounded border border-dark" style="max-width: 25%; margin-left: 50px; background-color: white;" >
-                        <p class="font-monospace"> Name: @Wool.ProductName </p>
-                    <img src="@Wool.ImgString" style="max-width: 200px; height: auto">
-                        <p class="font-monospace"> Price: @Wool.Price kr </p>
-                        <p class="font-monospace"> Stock: @Wool.Amount</p>
-
-                        @{
-
-                         <a class="btn btn-primary btn-sm" type="button" title="Edit" asp-page="/Main/Product/EditWool" asp-route-id="@Wool.ProductId"><i class="fa fa-edit"></i></a>
-                         <a class="btn btn-danger btn-sm" type="button" title="Delete" asp-page="/Main/Product/DeleteWool" asp-route-id="@Wool.ProductId"><i class="fa fa-trash"></i></a>
-                         <a class="btn btn-success" asp-page="/ShoppingBasket" asp-route-id="@Wool.ProductId" asp-page-handler="AddToBasket"> <i class="fa fa-cart-plus"></i> </a>
-                            <a class="btn btn-primary btn-sm fa fa-info" asp-page="/Main/Product/ProductInfo" asp-route-id="@Wool.ProductId"></a>
-                    }
-              </div>
-            }
-
-            }
-            @if (Model.Yarns !=null)
-            {
-                foreach(var Yarn in Model.Yarns)
+                foreach (var Wool in Model.Wools)
                 {
-                    <div class="p-2 text-center container rounded border-dark" style="max-width: 25%; margin-left: 50px; background-color: white;">
-                        <p class="font-monospace"> Name: @Yarn.ProductName </p>
-                        <img src="@Yarn.ImgString" style="max-width: 200px; height: auto">
-                        <p class="font-monospace"> Price: @Yarn.Price kr </p>
-                        <p class="font-monospace"> Stock: @Yarn.Amount</p>
-
-                        @{
-
-                            <a class="btn btn-primary btn-sm" type="button" title="Edit" asp-page="/Main/Product/EditWool" asp-route-id="@Yarn.ProductId"><i class="fa fa-edit"></i></a>
-                            <a class="btn btn-danger btn-sm" type="button" title="Delete" asp-page="/Main/Product/DeleteWool" asp-route-id="@Yarn.ProductId"><i class="fa fa-trash"></i></a>
-                            <a class="btn btn-success" asp-page="/ShoppingBasket" asp-route-id="@Yarn.ProductId" asp-page-handler="AddToBasket"> <i class="fa fa-cart-plus"></i> </a>
-                            <a class="btn btn-primary btn-sm fa fa-info" asp-page="/Main/Product/ProductInfo" asp-route-id="@Yarn.ProductId"></a>
+                    <a class="click-card flex-item" asp-page="/Main/Product/ProductInfo" asp-route-id="@Wool.ProductId">
+                        <div class="p-2-card text-center container rounded border border-dark" style="width: 100%;">
+                            @if (Wool.ImgString == "/Images/Products/Yarn/" || Wool.ImgString == null)
+                            {
+                                <img class="card-image" src="\Images\MissingImg.jpg">
                             }
-                    </div>
+                            else
+                            {
+                                <img class="card-image" src="@Wool.ImgString">
+                            }
+                            <p class="text-card font-monospace"> Name: @Wool.ProductName </p>
+                            <p class="text-card font-monospace"> Price: @Wool.Price kr </p>
+                            <p class="text-card font-monospace"> Stock: @Wool.Amount</p>
+                            <div class="d-flex flex-wrap justify-content-center" style="margin-bottom: 5px; margin-top: 0px;">
+                                <a class="btn-card btn-primary btn-sm" type="button" title="Edit" asp-page="/Main/Product/EditWool" asp-route-id="@Wool.ProductId"><i class="fa fa-edit"></i></a>
+                                <a class="btn-card btn-danger btn-sm" type="button" title="Delete" asp-page="/Main/Product/DeleteWool" asp-route-id="@Wool.ProductId"><i class="fa fa-trash"></i></a>
+                                <a class="btn-card btn-success btn-sm" asp-page="/ShoppingBasket" asp-route-id="@Wool.ProductId" asp-page-handler="AddToBasket"> <i class="fa fa-cart-plus"></i> </a>
+                            </div>
+                        </div>
+                    </a>
+                }
+
+            }
+            @if (Model.Yarns != null)
+            {
+                foreach (var Yarn in Model.Yarns)
+                {
+                    <a class="click-card flex-item" asp-page="/Main/Product/ProductInfo" asp-route-id="@Yarn.ProductId">
+                        <div class="p-2-card text-center container rounded border-dark">
+                            @if (Yarn.ImgString == "/Images/Products/Yarn/" || Yarn.ImgString == null)
+                            {
+                                <img class="card-image" src="\Images\MissingImg.jpg">
+                            }
+                            else
+                            {
+                                <img class="card-image" src="@Yarn.ImgString">
+                            }
+                            <p class="text-card font-monospace"> Name: @Yarn.ProductName </p>
+                            <p class="text-card font-monospace"> Price: @Yarn.Price kr </p>
+                            <p class="text-card font-monospace"> Stock: @Yarn.Amount</p>
+                            <div class="card-buttons d-flex flex-wrap justify-content-center" style="margin-bottom: 5px; margin-top: 0px;">
+                                <a class="btn-card btn-primary btn-sm" type="button" title="Edit" asp-page="/Main/Product/EditYarn" asp-route-id="@Yarn.ProductId"><i class="fa fa-edit"></i></a>
+                                <a class="btn-card btn-danger btn-sm" type="button" title="Delete" asp-page="/Main/Product/DeleteYarn" asp-route-id="@Yarn.ProductId"><i class="fa fa-trash"></i></a>
+                                <a class="btn-card btn-success btn-sm" asp-page="/ShoppingBasket" asp-route-id="@Yarn.ProductId" asp-page-handler="AddToBasket"> <i class="fa fa-cart-plus"></i> </a>
+                            </div>
+                        </div>
+                    </a>
                 }
             }
 
         </div>
     </div>
-      
-      <br />
 
-     <table class="table table-bordered table-hover table-striped">
-        <tr>
-            <td></td>     
-        </tr>
-    </table>
-
-
+    <br />
 
     <br />
     <br />
@@ -86,4 +84,4 @@
 
 
 
-    </body>
+</body>
