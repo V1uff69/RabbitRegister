@@ -72,7 +72,7 @@ namespace RabbitRegister.Pages.Main.Rabbit
             return Page();
         }
 
-        public IActionResult OnPostPriceFilter()
+        public IActionResult OnPostRatingFilter()
         {
             Rabbits = _rabbitService.RatingFilter(MaxRating, MinRating).ToList();
             return Page();

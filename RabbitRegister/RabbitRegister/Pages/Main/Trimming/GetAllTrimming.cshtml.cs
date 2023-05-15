@@ -1,7 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using RabbitRegister.EFDbContext;
+using RabbitRegister.Model;
 using RabbitRegister.Services.TrimmingService;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace RabbitRegister.Pages.Main.Trimming
 {
@@ -12,10 +17,63 @@ namespace RabbitRegister.Pages.Main.Trimming
         {
             _trimmingService = trimmingService;
         }
-        public List<Model.Trimming>? trimmings { get; set; }
+        public List<Model.Trimming>? Trimmings { get; set; }
+
+        [BindProperty]
+        public string SearchString { get; set; }
+        [BindProperty]
+        public int SearchId { get; set; }
+
         public void OnGet()
         {
-            trimmings = _trimmingService.GetTrimmings();
+            Trimmings = _trimmingService.GetTrimmings();
+        }
+        public IActionResult OnGetSortById()
+        {
+            Trimmings = _trimmingService.SortById().ToList();
+            return Page();
+        }
+
+        public IActionResult OnGetSortByIdDescending()
+        {
+            Trimmings = _trimmingService.SortByIdDescending().ToList();
+            return Page();
+        }
+
+        public IActionResult OnGetSortByRabbitId()
+        {
+            Trimmings = _trimmingService.SortByRabbitId().ToList();
+            return Page();
+        }
+
+        public IActionResult OnGetSortByRabbitIdDescending()
+        {
+            Trimmings = _trimmingService.SortByRabbitIdDescending().ToList();
+            return Page();
+        }
+
+        public IActionResult OnGetSortByDate()
+        {
+            Trimmings = _trimmingService.SortByDate().ToList();
+            return Page();
+        }
+
+        public IActionResult OnGetSortByDateDescending()
+        {
+            Trimmings = _trimmingService.SortByDateDescending().ToList();
+            return Page();
+        }
+
+        public IActionResult OnPostNameSearch()
+        {
+            Trimmings = _trimmingService.NameSearch(SearchString).ToList();
+            return Page();
+        }
+
+        public IActionResult OnPostRabbitIdSearch()
+        {
+            Trimmings = _trimmingService.RabbitIdSearch(SearchId).ToList();
+            return Page();
         }
     }
 }

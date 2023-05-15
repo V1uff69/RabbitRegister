@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+﻿using RabbitRegister.MockData;
 using RabbitRegister.Model;
 
 namespace RabbitRegister.Services.RabbitService
@@ -13,6 +14,12 @@ namespace RabbitRegister.Services.RabbitService
         {
             _dbGenericService = dbGenericService;
             _rabbits = _dbGenericService.GetObjectsAsync().Result.ToList();
+
+            //_rabbits = MockRabbit.GetMockRabbits();
+            //foreach (var rabbit in _rabbits)
+            //{
+            //    _dbGenericService.AddObjectAsync(rabbit).Wait();
+            //}
         }
 
         public RabbitService()
@@ -23,7 +30,6 @@ namespace RabbitRegister.Services.RabbitService
         public async Task AddRabbitAsync(Rabbit rabbit)
         {
             _rabbits.Add(rabbit);
-            //DbService.AddRabbit(rabbit);
             await _dbGenericService.AddObjectAsync(rabbit);
         }
 
@@ -37,6 +43,10 @@ namespace RabbitRegister.Services.RabbitService
 
             return null;
         }
+
+        public List<Rabbit> GetRabbits() { return _rabbits; }
+
+
         public async Task UpdateRabbitAsync(Rabbit rabbit, int id) // int id tilføjet
         {
             if (rabbit != null)
@@ -56,6 +66,7 @@ namespace RabbitRegister.Services.RabbitService
                         r.IsForSale = rabbit.IsForSale;
                         r.SuitableForBreeding = rabbit.SuitableForBreeding;
                         r.CauseOfDeath = rabbit.CauseOfDeath;
+                        r.ImageString = rabbit.ImageString;
                         break;                                    // break tilføjet
                     }
                 }
@@ -143,10 +154,12 @@ namespace RabbitRegister.Services.RabbitService
             return _rabbits.OrderByDescending(obj => obj.Rating);
         }
 
-        public List<Rabbit> GetRabbits()
-        { 
-            _rabbits = _dbGenericService.GetObjectsAsync().Result.ToList(); 
-            return _rabbits;
-        }
+        //public IEnumerable<Rabbit> GetCurrentRabbitsInFold() 
+        //{
+        //    return from rabbit in _rabbits
+        //           where rabbit.DeadOrAlive = (rabbit.DeadOrAlive=DeadOrAlive.Alive)
+        //           select rabbit;
+        //}
+
     }
 }

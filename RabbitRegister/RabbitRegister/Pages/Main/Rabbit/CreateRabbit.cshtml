@@ -11,6 +11,11 @@
         <span class="text-danger" style="@(@Model.exceptionFound ? "display:block" : "display:none")"> @(Model.exceptionText)</span>
     </div>
     <div class="form-group">
+        <label asp-for="@Model.Rabbit.BreederRegNo" class="control-label"></label>
+        <input asp-for="@Model.Rabbit.BreederRegNo" class="form-control" />
+        <span asp-validation-for="@Model.Rabbit.BreederRegNo" class="text-danger"></span>
+    </div>
+    <div class="form-group">
         <label asp-for="@Model.Rabbit.Name" class="control-label"></label>
         <input asp-for="@Model.Rabbit.Name" class="form-control" />
         <span asp-validation-for="@Model.Rabbit.Name" class="text-danger"></span>
@@ -73,6 +78,11 @@
         <label asp-for="@Model.Rabbit.CauseOfDeath" class="control-label"></label>
         <input asp-for="@Model.Rabbit.CauseOfDeath" class="form-control" />
         <span asp-validation-for="@Model.Rabbit.CauseOfDeath" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Rabbit.ImageString" class="control-label"></label>
+        <input asp-for="@Model.Rabbit.ImageString" value="/Images/Rabbits/" class="form-control" />
+        <span asp-validation-for="@Model.Rabbit.ImageString" class="text-danger"></span>
     </div>
 
     <p>

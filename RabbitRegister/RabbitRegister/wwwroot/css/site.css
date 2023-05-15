@@ -8,6 +8,31 @@ html {
     }
 }
 
+
+/*@media only screen and (max-width: 768px) {
+    .rabbit-profile-container {
+        flex-direction: row;
+    }
+
+    .rabbit-profile-buttons {
+        margin: 0;
+    }
+
+    .rabbit-profile-button {
+        margin-right: 0;
+        margin-left: 10px;
+    }
+}*/
+
+.rabbit-profile-left img {
+    margin-top: 30px;
+    border-radius: 50%;
+    width: 300px;
+    height: 300px;
+    margin-bottom: 2px;
+    object-fit: cover;
+}
+
 html {
     position: relative;
     min-height: 100%;
