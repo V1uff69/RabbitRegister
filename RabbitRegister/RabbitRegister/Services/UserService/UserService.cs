@@ -14,7 +14,7 @@ namespace RabbitRegister.Services.UserService
             _dbService = dbService;
             Users = MockUsers.GetMockUsers();
             _dbService.SaveObjects(Users);
-            Users = _dbService.GetObjectsAsync().Result.ToList();
+            //Users = _dbService.GetObjectsAsync().Result.ToList();
 
         }
 

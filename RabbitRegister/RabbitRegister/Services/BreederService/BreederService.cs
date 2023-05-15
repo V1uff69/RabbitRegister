@@ -15,7 +15,7 @@ namespace RabbitRegister.Services.BreederService
             _dbService = dbService;
             Breeders = MockBreeder.GetMockBreeders();
             _dbService.SaveObjects(Breeders);
-            Breeders = _dbService.GetObjectsAsync().Result.ToList();
+            //Breeders = _dbService.GetObjectsAsync().Result.ToList();
 
         }
 
