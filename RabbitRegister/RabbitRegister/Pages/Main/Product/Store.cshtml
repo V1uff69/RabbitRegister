@@ -25,7 +25,14 @@
                 {
                     <a class="click-card flex-item" asp-page="/Main/Product/ProductInfo" asp-route-id="@Wool.ProductId">
                         <div class="p-2-card text-center container rounded border border-dark" style="width: 100%;">
-                            <img src="@Wool.ImgString" style="max-width: 100%; height: auto; margin-top: 10px; margin-bottom: 10px;">
+                            @if (Wool.ImgString == "/Images/Products/Yarn/" || Wool.ImgString == null)
+                            {
+                                <img class="card-image" src="\Images\MissingImg.jpg">
+                            }
+                            else
+                            {
+                                <img class="card-image" src="@Wool.ImgString">
+                            }
                             <p class="text-card font-monospace"> Name: @Wool.ProductName </p>
                             <p class="text-card font-monospace"> Price: @Wool.Price kr </p>
                             <p class="text-card font-monospace"> Stock: @Wool.Amount</p>
@@ -45,13 +52,20 @@
                 {
                     <a class="click-card flex-item" asp-page="/Main/Product/ProductInfo" asp-route-id="@Yarn.ProductId">
                         <div class="p-2-card text-center container rounded border-dark">
-                            <img src="@Yarn.ImgString" style="max-width: 100%; height: auto">
-                            <p class="font-monospace"> Name: @Yarn.ProductName </p>
-                            <p class="font-monospace"> Price: @Yarn.Price kr </p>
-                            <p class="font-monospace"> Stock: @Yarn.Amount</p>
+                            @if (Yarn.ImgString == "/Images/Products/Yarn/" || Yarn.ImgString == null)
+                            {
+                                <img class="card-image" src="\Images\MissingImg.jpg">
+                            }
+                            else
+                            {
+                                <img class="card-image" src="@Yarn.ImgString">
+                            }
+                            <p class="text-card font-monospace"> Name: @Yarn.ProductName </p>
+                            <p class="text-card font-monospace"> Price: @Yarn.Price kr </p>
+                            <p class="text-card font-monospace"> Stock: @Yarn.Amount</p>
                             <div class="card-buttons d-flex flex-wrap justify-content-center" style="margin-bottom: 5px; margin-top: 0px;">
-                                <a class="btn-card btn-primary btn-sm" type="button" title="Edit" asp-page="/Main/Product/EditWool" asp-route-id="@Yarn.ProductId"><i class="fa fa-edit"></i></a>
-                                <a class="btn-card btn-danger btn-sm" type="button" title="Delete" asp-page="/Main/Product/DeleteWool" asp-route-id="@Yarn.ProductId"><i class="fa fa-trash"></i></a>
+                                <a class="btn-card btn-primary btn-sm" type="button" title="Edit" asp-page="/Main/Product/EditYarn" asp-route-id="@Yarn.ProductId"><i class="fa fa-edit"></i></a>
+                                <a class="btn-card btn-danger btn-sm" type="button" title="Delete" asp-page="/Main/Product/DeleteYarn" asp-route-id="@Yarn.ProductId"><i class="fa fa-trash"></i></a>
                                 <a class="btn-card btn-success btn-sm" asp-page="/ShoppingBasket" asp-route-id="@Yarn.ProductId" asp-page-handler="AddToBasket"> <i class="fa fa-cart-plus"></i> </a>
                             </div>
                         </div>

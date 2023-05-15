@@ -138,6 +138,7 @@ namespace RabbitRegister.Services.ProductService
 						i.Tension = yarn.Tension;
 						i.Washing = yarn.Washing;
 						i.Amount = yarn.Amount;
+						i.ImgString = yarn.ImgString;
 						i.Color = yarn.Color;
 						i.Price = yarn.Price;
 						break;
