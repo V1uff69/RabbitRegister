@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 ﻿using RabbitRegister.MockData;
 using RabbitRegister.Model;
 
@@ -21,7 +22,10 @@ namespace RabbitRegister.Services.RabbitService
             //}
         }
 
-        public RabbitService()  {    }
+        public RabbitService()
+        {
+
+        }
 
         public async Task AddRabbitAsync(Rabbit rabbit)
         {

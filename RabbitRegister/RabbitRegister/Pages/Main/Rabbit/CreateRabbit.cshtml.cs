@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using RabbitRegister.Services.RabbitService;
 
 namespace RabbitRegister.Pages.Main.Rabbit
@@ -22,14 +24,25 @@ namespace RabbitRegister.Pages.Main.Rabbit
             return Page();
         }
 
+        public bool exceptionFound { get; set; }
+        public string exceptionText { get; set; }
         public async Task<IActionResult> OnPostAsync(Model.Rabbit Rabbit)
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
-            await _rabbitService.AddRabbitAsync(Rabbit);
-            return RedirectToPage("GetAllRabbits");
+            try
+            {
+                await _rabbitService.AddRabbitAsync(Rabbit);
+                return RedirectToPage("GetAllRabbits");
+            }
+            catch (DbUpdateException)
+            {
+                this.exceptionFound = true;
+                this.exceptionText = "ID Findes allerede!!!";
+            }
+            return null;
         }
     }
 }

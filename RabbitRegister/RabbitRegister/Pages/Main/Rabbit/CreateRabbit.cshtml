@@ -8,6 +8,7 @@
         <label asp-for="@Model.Rabbit.RabbitRegNo" class="control-label"></label>
         <input asp-for="@Model.Rabbit.RabbitRegNo" class="form-control" />
         <span asp-validation-for="@Model.Rabbit.RabbitRegNo" class="text-danger"></span>
+        <span class="text-danger" style="@(@Model.exceptionFound ? "display:block" : "display:none")"> @(Model.exceptionText)</span>
     </div>
     <div class="form-group">
         <label asp-for="@Model.Rabbit.BreederRegNo" class="control-label"></label>
