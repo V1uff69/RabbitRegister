@@ -8,6 +8,7 @@ using RabbitRegister.Services.TrimmingService;
 using RabbitRegister.Services.RabbitService;
 using RabbitRegister.Services.UserService;
 using Microsoft.AspNetCore.Http;
+using RabbitRegister.Services.BreederService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,10 +18,12 @@ builder.Services.AddSingleton<IProductService, ProductService>();
 builder.Services.AddSingleton<ITrimmingService, TrimmingService>();
 builder.Services.AddSingleton<IRabbitService, RabbitService>();
 builder.Services.AddSingleton<UserService, UserService>();
+builder.Services.AddSingleton<IBreederService, BreederService>();
 builder.Services.AddDbContext<ItemDbContext>();
 builder.Services.AddTransient<DbGenericService<Wool>, DbGenericService<Wool>>();
 builder.Services.AddTransient<DbGenericService<Yarn>, DbGenericService<Yarn>>();
 builder.Services.AddTransient<UserDbService, UserDbService>();
+builder.Services.AddTransient<DbGenericService<Breeder>, DbGenericService<Breeder>>();
 builder.Services.AddTransient<DbGenericService<Trimming>, DbGenericService<Trimming>>();
 builder.Services.AddTransient<DbGenericService<Rabbit>, DbGenericService<Rabbit>>();
 builder.Services.Configure<CookiePolicyOptions>(options => {
@@ -50,15 +53,15 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.Use(async (context, next) =>
-{
-    if (context.User.Identity.IsAuthenticated && !context.User.HasClaim(c => c.Type == "IsAdmin" && c.Value == "true"))
-    {
-        context.Response.Redirect("/AccessDenied");
-        return;
-    }
-    await next.Invoke();
-});
+//app.Use(async (context, next) =>
+//{
+//    if (context.User.Identity.IsAuthenticated && !context.User.HasClaim(c => c.Type == "IsAdmin" && c.Value == "true"))
+//    {
+//        context.Response.Redirect("/AccessDenied");
+//        return;
+//    }
+//    await next.Invoke();
+//});
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
