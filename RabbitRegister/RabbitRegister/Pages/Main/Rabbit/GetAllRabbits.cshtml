@@ -5,14 +5,6 @@
 
 <h1>Rabbits</h1>
 
-
-<!--  Shopping Basket -->
-<div class="d-flex flex-row-reverse bd-highlight">
-    <div class="p-2 bd-highlight">
-        <a class="btn btn-success" asp-page="Basket">Shopping Basket</a>
-    </div>
-</div>
-
 <p>
     <a class="btn btn-primary" asp-page="CreateRabbit"> Create new Rabbit </a>
 </p>
@@ -21,39 +13,27 @@
 <body>
     <!--  Title Info, RabbitRegNo og Name... -->
     <div>
-        <table class="table table-bordered table-hover table-striped">
-            <tr>
-                <td></td>
-            </tr>
-        </table>
-
         <div style="width: 100%" class="d-flex flex-wrap justify-content-center">
             @if (@Model.Rabbits != null)
             {
                 foreach (var Rabbit in Model.Rabbits)
                 {
-    <div class="p-2 text-center container rounded border border-dark" style="max-width: 25%; margin-left: 50px; background-color: white;">
-        <p class="font-monospace"> RabbitRegNo: @Rabbit.RabbitRegNo </p>
-        <img src="@Rabbit.ImageString" style="max-width: 200px; height: auto">
-        <p class="font-monospace"> Name: @Rabbit.Name </p>
-        <p class="font-monospace"> Race: @Rabbit.Race </p>
-        <a class="btn btn-primary btn-sm" type="button" title="Edit" asp-page="/Main/Rabbit/EditRabbit" asp-route-id="@Rabbit.RabbitRegNo"><i class="fa fa-edit"></i></a>
-        <a class="btn btn-danger btn-sm" type="button" title="Delete" asp-page="/Main/Rabbit/DeletRabbit" asp-route-id="@Rabbit.RabbitRegNo"><i class="fa fa-trash"></i></a>
-        <a class="btn btn-success" asp-page="/Main/Rabbit/RabbitProfile" asp-route-id="@Rabbit.RabbitRegNo"><i class="fa fa-info"></i></a>
-    </div>
-}
+                    <div class="p-2 text-center container rounded border border-dark" style="max-width: 25%; margin-left: 50px; background-color: white;">
+                        <p class="font-monospace"> RabbitRegNo: @Rabbit.RabbitRegNo </p>
+                        <p class="font-monospace"> BreederRegNo: @Rabbit.BreederRegNo </p>
+                        <img src="@Rabbit.ImageString" style="max-width: 200px; height: auto">
+                        <p class="font-monospace"> Name: @Rabbit.Name </p>
+                        <p class="font-monospace"> Race: @Rabbit.Race </p>
+                        <p class="font-monospace"> Color: @Rabbit.Color </p>
+                        <a class="btn btn-primary btn-sm" type="button" title="Edit" asp-page="/Main/Rabbit/EditRabbit" asp-route-id="@Rabbit.RabbitRegNo"><i class="fa fa-edit"></i></a>
+                        <a class="btn btn-danger btn-sm" type="button" title="Delete" asp-page="/Main/Rabbit/DeleteRabbit" asp-route-id="@Rabbit.RabbitRegNo"><i class="fa fa-trash"></i></a>
+                        <a class="btn btn-success" asp-page="/Main/Rabbit/RabbitProfile" asp-route-id="@Rabbit.RabbitRegNo"><i class="fa fa-info"></i></a>
+                    </div>
+                }
 
             }
         </div>
     </div>
-
-    <br />
-
-    <table class="table table-bordered table-hover table-striped">
-        <tr>
-            <td></td>
-        </tr>
-    </table>
 
     <br />
     <br />

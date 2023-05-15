@@ -38,6 +38,9 @@ namespace RabbitRegister.Model
         [ForeignKey(nameof(BreederRegNo))]
         public int BreederRegNo { get; set; }
 
+
+        //public bool Owner { get; set; }
+
         [Display(Name = "Kælenavn: ")]
         [Required(ErrorMessage = "Kaninen skal have et navn"), MaxLength(20)]
         public string Name { get; set; }

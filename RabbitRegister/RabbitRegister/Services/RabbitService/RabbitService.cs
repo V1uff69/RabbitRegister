@@ -39,6 +39,10 @@ namespace RabbitRegister.Services.RabbitService
 
             return null;
         }
+
+        public List<Rabbit> GetRabbits() { return _rabbits; }
+
+
         public async Task UpdateRabbitAsync(Rabbit rabbit, int id) // int id tilføjet
         {
             if (rabbit != null)
@@ -146,6 +150,12 @@ namespace RabbitRegister.Services.RabbitService
             return _rabbits.OrderByDescending(obj => obj.Rating);
         }
 
-        public List<Rabbit> GetRabbits() { return _rabbits; }
+        //public IEnumerable<Rabbit> GetCurrentRabbitsInFold() 
+        //{
+        //    return from rabbit in _rabbits
+        //           where rabbit.DeadOrAlive = (rabbit.DeadOrAlive=DeadOrAlive.Alive)
+        //           select rabbit;
+        //}
+
     }
 }

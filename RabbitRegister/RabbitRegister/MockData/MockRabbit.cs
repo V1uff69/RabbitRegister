@@ -33,7 +33,7 @@ namespace RabbitRegister.MockData
                 5,
                 DeadOrAlive.Alive,
                 IsForSale.No,
-                "Han er ret lille i forhold til hvad standarden siger",
+                "Han er ret lille i forhold til hvad standarden siger. Meget imødekommende",
                 null),
 
             new Rabbit(
@@ -73,12 +73,27 @@ namespace RabbitRegister.MockData
                 "Satin Angora",
                 "Ræve Rød",
                 Sex.Female,
-                new DateTime(2022, 04, 05),
+                new DateTime(2022, 06, 22),
                 3,
                 7,
                 DeadOrAlive.Alive,
                 IsForSale.No,
-                "Hun er til lån.. Hun er bliver meget let stresset og sky",
+                "Hun er til låns.. Hun er bliver meget let stresset og sky",
+                null),
+
+             new Rabbit(
+                120,
+                4640,
+                "Mulan",
+                "Angora",
+                "Blå",
+                Sex.Female,
+                new DateTime(2021, 05, 11),
+                4,
+                6,
+                DeadOrAlive.Alive,
+                IsForSale.No,
+                null,
                 null)
         };
 
