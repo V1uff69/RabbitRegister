@@ -10,10 +10,11 @@ namespace RabbitRegister.Services.UserService
 
         public UserService(UserDbService dbService)
         {
-            _dbService = dbService;
-            //Users = MockUsers.GetMockUsers();
-            _dbService.SaveObjects(Users);
+            _dbService = dbService;            
             Users = _dbService.GetObjectsAsync().Result.ToList();
+
+            //Users = MockUsers.GetMockUsers();
+            //_dbService.SaveObjects(Users);
 
         }
 

@@ -95,6 +95,8 @@ namespace RabbitRegister.Services.RabbitService
 
             return rabbitToBeDeleted;
         }
+
+
         public IEnumerable<Rabbit> NameSearch(string str)
         {
             return from rabbit in _rabbits
@@ -106,8 +108,8 @@ namespace RabbitRegister.Services.RabbitService
         public IEnumerable<Rabbit> RatingFilter(int maxRating, int minRating = 0)    //LINQ (_rabbits.where) && LAMDA (rabbit => )
         {
             return _rabbits.Where(
-                item => (minRating == 0 || item.Rating >= minRating) &&
-                (maxRating == 0 || item.Rating <= maxRating));
+                rabbit => (minRating == 0 || rabbit.Rating >= minRating) &&
+                (maxRating == 0 || rabbit.Rating <= maxRating));
         }
 
 
@@ -154,10 +156,10 @@ namespace RabbitRegister.Services.RabbitService
             return _rabbits.OrderByDescending(obj => obj.Rating);
         }
 
-        //public IEnumerable<Rabbit> GetCurrentRabbitsInFold() 
+        //public IEnumerable<Rabbit> GetCurrentRabbitsInFold()
         //{
         //    return from rabbit in _rabbits
-        //           where rabbit.DeadOrAlive = (rabbit.DeadOrAlive=DeadOrAlive.Alive)
+        //           where rabbit.DeadOrAlive = (rabbit.DeadOrAlive = DeadOrAlive.Alive)
         //           select rabbit;
         //}
 

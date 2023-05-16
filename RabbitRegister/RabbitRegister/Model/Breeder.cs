@@ -16,9 +16,9 @@ namespace RabbitRegister.Model
         public string Email { get; set; }
         public string Phone {get; set; }
 
-        [ForeignKey(nameof(Rabbit))]
-        public int RabbitId { get; set; }
-        public virtual Rabbit Rabbit { get; set; }
+        //[ForeignKey(nameof(Rabbit))]
+        //public int RabbitId { get; set; }
+        //public virtual Rabbit Rabbit { get; set; }
 
         public Breeder()
         {

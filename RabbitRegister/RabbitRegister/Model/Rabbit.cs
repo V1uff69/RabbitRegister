@@ -39,7 +39,7 @@ namespace RabbitRegister.Model
         [ForeignKey(nameof(BreederRegNo))]
         public int BreederRegNo { get; set; }
 
-        [Display(Name = "Ejes af Avler-nr: ")]
+        [Display(Name = "Ejer (Avler-nr): ")]
         [Required(ErrorMessage = "Kaninen SKAL have en Ejer: ")]
         public bool Owner { get; set; }
 
