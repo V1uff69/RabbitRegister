@@ -1,10 +1,12 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RabbitRegister.Services.ProductService;
 
 namespace RabbitRegister.Pages.Main.Product
 {
-	public class EditYarnModel : PageModel
+    [Authorize(Policy = "BreederOnly")]
+    public class EditYarnModel : PageModel
 	{
 		private IProductService _yarnService;
 

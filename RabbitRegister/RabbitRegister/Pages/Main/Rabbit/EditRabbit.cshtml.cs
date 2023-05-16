@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RabbitRegister.Services.RabbitService;
 
 namespace RabbitRegister.Pages.Main.Rabbit
 {
+    [Authorize(Policy = "BreederOnly")]
     public class EditRabbitModel : PageModel
     {
         private IRabbitService _rabbitService;

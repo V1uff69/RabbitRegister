@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -6,7 +7,8 @@ using RabbitRegister.Services.RabbitService;
 
 namespace RabbitRegister.Pages.Main.Rabbit
 {
-	public class CreateRabbitModel : PageModel
+    [Authorize(Policy = "BreederOnly")]
+    public class CreateRabbitModel : PageModel
     {
         private IRabbitService _rabbitService;
 
