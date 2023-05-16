@@ -15,6 +15,10 @@ namespace RabbitRegister.Model
         public int ZipCode { get; set; }
         public string Email { get; set; }
         public string Phone {get; set; }
+        
+        [Required]
+        public string Password { get; set; }
+        public bool isAdmin { get; set; }
 
         //[ForeignKey(nameof(Rabbit))]
         //public int RabbitId { get; set; }
@@ -24,7 +28,7 @@ namespace RabbitRegister.Model
         {
         }
 
-        public Breeder(int breederRegNo, string name, string adress, int zipCode, string email, string phone)
+        public Breeder(int breederRegNo, string name, string adress, int zipCode, string email, string phone, string password, bool isAdmin)
         {
             BreederRegNo = breederRegNo;
             Name = name;
@@ -32,7 +36,8 @@ namespace RabbitRegister.Model
             ZipCode = zipCode;
             Email = email;
             Phone = phone;
+            Password = password;
+            this.isAdmin = isAdmin;
         }
-
     }
 }

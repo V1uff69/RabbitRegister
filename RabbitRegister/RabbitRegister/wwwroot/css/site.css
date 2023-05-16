@@ -60,6 +60,14 @@ div.layer {
     margin-right: 10%;
 }
 
+.btn-create {
+    background-color: green;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-top: 1%
+}
+
 table {
     background-color: white;
     margin-left: auto;

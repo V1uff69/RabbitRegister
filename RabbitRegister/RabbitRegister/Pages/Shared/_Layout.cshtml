@@ -1,4 +1,7 @@
 ﻿@using RabbitRegister.Pages.Main.LogIn
+@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,67 +25,71 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Hjem</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Main/Trimming/GetAllTrimming">Trimmings</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Main/Product/Store">Butik</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Main/Product/Store">Store</a>
-                        </li>
-                        
-                        
                         @{
-                            if (Context.User.Identity != null && Context.User.Identity.Name == "admin")
+                            if (Context.User.Identity.Name != null)
                             {
-                                            <li class="nav-item">
-                                                <a class="nav-link text-dark" asp-area="" asp-page="/Main/Admin/CreateUser">Create User</a>
-                                            </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Main/Trimming/GetAllTrimming">Klipninger</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Main/Product/GetAllWool">Uld</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Main/Product/GetAllYarn">Garn</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Main/Rabbit/GetAllRabbits">Mine Kaniner</a>
+                                </li>
+
                             }
                         }
-                        </ul>
-                        <ul class="navbar-nav">
+
+                        @{
+                            //Following code uses policy-based autorization, using IAuthorizationService and our AdminOnly policy, from Program.cs
+                            if ((await AuthorizationService.AuthorizeAsync(User, null, "AdminOnly")).Succeeded)
+                                        {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Main/Breeder/CreateBreeder">Opret Avler</a>
+                                </li>
+                            }
+                        }
+                    </ul>
+                    <ul class="navbar-nav">
                         @{
                             if (Context.User.Identity.Name == null)
                             {
-                                                <li class="nav-item">
-                                                    <a class="nav-link text-dark" asp-area="" asp-page="/Main/LogIn/LogInPage">Login</a>
-                                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Main/LogIn/LogInPage">Login</a>
+                                </li>
                             }
                             else
                             {
 
-                                                <li class="nav-item">
-                                                    <a class="nav-link text-dark" asp-area="" asp-page="/Main/Product/GetAllWool">Wool</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link text-dark" asp-area="" asp-page="/Main/Product/GetAllYarn">Yarn</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link text-dark" asp-area="" asp-page="/Main/Rabbit/GetAllRabbits">My Rabbits</a>
-                                                </li>
+                                <li class="nav-item nav-link text-black me-3">
+                                    Breeder: @Context.User.Identity.Name
+                                </li>
 
-                                                <li class="nav-item nav-link text-white me-3">
-                                                    User: @Context.User.Identity.Name
-                                                </li>
-
-                                                <li class="nav-item">
-                                                    <a class="nav-link text-dark" asp-area="" asp-page="/Main/LogIn/LogOutPage">Logout</a>
-                                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Main/LogIn/LogOutPage">Logout</a>
+                                </li>
                             }
                         }
-                        </ul>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
     <div class="layer">
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
     </div>
 
     <footer class="border-top footer text-muted">
