@@ -46,7 +46,7 @@ namespace RabbitRegister.Pages.Main.LogIn
                         string UserName = BreederRegNo.ToString();
                         var claims = new List<Claim> { new Claim(ClaimTypes.Name, UserName) };
 
-                        if (breeder.isAdmin == true) claims.Add(new Claim(ClaimTypes.Role, "admin"));
+                        if (breeder.isAdmin == true) claims.Add(new Claim(ClaimTypes.Role, "6969"));
 
                         var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                         await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));

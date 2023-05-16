@@ -9,7 +9,8 @@ namespace RabbitRegister.MockData
 
         public static List<Breeder> breeders = new List<Breeder>()
         {
-            new Breeder(6969,"Kenni","Roskildevænget __",4000,"kenni.skole@gmail.com","31671600",passwordHasher.HashPassword(null, "Kenni123"),true) {}
+            new Breeder(6969,"Kenni","Roskildevænget __",4000,"kenni.skole@gmail.com","31671600",passwordHasher.HashPassword(null, "Kenni123"),true),
+            new Breeder(1234,"Mads","Slyngrosevej",4500,"Mads.g.j@live.dk","23116514",passwordHasher.HashPassword(null, "Mads123"),true)
         };
         public static List<Breeder> GetMockBreeders() { return breeders; }
     }

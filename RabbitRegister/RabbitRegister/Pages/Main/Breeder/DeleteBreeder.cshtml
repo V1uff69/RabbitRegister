@@ -1,5 +1,39 @@
 ﻿@page
 @model RabbitRegister.Pages.Main.Breeder.DeleteBreederModel
 @{
+    ViewData["Title"] = "Delete Breeder";
 }
 
+<h1>Delete Confirmation</h1>
+
+<h3>Are you sure you want to delete the selected Breeder?</h3>
+<div>
+    <h4>Deleting...</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(Model => Model.Breeder.BreederRegNo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(Model => Model.Breeder.BreederRegNo)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(Model => Model.Breeder.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(Model => Model.Breeder.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(Model => Model.Breeder.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(Model => Model.Breeder.Email)
+        </dd>
+    </dl>
+
+    <form method="post">
+        <input type="hidden" asp-for="Breeder.BreederRegNo" />
+        <button type="submit" class="btn btn-danger">Yes</button>
+        <a class="btn btn-primary" asp-page="/Main/Breeder/GetAllBreeders">No</a>
+    </form>
+</div>

@@ -42,15 +42,18 @@
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-page="/Main/Rabbit/GetAllRabbits">My Rabbits</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Main/Breeder/GetAllBreeders">Breeders</a>
+                                </li>
 
                             }
                         }
 
                         @{
-                            if (Context.User.Identity != null && Context.User.Identity.Name == "admin")
+                            if (Context.User.Identity != null && Context.User.Identity.Name == "6969")
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-page="/Main/Admin/CreateUser">Create User</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Main/Breeder/CreateBreeder">Create Breeder</a>
                                 </li>
                             }
                         }
