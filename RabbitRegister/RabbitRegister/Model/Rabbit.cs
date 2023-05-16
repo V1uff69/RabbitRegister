@@ -35,7 +35,7 @@ namespace RabbitRegister.Model
         public int RabbitRegNo { get; set; }
 
         [Display(Name = "Avler-nr: ")]
-        [Required(ErrorMessage = "Avler ID SKAL udfyldes (4 cifre)")]
+        [RegularExpression(@"^\d{4}$", ErrorMessage = "Avler-nr, SKAL bestå af 4 tal!")]
         [ForeignKey(nameof(BreederRegNo))]
         public int BreederRegNo { get; set; }
 
