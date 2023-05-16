@@ -61,11 +61,16 @@ div.layer {
 }
 
 .btn-create {
-    background-color: green;
+    background-color: pink;
     margin-left: auto;
     margin-right: auto;
     display: block;
     margin-top: 1%
+}
+
+.btn-create:hover {
+    background-color: lightpink;
+    
 }
 
 table {

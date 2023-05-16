@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RabbitRegister.Services.ProductService;
 
-namespace RabbitRegister.Pages.Main.Product
+namespace RabbitRegister.Pages.Main.Store
 {
     public class StoreModel : PageModel
     {

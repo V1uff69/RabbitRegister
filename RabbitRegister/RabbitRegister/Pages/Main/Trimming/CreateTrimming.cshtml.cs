@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RabbitRegister.Services.TrimmingService;
 
 namespace RabbitRegister.Pages.Main.Trimming
 {
+    [Authorize(Policy = "BreederOnly")]
     public class CreateTrimmingModel : PageModel
     {
 

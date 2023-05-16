@@ -43,7 +43,7 @@ namespace RabbitRegister.Pages.Main.LogIn
                     if (passwordHasher.VerifyHashedPassword(null, breeder.Password, Password) == PasswordVerificationResult.Success)
                     {
                         string UserName = BreederRegNo.ToString();
-                        var claims = new List<Claim> { new Claim(ClaimTypes.Name, UserName) };
+                        var claims = new List<Claim> { new Claim(ClaimTypes.Name, UserName), new Claim(ClaimTypes.Role, "Breeder") };
 
                         if (breeder.isAdmin == true)
                         {

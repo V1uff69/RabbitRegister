@@ -41,6 +41,11 @@ builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
 });
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("BreederOnly", policy =>
+        policy.RequireRole("Breeder"));
+});
 
 builder.Services.AddMvc().AddRazorPagesOptions(options => {
 	options.Conventions.AuthorizeFolder("/Main/Product/Yarn");

@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RabbitRegister.Services.ProductService;
 
 namespace RabbitRegister.Pages.Main.Product
 {
+    [Authorize(Policy = "BreederOnly")]
     public class DeleteYarnModel : PageModel
     {
 
