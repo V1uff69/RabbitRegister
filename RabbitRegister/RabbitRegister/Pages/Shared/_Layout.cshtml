@@ -1,4 +1,7 @@
 ﻿@using RabbitRegister.Pages.Main.LogIn
+@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,35 +25,36 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Hjem</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Main/Product/Store">Store</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Main/Product/Store">Butik</a>
                         </li>
                         @{
                             if (Context.User.Identity.Name != null)
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-page="/Main/Trimming/GetAllTrimming">Trimmings</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Main/Trimming/GetAllTrimming">Klipninger</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-page="/Main/Product/GetAllWool">Wool</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Main/Product/GetAllWool">Uld</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-page="/Main/Product/GetAllYarn">Yarn</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Main/Product/GetAllYarn">Garn</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-page="/Main/Rabbit/GetAllRabbits">My Rabbits</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Main/Rabbit/GetAllRabbits">Mine Kaniner</a>
                                 </li>
 
                             }
                         }
 
                         @{
-                            if (Context.User.Identity != null && Context.User.Identity.Name == "admin")
-                            {
+                            //Following code uses policy-based autorization, using IAuthorizationService and our AdminOnly policy, from Program.cs
+                            if ((await AuthorizationService.AuthorizeAsync(User, null, "AdminOnly")).Succeeded)
+                                        {
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-page="/Main/Admin/CreateUser">Create User</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Main/Breeder/CreateBreeder">Opret Avler</a>
                                 </li>
                             }
                         }
@@ -67,7 +71,7 @@
                             {
 
                                 <li class="nav-item nav-link text-black me-3">
-                                    User: @Context.User.Identity.Name
+                                    Breeder: @Context.User.Identity.Name
                                 </li>
 
                                 <li class="nav-item">
@@ -75,7 +79,6 @@
                                 </li>
                             }
                         }
-                    </ul>
                     </ul>
                 </div>
             </div>

@@ -6,7 +6,6 @@ using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
 using RabbitRegister.Services.BreederService;
-using RabbitRegister.Model;
 
 namespace RabbitRegister.Pages.Main.LogIn
 {
@@ -46,7 +45,10 @@ namespace RabbitRegister.Pages.Main.LogIn
                         string UserName = BreederRegNo.ToString();
                         var claims = new List<Claim> { new Claim(ClaimTypes.Name, UserName) };
 
-                        if (breeder.isAdmin == true) claims.Add(new Claim(ClaimTypes.Role, "admin"));
+                        if (breeder.isAdmin == true)
+                        {
+                            claims.Add(new Claim(ClaimTypes.Role, "Admin"));
+                        }
 
                         var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                         await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));

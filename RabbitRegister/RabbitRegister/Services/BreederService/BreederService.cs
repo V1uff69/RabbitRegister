@@ -1,6 +1,5 @@
 ﻿using RabbitRegister.MockData;
 using RabbitRegister.Model;
-using RabbitRegister.Services.UserService;
 
 namespace RabbitRegister.Services.BreederService
 {
@@ -15,7 +14,7 @@ namespace RabbitRegister.Services.BreederService
             _dbService = dbService;
             Breeders = MockBreeder.GetMockBreeders();
             _dbService.SaveObjects(Breeders);
-            Breeders = _dbService.GetObjectsAsync().Result.ToList();
+            //Breeders = _dbService.GetObjectsAsync().Result.ToList();
 
         }
 
