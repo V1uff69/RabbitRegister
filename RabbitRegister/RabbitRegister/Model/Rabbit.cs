@@ -40,8 +40,8 @@ namespace RabbitRegister.Model
         public int BreederRegNo { get; set; }
 
         [Display(Name = "Ejer (Avler-nr): ")]
-        [Required(ErrorMessage = "Kaninen SKAL have en Ejer: ")]
-        public bool Owner { get; set; }
+        [RegularExpression(@"^\d{4}$", ErrorMessage = "Kaninen SKAL have en Ejer!")]
+        public int Owner { get; set; }
 
         [Display(Name = "Kælenavn: ")]
         [Required(ErrorMessage = "Kaninen skal have et navn"), MaxLength(20)]
