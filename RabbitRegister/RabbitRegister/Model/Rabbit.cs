@@ -92,10 +92,11 @@ namespace RabbitRegister.Model
 
         public Rabbit() { }
 
-        public Rabbit(int rabbitRegNo, int breederRegNo, string name, string race, string color, Sex sex, DateTime dateOfBirth, float? weight, float? rating, DeadOrAlive deadOrAlive, IsForSale isForSale, string? suitableForBreeding, string? causeOfDeath)
+        public Rabbit(int rabbitRegNo, int breederRegNo, int owner, string name, string race, string color, Sex sex, DateTime dateOfBirth, float? weight, float? rating, DeadOrAlive deadOrAlive, IsForSale isForSale, string? suitableForBreeding, string? causeOfDeath)
         {
             RabbitRegNo = rabbitRegNo;
             BreederRegNo = breederRegNo;
+            Owner = owner;
             Name = name;
             Race = race;
             Color = color;

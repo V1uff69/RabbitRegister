@@ -9,6 +9,7 @@ namespace RabbitRegister.MockData
             new Rabbit(
                 1,
                 5095,
+                5095,
                 "Kaliba",
                 "Angora",
                 "Grå",
@@ -24,6 +25,7 @@ namespace RabbitRegister.MockData
             new Rabbit(
                 105,
                 4640,
+                5095,
                 "Ingolf",
                 "Engelsk Angora",
                 "Blå Chinchilla",
@@ -38,6 +40,7 @@ namespace RabbitRegister.MockData
 
             new Rabbit(
                 2,
+                5095,
                 5095,
                 "Sov",
                 "Angora",
@@ -54,6 +57,7 @@ namespace RabbitRegister.MockData
             new Rabbit(
                 3,
                 5095,
+                5095,
                 "Smørklat smør",
                 "Fransk Angora",
                 "Gul",
@@ -61,7 +65,7 @@ namespace RabbitRegister.MockData
                 new DateTime(2020, 03, 12),
                 5,
                 8,
-                DeadOrAlive.Dead,
+                DeadOrAlive.Alive,
                 IsForSale.No,
                 "Hun filtrer meget i nakken og på maven, ellers hurtigvoksende pels",
                 null),
@@ -69,6 +73,7 @@ namespace RabbitRegister.MockData
              new Rabbit(
                 67,
                 4982,
+                5053,
                 "Frida",
                 "Satin Angora",
                 "Ræve Rød",
@@ -84,6 +89,7 @@ namespace RabbitRegister.MockData
              new Rabbit(
                 120,
                 4640,
+                5095,
                 "Mulan",
                 "Angora",
                 "Blå",

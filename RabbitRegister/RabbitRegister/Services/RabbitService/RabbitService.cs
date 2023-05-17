@@ -156,12 +156,22 @@ namespace RabbitRegister.Services.RabbitService
             return _rabbits.OrderByDescending(obj => obj.Rating);
         }
 
-        //public IEnumerable<Rabbit> GetCurrentRabbitsInFold()
-        //{
-        //    return from rabbit in _rabbits
-        //           where rabbit.DeadOrAlive = (rabbit.DeadOrAlive = DeadOrAlive.Alive)
-        //           select rabbit;
-        //}
+
+        public List<Rabbit> GetOwnedAliveRabbits(int breederRegNo)
+        {
+            return _rabbits.Where(rabbit => rabbit.Owner == breederRegNo && rabbit.DeadOrAlive == DeadOrAlive.Alive).ToList();
+        }
+
+        public List<Rabbit> GetOwnedDeadRabbits(int breederRegNo)
+        {
+            return _rabbits.Where(rabbit => rabbit.Owner == breederRegNo && rabbit.DeadOrAlive == DeadOrAlive.Dead).ToList();
+        }
+
+        public List<Rabbit> GetAllRabbitsWithMyBreederRegNo(int breederRegNo)
+        {
+            return _rabbits.Where(rabbit => rabbit.BreederRegNo == breederRegNo).ToList();
+        }
+
 
     }
 }
