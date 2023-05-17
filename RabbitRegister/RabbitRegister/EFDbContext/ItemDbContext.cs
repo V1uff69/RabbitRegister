@@ -16,6 +16,6 @@ namespace RabbitRegister.EFDbContext
         public DbSet<Trimming> Trimmings { get; set; }
 		public DbSet<Yarn> Yarns { get; set; }
 		public DbSet<Rabbit> Rabbits { get; set; }
-		public DbSet<User> Users { get; set; }
+		public DbSet<OrderLine> OrderLines { get; set; }
     }
 }

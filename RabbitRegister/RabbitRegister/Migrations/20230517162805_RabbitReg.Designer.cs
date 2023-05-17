@@ -12,7 +12,7 @@ using RabbitRegister.EFDbContext;
 namespace RabbitRegister.Migrations
 {
     [DbContext(typeof(ItemDbContext))]
-    [Migration("20230515105330_RabbitReg")]
+    [Migration("20230517162805_RabbitReg")]
     partial class RabbitReg
     {
         /// <inheritdoc />
@@ -45,6 +45,10 @@ namespace RabbitRegister.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Phone")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -54,6 +58,9 @@ namespace RabbitRegister.Migrations
 
                     b.Property<int>("ZipCode")
                         .HasColumnType("int");
+
+                    b.Property<bool>("isAdmin")
+                        .HasColumnType("bit");
 
                     b.HasKey("BreederRegNo");
 
@@ -70,9 +77,10 @@ namespace RabbitRegister.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"));
 
-                    b.Property<int>("City")
+                    b.Property<string>("City")
+                        .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("int");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
@@ -87,19 +95,13 @@ namespace RabbitRegister.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
                     b.Property<string>("RecipientName")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<double>("TotalPrice")
+                    b.Property<double?>("TotalPrice")
                         .HasColumnType("float");
-
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int");
 
                     b.Property<int>("ZipCode")
                         .HasMaxLength(4)
@@ -107,47 +109,34 @@ namespace RabbitRegister.Migrations
 
                     b.HasKey("OrderId");
 
-                    b.HasIndex("ProductId");
-
-                    b.HasIndex("UserId");
-
                     b.ToTable("Order");
                 });
 
-            modelBuilder.Entity("RabbitRegister.Model.Product", b =>
+            modelBuilder.Entity("RabbitRegister.Model.OrderLine", b =>
                 {
-                    b.Property<int>("ProductId")
+                    b.Property<int>("OrderLineId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderLineId"));
 
                     b.Property<int>("Amount")
                         .HasColumnType("int");
 
-                    b.Property<int>("BreederRegNo")
+                    b.Property<int?>("OrderId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Color")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("Price")
+                    b.Property<double?>("Price")
                         .HasColumnType("float");
 
-                    b.Property<string>("ProductName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("ProductType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.HasKey("OrderLineId");
 
-                    b.HasKey("ProductId");
+                    b.HasIndex("OrderId");
 
-                    b.ToTable("Product");
-
-                    b.UseTptMappingStrategy();
+                    b.ToTable("OrderLines");
                 });
 
             modelBuilder.Entity("RabbitRegister.Model.Rabbit", b =>
@@ -251,33 +240,36 @@ namespace RabbitRegister.Migrations
                     b.ToTable("Trimmings");
                 });
 
-            modelBuilder.Entity("RabbitRegister.Model.User", b =>
+            modelBuilder.Entity("RabbitRegister.Model.Wool", b =>
                 {
-                    b.Property<int>("UserId")
+                    b.Property<int>("ProductId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"));
 
-                    b.Property<string>("Password")
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BreederRegNo")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Color")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.HasKey("UserId");
-
-                    b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("RabbitRegister.Model.Wool", b =>
-                {
-                    b.HasBaseType("RabbitRegister.Model.Product");
-
                     b.Property<string>("ImgString")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<string>("ProductName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProductType")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Quality")
@@ -286,12 +278,28 @@ namespace RabbitRegister.Migrations
                     b.Property<double>("Weight")
                         .HasColumnType("float");
 
+                    b.HasKey("ProductId");
+
                     b.ToTable("Wools");
                 });
 
             modelBuilder.Entity("RabbitRegister.Model.Yarn", b =>
                 {
-                    b.HasBaseType("RabbitRegister.Model.Product");
+                    b.Property<int>("ProductId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"));
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BreederRegNo")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Color")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Fiber")
                         .IsRequired()
@@ -306,6 +314,17 @@ namespace RabbitRegister.Migrations
                     b.Property<double>("NeedleSize")
                         .HasColumnType("float");
 
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<string>("ProductName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProductType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Tension")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -313,6 +332,8 @@ namespace RabbitRegister.Migrations
                     b.Property<string>("Washing")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ProductId");
 
                     b.ToTable("Yarns");
                 });
@@ -328,42 +349,18 @@ namespace RabbitRegister.Migrations
                     b.Navigation("Rabbit");
                 });
 
+            modelBuilder.Entity("RabbitRegister.Model.OrderLine", b =>
+                {
+                    b.HasOne("RabbitRegister.Model.Order", "Order")
+                        .WithMany("OrderLine")
+                        .HasForeignKey("OrderId");
+
+                    b.Navigation("Order");
+                });
+
             modelBuilder.Entity("RabbitRegister.Model.Order", b =>
                 {
-                    b.HasOne("RabbitRegister.Model.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("RabbitRegister.Model.User", null)
-                        .WithMany("Orders")
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("RabbitRegister.Model.Wool", b =>
-                {
-                    b.HasOne("RabbitRegister.Model.Product", null)
-                        .WithOne()
-                        .HasForeignKey("RabbitRegister.Model.Wool", "ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("RabbitRegister.Model.Yarn", b =>
-                {
-                    b.HasOne("RabbitRegister.Model.Product", null)
-                        .WithOne()
-                        .HasForeignKey("RabbitRegister.Model.Yarn", "ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("RabbitRegister.Model.User", b =>
-                {
-                    b.Navigation("Orders");
+                    b.Navigation("OrderLine");
                 });
 #pragma warning restore 612, 618
         }
