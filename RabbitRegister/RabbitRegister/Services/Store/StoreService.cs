@@ -1,4 +1,5 @@
 ﻿using RabbitRegister.Model;
+using RabbitRegister.Services.ProductService;
 
 namespace RabbitRegister.Services.Store
 {
@@ -6,11 +7,15 @@ namespace RabbitRegister.Services.Store
     {
         private List<Order> _orders;
         private List<OrderLine> _orderLines;
+
         private DbGenericService<Order> _dbServiceOrder;
         private DbGenericService<OrderLine> _dbServiceOrderLine;
+        private IProductService _productService { get; set; }
 
-        public StoreService(DbGenericService<Order> dbServiceOrder, DbGenericService<OrderLine> dbServiceOrderLine)
+
+        public StoreService(DbGenericService<Order> dbServiceOrder, DbGenericService<OrderLine> dbServiceOrderLine, IProductService productService)
         {
+            _productService = productService;
             _dbServiceOrder = dbServiceOrder;
             _dbServiceOrderLine = dbServiceOrderLine;
             _orders = dbServiceOrder.GetObjectsAsync().Result.ToList();
@@ -22,27 +27,64 @@ namespace RabbitRegister.Services.Store
             await _dbServiceOrder.AddObjectAsync(order);
             _orders.Add(order);
         }
-        public async Task AddToBasketAsync(OrderLine orderLine)
+        public async Task AddToBasketAsync(int productId)
         {
-            OrderLine existingItem = _orderLines.FirstOrDefault(item => item.ProductId == orderLine.ProductId);
+            // Check if the product is a Wool
+            Wool wool = _productService.GetWools(productId);
+            if (wool != null)
+            {
+                OrderLine existingItem = _orderLines.FirstOrDefault(wool => wool.ProductId == productId);
 
-            if (existingItem != null)
-            {
-                OrderLine newOrderline = new OrderLine
+                if (existingItem != null)
                 {
-                    ProductId = orderLine.ProductId,
-                    Amount = orderLine.Amount,
-                    Price = orderLine.Price,
-                    Order = orderLine.Order,
-                };
-                // If the product is already in the basket, increase the amount
-                existingItem.Amount++;
-                await _dbServiceOrderLine.UpdateObjectAsync(existingItem);
+                    // If the product is already in the basket, increase the amount
+                    existingItem.Amount++;
+                    await _dbServiceOrderLine.UpdateObjectAsync(existingItem);
+                }
+                else
+                {
+                    OrderLine newOrderline = new OrderLine
+                    {
+                        ProductId = productId,
+                        Amount = 1,
+                        Price = wool.Price,
+                        Order = null
+                    };
+
+                    await _dbServiceOrderLine.AddObjectAsync(newOrderline);
+                    _orderLines.Add(newOrderline);
+                }
+
+                return;
             }
-            else
+
+            // Check if the product is a Yarn
+            Yarn yarn = _productService.GetYarn(productId);
+            if (yarn != null)
             {
-                await _dbServiceOrderLine.AddObjectAsync(orderLine);
-                _orderLines.Add(orderLine);
+                OrderLine existingItem = _orderLines.FirstOrDefault(yarn => yarn.ProductId == productId);
+
+                if (existingItem != null)
+                {
+                    // If the product is already in the basket, increase the amount
+                    existingItem.Amount++;
+                    await _dbServiceOrderLine.UpdateObjectAsync(existingItem);
+                }
+                else
+                {
+                    OrderLine newOrderline = new OrderLine
+                    {
+                        ProductId = productId,
+                        Amount = 1,
+                        Price = yarn.Price,
+                        Order = null
+                    };
+
+                    await _dbServiceOrderLine.AddObjectAsync(newOrderline);
+                    _orderLines.Add(newOrderline);
+                }
+
+                return;
             }
         }
         public List<Order> GetOrders()
@@ -75,8 +117,12 @@ namespace RabbitRegister.Services.Store
             {
                 thisOrderLine.Amount--;
                 await _dbServiceOrderLine.UpdateObjectAsync(thisOrderLine);
+                if (thisOrderLine.Amount == 0)
+                {
+                    await _dbServiceOrderLine.DeleteObjectAsync(thisOrderLine);
+                    _orderLines = GetBasket();
+                }
             }
-
         }
 
         public async Task IncreaseAmount(OrderLine orderLine, int id)

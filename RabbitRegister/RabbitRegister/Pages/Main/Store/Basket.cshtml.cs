@@ -28,15 +28,10 @@ namespace RabbitRegister.Pages.Main.Store
 
         }
 
-        public async Task<IActionResult> OnGetAddToBasket(int id)
+        public async Task<IActionResult> OnPostAddToBasketAsync(int productId)
         {
-
-            OrderLines = _storeService.GetBasket();
-            OrderLine item = OrderLines.Where(p => p.ProductId == id).FirstOrDefault();
-
-
-            return Page();
-
+            await _storeService.AddToBasketAsync(productId);
+            return RedirectToPage("/Main/Store/Basket");
         }
 
         public async Task<IActionResult> OnGetDecreaseAmount(int id)
@@ -48,7 +43,7 @@ namespace RabbitRegister.Pages.Main.Store
                 await _storeService.DecreaseAmount(thisOrderLine, id);
             }
 
-            return RedirectToPage("/Main/Store/Basket"); 
+            return Page();
         }
 
         public async Task<IActionResult> OnGetIncreaseAmount(int id)
