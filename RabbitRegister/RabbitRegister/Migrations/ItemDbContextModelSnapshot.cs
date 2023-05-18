@@ -117,7 +117,7 @@ namespace RabbitRegister.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderLineId"));
 
-                    b.Property<int>("Amount")
+                    b.Property<int?>("Amount")
                         .HasColumnType("int");
 
                     b.Property<int?>("OrderId")

@@ -39,29 +39,29 @@ namespace RabbitRegister.Pages.Main.Store
 
         }
 
-        public async Task<IActionResult> OnPostDecreaseAmount(int id)
+        public async Task<IActionResult> OnGetDecreaseAmount(int id)
         {
-            // Retrieve the orderLine using the id parameter
-            OrderLine orderLine = _storeService.GetOrderLine(id);
+            OrderLine thisOrderLine = _storeService.GetOrderLine(id);
 
-            if (orderLine != null)
+            if (thisOrderLine != null)
             {
-               await _storeService.DecreaseAmount(orderLine, id);
+                await _storeService.DecreaseAmount(thisOrderLine, id);
             }
-            return Page();
+
+            return RedirectToPage("/Main/Store/Basket"); 
         }
 
-        public async Task<IActionResult> OnPostIncreaseAmount(int id)
+        public async Task<IActionResult> OnGetIncreaseAmount(int id)
         {
-            // Retrieve the orderLine using the id parameter
-            OrderLine orderLine = _storeService.GetOrderLine(id);
+            OrderLine thisOrderLine = _storeService.GetOrderLine(id);
 
-            if (orderLine != null)
+            if (thisOrderLine != null)
             {
-                await _storeService.IncreaseAmount(orderLine, id);
+                await _storeService.IncreaseAmount(thisOrderLine, id);
             }
-            return Page();
-        }
+
+            return RedirectToPage("/Main/Store/Basket");
+        } 
 
         public IActionResult OnPostAsync()
         {

@@ -12,7 +12,7 @@ using RabbitRegister.EFDbContext;
 namespace RabbitRegister.Migrations
 {
     [DbContext(typeof(ItemDbContext))]
-    [Migration("20230517162805_RabbitReg")]
+    [Migration("20230518083708_RabbitReg")]
     partial class RabbitReg
     {
         /// <inheritdoc />
@@ -120,7 +120,7 @@ namespace RabbitRegister.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderLineId"));
 
-                    b.Property<int>("Amount")
+                    b.Property<int?>("Amount")
                         .HasColumnType("int");
 
                     b.Property<int?>("OrderId")

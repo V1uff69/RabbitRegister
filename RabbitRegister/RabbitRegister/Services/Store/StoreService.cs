@@ -29,7 +29,7 @@ namespace RabbitRegister.Services.Store
             if (existingItem != null)
             {
                 OrderLine newOrderline = new OrderLine
-                { 
+                {
                     ProductId = orderLine.ProductId,
                     Amount = orderLine.Amount,
                     Price = orderLine.Price,
@@ -70,41 +70,25 @@ namespace RabbitRegister.Services.Store
         public async Task DecreaseAmount(OrderLine orderLine, int id)
         {
             OrderLine thisOrderLine = GetOrderLine(id);
-            if (thisOrderLine.Amount == 0)
-            {
-                OrderLine ToBeDeleted = null;
-                foreach (OrderLine ol in _orderLines)
-                {
-                    if (ol.ProductId == id)
-                    {
-                        ToBeDeleted = ol;
-                        break;
-                    }
-                }
-                if (ToBeDeleted != null)
-                {
-                    _orderLines.Remove(ToBeDeleted);
-                    await _dbServiceOrderLine.DeleteObjectAsync(ToBeDeleted);
-                }
-            }
-            else
+
             if (thisOrderLine != null)
             {
                 thisOrderLine.Amount--;
                 await _dbServiceOrderLine.UpdateObjectAsync(thisOrderLine);
             }
+
         }
 
-            public async Task IncreaseAmount(OrderLine orderLine, int id)
+        public async Task IncreaseAmount(OrderLine orderLine, int id)
+        {
+            OrderLine thisOrderLine = GetOrderLine(id);
+            if (thisOrderLine != null)
             {
-                OrderLine thisOrderLine = GetOrderLine(id);
-                if (thisOrderLine != null)
-                {
-                    thisOrderLine.Amount++;
-                    await _dbServiceOrderLine.UpdateObjectAsync(orderLine);
-                }
+                thisOrderLine.Amount++;
+                await _dbServiceOrderLine.UpdateObjectAsync(orderLine);
             }
+        }
 
-        
+
     }
 }

@@ -57,13 +57,10 @@
                         @orderLine.Price * @orderLine.Amount Kr.
                     </td>
                     <td>
-                        <form method="post" asp-page-handler="OnPostDecreaseAmount" asp-route-id="@orderLine.ProductId">
-                            <button class="btn btn-danger btn-sm fa fa-minus" type="submit" title="Decrease Amount"></button>
+                        <form>
+                        <a class="btn btn-danger btn-sm fa fa-minus" type="submit" title="Decrease Amount" method="post" asp-page-handler="DecreaseAmount" asp-route-id="@orderLine.OrderLineId"></a>
+                        <a class="btn btn-success btn-sm fa fa-plus" type="submit" title="Increase Amount" method="post" asp-page-handler="IncreaseAmount" asp-route-id="@orderLine.OrderLineId"></a>
                         </form>
-                        <form method="post" asp-page-handler="OnPostIncreaseAmount" asp-route-id="@orderLine.ProductId">
-                            <button class="btn btn-success btn-sm fa fa-plus" type="submit" title="Increase Amount"></button>
-                        </form>
-
                     </td>
                 </tr>
             }

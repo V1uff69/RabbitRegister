@@ -45,7 +45,9 @@
                             <div class="d-flex flex-wrap justify-content-center" style="margin-bottom: 5px; margin-top: 0px;">
                                 <a class="btn-card btn-primary btn-sm" type="button" title="Edit" asp-page="/Main/Product/EditWool" asp-route-id="@Wool.ProductId"><i class="fa fa-edit"></i></a>
                                 <a class="btn-card btn-danger btn-sm" type="button" title="Delete" asp-page="/Main/Product/DeleteWool" asp-route-id="@Wool.ProductId"><i class="fa fa-trash"></i></a>
-                                <a class="btn-card btn-success btn-sm" asp-page="/Main/Store/Basket" asp-page-handler="AddToBasket" asp-route-id="@Wool.ProductId"><i class="fa fa-cart-plus"></i> </a>
+                                <form class="flex-item" method="get" action="/Main/Store/Basket">
+                                    <button class="btn-card btn-success btn-sm" type="submit" asp-route-id="@Wool.ProductId"><i class="fa fa-cart-plus"></i></button>
+                                </form>
                             </div>
                         </div>
                     </a>
