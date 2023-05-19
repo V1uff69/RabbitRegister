@@ -12,7 +12,7 @@ using RabbitRegister.EFDbContext;
 namespace RabbitRegister.Migrations
 {
     [DbContext(typeof(ItemDbContext))]
-    [Migration("20230515085757_Rab1")]
+    [Migration("20230519090438_Rab1")]
     partial class Rab1
     {
         /// <inheritdoc />
@@ -214,30 +214,31 @@ namespace RabbitRegister.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<double>("DisposableWoolWeight")
-                        .HasColumnType("float");
+                    b.Property<int>("DisposableWoolWeight")
+                        .HasColumnType("int");
 
-                    b.Property<double>("FirstSortmentWeight")
-                        .HasColumnType("float");
+                    b.Property<int>("FirstSortmentWeight")
+                        .HasColumnType("int");
 
-                    b.Property<double?>("HairLengthByDayNinety")
-                        .HasColumnType("float");
+                    b.Property<float?>("HairLengthByDayNinety")
+                        .HasColumnType("real");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<int>("RabbitRegNo")
                         .HasColumnType("int");
 
-                    b.Property<double>("SecondSortmentWeight")
-                        .HasColumnType("float");
+                    b.Property<int>("SecondSortmentWeight")
+                        .HasColumnType("int");
 
-                    b.Property<double?>("TimeUsed")
-                        .HasColumnType("float");
+                    b.Property<int?>("TimeUsed")
+                        .HasColumnType("int");
 
-                    b.Property<string>("WoolDensity")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<float?>("WoolDensity")
+                        .HasColumnType("real");
 
                     b.HasKey("TrimmingId");
 

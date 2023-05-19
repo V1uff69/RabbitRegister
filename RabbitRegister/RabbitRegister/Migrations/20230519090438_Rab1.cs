@@ -61,14 +61,14 @@ namespace RabbitRegister.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     RabbitRegNo = table.Column<int>(type: "int", nullable: false),
                     BreederRegNo = table.Column<int>(type: "int", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    TimeUsed = table.Column<double>(type: "float", nullable: true),
-                    HairLengthByDayNinety = table.Column<double>(type: "float", nullable: true),
-                    WoolDensity = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FirstSortmentWeight = table.Column<double>(type: "float", nullable: false),
-                    SecondSortmentWeight = table.Column<double>(type: "float", nullable: false),
-                    DisposableWoolWeight = table.Column<double>(type: "float", nullable: false)
+                    TimeUsed = table.Column<int>(type: "int", nullable: true),
+                    HairLengthByDayNinety = table.Column<float>(type: "real", nullable: true),
+                    WoolDensity = table.Column<float>(type: "real", nullable: true),
+                    FirstSortmentWeight = table.Column<int>(type: "int", nullable: false),
+                    SecondSortmentWeight = table.Column<int>(type: "int", nullable: false),
+                    DisposableWoolWeight = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
