@@ -19,6 +19,8 @@ namespace RabbitRegister.Services.RabbitService
         IEnumerable<Rabbit> SortByRatingDescending();
         List<Rabbit> GetOwnedAliveRabbits(int breederRegNo);
         List<Rabbit> GetOwnedDeadRabbits(int breederRegNo);
-        List<Rabbit> GetAllRabbitsWithMyBreederRegNo(int breederRegNo);
+        List<Rabbit> GetAllOwnedRabbits(int breederRegNo);
+        List<Rabbit> GetAllRabbitsWithConnectionsToMe(int breederRegNo);
+        List<Rabbit> GetNotOwnedRabbitsWithMyBreederRegNo(int breederRegNo);
     }
 }

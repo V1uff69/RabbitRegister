@@ -12,7 +12,7 @@ using RabbitRegister.EFDbContext;
 namespace RabbitRegister.Migrations
 {
     [DbContext(typeof(ItemDbContext))]
-    [Migration("20230516190348_RabbitReg")]
+    [Migration("20230519125349_RabbitReg")]
     partial class RabbitReg
     {
         /// <inheritdoc />
@@ -150,10 +150,12 @@ namespace RabbitRegister.Migrations
             modelBuilder.Entity("RabbitRegister.Model.Rabbit", b =>
                 {
                     b.Property<int>("RabbitRegNo")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnOrder(0);
 
                     b.Property<int>("BreederRegNo")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnOrder(1);
 
                     b.Property<string>("CauseOfDeath")
                         .HasMaxLength(300)
@@ -162,6 +164,10 @@ namespace RabbitRegister.Migrations
                     b.Property<string>("Color")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Comments")
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
 
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime2");
@@ -200,7 +206,7 @@ namespace RabbitRegister.Migrations
                     b.Property<float?>("Weight")
                         .HasColumnType("real");
 
-                    b.HasKey("RabbitRegNo");
+                    b.HasKey("RabbitRegNo", "BreederRegNo");
 
                     b.ToTable("Rabbits");
                 });

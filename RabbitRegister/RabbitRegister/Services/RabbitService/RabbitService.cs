@@ -66,6 +66,7 @@ namespace RabbitRegister.Services.RabbitService
                         r.IsForSale = rabbit.IsForSale;
                         r.SuitableForBreeding = rabbit.SuitableForBreeding;
                         r.CauseOfDeath = rabbit.CauseOfDeath;
+                        r.Comments = rabbit.Comments;
                         r.ImageString = rabbit.ImageString;
                         break;                                    // break tilføjet
                     }
@@ -118,8 +119,6 @@ namespace RabbitRegister.Services.RabbitService
             return _rabbits.OrderBy(r => r.RabbitRegNo);   // bemærk: default er ascending(stigende.. fra 0 til 10)
         }
 
-
-
         public IEnumerable<Rabbit> SortByIdDescending()   //LINQ & LAMBDA 
         {
             return _rabbits.OrderByDescending(r => r.RabbitRegNo);
@@ -159,17 +158,27 @@ namespace RabbitRegister.Services.RabbitService
 
         public List<Rabbit> GetOwnedAliveRabbits(int breederRegNo)
         {
-            return _rabbits.Where(rabbit => rabbit.Owner == breederRegNo && rabbit.DeadOrAlive == DeadOrAlive.Alive).ToList();
+            return _rabbits.Where(rabbit => rabbit.Owner == breederRegNo && rabbit.DeadOrAlive == DeadOrAlive.Levende).ToList();
         }
 
         public List<Rabbit> GetOwnedDeadRabbits(int breederRegNo)
         {
-            return _rabbits.Where(rabbit => rabbit.Owner == breederRegNo && rabbit.DeadOrAlive == DeadOrAlive.Dead).ToList();
+            return _rabbits.Where(rabbit => rabbit.Owner == breederRegNo && rabbit.DeadOrAlive == DeadOrAlive.Død).ToList();
         }
 
-        public List<Rabbit> GetAllRabbitsWithMyBreederRegNo(int breederRegNo)
+        public List<Rabbit> GetAllOwnedRabbits(int breederRegNo)
         {
-            return _rabbits.Where(rabbit => rabbit.BreederRegNo == breederRegNo).ToList();
+            return _rabbits.Where(rabbit => rabbit.Owner == breederRegNo).ToList();
+        }
+
+        public List<Rabbit> GetAllRabbitsWithConnectionsToMe(int breederRegNo)
+        {
+            return _rabbits.Where(rabbit => rabbit.Owner == breederRegNo || rabbit.BreederRegNo == breederRegNo).ToList();
+        }
+
+        public List<Rabbit> GetNotOwnedRabbitsWithMyBreederRegNo(int breederRegNo)
+        {
+            return _rabbits.Where(rabbit => rabbit.Owner != breederRegNo && rabbit.BreederRegNo == breederRegNo).ToList();
         }
 
 

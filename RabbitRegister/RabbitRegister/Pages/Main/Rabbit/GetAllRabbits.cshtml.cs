@@ -34,10 +34,22 @@ namespace RabbitRegister.Pages.Main.Rabbit
             {
                 Rabbits = _rabbitService.GetOwnedDeadRabbits(breederRegNo);
             }
-            else if (action == "AllRabbitsWithMyBreederRegNo")
+
+            else if (action == "AllOwnedRabbits")
             {
-                Rabbits = _rabbitService.GetAllRabbitsWithMyBreederRegNo(breederRegNo);
+                Rabbits = _rabbitService.GetAllOwnedRabbits(breederRegNo);
             }
+
+            else if (action == "AllRabbitsWithConnectionsToMe")
+            {
+                Rabbits = _rabbitService.GetAllRabbitsWithConnectionsToMe(breederRegNo);
+            }
+
+            else if (action == "NotOwnedRabbitsWithMyBreederRegNo")
+            {
+                Rabbits = _rabbitService.GetNotOwnedRabbitsWithMyBreederRegNo(breederRegNo);
+            }
+
             else
             {
                 Rabbits = _rabbitService.GetOwnedAliveRabbits(breederRegNo);

@@ -66,11 +66,12 @@ namespace RabbitRegister.Migrations
                     IsForSale = table.Column<int>(type: "int", nullable: false),
                     SuitableForBreeding = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
                     CauseOfDeath = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
+                    Comments = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
                     ImageString = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Rabbits", x => x.RabbitRegNo);
+                    table.PrimaryKey("PK_Rabbits", x => new { x.RabbitRegNo, x.BreederRegNo });
                 });
 
             migrationBuilder.CreateTable(
