@@ -55,7 +55,7 @@
     <input type="button" value="Tilbage" onclick="history.go(-1)">
 </form>
 <div class="d-flex flex-row justify-content-end" style="margin-bottom: 5px; margin-top: 0px;">
-    <a class="btn-card btn-primary btn-sm mr-1" type="button" title="Edit" asp-page="/Main/Rabbit/EditRabbit"><i class="fa fa-edit"></i></a>
+    <a class="btn-card btn-primary btn-sm mr-1" type="button" title="Edit" asp-page="/Main/Rabbit/EditRabbit" asp-route-id="@Model.Rabbit.RabbitRegNo"><i class="fa fa-edit"></i></a>
     <a class="btn-card btn-danger btn-sm" type="button" title="Delete" asp-page="/Main/Rabbit/DeleteRabbit"><i class="fa fa-trash"></i></a>
 </div>
 <br />
