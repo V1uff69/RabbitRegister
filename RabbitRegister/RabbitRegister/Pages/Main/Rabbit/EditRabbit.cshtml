@@ -1,7 +1,15 @@
-﻿@page
+﻿@page "{id:int}"
 @model RabbitRegister.Pages.Main.Rabbit.EditRabbitModel
 @{
 }
+
+<!-- OM "{id:int}" 
+    Du fortæller Razor-sidemodellen at den kan forvente denne rutebinding og dermed behandle den korrekt.
+    Når der trykker på "Update", matches URL'en "/EditRabbit/3" rutebindingen, og OnGet-metoden udløses med den korrekte ID-værdi.
+    Uden denne rutebinding ville URL'en ikke matche nogen rute, og OnGet-metoden ville ikke blive udløst...
+    Det forklare, hvorfor der ikke skete noget, når der klikkes "Update".
+    Ved at tilføje "{id:int}" rutebindingen har du sikret, at ID'en bliver korrekt knyttet til id-parameteren i OnGet-metoden,
+    og at opdateringslogikken bliver udført med den rigtige kanin.-->
 
 <br />
 <form>
@@ -9,99 +17,97 @@
 </form>
 <br />
 
-
-<form method="post" asp-page-handler="OnPostAsync">
-
+<form method="post" asp-page="EditRabbit" asp-page-handler="OnPostAsync">
     <div class="form-group">
-        <label asp-for="@Model.Rabbit.Owner" class="control-label"></label>
-        <input asp-for="@Model.Rabbit.Owner" class="form-control" readonly="@true" />
+        <label asp-for="Rabbit.Owner" class="control-label"></label>
+        <input asp-for="Rabbit.Owner" class="form-control" readonly="@true" />
     </div>
 
     <div class="form-group">
-        <label asp-for="@Model.Rabbit.RabbitRegNo" class="control-label"></label>
-        <input asp-for="@Model.Rabbit.RabbitRegNo" class="form-control" readonly="@true" /> 
+        <label asp-for="Rabbit.RabbitRegNo" class="control-label"></label>
+        <input asp-for="Rabbit.RabbitRegNo" class="form-control" readonly="@true" /> 
     </div>
 
     <div class="form-group">
-        <label asp-for="@Model.Rabbit.BreederRegNo" class="control-label"></label>
-        <input asp-for="@Model.Rabbit.BreederRegNo" class="form-control" readonly="@true" />
+        <label asp-for="Rabbit.BreederRegNo" class="control-label"></label>
+        <input asp-for="Rabbit.BreederRegNo" class="form-control" readonly="@true" />
     </div>
 
     <div class="form-group">
-        <label asp-for="@Model.Rabbit.Name" class="control-label"></label>
-        <input asp-for="@Model.Rabbit.Name" class="form-control" />
-        <span asp-validation-for="@Model.Rabbit.Name" class="text-danger"></span>
+        <label asp-for="Rabbit.Name" class="control-label"></label>
+        <input asp-for="Rabbit.Name" class="form-control" />
+        <span asp-validation-for="Rabbit.Name" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="@Model.Rabbit.Race" class="control-label"></label>
-        <input asp-for="@Model.Rabbit.Race" class="form-control" />
-        <span asp-validation-for="@Model.Rabbit.Race" class="text-danger"></span>
+        <label asp-for="Rabbit.Race" class="control-label"></label>
+        <input asp-for="Rabbit.Race" class="form-control" />
+        <span asp-validation-for="Rabbit.Race" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="@Model.Rabbit.Color" class="control-label"></label>
-        <input asp-for="@Model.Rabbit.Color" class="form-control" />
-        <span asp-validation-for="@Model.Rabbit.Color" class="text-danger"></span>
+        <label asp-for="Rabbit.Color" class="control-label"></label>
+        <input asp-for="Rabbit.Color" class="form-control" />
+        <span asp-validation-for="Rabbit.Color" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="@Model.Rabbit.Sex" class="control-label"></label>
-        <input asp-for="@Model.Rabbit.Sex" class="form-control" />
-        <span asp-validation-for="@Model.Rabbit.Sex" class="text-danger"></span>
+        <label asp-for="Rabbit.Sex" class="control-label"></label>
+        <input asp-for="Rabbit.Sex" class="form-control" />
+        <span asp-validation-for="Rabbit.Sex" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="@Model.Rabbit.DateOfBirth" class="control-label"></label>
-        <input asp-for="@Model.Rabbit.DateOfBirth" class="form-control" />
-        <span asp-validation-for="@Model.Rabbit.DateOfBirth" class="text-danger"></span>
+        <label asp-for="Rabbit.DateOfBirth" class="control-label"></label>
+        <input asp-for="Rabbit.DateOfBirth" class="form-control" />
+        <span asp-validation-for="Rabbit.DateOfBirth" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="@Model.Rabbit.Weight" class="control-label"></label>
-        <input asp-for="@Model.Rabbit.Weight" class="form-control" />
-        <span asp-validation-for="@Model.Rabbit.Weight" class="text-danger"></span>
+        <label asp-for="Rabbit.Weight" class="control-label"></label>
+        <input asp-for="Rabbit.Weight" class="form-control" />
+        <span asp-validation-for="Rabbit.Weight" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="@Model.Rabbit.Rating" class="control-label"></label>
-        <input asp-for="@Model.Rabbit.Rating" class="form-control" />
-        <span asp-validation-for="@Model.Rabbit.Rating" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="@Model.Rabbit.DeadOrAlive" class="control-label"></label>
-        <input asp-for="@Model.Rabbit.DeadOrAlive" value="Levende" class="form-control" />
-        <span asp-validation-for="@Model.Rabbit.DeadOrAlive" class="text-danger"></span>
+        <label asp-for="Rabbit.Rating" class="control-label"></label>
+        <input asp-for="Rabbit.Rating" class="form-control" />
+        <span asp-validation-for="Rabbit.Rating" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="@Model.Rabbit.IsForSale" class="control-label"></label>
-        <input asp-for="@Model.Rabbit.IsForSale" value="Nej" class="form-control" />
-        <span asp-validation-for="@Model.Rabbit.IsForSale" class="text-danger"></span>
+        <label asp-for="Rabbit.DeadOrAlive" class="control-label"></label>
+        <input asp-for="Rabbit.DeadOrAlive" value="Levende" class="form-control" />
+        <span asp-validation-for="Rabbit.DeadOrAlive" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="@Model.Rabbit.SuitableForBreeding" class="control-label"></label>
-        <input asp-for="@Model.Rabbit.SuitableForBreeding" class="form-control" />
-        <span asp-validation-for="@Model.Rabbit.SuitableForBreeding" class="text-danger"></span>
+        <label asp-for="Rabbit.IsForSale" class="control-label"></label>
+        <input asp-for="Rabbit.IsForSale" value="Nej" class="form-control" />
+        <span asp-validation-for="Rabbit.IsForSale" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="@Model.Rabbit.CauseOfDeath" class="control-label"></label>
-        <input asp-for="@Model.Rabbit.CauseOfDeath" class="form-control" />
-        <span asp-validation-for="@Model.Rabbit.CauseOfDeath" class="text-danger"></span>
+        <label asp-for="Rabbit.SuitableForBreeding" class="control-label"></label>
+        <input asp-for="Rabbit.SuitableForBreeding" class="form-control" />
+        <span asp-validation-for="Rabbit.SuitableForBreeding" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="@Model.Rabbit.Comments" class="control-label"></label>
-        <input asp-for="@Model.Rabbit.Comments" class="form-control" />
-        <span asp-validation-for="@Model.Rabbit.Comments" class="text-danger"></span>
+        <label asp-for="Rabbit.CauseOfDeath" class="control-label"></label>
+        <input asp-for="Rabbit.CauseOfDeath" class="form-control" />
+        <span asp-validation-for="Rabbit.CauseOfDeath" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="@Model.Rabbit.ImageString" class="control-label"></label>
-        <input asp-for="@Model.Rabbit.ImageString" value="/Images/Rabbits/" class="form-control" />
-        <span asp-validation-for="@Model.Rabbit.ImageString" class="text-danger"></span>
+        <label asp-for="Rabbit.Comments" class="control-label"></label>
+        <input asp-for="Rabbit.Comments" class="form-control" />
+        <span asp-validation-for="Rabbit.Comments" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Rabbit.ImageString" class="control-label"></label>
+        <input asp-for="Rabbit.ImageString" value="/Images/Rabbits/" class="form-control" />
+        <span asp-validation-for="Rabbit.ImageString" class="text-danger"></span>
     </div>
 
     <p>
