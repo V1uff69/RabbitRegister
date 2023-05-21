@@ -20,9 +20,9 @@ namespace RabbitRegister.Pages.Main.Rabbit
         [BindProperty]
         public Model.Rabbit Rabbit { get; set; }
 
-        public IActionResult OnGet(int id)
+        public IActionResult OnGet(int id, int breederRegNo)
         {
-            Rabbit = _rabbitService.GetRabbit(id);
+            Rabbit = _rabbitService.GetRabbit(id, breederRegNo);
             return Page();
         }
 

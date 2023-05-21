@@ -2,13 +2,10 @@
 @model RabbitRegister.Pages.Main.Rabbit.GetAllRabbitsModel
 @{
 }
+
 <link rel="stylesheet" href="/css/rabbitSite.css" />
-
-
 <br />
-
 <h2 class="text-center">Mine Kaniner:</h2>
-
 <br />
 
 <!-- Filter: Hvilke kaniner der skal vises? -->
@@ -55,7 +52,8 @@
             {
                 foreach (var Rabbit in Model.Rabbits)
                 {
-                    <a class="click-card flex-item" asp-page="/Main/Rabbit/RabbitProfile" asp-route-id="@Rabbit.RabbitRegNo">
+                    <a class="click-card flex-item" asp-page="/Main/Rabbit/RabbitProfile" asp-route-id="@Rabbit.RabbitRegNo" asp-route-breederRegNo="@Rabbit.BreederRegNo">
+
                         <div class="p-2-card text-center container rounded border border-dark" style="width: 100%;">
                             <div class="d-flex flex-row">
                                 <div>
@@ -88,8 +86,11 @@
                                 </table>
                             </div>
                             <div class="d-flex flex-row justify-content-end" style="margin-bottom: 5px; margin-top: 0px;">
-                                <a class="btn-card btn-primary btn-sm mr-1" type="button" title="Edit" asp-page="/Main/Rabbit/EditRabbit" asp-route-id="@Rabbit.RabbitRegNo"><i class="fa fa-edit"></i></a>
-                                <a class="btn-card btn-danger btn-sm" type="button" title="Delete" asp-page="/Main/Rabbit/DeleteRabbit" asp-route-id="@Rabbit.RabbitRegNo"><i class="fa fa-trash"></i></a>
+                                <a class="btn-card btn-primary btn-sm mr-1" type="button" title="Edit" asp-page="/Main/Rabbit/EditRabbit" asp-route-id="@Rabbit.RabbitRegNo" asp-route-breederRegNo="@Rabbit.BreederRegNo">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <a class="btn-card btn-danger btn-sm" type="button" title="Delete" asp-page="/Main/Rabbit/DeleteRabbit" asp-route-id="@Rabbit.RabbitRegNo" asp-route-breederRegNo="@Rabbit.BreederRegNo">
+                                    <i class="fa fa-trash"></i></a>
                             </div>
                         </div>
                     </a>

@@ -28,28 +28,28 @@ namespace RabbitRegister.Pages.Main.Rabbit
         public int MaxRating { get; set; }
 
 
-        public IActionResult OnGet(int breederRegNo, string action)
+        public IActionResult OnGet(int id, int breederRegNo, string action)
         {
             if (action == "OwnedDeadRabbits")
             {
                 Rabbits = _rabbitService.GetOwnedDeadRabbits(breederRegNo);
             }
-
             else if (action == "AllOwnedRabbits")
             {
                 Rabbits = _rabbitService.GetAllOwnedRabbits(breederRegNo);
             }
-
             else if (action == "AllRabbitsWithConnectionsToMe")
             {
                 Rabbits = _rabbitService.GetAllRabbitsWithConnectionsToMe(breederRegNo);
             }
-
             else if (action == "NotOwnedRabbitsWithMyBreederRegNo")
             {
                 Rabbits = _rabbitService.GetNotOwnedRabbitsWithMyBreederRegNo(breederRegNo);
             }
-
+            else if (action == "AllRabbits")
+            {
+                Rabbits = _rabbitService.GetAllRabbits(id, breederRegNo);
+            }
             else
             {
                 Rabbits = _rabbitService.GetOwnedAliveRabbits(breederRegNo);
@@ -57,6 +57,7 @@ namespace RabbitRegister.Pages.Main.Rabbit
 
             return Page();
         }
+
 
         public IActionResult OnGetSortById()
         {

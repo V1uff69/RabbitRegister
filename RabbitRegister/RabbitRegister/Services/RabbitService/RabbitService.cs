@@ -33,19 +33,15 @@ namespace RabbitRegister.Services.RabbitService
             await _dbGenericService.AddObjectAsync(rabbit);
         }
 
-        public Rabbit GetRabbit(int id)
+        public Rabbit GetRabbit(int id, int breederRegNo)
         {
-            foreach (Rabbit rabbit in _rabbits)
-            {
-                if (rabbit.RabbitRegNo == id)
-                    return rabbit;
-            }
-
-            return null;
+            return _rabbits.FirstOrDefault(r => r.RabbitRegNo == id && r.BreederRegNo == breederRegNo);
         }
 
-        public List<Rabbit> GetRabbits() { return _rabbits; }
-
+        public List<Rabbit> GetAllRabbits(int id, int breederRegNo)
+        {
+            return _rabbits.Where(rabbit => rabbit.RabbitRegNo == id && rabbit.BreederRegNo == breederRegNo).ToList();
+        }
 
         public async Task UpdateRabbitAsync(Rabbit rabbit, int id) // int id tilføjet
         {

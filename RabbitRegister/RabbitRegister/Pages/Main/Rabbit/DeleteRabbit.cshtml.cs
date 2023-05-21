@@ -19,11 +19,13 @@ namespace RabbitRegister.Pages.Main.Rabbit
         public Model.Rabbit Rabbit { get; set; }
 
 
-        public IActionResult OnGet(int id)
+        public IActionResult OnGet(int id, int breederRegNo)
         {
-            Rabbit = _rabbitService.GetRabbit(id);
-            //if (Rabbit == null)
-            //    return RedirectToPage("/NotFound"); //NotFound er ikke defineret endnu
+            Rabbit = _rabbitService.GetRabbit(id, breederRegNo);
+            if (Rabbit == null)
+            {
+                return RedirectToPage("/NotFound");
+            }
 
             return Page();
         }
