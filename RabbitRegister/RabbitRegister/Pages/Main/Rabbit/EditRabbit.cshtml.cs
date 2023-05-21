@@ -26,13 +26,13 @@ namespace RabbitRegister.Pages.Main.Rabbit
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(int id)
+        public async Task<IActionResult> OnPostAsync(int id, int breederRegNo)
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
-            await _rabbitService.UpdateRabbitAsync(Rabbit, id);
+            await _rabbitService.UpdateRabbitAsync(Rabbit, id, breederRegNo);
             return RedirectToPage("GetAllRabbits");
         }
     }

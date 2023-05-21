@@ -9,8 +9,9 @@ namespace RabbitRegister.Services.RabbitService
         List<Rabbit> GetAllRabbits(int id, int breederRegNo);
         //List<Rabbit> GetAllRabbits();
         Task AddRabbitAsync(Rabbit rabbit);
-        Task UpdateRabbitAsync(Rabbit rabbit, int id);
-        Task<Rabbit> DeleteRabbitAsync(int? rabbitId);
+        //Task UpdateRabbitAsync(Rabbit rabbit, int id);
+        Task UpdateRabbitAsync(Rabbit rabbit, int id, int breederRegNo);
+        Task<Rabbit> DeleteRabbitAsync(int? id, int? breederRegNo);
         IEnumerable<Rabbit> NameSearch(string str);
         IEnumerable<Rabbit> RatingFilter(int maxRating, int minRating = 0);
         IEnumerable<Rabbit> SortById();

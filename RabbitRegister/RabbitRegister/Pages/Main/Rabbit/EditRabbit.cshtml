@@ -3,13 +3,13 @@
 @{
 }
 
-<!-- LIDT OM "{id:int}" 
+<!-- LIDT OM "{id:int/{breederRegNo}}" 
     Du fortæller Razor-sidemodellen at den kan forvente denne rutebinding og dermed behandle den korrekt.
-    Når der trykker på "Update", matches URL'en "/EditRabbit/3" rutebindingen, og OnGet-metoden udløses med den korrekte ID-værdi.
-    Uden denne rutebinding ville URL'en ikke matche nogen rute, og OnGet-metoden ville ikke blive udløst...
-    Det forklare, hvorfor der ikke skete noget, når der klikkes "Update".
-    Ved at tilføje "{id:int}" rutebindingen har du sikret, at ID'en bliver korrekt knyttet til id-parameteren i OnGet-metoden,
-    og at opdateringslogikken bliver udført med den rigtige kanin.-->
+    Når der trykkes på "Update", matches URL'en som fx /EditRabbit/1/5095, hvor 1 er (RabbitRegNo) {id},
+    og 5095 er {breederRegNo}.
+
+    Dette er nyttigt, når du har brug for at modtage og bruge flere værdier fra URL'en i din sidebehandling.
+    Uden denne rutebinding ville URL'en ikke matche nogen rute, og OnGet-metoden ville ikke blive udløst.-->
 
 <br />
 <form>

@@ -43,41 +43,38 @@ namespace RabbitRegister.Services.RabbitService
             return _rabbits.Where(rabbit => rabbit.RabbitRegNo == id && rabbit.BreederRegNo == breederRegNo).ToList();
         }
 
-        public async Task UpdateRabbitAsync(Rabbit rabbit, int id) // int id tilføjet
+        public async Task UpdateRabbitAsync(Rabbit rabbit, int id, int breederRegNo)
         {
             if (rabbit != null)
             {
-                foreach (Rabbit r in _rabbits)
+                Rabbit existingRabbit = _rabbits.FirstOrDefault(r => r.RabbitRegNo == id && r.BreederRegNo == breederRegNo);
+                if (existingRabbit != null)
                 {
-                    if (r.RabbitRegNo == id)
-                    {
-                        r.Name = rabbit.Name;
-                        r.Race = rabbit.Race;
-                        r.Color = rabbit.Color;
-                        r.Sex = rabbit.Sex;
-                        r.DateOfBirth = rabbit.DateOfBirth;
-                        r.Weight = rabbit.Weight;
-                        r.Rating = rabbit.Rating;
-                        r.DeadOrAlive = rabbit.DeadOrAlive;
-                        r.IsForSale = rabbit.IsForSale;
-                        r.SuitableForBreeding = rabbit.SuitableForBreeding;
-                        r.CauseOfDeath = rabbit.CauseOfDeath;
-                        r.Comments = rabbit.Comments;
-                        r.ImageString = rabbit.ImageString;
-                        break;                                    // break tilføjet
-                    }
+                    existingRabbit.Name = rabbit.Name;
+                    existingRabbit.Race = rabbit.Race;
+                    existingRabbit.Color = rabbit.Color;
+                    existingRabbit.Sex = rabbit.Sex;
+                    existingRabbit.DateOfBirth = rabbit.DateOfBirth;
+                    existingRabbit.Weight = rabbit.Weight;
+                    existingRabbit.Rating = rabbit.Rating;
+                    existingRabbit.DeadOrAlive = rabbit.DeadOrAlive;
+                    existingRabbit.IsForSale = rabbit.IsForSale;
+                    existingRabbit.SuitableForBreeding = rabbit.SuitableForBreeding;
+                    existingRabbit.CauseOfDeath = rabbit.CauseOfDeath;
+                    existingRabbit.Comments = rabbit.Comments;
+                    existingRabbit.ImageString = rabbit.ImageString;
+
+                    await _dbGenericService.UpdateObjectAsync(existingRabbit);
                 }
-                await _dbGenericService.UpdateObjectAsync(rabbit);
             }
         }
 
-
-        public async Task<Rabbit> DeleteRabbitAsync(int? rabbitId)
+        public async Task<Rabbit> DeleteRabbitAsync(int? id, int? breederRegNo)
         {
             Rabbit rabbitToBeDeleted = null;
             foreach (Rabbit rabbit in _rabbits)
             {
-                if (rabbit.RabbitRegNo == rabbitId)
+                if (rabbit.RabbitRegNo == id && rabbit.BreederRegNo == breederRegNo)
                 {
                     rabbitToBeDeleted = rabbit;
                     break;

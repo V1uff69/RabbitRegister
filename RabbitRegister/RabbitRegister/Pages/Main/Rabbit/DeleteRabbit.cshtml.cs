@@ -30,9 +30,9 @@ namespace RabbitRegister.Pages.Main.Rabbit
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(int id)
+        public async Task<IActionResult> OnPostAsync(int id, int breederRegNo)
         {
-            Model.Rabbit deletedRabbit = await _rabbitService.DeleteRabbitAsync(id);
+            Model.Rabbit deletedRabbit = await _rabbitService.DeleteRabbitAsync(id, breederRegNo);
             //if (deletedRabbit == null)
             //    return RedirectToPage("/NotFound"); //NotFound er ikke defineret endnu
 
