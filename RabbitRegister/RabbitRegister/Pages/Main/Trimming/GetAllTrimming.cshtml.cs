@@ -24,9 +24,16 @@ namespace RabbitRegister.Pages.Main.Trimming
         [BindProperty]
         public int SearchId { get; set; }
 
-        public void OnGet()
+        public void OnGet(int RabbitRegNo)
         {
-            Trimmings = _trimmingService.GetTrimmings();
+            if (RabbitRegNo > 0)
+            {
+                Trimmings = _trimmingService.GetTrimmingByRabbitRegNo(RabbitRegNo);
+            }
+            else
+            {
+                Trimmings = _trimmingService.GetTrimmings();
+            }
         }
         public IActionResult OnGetSortById()
         {

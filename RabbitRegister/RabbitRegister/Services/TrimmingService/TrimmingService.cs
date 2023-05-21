@@ -131,6 +131,18 @@ namespace RabbitRegister.Services.TrimmingService
                 return _trimmings.Where(Trimming => Trimming.RabbitRegNo == id);
             }
         }
+
+		public List<Trimming> GetTrimmingByRabbitRegNo (int RabbitRegNo)
+		{
+			var Trimmings = GetTrimmings();
+			List<Trimming> TrimmingByRabbitRegNo = new List<Trimming>();
+			foreach (var Trimming in Trimmings)
+			{
+				if (Trimming.RabbitRegNo == RabbitRegNo)
+					TrimmingByRabbitRegNo.Add(Trimming);
+			}
+			return TrimmingByRabbitRegNo;
+		}
         public List<Trimming> GetTrimmings() { return _trimmings; }
     }
 }
