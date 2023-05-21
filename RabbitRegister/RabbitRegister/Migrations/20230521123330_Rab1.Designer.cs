@@ -12,7 +12,7 @@ using RabbitRegister.EFDbContext;
 namespace RabbitRegister.Migrations
 {
     [DbContext(typeof(ItemDbContext))]
-    [Migration("20230521093647_Rab1")]
+    [Migration("20230521123330_Rab1")]
     partial class Rab1
     {
         /// <inheritdoc />
@@ -131,6 +131,10 @@ namespace RabbitRegister.Migrations
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
+
+                    b.Property<string>("ProductType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("OrderLineId");
 

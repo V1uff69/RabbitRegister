@@ -129,6 +129,10 @@ namespace RabbitRegister.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
+                    b.Property<string>("ProductType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("OrderLineId");
 
                     b.HasIndex("OrderId");

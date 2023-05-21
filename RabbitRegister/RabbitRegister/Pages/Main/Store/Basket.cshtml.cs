@@ -23,15 +23,21 @@ namespace RabbitRegister.Pages.Main.Store
             _productService = productService;
         }
 
+        public void OnGet()
+        {
+            Yarns = _productService.GetYarns();
+            Wools = _productService.GetWools();
+        }
         public IActionResult OnGetBasket()
         {
+
             OrderLines = _storeService.GetBasket();
             return Page();
         }
 
-        public async Task<IActionResult> OnGetAddToBasketAsync(int id)
+        public async Task<IActionResult> OnGetAddToBasketAsync(int ProductId, string ProductType)
         {
-                await _storeService.AddToBasketAsync(id);
+            await _storeService.AddToBasketAsync(ProductId, ProductType);
 
             TempData["Notification"] = "Product added to the basket.";
 

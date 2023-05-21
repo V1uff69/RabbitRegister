@@ -16,5 +16,16 @@ namespace RabbitRegister.Model
         public double Price { get; set; }
         public Order? Order { get; set; }
 
+        public OrderLine()
+        {
+        }
+
+        public OrderLine(int productId, string productType, int amount, double price)
+        {
+            ProductId = productId;
+            ProductType = productType;
+            Amount = amount;
+            Price = price;
+        }
     }
 }

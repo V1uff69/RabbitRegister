@@ -10,6 +10,8 @@ namespace RabbitRegister.Model
     public class Order
     {
         [Key]
+        [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int OrderId { get; set; }
         public DateTime Date { get; set; } = DateTime.Now;
         public ICollection<OrderLine> OrderLines { get; set; }
