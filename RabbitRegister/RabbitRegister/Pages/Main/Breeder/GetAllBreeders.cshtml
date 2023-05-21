@@ -2,3 +2,43 @@
 @model RabbitRegister.Pages.Main.Breeder.GetAllBreedersModel
 @{
 }
+<h1 class="font-monospace text-center">Breeders</h1>
+<p class="from-group">
+    <a class="btn btn-primary text-center" style="background-color:green;margin-left:auto;margin-right:auto;display:block;margin-top:1%" asp-page="/Main/Breeder/CreateBreeder"> Create a new Breeder </a>
+</p>
+<table class="table table-bordered table-hover table-striped table-opacity" width="100%">
+    <thead>
+        <tr>
+            <th> BreederRegno </th>
+            <th> Name </th>
+            <th> Adress </th>
+            <th> ZipCode </th>
+            <th> Email </th>
+            <th> Phone </th>
+            <th> IsAdmin </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Breeders != null)
+        {
+            foreach (var breeder in Model.Breeders)
+            {
+                <tr>
+                    <td>@breeder.BreederRegNo</td>
+                    <td>@breeder.Name</td>
+                    <td>@breeder.Adress</td>
+                    <td>@breeder.ZipCode</td>
+                    <td>@breeder.Email</td>
+                    <td>@breeder.Phone</td>
+                    <td>@breeder.isAdmin</td>
+
+                    <td>
+                        <a class="btn btn-primary btn-sm" type="button" title="Edit" asp-page="EditBreeder" asp-route-id="@breeder.BreederRegNo"><i class="fa fa-edit"></i></a>
+                        <a class="btn btn-danger btn-sm " type="button" title="Delete" asp-page="/Main/Breeder/DeleteBreeder" asp-route-id="@breeder.BreederRegNo"><i class="fa fa-trash"></i></a>
+                        @*<a class="btn btn-primary btn-sm " type="button" data-toggle="tooltip" data-placement="top" title="Order" asp-page="../Order/OrderItem" asp-route-id="@yarn.YarnId"><i class="fa fa-shopping-cart"></i></a>*@
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

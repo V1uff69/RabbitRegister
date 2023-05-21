@@ -4,7 +4,7 @@
 }
 <div class="create-form">
 <form method="post">
-		<h1 style="text-align:center">Create Yarn</h1>
+		<h1 style="text-align:center">Tilføj Nyt Garn</h1>
 	<div class="from-group">
 		<label asp-for="@Model.Yarn.ProductId" class="control-label"></label>
 		<input asp-for="@Model.Yarn.ProductId" class="form-control" readonly="@(true)" />
@@ -71,9 +71,9 @@
 
     <p align="center">
         <div class="form-group">
-            <input type="submit" style="background-color:green;color:white;margin-left:auto;margin-right:auto;display:block;width:100%;border-radius:8px" value="Create" class="btn text-center" />
+            <input type="submit" style="background-color:green;color:white;margin-left:auto;margin-right:auto;display:block;width:100%;border-radius:8px" value="Tilføj" class="btn text-center" />
             <br />
-            <input type="submit" asp-page="/Main/Product/GetAllYarn" class="btn text-center" style="background-color:red;color:white;margin-left:auto;margin-right:auto;display:block;width:100%;border-radius:8px" value="Cancel" />
+            <input type="submit" asp-page="/Main/Product/GetAllYarn" class="btn text-center" style="background-color:red;color:white;margin-left:auto;margin-right:auto;display:block;width:100%;border-radius:8px" value="Afbryd Opretning" />
         </div>
     </p>
 	
