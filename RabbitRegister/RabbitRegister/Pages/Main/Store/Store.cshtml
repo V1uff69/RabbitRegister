@@ -45,7 +45,8 @@
                             <div class="d-flex flex-wrap justify-content-center" style="margin-bottom: 5px; margin-top: 0px;">
                                 <a class="btn-card btn-primary btn-sm" type="button" title="Edit" asp-page="/Main/Product/EditWool" asp-route-id="@Wool.ProductId"><i class="fa fa-edit"></i></a>
                                 <a class="btn-card btn-danger btn-sm" type="button" title="Delete" asp-page="/Main/Product/DeleteWool" asp-route-id="@Wool.ProductId"><i class="fa fa-trash"></i></a>
-                                <a class="btn-card btn alert-success btn-sm" asp-page="/Main/Store/Basket" asp-page-handler="AddToBasketAsync" asp-route-id="@Wool.ProductId"><i class="fa fa-cart-plus"></i></a>
+                                <a class="btn-card btn alert-success btn-sm" href="/Main/Store/Basket?ProductId=@Wool.ProductId&ProductType=@Wool.ProductType"><i class="fa fa-cart-plus"></i></a>
+                               @* <a class="btn-card btn alert-success btn-sm" asp-page="/Main/Store/Basket" asp-page-handler="AddToBasketAsync" asp-route-id="@Wool.ProductId"><i class="fa fa-cart-plus"></i></a>*@
 
 
 
@@ -75,7 +76,8 @@
                             <div class="card-buttons d-flex flex-wrap justify-content-center" style="margin-bottom: 5px; margin-top: 0px;">
                                 <a class="btn-card btn-primary btn-sm" type="button" title="Edit" asp-page="/Main/Product/EditYarn" asp-route-id="@Yarn.ProductId"><i class="fa fa-edit"></i></a>
                                 <a class="btn-card btn-danger btn-sm" type="button" title="Delete" asp-page="/Main/Product/DeleteYarn" asp-route-id="@Yarn.ProductId"><i class="fa fa-trash"></i></a>
-                                <a class="btn-card btn alert-success btn-sm" asp-page="/Main/Store/Basket" asp-page-handler="AddToBasketAsync" asp-route-id="@Yarn.ProductId"><i class="fa fa-cart-plus"></i></a>
+                                <a class="btn-card btn alert-success btn-sm" href="/Main/Store/Basket?ProductId=@Yarn.ProductId&ProductType=@Yarn.ProductType"><i class="fa fa-cart-plus"></i></a>
+@*                                <a class="btn-card btn alert-success btn-sm" asp-page="/Main/Store/Basket" asp-page-handler="AddToBasketAsync" asp-route-id="@Yarn.ProductId"><i class="fa fa-cart-plus"></i></a>*@
 
                             </div>
                         </div>

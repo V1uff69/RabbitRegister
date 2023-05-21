@@ -35,17 +35,16 @@ namespace RabbitRegister.Services.Store
             return _orders.OrderByDescending(o => o.OrderId).FirstOrDefault();
         }
 
-        public async Task AddToBasketAsync(int productId)
+        public async Task AddToBasketAsync(int ProductId, string ProductType)
         {
-            // Check if the product is a Wool
-            Wool wool = _productService.GetWools(productId);
-            if (wool != null)
+            if (ProductType == "Wool")
             {
-                OrderLine existingItem = _orderLines.FirstOrDefault(wool => wool.ProductId == productId);
+                Wool wool = _productService.GetWools(ProductId);
+
+                OrderLine existingItem = _orderLines.FirstOrDefault(orderline => orderline.ProductId == ProductId && orderline.ProductType == ProductType);
 
                 if (existingItem != null)
                 {
-                    // If the product is already in the basket, increase the amount
                     existingItem.Amount++;
                     await _dbServiceOrderLine.UpdateObjectAsync(existingItem);
                 }
@@ -53,7 +52,8 @@ namespace RabbitRegister.Services.Store
                 {
                     OrderLine newOrderline = new OrderLine
                     {
-                        ProductId = productId,
+                        ProductId = ProductId,
+                        ProductType = ProductType,
                         Amount = 1,
                         Price = wool.Price,
                     };
@@ -61,48 +61,77 @@ namespace RabbitRegister.Services.Store
                     await _dbServiceOrderLine.AddObjectAsync(newOrderline);
                     _orderLines.Add(newOrderline);
                 }
-
-                return;
             }
 
-            // Check if the product is a Yarn
-            Yarn yarn = _productService.GetYarn(productId);
-            if (yarn != null)
-            {
-                OrderLine existingItem = _orderLines.FirstOrDefault(yarn => yarn.ProductId == productId);
-
-                if (existingItem != null)
-                {
-                    // If the product is already in the basket, increase the amount
-                    existingItem.Amount++;
-                    await _dbServiceOrderLine.UpdateObjectAsync(existingItem);
-                }
-                else
-                {
-                    Order order = GetLastOrder();
-
-                    if (order == null)
-                    {
-                        // Create a new order
-                        order = new Order();
-                        await _dbServiceOrder.AddObjectAsync(order);
-                    }
-
-                    OrderLine newOrderline = new OrderLine
-                    {
-                        ProductId = productId,
-                        Amount = 1,
-                        Price = yarn.Price,
-                        Order = order
-                    };
-
-                    await _dbServiceOrderLine.AddObjectAsync(newOrderline);
-                    _orderLines.Add(newOrderline);
-                }
-
-                return;
-            }
         }
+        //public async Task AddToBasketAsync(int ProductId, string ProductType)
+        //{
+        //    // Check if the product is a Wool
+        //    Wool wool = _productService.GetWools(ProductId);
+        //    if (wool != null)
+        //    {
+        //        OrderLine existingItem = _orderLines.FirstOrDefault(wool => wool.ProductId == ProductId);
+
+        //        if (existingItem != null)
+        //        {
+        //            // If the product is already in the basket, increase the amount
+        //            existingItem.Amount++;
+        //            await _dbServiceOrderLine.UpdateObjectAsync(existingItem);
+        //        }
+        //        else
+        //        {
+        //            OrderLine newOrderline = new OrderLine
+        //            {
+        //                ProductId = ProductId,
+        //                Amount = 1,
+        //                Price = wool.Price,
+        //            };
+
+        //            await _dbServiceOrderLine.AddObjectAsync(newOrderline);
+        //            _orderLines.Add(newOrderline);
+        //        }
+
+        //        return;
+        //    }
+
+        //    // Check if the product is a Yarn
+        //    Yarn yarn = _productService.GetYarn(ProductId);
+        //    if (yarn != null)
+        //    {
+        //        OrderLine existingItem = _orderLines.FirstOrDefault(yarn => yarn.ProductId == ProductId);
+
+        //        if (existingItem != null)
+        //        {
+        //            // If the product is already in the basket, increase the amount
+        //            existingItem.Amount++;
+        //            await _dbServiceOrderLine.UpdateObjectAsync(existingItem);
+        //        }
+        //        else
+        //        {
+        //            Order order = GetLastOrder();
+
+        //            if (order == null)
+        //            {
+        //                // Create a new order
+        //                order = new Order();
+        //                await _dbServiceOrder.AddObjectAsync(order);
+        //            }
+
+        //            OrderLine newOrderline = new OrderLine
+        //            {
+        //                ProductId = ProductId,
+        //                Amount = 1,
+        //                Price = yarn.Price,
+        //                Order = order
+        //            };
+
+        //            await _dbServiceOrderLine.AddObjectAsync(newOrderline);
+        //            _orderLines.Add(newOrderline);
+        //        }
+
+        //        return;
+        //    }
+        //}
         public List<Order> GetOrders()
         {
             return _orders;

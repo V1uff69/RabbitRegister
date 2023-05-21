@@ -11,6 +11,7 @@ namespace RabbitRegister.Model
         public int OrderLineId { get; set; }
         [ForeignKey(nameof(ProductId))]
         public int ProductId { get; set; }
+        public string ProductType { get; set; }
         public int Amount { get; set; }
         public double Price { get; set; }
         public Order? Order { get; set; }
