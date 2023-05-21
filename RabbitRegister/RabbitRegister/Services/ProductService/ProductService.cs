@@ -15,12 +15,12 @@ namespace RabbitRegister.Services.ProductService
 		public ProductService(DbGenericService<Wool> dbService, DbGenericService<Yarn> dbYarnService)
 		{
 			_dbService = dbService;
-			//_wools = MockData.MockWool.GetMockWools();
+			//_wools = MockWool.GetMockWools();
 			_wools = _dbService.GetObjectsAsync().Result.ToList();
-            _dbYarnService = dbYarnService;
-            //_yarns = MockYarn.GetMockYarns();
-            _yarns = dbYarnService.GetObjectsAsync().Result.ToList();
-        }
+			_dbYarnService = dbYarnService;
+			//_yarns = MockYarn.GetMockYarns();
+			_yarns = dbYarnService.GetObjectsAsync().Result.ToList();
+		}
 
 		public List<Product> GetProduct(int productId)
 		{
