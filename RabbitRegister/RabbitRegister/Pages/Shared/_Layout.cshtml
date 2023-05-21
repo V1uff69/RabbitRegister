@@ -78,6 +78,13 @@
 
                 <div>
                     <a class="btn btn-success fa fa-shopping-basket" asp-page="/Main/Store/Basket"></a>
+                    <div>
+                        @if (TempData.ContainsKey("Notification"))
+                        {
+                            <p>@TempData["Notification"]</p>
+                        }
+                    </div>
+
                 </div>
                 <div>
                     <ul class="navbar-nav">

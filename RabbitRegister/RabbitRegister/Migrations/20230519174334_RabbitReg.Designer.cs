@@ -12,7 +12,7 @@ using RabbitRegister.EFDbContext;
 namespace RabbitRegister.Migrations
 {
     [DbContext(typeof(ItemDbContext))]
-    [Migration("20230518083708_RabbitReg")]
+    [Migration("20230519174334_RabbitReg")]
     partial class RabbitReg
     {
         /// <inheritdoc />
@@ -120,13 +120,13 @@ namespace RabbitRegister.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderLineId"));
 
-                    b.Property<int?>("Amount")
+                    b.Property<int>("Amount")
                         .HasColumnType("int");
 
                     b.Property<int?>("OrderId")
                         .HasColumnType("int");
 
-                    b.Property<double?>("Price")
+                    b.Property<double>("Price")
                         .HasColumnType("float");
 
                     b.Property<int>("ProductId")
@@ -352,7 +352,7 @@ namespace RabbitRegister.Migrations
             modelBuilder.Entity("RabbitRegister.Model.OrderLine", b =>
                 {
                     b.HasOne("RabbitRegister.Model.Order", "Order")
-                        .WithMany("OrderLine")
+                        .WithMany("OrderLines")
                         .HasForeignKey("OrderId");
 
                     b.Navigation("Order");
@@ -360,7 +360,7 @@ namespace RabbitRegister.Migrations
 
             modelBuilder.Entity("RabbitRegister.Model.Order", b =>
                 {
-                    b.Navigation("OrderLine");
+                    b.Navigation("OrderLines");
                 });
 #pragma warning restore 612, 618
         }

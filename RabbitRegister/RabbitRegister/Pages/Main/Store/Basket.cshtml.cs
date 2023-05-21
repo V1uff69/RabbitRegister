@@ -15,6 +15,7 @@ namespace RabbitRegister.Pages.Main.Store
         public List<OrderLine> OrderLines { get; set; } = new List<OrderLine>();
         public List<Model.Wool> Wools { get; set; }
         public List<Model.Yarn> Yarns { get; set; }
+        public Model.Product Product { get; set; }
 
         public BasketModel(IStoreService storeService, IProductService productService)
         {
@@ -22,16 +23,19 @@ namespace RabbitRegister.Pages.Main.Store
             _productService = productService;
         }
 
-        public void OnGet()
+        public IActionResult OnGetBasket()
         {
             OrderLines = _storeService.GetBasket();
-
+            return Page();
         }
 
-        public async Task<IActionResult> OnPostAddToBasketAsync(int productId)
+        public async Task<IActionResult> OnGetAddToBasketAsync(int id)
         {
-            await _storeService.AddToBasketAsync(productId);
-            return RedirectToPage("/Main/Store/Basket");
+                await _storeService.AddToBasketAsync(id);
+
+            TempData["Notification"] = "Product added to the basket.";
+
+            return RedirectToPage("/Main/Store/Store");
         }
 
         public async Task<IActionResult> OnGetDecreaseAmount(int id)
@@ -42,6 +46,9 @@ namespace RabbitRegister.Pages.Main.Store
             {
                 await _storeService.DecreaseAmount(thisOrderLine, id);
             }
+
+            // Reload the necessary data
+            OrderLines = _storeService.GetBasket();
 
             return Page();
         }
@@ -56,7 +63,7 @@ namespace RabbitRegister.Pages.Main.Store
             }
 
             return RedirectToPage("/Main/Store/Basket");
-        } 
+        }
 
         public IActionResult OnPostAsync()
         {

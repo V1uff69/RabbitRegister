@@ -1,5 +1,7 @@
 ﻿using RabbitRegister.Model;
 using RabbitRegister.Services.ProductService;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace RabbitRegister.Services.Store
 {
@@ -22,11 +24,17 @@ namespace RabbitRegister.Services.Store
             _orderLines = dbServiceOrderLine.GetObjectsAsync().Result.ToList();
         }
 
-        public async Task AddOrderAsync(Order order)
+        //public async Task AddOrderAsync(Order order)
+        //{
+        //    await _dbServiceOrder.AddObjectAsync(order);
+        //    _orders.Add(order);
+        //}
+
+        public Order GetLastOrder()
         {
-            await _dbServiceOrder.AddObjectAsync(order);
-            _orders.Add(order);
+            return _orders.OrderByDescending(o => o.OrderId).FirstOrDefault();
         }
+
         public async Task AddToBasketAsync(int productId)
         {
             // Check if the product is a Wool
@@ -48,7 +56,6 @@ namespace RabbitRegister.Services.Store
                         ProductId = productId,
                         Amount = 1,
                         Price = wool.Price,
-                        Order = null
                     };
 
                     await _dbServiceOrderLine.AddObjectAsync(newOrderline);
@@ -72,12 +79,21 @@ namespace RabbitRegister.Services.Store
                 }
                 else
                 {
+                    Order order = GetLastOrder();
+
+                    if (order == null)
+                    {
+                        // Create a new order
+                        order = new Order();
+                        await _dbServiceOrder.AddObjectAsync(order);
+                    }
+
                     OrderLine newOrderline = new OrderLine
                     {
                         ProductId = productId,
                         Amount = 1,
                         Price = yarn.Price,
-                        Order = null
+                        Order = order
                     };
 
                     await _dbServiceOrderLine.AddObjectAsync(newOrderline);
@@ -120,7 +136,7 @@ namespace RabbitRegister.Services.Store
                 if (thisOrderLine.Amount == 0)
                 {
                     await _dbServiceOrderLine.DeleteObjectAsync(thisOrderLine);
-                    _orderLines = GetBasket();
+                    _orderLines.Remove(thisOrderLine); // Remove the OrderLine from _orderLines
                 }
             }
         }

@@ -12,7 +12,7 @@ namespace RabbitRegister.Model
         [Key]
         public int OrderId { get; set; }
         public DateTime Date { get; set; } = DateTime.Now;
-        public List<OrderLine>? OrderLine { get; set; }
+        public ICollection<OrderLine> OrderLines { get; set; }
         public double? TotalPrice { get; set; }
         [Display(Name = "Name of recipient")]
         [Required(ErrorMessage = "Name is required to check out order"), MinLength(1), MaxLength(50)]
@@ -20,7 +20,7 @@ namespace RabbitRegister.Model
         [Display(Name = "Delivery address")]
         [Required(ErrorMessage = "Delivery address is required to check out order"), MinLength(1), MaxLength(50)]
         public string DeliveryAddress { get; set; }
-        [Display(Name="Name of City")]
+        [Display(Name = "Name of City")]
         [Required(ErrorMessage = "City is required to check out order"), MinLength(1), MaxLength(50)]
         public string City { get; set; }
         [Display(Name = "Zipcode of City")]

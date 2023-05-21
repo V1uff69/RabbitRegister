@@ -4,7 +4,7 @@ namespace RabbitRegister.Services.Store
 {
     public interface IStoreService
     {
-        Task AddOrderAsync(Order order);
+        //Task AddOrderAsync(Order order);
         Task AddToBasketAsync(int productId);
         Task DecreaseAmount(OrderLine orderLine, int id);
         Task IncreaseAmount(OrderLine orderLine, int id);
