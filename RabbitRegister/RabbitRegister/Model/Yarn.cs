@@ -9,23 +9,25 @@ namespace RabbitRegister.Model
     public class Yarn : Product
     {
 		[Display(Name = "Fiber")]
-		[Required(ErrorMessage = "Remember to add Fiber to Yarn")]
+		[Required(ErrorMessage = "Husk at tilføje fiber til garnet ex. Angora 80%, får 20%")]
 		public string Fiber { get; set; }
 
-		[Display(Name = "Needle Size")]
-		[Required(ErrorMessage = "Remember to add Needle Size to Yarn")]
+		[Display(Name = "Nåle Størrelse")]
+		[Required(ErrorMessage = "Husk at tilføje størrelse på nål til garnet")]
 		public double NeedleSize { get; set; }
 
-		[Display(Name = "Length")]
-		[Required(ErrorMessage = "Remember to add Length to Yarn")]
+		[Display(Name = "Længde")]
+		[Required(ErrorMessage = "Husk at tilføje længde til garnet i meter")]
 		public double Length { get; set; }
 
-		[Display(Name = "Tension")]
-		[Required(ErrorMessage = "Remember to add Tension to Yarn")]
+		[Display(Name = "Strikkefasthed")]
+		[StringLength(20, MinimumLength = 1, ErrorMessage = "Strikkefasthed skal være mellem 1 og 20 tegn")]
+		[Required(ErrorMessage = "Husk at tilføje Strikkefasthed til garnet")]
 		public string Tension { get; set; }
 
-		[Display(Name = "Washing")]
-		[Required(ErrorMessage = "Remember to add Washing to Yarn")]
+		[Display(Name = "Vaske beskrivelse")]
+		[StringLength(50, MinimumLength = 1, ErrorMessage = "Strikkefasthed skal være mellem 1 og 50 tegn")]
+		[Required(ErrorMessage = "Husk at tilføje vaske beskrivelse til garnet")]
 		public string Washing { get; set; }
 
         public string? ImgString { get; set; }
