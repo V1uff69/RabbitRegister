@@ -12,13 +12,8 @@ using RabbitRegister.EFDbContext;
 namespace RabbitRegister.Migrations
 {
     [DbContext(typeof(ItemDbContext))]
-<<<<<<<< HEAD:RabbitRegister/RabbitRegister/Migrations/20230522143600_Rab1.Designer.cs
-    [Migration("20230522143600_Rab1")]
+    [Migration("20230522151311_Rab1")]
     partial class Rab1
-========
-    [Migration("20230522084323_rab1")]
-    partial class rab1
->>>>>>>> newMadsV3:RabbitRegister/RabbitRegister/Migrations/20230522084323_rab1.Designer.cs
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -53,7 +48,8 @@ namespace RabbitRegister.Migrations
 
                     b.Property<string>("Phone")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(8)
+                        .HasColumnType("nvarchar(8)");
 
                     b.Property<int>("ZipCode")
                         .HasColumnType("int");

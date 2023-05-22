@@ -45,7 +45,8 @@ namespace RabbitRegister.Migrations
 
                     b.Property<string>("Phone")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(8)
+                        .HasColumnType("nvarchar(8)");
 
                     b.Property<int>("ZipCode")
                         .HasColumnType("int");

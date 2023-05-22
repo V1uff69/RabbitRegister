@@ -6,11 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace RabbitRegister.Migrations
 {
     /// <inheritdoc />
-<<<<<<<< HEAD:RabbitRegister/RabbitRegister/Migrations/20230522143600_Rab1.cs
     public partial class Rab1 : Migration
-========
-    public partial class rab1 : Migration
->>>>>>>> newMadsV3:RabbitRegister/RabbitRegister/Migrations/20230522084323_rab1.cs
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -19,17 +15,12 @@ namespace RabbitRegister.Migrations
                 name: "Breeder",
                 columns: table => new
                 {
-<<<<<<<< HEAD:RabbitRegister/RabbitRegister/Migrations/20230522143600_Rab1.cs
-                    BreederRegNo = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-========
                     BreederRegNo = table.Column<int>(type: "int", nullable: false),
->>>>>>>> newMadsV3:RabbitRegister/RabbitRegister/Migrations/20230522084323_rab1.cs
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Adress = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ZipCode = table.Column<int>(type: "int", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Phone = table.Column<string>(type: "nvarchar(8)", maxLength: 8, nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     isAdmin = table.Column<bool>(type: "bit", nullable: false)
                 },
