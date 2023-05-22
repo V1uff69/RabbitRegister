@@ -12,9 +12,6 @@ namespace RabbitRegister.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-<<<<<<<< HEAD:RabbitRegister/RabbitRegister/Migrations/20230522095346_Rab1.cs
-                name: "Order",
-========
                 name: "Breeder",
                 columns: table => new
                 {
@@ -34,8 +31,7 @@ namespace RabbitRegister.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Product",
->>>>>>>> Mikkel:RabbitRegister/RabbitRegister/Migrations/20230520124859_RabbitReg.cs
+                name: "Order",
                 columns: table => new
                 {
                     OrderId = table.Column<int>(type: "int", nullable: false)
@@ -102,35 +98,6 @@ namespace RabbitRegister.Migrations
                 });
 
             migrationBuilder.CreateTable(
-<<<<<<<< HEAD:RabbitRegister/RabbitRegister/Migrations/20230522095346_Rab1.cs
-========
-                name: "Order",
-                columns: table => new
-                {
-                    OrderId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ProductId = table.Column<int>(type: "int", nullable: false),
-                    TotalPrice = table.Column<double>(type: "float", nullable: false),
-                    RecipientName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    DeliveryAddress = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    City = table.Column<int>(type: "int", maxLength: 50, nullable: false),
-                    ZipCode = table.Column<int>(type: "int", maxLength: 4, nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Order", x => x.OrderId);
-                    table.ForeignKey(
-                        name: "FK_Order_Product_ProductId",
-                        column: x => x.ProductId,
-                        principalTable: "Product",
-                        principalColumn: "ProductId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
->>>>>>>> Mikkel:RabbitRegister/RabbitRegister/Migrations/20230520124859_RabbitReg.cs
                 name: "Wools",
                 columns: table => new
                 {
@@ -197,48 +164,10 @@ namespace RabbitRegister.Migrations
                         principalColumn: "OrderId");
                 });
 
-<<<<<<<< HEAD:RabbitRegister/RabbitRegister/Migrations/20230522095346_Rab1.cs
-            migrationBuilder.CreateTable(
-                name: "Breeder",
-                columns: table => new
-                {
-                    BreederRegNo = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Adress = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ZipCode = table.Column<int>(type: "int", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    isAdmin = table.Column<bool>(type: "bit", nullable: false),
-                    RabbitId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Breeder", x => x.BreederRegNo);
-                    table.ForeignKey(
-                        name: "FK_Breeder_Rabbits_RabbitId",
-                        column: x => x.RabbitId,
-                        principalTable: "Rabbits",
-                        principalColumn: "RabbitRegNo",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Breeder_RabbitId",
-                table: "Breeder",
-                column: "RabbitId");
-
             migrationBuilder.CreateIndex(
                 name: "IX_OrderLines_OrderId",
                 table: "OrderLines",
                 column: "OrderId");
-========
-            migrationBuilder.CreateIndex(
-                name: "IX_Order_ProductId",
-                table: "Order",
-                column: "ProductId");
->>>>>>>> Mikkel:RabbitRegister/RabbitRegister/Migrations/20230520124859_RabbitReg.cs
         }
 
         /// <inheritdoc />
@@ -263,14 +192,7 @@ namespace RabbitRegister.Migrations
                 name: "Yarns");
 
             migrationBuilder.DropTable(
-<<<<<<<< HEAD:RabbitRegister/RabbitRegister/Migrations/20230522095346_Rab1.cs
-                name: "Rabbits");
-
-            migrationBuilder.DropTable(
                 name: "Order");
-========
-                name: "Product");
->>>>>>>> Mikkel:RabbitRegister/RabbitRegister/Migrations/20230520124859_RabbitReg.cs
         }
     }
 }

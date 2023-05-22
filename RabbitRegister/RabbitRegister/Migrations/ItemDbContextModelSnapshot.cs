@@ -101,11 +101,6 @@ namespace RabbitRegister.Migrations
 
                     b.HasKey("OrderId");
 
-<<<<<<< HEAD
-=======
-                    b.HasIndex("ProductId");
-
->>>>>>> Mikkel
                     b.ToTable("Order");
                 });
 
@@ -251,7 +246,6 @@ namespace RabbitRegister.Migrations
 
             modelBuilder.Entity("RabbitRegister.Model.Wool", b =>
                 {
-<<<<<<< HEAD
                     b.Property<int>("ProductId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
@@ -267,9 +261,6 @@ namespace RabbitRegister.Migrations
                     b.Property<string>("Color")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-=======
-                    b.HasBaseType("RabbitRegister.Model.Product");
->>>>>>> Mikkel
 
                     b.Property<string>("ImgString")
                         .HasColumnType("nvarchar(max)");
@@ -351,18 +342,6 @@ namespace RabbitRegister.Migrations
                     b.ToTable("Yarns");
                 });
 
-<<<<<<< HEAD
-            modelBuilder.Entity("RabbitRegister.Model.Breeder", b =>
-                {
-                    b.HasOne("RabbitRegister.Model.Rabbit", "Rabbit")
-                        .WithMany()
-                        .HasForeignKey("RabbitId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Rabbit");
-                });
-
             modelBuilder.Entity("RabbitRegister.Model.OrderLine", b =>
                 {
                     b.HasOne("RabbitRegister.Model.Order", "Order")
@@ -375,35 +354,6 @@ namespace RabbitRegister.Migrations
             modelBuilder.Entity("RabbitRegister.Model.Order", b =>
                 {
                     b.Navigation("OrderLines");
-=======
-            modelBuilder.Entity("RabbitRegister.Model.Order", b =>
-                {
-                    b.HasOne("RabbitRegister.Model.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("RabbitRegister.Model.Wool", b =>
-                {
-                    b.HasOne("RabbitRegister.Model.Product", null)
-                        .WithOne()
-                        .HasForeignKey("RabbitRegister.Model.Wool", "ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("RabbitRegister.Model.Yarn", b =>
-                {
-                    b.HasOne("RabbitRegister.Model.Product", null)
-                        .WithOne()
-                        .HasForeignKey("RabbitRegister.Model.Yarn", "ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
->>>>>>> Mikkel
                 });
 #pragma warning restore 612, 618
         }

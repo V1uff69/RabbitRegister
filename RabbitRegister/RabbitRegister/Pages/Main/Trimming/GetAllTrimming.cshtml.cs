@@ -24,11 +24,11 @@ namespace RabbitRegister.Pages.Main.Trimming
         [BindProperty]
         public int SearchId { get; set; }
 
-        public void OnGet(int RabbitRegNo)
+        public void OnGet(int RabbitRegNo, int BreederRegNo)
         {
-            if (RabbitRegNo > 0)
+            if (RabbitRegNo > 0 && BreederRegNo > 0)
             {
-                Trimmings = _trimmingService.GetTrimmingByRabbitRegNo(RabbitRegNo);
+                Trimmings = _trimmingService.GetTrimmingByRabbitRegNoAndBreederRegNo(RabbitRegNo, BreederRegNo);
             }
             else
             {

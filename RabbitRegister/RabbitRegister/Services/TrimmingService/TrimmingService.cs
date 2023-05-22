@@ -132,13 +132,13 @@ namespace RabbitRegister.Services.TrimmingService
             }
         }
 
-		public List<Trimming> GetTrimmingByRabbitRegNo (int RabbitRegNo)
+		public List<Trimming> GetTrimmingByRabbitRegNoAndBreederRegNo (int RabbitRegNo, int BreederRegNo)
 		{
 			var Trimmings = GetTrimmings();
 			List<Trimming> TrimmingByRabbitRegNo = new List<Trimming>();
 			foreach (var Trimming in Trimmings)
 			{
-				if (Trimming.RabbitRegNo == RabbitRegNo)
+				if (Trimming.RabbitRegNo == RabbitRegNo && Trimming.BreederRegNo == BreederRegNo)
 					TrimmingByRabbitRegNo.Add(Trimming);
 			}
 			return TrimmingByRabbitRegNo;

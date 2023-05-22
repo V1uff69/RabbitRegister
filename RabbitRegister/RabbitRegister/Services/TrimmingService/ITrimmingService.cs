@@ -16,7 +16,7 @@ namespace RabbitRegister.Services.TrimmingService
         IEnumerable<Trimming> SortByRabbitIdDescending();
         IEnumerable<Trimming> SortByDate();
         IEnumerable<Trimming> SortByDateDescending();
-        List<Trimming> GetTrimmingByRabbitRegNo(int RabbitRegNo);
+        List<Trimming> GetTrimmingByRabbitRegNoAndBreederRegNo(int RabbitRegNo, int BreederRegNo);
         List<Trimming> GetTrimmings();
     }
 }
