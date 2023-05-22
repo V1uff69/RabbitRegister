@@ -41,9 +41,12 @@
             <span asp-validation-for="@Model.Breeder.Password" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label asp-for="@Model.Breeder.isAdmin" class="control-label"></label>
-            <input asp-for="@Model.Breeder.isAdmin" type="checkbox" class="form-control" />
-            <span asp-validation-for="@Model.Breeder.isAdmin" class="text-danger"></span>
+            <label asp-for="Breeder.isAdmin" class="control-label"></label>
+            <div class="form-check">
+                <input asp-for="Breeder.isAdmin" class="form-check-input" />
+                <label class="form-check-label" for="Breeder_isAdmin">Is Admin</label>
+            </div>
+            <span asp-validation-for="Breeder.isAdmin" class="text-danger"></span>
         </div>
 
 

@@ -3,19 +3,26 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using RabbitRegister.Model;
 using RabbitRegister.Services.BreederService;
 using RabbitRegister.Pages.Main.Breeder;
+using RabbitRegister.Services.ProductService;
+using Microsoft.AspNetCore.Identity;
 
 namespace RabbitRegister.Pages.Main.Breeder
 {
     public class EditBreederModel : PageModel
     {
         private IBreederService _breederService;
+        private PasswordHasher<string> _passwordHasher;
+
 
         public EditBreederModel(IBreederService breederService)
         {
             _breederService = breederService;
+            _passwordHasher = new PasswordHasher<string>();
+
         }
 
         public Model.Breeder Breeder { get; set; }
+
 
         public IActionResult OnGet(int Id)
         {
@@ -23,9 +30,14 @@ namespace RabbitRegister.Pages.Main.Breeder
             return Page();
         }
 
-        public IActionResult OnPost(int id)
+        public async Task<IActionResult> OnPost(Model.Breeder breeder)
         {
-            _breederService.UpdateBreederAsync(Breeder, id);
+            if(!ModelState.IsValid)
+            {
+                return Page();
+            }
+            breeder.Password = _passwordHasher.HashPassword(null, breeder.Password);
+            await _breederService.UpdateBreederAsync(breeder);
             return RedirectToPage("GetAllBreeders");
         }
     }

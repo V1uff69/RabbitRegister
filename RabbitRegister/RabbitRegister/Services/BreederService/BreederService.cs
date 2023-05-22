@@ -41,24 +41,25 @@ namespace RabbitRegister.Services.BreederService
             return null;
         }
 
-        public void UpdateBreederAsync(Breeder breeder, int breederRegNo)
+        public async Task UpdateBreederAsync(Breeder breeder)
         {
             if (breeder != null)
             {
                 foreach (Breeder i in Breeders)
                 {
-                    if (i.BreederRegNo == breeder.BreederRegNo && i.Name == breeder.Name)
+                    if (i.BreederRegNo == breeder.BreederRegNo /*&& i.Name == breeder.Name*/)
                     {
-
+                        i.Name = breeder.Name;
                         i.Adress = breeder.Adress;
                         i.ZipCode = breeder.ZipCode;
                         i.Email = breeder.Email;
                         i.Phone = breeder.Phone;
+                        i.Password = breeder.Password;
                         i.isAdmin = breeder.isAdmin;
                         break;
                     }
                 }
-                _dbService.UpdateObjectAsync(breeder);
+                await _dbService.UpdateObjectAsync(breeder);
             }
         }
 

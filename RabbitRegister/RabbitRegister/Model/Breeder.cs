@@ -10,6 +10,7 @@ namespace RabbitRegister.Model
     {
         [Display(Name = "Avler Id")]
         [RegularExpression(@"^\d{4}$", ErrorMessage = "Avler-ID, SKAL bestå af 4 tal")]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int BreederRegNo { get; set; }
         [Display(Name = "Navn")]
         [Required(ErrorMessage = "Avler Skal Have Navn")]
@@ -21,25 +22,26 @@ namespace RabbitRegister.Model
 
         [Display(Name = "Postnummer")]
         [Required(ErrorMessage = "Avler Skal Have Postnummer")]
-        [Range(typeof(int), "4", "4", ErrorMessage = "Postnummer skal være på {2} ")]
+        [Range(1000, 9999, ErrorMessage = "Postnummer skal være mellem {1}-{2}.")]
         public int ZipCode { get; set; }
 
         [Display(Name = "Email")]
         [Required(ErrorMessage = "Avler Skal Have Email")]
         public string Email { get; set; }
 
-        [Display(Name = "Telefonnumer")]
+        [Display(Name = "Telefonnummer")]
         [Required(ErrorMessage = "Avler Skal Have Telefonnummer")]
-        [Range(typeof(int), "8", "8", ErrorMessage = "Telefonnummer skal være {2} tal")]
+        [StringLength(8, MinimumLength = 8, ErrorMessage = "Telefonnummer skal være på {1} cifre.")]
+        [RegularExpression("^[0-9]*$", ErrorMessage = "Telefonnummer skal kun indeholde tal.")]
         public string Phone {get; set; }
         
         [Required]
         public string Password { get; set; }
         public bool isAdmin { get; set; }
 
-        [ForeignKey(nameof(Rabbit))]
-        public int RabbitId { get; set; }
-        public virtual Rabbit Rabbit { get; set; }
+        //[ForeignKey(nameof(Rabbit))]
+        //public int RabbitId { get; set; }
+        //public virtual Rabbit Rabbit { get; set; }
 
         public Breeder()
         {

@@ -17,16 +17,16 @@ namespace RabbitRegister.Pages.Main.Breeder
         [BindProperty]
         public Model.Breeder Breeder { get; set; }
 
-        public IActionResult OnGet(int breederRegNo)
+        public IActionResult OnGet(int id)
         {
-            Breeder = _breederService.GetBreeder(breederRegNo);
+            Breeder = _breederService.GetBreeder(id);
 
             return Page();
         }
 
-        public IActionResult OnPost(int breederRegNo)
+        public IActionResult OnPost(int id)
         {
-            _breederService.DeleteBreederAsync(breederRegNo);
+            _breederService.DeleteBreederAsync(id);
             return RedirectToPage("GetAllBreeders");
         }
     }

@@ -10,7 +10,7 @@ namespace RabbitRegister.Services.BreederService
         Task AddUserAsync(Breeder breeder);
         List<Breeder>  GetBreeders();
         Breeder GetBreeder(int breederRegNo);
-        void UpdateBreederAsync(Breeder breeder, int breederRegNo);
+        Task UpdateBreederAsync(Breeder breeder);
         Task<Breeder> DeleteBreederAsync(int? breederRegNo);
     }
 }

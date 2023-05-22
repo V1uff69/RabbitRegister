@@ -25,10 +25,7 @@ namespace RabbitRegister.Migrations
             modelBuilder.Entity("RabbitRegister.Model.Breeder", b =>
                 {
                     b.Property<int>("BreederRegNo")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BreederRegNo"));
 
                     b.Property<string>("Adress")
                         .IsRequired()
@@ -50,9 +47,6 @@ namespace RabbitRegister.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("RabbitId")
-                        .HasColumnType("int");
-
                     b.Property<int>("ZipCode")
                         .HasColumnType("int");
 
@@ -60,8 +54,6 @@ namespace RabbitRegister.Migrations
                         .HasColumnType("bit");
 
                     b.HasKey("BreederRegNo");
-
-                    b.HasIndex("RabbitId");
 
                     b.ToTable("Breeder");
                 });
@@ -335,17 +327,6 @@ namespace RabbitRegister.Migrations
                     b.HasKey("ProductId");
 
                     b.ToTable("Yarns");
-                });
-
-            modelBuilder.Entity("RabbitRegister.Model.Breeder", b =>
-                {
-                    b.HasOne("RabbitRegister.Model.Rabbit", "Rabbit")
-                        .WithMany()
-                        .HasForeignKey("RabbitId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Rabbit");
                 });
 
             modelBuilder.Entity("RabbitRegister.Model.OrderLine", b =>

@@ -12,6 +12,24 @@ namespace RabbitRegister.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Breeder",
+                columns: table => new
+                {
+                    BreederRegNo = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Adress = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ZipCode = table.Column<int>(type: "int", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    isAdmin = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Breeder", x => x.BreederRegNo);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Order",
                 columns: table => new
                 {
@@ -143,37 +161,6 @@ namespace RabbitRegister.Migrations
                         principalColumn: "OrderId");
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Breeder",
-                columns: table => new
-                {
-                    BreederRegNo = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Adress = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ZipCode = table.Column<int>(type: "int", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    isAdmin = table.Column<bool>(type: "bit", nullable: false),
-                    RabbitId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Breeder", x => x.BreederRegNo);
-                    table.ForeignKey(
-                        name: "FK_Breeder_Rabbits_RabbitId",
-                        column: x => x.RabbitId,
-                        principalTable: "Rabbits",
-                        principalColumn: "RabbitRegNo",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Breeder_RabbitId",
-                table: "Breeder",
-                column: "RabbitId");
-
             migrationBuilder.CreateIndex(
                 name: "IX_OrderLines_OrderId",
                 table: "OrderLines",
@@ -190,6 +177,9 @@ namespace RabbitRegister.Migrations
                 name: "OrderLines");
 
             migrationBuilder.DropTable(
+                name: "Rabbits");
+
+            migrationBuilder.DropTable(
                 name: "Trimmings");
 
             migrationBuilder.DropTable(
@@ -197,9 +187,6 @@ namespace RabbitRegister.Migrations
 
             migrationBuilder.DropTable(
                 name: "Yarns");
-
-            migrationBuilder.DropTable(
-                name: "Rabbits");
 
             migrationBuilder.DropTable(
                 name: "Order");

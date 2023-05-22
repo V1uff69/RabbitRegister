@@ -1,14 +1,14 @@
-﻿@page
+﻿@page "{Id:int}"
 @model RabbitRegister.Pages.Main.Breeder.DeleteBreederModel
 @{
-    ViewData["Title"] = "Delete Breeder";
+    ViewData["Title"] = "Slet Avler";
 }
 
-<h1>Delete Confirmation</h1>
+<h1>Bekræftelse af Sletning</h1>
 
-<h3>Are you sure you want to delete the selected Breeder?</h3>
+<h3>Er du sikker på du gerne vil slette denne Avler?</h3>
 <div>
-    <h4>Deleting...</h4>
+    <h4>Sletter...</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -33,7 +33,7 @@
 
     <form method="post">
         <input type="hidden" asp-for="Breeder.BreederRegNo" />
-        <button type="submit" class="btn btn-danger">Yes</button>
-        <a class="btn btn-primary" asp-page="/Main/Breeder/GetAllBreeders">No</a>
+        <button type="submit" class="btn btn-danger">Ja</button>
+        <a class="btn btn-primary" asp-page="/Main/Breeder/GetAllBreeders">Nej</a>
     </form>
 </div>
