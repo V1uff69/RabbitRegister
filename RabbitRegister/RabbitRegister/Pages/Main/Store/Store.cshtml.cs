@@ -26,9 +26,9 @@ namespace RabbitRegister.Pages.Main.Store
             Wools = _productService.GetWools();
         }
 
-        public async Task<IActionResult> OnPostAddToBasket(int id)
+        public async Task<IActionResult> OnPostAddToBasket(int id, string type)
         {
-            await _storeService.AddToBasketAsync(id);
+            await _storeService.AddToBasketAsync(id, type);
 
             TempData["Notification"] = "Product added to the basket.";
 
