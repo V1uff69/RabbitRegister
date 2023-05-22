@@ -40,8 +40,19 @@ html {
 
 header {
     position: sticky;
+    z-index: 3;
     top: 0;
 }
+
+.input-group {
+    position: relative;
+    z-index: 1;
+}
+
+    .input-group .btn {
+        position: relative;
+        z-index: 2;
+    }
 
 body {
     margin-bottom: 60px;
