@@ -10,12 +10,21 @@ namespace RabbitRegister.EFDbContext
 			options.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=RabbitRegisterDb; Integrated Security=True; Connect Timeout=30; Encrypt=False");
 		}
 
-		public DbSet<Wool> Wools { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Rabbit>()
+                .HasKey(r => new { r.RabbitRegNo, r.BreederRegNo });
+        }
+
+        public DbSet<Wool> Wools { get; set; }
 		public DbSet<Breeder> Breeders { get; set; }
 		public DbSet<Order> Orders { get; set; }
         public DbSet<Trimming> Trimmings { get; set; }
 		public DbSet<Yarn> Yarns { get; set; }
 		public DbSet<Rabbit> Rabbits { get; set; }
 		public DbSet<OrderLine> OrderLines { get; set; }
+
     }
 }

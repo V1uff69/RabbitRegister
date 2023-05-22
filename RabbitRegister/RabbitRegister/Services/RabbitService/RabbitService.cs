@@ -15,7 +15,7 @@ namespace RabbitRegister.Services.RabbitService
             _dbGenericService = dbGenericService;
             _rabbits = _dbGenericService.GetObjectsAsync().Result.ToList();
 
-            //_rabbits = MockRabbit.GetMockRabbits();
+            //_rabbits = MockRabbit.GetMockRabbits(); //DB tom? Ved første Debug kør denne kode, og udkommenter igen derefter
             //foreach (var rabbit in _rabbits)
             //{
             //    _dbGenericService.AddObjectAsync(rabbit).Wait();
@@ -33,54 +33,48 @@ namespace RabbitRegister.Services.RabbitService
             await _dbGenericService.AddObjectAsync(rabbit);
         }
 
-        public Rabbit GetRabbit(int id)
+        public Rabbit GetRabbit(int id, int breederRegNo)
         {
-            foreach (Rabbit rabbit in _rabbits)
-            {
-                if (rabbit.RabbitRegNo == id)
-                    return rabbit;
-            }
-
-            return null;
+            return _rabbits.FirstOrDefault(r => r.RabbitRegNo == id && r.BreederRegNo == breederRegNo);
         }
 
-        public List<Rabbit> GetRabbits() { return _rabbits; }
+        public List<Rabbit> GetAllRabbits(int id, int breederRegNo)
+        {
+            return _rabbits.Where(rabbit => rabbit.RabbitRegNo == id && rabbit.BreederRegNo == breederRegNo).ToList();
+        }
 
-
-        public async Task UpdateRabbitAsync(Rabbit rabbit, int id) // int id tilføjet
+        public async Task UpdateRabbitAsync(Rabbit rabbit, int id, int breederRegNo)
         {
             if (rabbit != null)
             {
-                foreach (Rabbit r in _rabbits)
+                Rabbit existingRabbit = _rabbits.FirstOrDefault(r => r.RabbitRegNo == id && r.BreederRegNo == breederRegNo);
+                if (existingRabbit != null)
                 {
-                    if (r.RabbitRegNo == id)
-                    {
-                        r.Name = rabbit.Name;
-                        r.Race = rabbit.Race;
-                        r.Color = rabbit.Color;
-                        r.Sex = rabbit.Sex;
-                        r.DateOfBirth = rabbit.DateOfBirth;
-                        r.Weight = rabbit.Weight;
-                        r.Rating = rabbit.Rating;
-                        r.DeadOrAlive = rabbit.DeadOrAlive;
-                        r.IsForSale = rabbit.IsForSale;
-                        r.SuitableForBreeding = rabbit.SuitableForBreeding;
-                        r.CauseOfDeath = rabbit.CauseOfDeath;
-                        r.ImageString = rabbit.ImageString;
-                        break;                                    // break tilføjet
-                    }
+                    existingRabbit.Name = rabbit.Name;
+                    existingRabbit.Race = rabbit.Race;
+                    existingRabbit.Color = rabbit.Color;
+                    existingRabbit.Sex = rabbit.Sex;
+                    existingRabbit.DateOfBirth = rabbit.DateOfBirth;
+                    existingRabbit.Weight = rabbit.Weight;
+                    existingRabbit.Rating = rabbit.Rating;
+                    existingRabbit.DeadOrAlive = rabbit.DeadOrAlive;
+                    existingRabbit.IsForSale = rabbit.IsForSale;
+                    existingRabbit.SuitableForBreeding = rabbit.SuitableForBreeding;
+                    existingRabbit.CauseOfDeath = rabbit.CauseOfDeath;
+                    existingRabbit.Comments = rabbit.Comments;
+                    existingRabbit.ImageString = rabbit.ImageString;
+
+                    await _dbGenericService.UpdateObjectAsync(existingRabbit);
                 }
-                await _dbGenericService.UpdateObjectAsync(rabbit);
             }
         }
 
-
-        public async Task<Rabbit> DeleteRabbitAsync(int? rabbitId)
+        public async Task<Rabbit> DeleteRabbitAsync(int? id, int? breederRegNo)
         {
             Rabbit rabbitToBeDeleted = null;
             foreach (Rabbit rabbit in _rabbits)
             {
-                if (rabbit.RabbitRegNo == rabbitId)
+                if (rabbit.RabbitRegNo == id && rabbit.BreederRegNo == breederRegNo)
                 {
                     rabbitToBeDeleted = rabbit;
                     break;
@@ -95,6 +89,8 @@ namespace RabbitRegister.Services.RabbitService
 
             return rabbitToBeDeleted;
         }
+
+
         public IEnumerable<Rabbit> NameSearch(string str)
         {
             return from rabbit in _rabbits
@@ -106,8 +102,8 @@ namespace RabbitRegister.Services.RabbitService
         public IEnumerable<Rabbit> RatingFilter(int maxRating, int minRating = 0)    //LINQ (_rabbits.where) && LAMDA (rabbit => )
         {
             return _rabbits.Where(
-                item => (minRating == 0 || item.Rating >= minRating) &&
-                (maxRating == 0 || item.Rating <= maxRating));
+                rabbit => (minRating == 0 || rabbit.Rating >= minRating) &&
+                (maxRating == 0 || rabbit.Rating <= maxRating));
         }
 
 
@@ -115,8 +111,6 @@ namespace RabbitRegister.Services.RabbitService
         {
             return _rabbits.OrderBy(r => r.RabbitRegNo);   // bemærk: default er ascending(stigende.. fra 0 til 10)
         }
-
-
 
         public IEnumerable<Rabbit> SortByIdDescending()   //LINQ & LAMBDA 
         {
@@ -154,12 +148,33 @@ namespace RabbitRegister.Services.RabbitService
             return _rabbits.OrderByDescending(obj => obj.Rating);
         }
 
-        //public IEnumerable<Rabbit> GetCurrentRabbitsInFold() 
-        //{
-        //    return from rabbit in _rabbits
-        //           where rabbit.DeadOrAlive = (rabbit.DeadOrAlive=DeadOrAlive.Alive)
-        //           select rabbit;
-        //}
+        //---: ONGET() METODER :---
+
+        public List<Rabbit> GetOwnedAliveRabbits(int breederRegNo)
+        {
+            return _rabbits.Where(rabbit => rabbit.Owner == breederRegNo && rabbit.DeadOrAlive == DeadOrAlive.Levende).ToList();
+        }
+
+        public List<Rabbit> GetOwnedDeadRabbits(int breederRegNo)
+        {
+            return _rabbits.Where(rabbit => rabbit.Owner == breederRegNo && rabbit.DeadOrAlive == DeadOrAlive.Død).ToList();
+        }
+
+        public List<Rabbit> GetAllOwnedRabbits(int breederRegNo)
+        {
+            return _rabbits.Where(rabbit => rabbit.Owner == breederRegNo).ToList();
+        }
+
+        public List<Rabbit> GetAllRabbitsWithConnectionsToMe(int breederRegNo)
+        {
+            return _rabbits.Where(rabbit => rabbit.Owner == breederRegNo || rabbit.BreederRegNo == breederRegNo).ToList();
+        }
+
+        public List<Rabbit> GetNotOwnedRabbitsWithMyBreederRegNo(int breederRegNo)
+        {
+            return _rabbits.Where(rabbit => rabbit.Owner != breederRegNo && rabbit.BreederRegNo == breederRegNo).ToList();
+        }
+
 
     }
 }

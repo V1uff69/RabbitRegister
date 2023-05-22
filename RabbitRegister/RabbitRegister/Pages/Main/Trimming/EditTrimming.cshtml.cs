@@ -21,7 +21,7 @@ namespace RabbitRegister.Pages.Main.Trimming
             return Page();
         }
 
-        public IActionResult OnPost(int id)
+        public async Task<IActionResult> OnPostAsync(int id)
         {
             if (!ModelState.IsValid)
             {

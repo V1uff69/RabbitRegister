@@ -19,18 +19,20 @@ namespace RabbitRegister.Pages.Main.Rabbit
         public Model.Rabbit Rabbit { get; set; }
 
 
-        public IActionResult OnGet(int id)
+        public IActionResult OnGet(int id, int breederRegNo)
         {
-            Rabbit = _rabbitService.GetRabbit(id);
-            //if (Rabbit == null)
-            //    return RedirectToPage("/NotFound"); //NotFound er ikke defineret endnu
+            Rabbit = _rabbitService.GetRabbit(id, breederRegNo);
+            if (Rabbit == null)
+            {
+                return RedirectToPage("/NotFound");
+            }
 
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(int id)
+        public async Task<IActionResult> OnPostAsync(int id, int breederRegNo)
         {
-            Model.Rabbit deletedRabbit = await _rabbitService.DeleteRabbitAsync(id);
+            Model.Rabbit deletedRabbit = await _rabbitService.DeleteRabbitAsync(id, breederRegNo);
             //if (deletedRabbit == null)
             //    return RedirectToPage("/NotFound"); //NotFound er ikke defineret endnu
 

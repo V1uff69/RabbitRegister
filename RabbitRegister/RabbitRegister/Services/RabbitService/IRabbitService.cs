@@ -4,11 +4,14 @@ namespace RabbitRegister.Services.RabbitService
 {
     public interface IRabbitService
     {
-        List<Rabbit> GetRabbits();
+        Rabbit GetRabbit(int id, int breederRegNo);
+        //Rabbit GetRabbit(int id);
+        List<Rabbit> GetAllRabbits(int id, int breederRegNo);
+        //List<Rabbit> GetAllRabbits();
         Task AddRabbitAsync(Rabbit rabbit);
-        Task UpdateRabbitAsync(Rabbit rabbit, int id);
-        Rabbit GetRabbit(int id);
-        Task<Rabbit> DeleteRabbitAsync(int? rabbitId);
+        //Task UpdateRabbitAsync(Rabbit rabbit, int id);
+        Task UpdateRabbitAsync(Rabbit rabbit, int id, int breederRegNo);
+        Task<Rabbit> DeleteRabbitAsync(int? id, int? breederRegNo);
         IEnumerable<Rabbit> NameSearch(string str);
         IEnumerable<Rabbit> RatingFilter(int maxRating, int minRating = 0);
         IEnumerable<Rabbit> SortById();
@@ -17,5 +20,10 @@ namespace RabbitRegister.Services.RabbitService
         IEnumerable<Rabbit> SortByNameDescending();
         IEnumerable<Rabbit> SortByRating();
         IEnumerable<Rabbit> SortByRatingDescending();
+        List<Rabbit> GetOwnedAliveRabbits(int breederRegNo);
+        List<Rabbit> GetOwnedDeadRabbits(int breederRegNo);
+        List<Rabbit> GetAllOwnedRabbits(int breederRegNo);
+        List<Rabbit> GetAllRabbitsWithConnectionsToMe(int breederRegNo);
+        List<Rabbit> GetNotOwnedRabbitsWithMyBreederRegNo(int breederRegNo);
     }
 }

@@ -22,18 +22,18 @@ namespace RabbitRegister.Pages.Main.Trimming
         [BindProperty]
         public Model.Trimming Trimming { get; set; } = new Model.Trimming();
 
-        public IActionResult OnGet(int id)
-        {
-            if (id > 0)
-            {
-                Model.Rabbit RabbitOb = _rabbitService.GetRabbit(id);
-                Trimming.RabbitRegNo = RabbitOb.RabbitRegNo;
-                Trimming.BreederRegNo = RabbitOb.BreederRegNo;
-                Trimming.Name = RabbitOb.Name;
-            }
+        //public IActionResult OnGet(int id)
+        //{
+        //    if (id > 0)
+        //    {
+        //        Model.Rabbit RabbitOb = _rabbitService.GetRabbit(id);
+        //        Trimming.RabbitRegNo = RabbitOb.RabbitRegNo;
+        //        Trimming.BreederRegNo = RabbitOb.BreederRegNo;
+        //        Trimming.Name = RabbitOb.Name;
+        //    }
 
-            return Page();
-        }
+        //    return Page();
+        //}
 
         //public async Task<IActionResult> OnPostAsync()
         //{

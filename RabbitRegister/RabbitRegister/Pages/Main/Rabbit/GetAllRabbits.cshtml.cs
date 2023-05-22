@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using RabbitRegister.Pages.Main.LogIn;
+using RabbitRegister.Model;
 using RabbitRegister.Services.RabbitService;
+using RabbitRegister.Services.BreederService;
 
 namespace RabbitRegister.Pages.Main.Rabbit
 {
@@ -25,10 +28,36 @@ namespace RabbitRegister.Pages.Main.Rabbit
         public int MaxRating { get; set; }
 
 
-        public void OnGet()
+        public IActionResult OnGet(int id, int breederRegNo, string action)
         {
-            Rabbits = _rabbitService.GetRabbits();
+            if (action == "OwnedDeadRabbits")
+            {
+                Rabbits = _rabbitService.GetOwnedDeadRabbits(breederRegNo);
+            }
+            else if (action == "AllOwnedRabbits")
+            {
+                Rabbits = _rabbitService.GetAllOwnedRabbits(breederRegNo);
+            }
+            else if (action == "AllRabbitsWithConnectionsToMe")
+            {
+                Rabbits = _rabbitService.GetAllRabbitsWithConnectionsToMe(breederRegNo);
+            }
+            else if (action == "NotOwnedRabbitsWithMyBreederRegNo")
+            {
+                Rabbits = _rabbitService.GetNotOwnedRabbitsWithMyBreederRegNo(breederRegNo);
+            }
+            else if (action == "AllRabbits")
+            {
+                Rabbits = _rabbitService.GetAllRabbits(id, breederRegNo);
+            }
+            else
+            {
+                Rabbits = _rabbitService.GetOwnedAliveRabbits(breederRegNo);
+            }
+
+            return Page();
         }
+
 
         public IActionResult OnGetSortById()
         {

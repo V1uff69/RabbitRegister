@@ -50,9 +50,6 @@ namespace RabbitRegister.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("RabbitId")
-                        .HasColumnType("int");
-
                     b.Property<int>("ZipCode")
                         .HasColumnType("int");
 
@@ -60,8 +57,6 @@ namespace RabbitRegister.Migrations
                         .HasColumnType("bit");
 
                     b.HasKey("BreederRegNo");
-
-                    b.HasIndex("RabbitId");
 
                     b.ToTable("Breeder");
                 });
@@ -106,6 +101,11 @@ namespace RabbitRegister.Migrations
 
                     b.HasKey("OrderId");
 
+<<<<<<< HEAD
+=======
+                    b.HasIndex("ProductId");
+
+>>>>>>> Mikkel
                     b.ToTable("Order");
                 });
 
@@ -143,10 +143,12 @@ namespace RabbitRegister.Migrations
             modelBuilder.Entity("RabbitRegister.Model.Rabbit", b =>
                 {
                     b.Property<int>("RabbitRegNo")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnOrder(0);
 
                     b.Property<int>("BreederRegNo")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnOrder(1);
 
                     b.Property<string>("CauseOfDeath")
                         .HasMaxLength(300)
@@ -155,6 +157,10 @@ namespace RabbitRegister.Migrations
                     b.Property<string>("Color")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Comments")
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
 
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime2");
@@ -173,8 +179,8 @@ namespace RabbitRegister.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<bool>("Owner")
-                        .HasColumnType("bit");
+                    b.Property<int>("Owner")
+                        .HasColumnType("int");
 
                     b.Property<string>("Race")
                         .IsRequired()
@@ -193,7 +199,7 @@ namespace RabbitRegister.Migrations
                     b.Property<float?>("Weight")
                         .HasColumnType("real");
 
-                    b.HasKey("RabbitRegNo");
+                    b.HasKey("RabbitRegNo", "BreederRegNo");
 
                     b.ToTable("Rabbits");
                 });
@@ -245,6 +251,7 @@ namespace RabbitRegister.Migrations
 
             modelBuilder.Entity("RabbitRegister.Model.Wool", b =>
                 {
+<<<<<<< HEAD
                     b.Property<int>("ProductId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
@@ -260,6 +267,9 @@ namespace RabbitRegister.Migrations
                     b.Property<string>("Color")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+=======
+                    b.HasBaseType("RabbitRegister.Model.Product");
+>>>>>>> Mikkel
 
                     b.Property<string>("ImgString")
                         .HasColumnType("nvarchar(max)");
@@ -341,6 +351,7 @@ namespace RabbitRegister.Migrations
                     b.ToTable("Yarns");
                 });
 
+<<<<<<< HEAD
             modelBuilder.Entity("RabbitRegister.Model.Breeder", b =>
                 {
                     b.HasOne("RabbitRegister.Model.Rabbit", "Rabbit")
@@ -364,6 +375,35 @@ namespace RabbitRegister.Migrations
             modelBuilder.Entity("RabbitRegister.Model.Order", b =>
                 {
                     b.Navigation("OrderLines");
+=======
+            modelBuilder.Entity("RabbitRegister.Model.Order", b =>
+                {
+                    b.HasOne("RabbitRegister.Model.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("RabbitRegister.Model.Wool", b =>
+                {
+                    b.HasOne("RabbitRegister.Model.Product", null)
+                        .WithOne()
+                        .HasForeignKey("RabbitRegister.Model.Wool", "ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("RabbitRegister.Model.Yarn", b =>
+                {
+                    b.HasOne("RabbitRegister.Model.Product", null)
+                        .WithOne()
+                        .HasForeignKey("RabbitRegister.Model.Yarn", "ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+>>>>>>> Mikkel
                 });
 #pragma warning restore 612, 618
         }

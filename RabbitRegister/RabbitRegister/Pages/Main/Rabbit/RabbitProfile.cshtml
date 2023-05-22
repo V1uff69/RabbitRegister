@@ -47,7 +47,28 @@
 
 </style>
 
-<h2>Rabbit Profile:</h2>
+<br />
+<h2 class="text-center">Profil:</h2>
+<br />
+
+<form>
+    <input type="button" value="Tilbage" onclick="history.go(-1)">
+</form>
+
+@if (Model.Rabbit != null)
+{
+    <div class="d-flex flex-row justify-content-end" style="margin-bottom: 5px; margin-top: 0px;">
+        <a class="btn-card btn-primary btn-sm mr-1" type="button" title="Edit" asp-page="/Main/Rabbit/EditRabbit" asp-route-id="@Model.Rabbit.RabbitRegNo" asp-route-breederRegNo="@Model.Rabbit.BreederRegNo">
+            <i class="fa fa-edit"></i>
+        </a>
+        <a class="btn-card btn-danger btn-sm" type="button" title="Delete" asp-page="/Main/Rabbit/DeleteRabbit" asp-route-id="@Model.Rabbit.RabbitRegNo" asp-route-breederRegNo="@Model.Rabbit.BreederRegNo">
+            <i class="fa fa-trash"></i>
+        </a>
+    </div>
+}
+
+<br />
+
 
 <div class="rabbit-profile row">
     <div class="@*col-sm-4*@ rabbit-profile-left">
@@ -58,8 +79,11 @@
         </div>
         <div>
             <p>
-                <button class="btn-primary" value="Klip Kanin" onclick="window.location.href='/Main/Trimming/CreateTrimming?id=@Model.Rabbit.RabbitRegNo'" > Klip Kanin </button>
-                <button class="btn-primary" value="Klippe Historik" onclick="window.location.href='/Main/Trimming/GetAllTrimming?RabbitRegNo=@Model.Rabbit.RabbitRegNo'"> Klippe Historik</button>
+                @if (Model.Rabbit != null)
+                {
+                    <button class="btn-primary" value="Klip Kanin" onclick="window.location.href='/Main/Trimming/CreateTrimming?id=@Model.Rabbit.RabbitRegNo'"> Klip Kanin </button>
+                    <button class="btn-primary" value="Klippe Historik" onclick="window.location.href='/Main/Trimming/GetAllTrimming?RabbitRegNo=@Model.Rabbit.RabbitRegNo'"> Klippe Historik</button>
+                }
             </p>
         </div>
     </div>
@@ -109,6 +133,10 @@
             <tr>
                 <th>Døds-årsag:</th>
                 <td>@Model.Rabbit?.CauseOfDeath</td>
+            </tr>
+            <tr>
+                <th>Yderlige kommentar:</th>
+                <td>@Model.Rabbit?.Comments</td>
             </tr>
         </table>
     </div>
