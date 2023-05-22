@@ -25,10 +25,7 @@ namespace RabbitRegister.Migrations
             modelBuilder.Entity("RabbitRegister.Model.Breeder", b =>
                 {
                     b.Property<int>("BreederRegNo")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BreederRegNo"));
 
                     b.Property<string>("Adress")
                         .IsRequired()
@@ -331,11 +328,13 @@ namespace RabbitRegister.Migrations
 
                     b.Property<string>("Tension")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("Washing")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("ProductId");
 

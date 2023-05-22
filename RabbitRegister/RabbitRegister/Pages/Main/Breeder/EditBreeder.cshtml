@@ -1,4 +1,69 @@
 ﻿@page
+@using RabbitRegister.Pages.Main.LogIn
+@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+
 @model RabbitRegister.Pages.Main.Breeder.EditBreederModel
 @{
 }
+<form method="post">
+
+    <div class="form-group">
+        <label asp-for="Breeder.BreederRegNo" class="control-lable"></label>
+        <input asp-for="Breeder.BreederRegNo" class="form-control" readonly="@(true)" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Breeder.Name" class="control-lable"></label>
+        <input asp-for="Breeder.Name" class="form-control" />
+        <span asp-validation-for="Breeder.Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Breeder.Adress" class="control-lable"></label>
+        <input asp-for="Breeder.Adress" class="form-control" />
+        <span asp-validation-for="Breeder.Adress" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Breeder.ZipCode" class="control-lable"></label>
+        <input asp-for="Breeder.ZipCode" class="form-control" />
+        <span asp-validation-for="Breeder.ZipCode" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Breeder.Email" class="control-lable"></label>
+        <input asp-for="Breeder.Email" class="form-control" />
+        <span asp-validation-for="Breeder.Email" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Breeder.Phone" class="control-lable"></label>
+        <input asp-for="Breeder.Phone" class="form-control" />
+        <span asp-validation-for="Breeder.Phone" class="text-danger"></span>
+    </div>
+     @if (User.IsInRole("Admin"))
+{
+    <div class="form-group">
+        <label asp-for="Breeder.Password" class="control-lable"></label>
+        <input asp-for="Breeder.Password" type="password" class="form-control" placeholder="Nuværende adgangskode" />
+        <span asp-validation-for="Breeder.Password" class="text-danger"></span>
+    </div>
+}
+
+
+
+    <div class="form-group">
+        <label asp-for="Breeder.isAdmin" class="control-label"></label>
+        <div class="form-check">
+            <input asp-for="Breeder.isAdmin" class="form-check-input" />
+            <label class="form-check-label" for="Breeder_isAdmin">Is Admin</label>
+        </div>
+        <span asp-validation-for="Breeder.isAdmin" class="text-danger"></span>
+    </div>
+
+    <p>
+        <div class="form-group">
+            <input type="submit" value="Opdater" class="btn btn-primary" />
+        </div>
+    </p>
+</form>
+
+<p>
+    <a asp-page="/Main/Breeder/GetAllBreeders">Tilbage til Avlere</a>
+</p>

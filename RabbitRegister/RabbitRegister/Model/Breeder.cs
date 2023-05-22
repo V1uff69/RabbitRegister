@@ -8,12 +8,31 @@ namespace RabbitRegister.Model
     [PrimaryKey("BreederRegNo")]
     public class Breeder
     {
+        [Display(Name = "Avler Id")]
         [RegularExpression(@"^\d{4}$", ErrorMessage = "Avler-ID, SKAL bestå af 4 tal")]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int BreederRegNo { get; set; }
+        [Display(Name = "Navn")]
+        [Required(ErrorMessage = "Avler Skal Have Navn")]
         public string Name { get; set; }
+
+        [Display(Name = "Adresse")]
+        [Required(ErrorMessage = "Avler Skal Have Adresse")]
         public string Adress { get; set; }
+
+        [Display(Name = "Postnummer")]
+        [Required(ErrorMessage = "Avler Skal Have Postnummer")]
+        [Range(1000, 9999, ErrorMessage = "Postnummer skal være mellem {1}-{2}.")]
         public int ZipCode { get; set; }
+
+        [Display(Name = "Email")]
+        [Required(ErrorMessage = "Avler Skal Have Email")]
         public string Email { get; set; }
+
+        [Display(Name = "Telefonnummer")]
+        [Required(ErrorMessage = "Avler Skal Have Telefonnummer")]
+        [StringLength(8, MinimumLength = 8, ErrorMessage = "Telefonnummer skal være på {1} cifre.")]
+        [RegularExpression("^[0-9]*$", ErrorMessage = "Telefonnummer skal kun indeholde tal.")]
         public string Phone {get; set; }
         
         [Required]
