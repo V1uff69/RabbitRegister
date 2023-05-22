@@ -1,23 +1,19 @@
-﻿namespace RabbitRegister.Model
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace RabbitRegister.Model
 {
     public class OrderLine
     {
-
-        public int Id { get; set; }
-        public Product Product { get; set; }
+        [Key]
+        [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int OrderLineId { get; set; }
+        [ForeignKey(nameof(ProductId))]
+        public int ProductId { get; set; }
         public int Amount { get; set; }
         public double Price { get; set; }
+        public Order? Order { get; set; }
 
-        public OrderLine()
-        {
-        }
-
-        public OrderLine(int id, Product product, int amount, double price)
-        {
-            Id = id;
-            Product = product;
-            Amount = amount;
-            Price = price;
-        }
     }
 }

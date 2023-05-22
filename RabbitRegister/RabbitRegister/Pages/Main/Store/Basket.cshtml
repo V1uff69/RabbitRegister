@@ -1,4 +1,6 @@
 ﻿@page
+@using RabbitRegister.EFDbContext
+@inject ItemDbContext dbContext
 @model RabbitRegister.Pages.Main.Store.BasketModel
 @{
 }
@@ -15,25 +17,53 @@
     <table>
         <thead>
             <tr>
-                <th>Product</th>
-                <th>Price</th>
+                <th>ProductId</th>
+                <th>ProductName</th>
                 <th>Quantity</th>
-                <th>Subtotal</th>
+                <th>Price</th>
+                <th>Price</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             <!-- Example row for a product -->
-            <tr>
-                <td>Product Name</td>
-                <td>$19.99</td>
-                <td>2</td>
-                <td>$39.98</td>
-                <td>
-                    <button>Edit</button>
-                    <button>Delete</button>
-                </td>
-            </tr>
+            @foreach (Model.OrderLine orderLine in Model.OrderLines)
+            {
+                // Retrieve the Product object based on the ProductId
+                Model.Product product = null;
+
+                if (dbContext.Wools.Any(p => p.ProductId == orderLine.ProductId))
+                {
+                    product = dbContext.Wools.FirstOrDefault(p => p.ProductId == orderLine.ProductId);
+                }
+                else if (dbContext.Yarns.Any(p => p.ProductId == orderLine.ProductId))
+                {
+                    product = dbContext.Yarns.FirstOrDefault(p => p.ProductId == orderLine.ProductId);
+                }
+                <tr>
+                    <td>
+                        @orderLine.ProductId
+                    </td>
+                    <td>
+                        @product.ProductName
+                    </td>
+                    <td>
+                        @orderLine.Amount
+                    </td>
+                    <td>
+                        @orderLine.Price Kr.
+                    </td>
+                    <td>
+                        @orderLine.Price * @orderLine.Amount Kr.
+                    </td>
+                    <td>
+                        <form>
+                        <a class="btn btn-danger btn-sm fa fa-minus" type="submit" title="Decrease Amount" method="post" asp-page-handler="DecreaseAmount" asp-route-id="@orderLine.OrderLineId"></a>
+                        <a class="btn btn-success btn-sm fa fa-plus" type="submit" title="Increase Amount" method="post" asp-page-handler="IncreaseAmount" asp-route-id="@orderLine.OrderLineId"></a>
+                        </form>
+                    </td>
+                </tr>
+            }
             <!-- Add more rows for other products dynamically if needed -->
         </tbody>
         <tfoot>

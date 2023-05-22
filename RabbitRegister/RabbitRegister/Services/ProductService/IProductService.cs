@@ -4,6 +4,7 @@ namespace RabbitRegister.Services.ProductService
 {
     public interface IProductService
     {
+        List<Product> GetProduct(int productId);
         /// <summary>
         /// Wool
         /// </summary>

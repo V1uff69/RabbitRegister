@@ -22,6 +22,12 @@ namespace RabbitRegister.Services.ProductService
             _yarns = dbYarnService.GetObjectsAsync().Result.ToList();
         }
 
+		public List<Product> GetProduct(int productId)
+		{
+			GetWools(productId);
+			GetYarn(productId);
+			return null;
+		}
 
 		public async Task AddWoolAsync(Wool wool)
 		{

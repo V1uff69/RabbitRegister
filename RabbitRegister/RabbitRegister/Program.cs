@@ -9,21 +9,25 @@ using RabbitRegister.Services.RabbitService;
 using Microsoft.AspNetCore.Http;
 using RabbitRegister.Services.BreederService;
 using Microsoft.AspNetCore.Authorization;
+using RabbitRegister.Services.Store;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-builder.Services.AddSingleton<IProductService, ProductService>();
-builder.Services.AddSingleton<ITrimmingService, TrimmingService>();
-builder.Services.AddSingleton<IRabbitService, RabbitService>();
-builder.Services.AddSingleton<IBreederService, BreederService>();
 builder.Services.AddDbContext<ItemDbContext>();
+builder.Services.AddSingleton<IStoreService, StoreService>();
+builder.Services.AddSingleton<IRabbitService, RabbitService>();
+builder.Services.AddSingleton<IProductService, ProductService>();
+builder.Services.AddSingleton<IBreederService, BreederService>();
+builder.Services.AddSingleton<ITrimmingService, TrimmingService>();
 builder.Services.AddTransient<DbGenericService<Wool>, DbGenericService<Wool>>();
 builder.Services.AddTransient<DbGenericService<Yarn>, DbGenericService<Yarn>>();
+builder.Services.AddTransient<DbGenericService<Order>, DbGenericService<Order>>();
+builder.Services.AddTransient<DbGenericService<Rabbit>, DbGenericService<Rabbit>>();
 builder.Services.AddTransient<DbGenericService<Breeder>, DbGenericService<Breeder>>();
 builder.Services.AddTransient<DbGenericService<Trimming>, DbGenericService<Trimming>>();
-builder.Services.AddTransient<DbGenericService<Rabbit>, DbGenericService<Rabbit>>();
+builder.Services.AddTransient<DbGenericService<OrderLine>, DbGenericService<OrderLine>>();
 builder.Services.Configure<CookiePolicyOptions>(options => {
 	// This lambda determines whether user consent for non-essential cookies is needed for a given request. options.CheckConsentNeeded = context => true;
 	options.MinimumSameSitePolicy = SameSiteMode.None;

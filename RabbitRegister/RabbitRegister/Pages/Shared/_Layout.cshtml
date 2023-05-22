@@ -23,13 +23,14 @@
             </a>
         </div>
 
+
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="container d-flex justify-content-between">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav flex-grow-1 d-flex justify-content-center">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Index">Hjem</a>
@@ -40,33 +41,53 @@
                         @{
                             if (Context.User.Identity.Name != null)
                             {
-                                <li class="nav-item">
-                                            <a class="nav-link text-dark" asp-area="" asp-page="/Main/Trimming/GetAllTrimming" asp-route-breederRegNo="@Context.User.Identity.Name">Klipninger</a>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link text-dark dropdown-toggle" href="#" id="breederDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-auto-close="false">
+                                        For Breeder
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="breederDropdown">
+                                        <a class="dropdown-item" asp-area="" asp-page="/Main/Trimming/GetAllTrimming">Klipninger</a>
+                                        <div class="dropdown">
+                                            <a class="dropdown-item text-dark dropdown-toggle" href="#" id="productsDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Products
+                                            </a>
+                                            <div class="dropdown-menu" aria-labelledby="productsDropdown">
+                                                <a class="dropdown-item" asp-area="" asp-page="/Main/Product/GetAllWool">Uld</a>
+                                                <a class="dropdown-item" asp-area="" asp-page="/Main/Product/GetAllYarn">Garn</a>
+                                            </div>
+                                        </div>
+                                        <a class="dropdown-item" asp-area="" asp-page="/Main/Rabbit/GetAllRabbits">Mine Kaniner</a>
+                                    </div>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-page="/Main/Product/GetAllWool" asp-route-breederRegNo="@Context.User.Identity.Name">Uld</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-page="/Main/Product/GetAllYarn" asp-route-breederRegNo="@Context.User.Identity.Name">Garn</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-page="/Main/Rabbit/GetAllRabbits" asp-route-breederRegNo="@Context.User.Identity.Name">Mine Kaniner</a>
-                                </li>
+
                             }
                         }
-
                         @{
-                            //Following code uses policy-based autorization, using IAuthorizationService and our AdminOnly policy, from Program.cs
                             if ((await AuthorizationService.AuthorizeAsync(User, null, "AdminOnly")).Succeeded)
                             {
+
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-page="/Main/Breeder/CreateBreeder">Opret Avler</a>
                                 </li>
                             }
                         }
                     </ul>
+                </div>
+
+
+
+                <div>
+                    <a class="btn btn-success fa fa-shopping-basket" asp-page="/Main/Store/Basket"></a>
+                    <div>
+                        @if (TempData.ContainsKey("Notification"))
+                        {
+                            <p>@TempData["Notification"]</p>
+                        }
+                    </div>
+
+                </div>
+                <div>
                     <ul class="navbar-nav">
-                        <a class="btn btn-success fa fa-shopping-basket" asp-page="/Main/Store/Basket"></a>
                         @{
                             if (Context.User.Identity.Name == null)
                             {
@@ -90,6 +111,7 @@
                 </div>
             </div>
         </nav>
+
     </header>
     <div class="layer">
         <div class="container">
