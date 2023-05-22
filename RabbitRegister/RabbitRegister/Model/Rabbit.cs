@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace RabbitRegister.Model
 {
-
     public enum Sex
     {
         Han,
