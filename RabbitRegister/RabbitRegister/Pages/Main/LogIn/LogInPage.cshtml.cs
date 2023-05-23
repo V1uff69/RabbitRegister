@@ -50,19 +50,27 @@ namespace RabbitRegister.Pages.Main.LogIn
                             claims.Add(new Claim(ClaimTypes.Role, "Admin"));
                         }
 
-
                         var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
+                        var authProperties = new AuthenticationProperties
+                        {
+                            IsPersistent = true, // Remember user authentication across requests
+                            ExpiresUtc = DateTimeOffset.UtcNow.AddDays(1) // Set expiration time for the authentication cookie
+                        };
+
+                        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
                         return RedirectToPage("/Index");
                     }
                 }
             }
+
             Message = "Invalid attempt";
             return Page();
-
-          
-
         }
 
+
+
+
     }
+
 }
+
