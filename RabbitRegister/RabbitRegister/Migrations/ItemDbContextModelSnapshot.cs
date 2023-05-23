@@ -128,6 +128,9 @@ namespace RabbitRegister.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<double>("TotalPrice")
+                        .HasColumnType("float");
+
                     b.HasKey("OrderLineId", "OrderId");
 
                     b.HasIndex("OrderId");

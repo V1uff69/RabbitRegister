@@ -14,6 +14,7 @@
     <table class="table table-bordered table-hover">
         <thead>
             <tr>
+                <th>Id</th>
                 <th>Image</th>
                 <th>ProductName</th>
                 <th>Quantity</th>
@@ -28,6 +29,9 @@
             {
                 <tr>
                     <td>
+                        @orderLine.OrderLineId
+                    </td>
+                    <td>
                         <img src="@Model.ProductImage(orderLine)" style="width: 75px;height:auto;"/>
                     </td>
                     <td>
@@ -40,7 +44,7 @@
                         @orderLine.Price Kr.
                     </td>
                     <td>
-                        @Model.CalculateOrderLineTotalPrice(orderLine) Kr.
+                        @orderLine.TotalPrice Kr.
                     </td>
                     <td>
                         <form>
@@ -57,7 +61,7 @@
                 <td colspan="3"></td>
                 <td>Total:</td>
                 <td>
-                    @Model.CalculateTotalPrice(Model._orderLines)
+                    @Model.CalculateTotalPrice(Model._orderLines) Kr.
                 </td>
             </tr>
         </tfoot>

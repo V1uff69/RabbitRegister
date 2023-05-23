@@ -131,7 +131,8 @@ namespace RabbitRegister.Migrations
                     ProductId = table.Column<int>(type: "int", nullable: false),
                     ProductType = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Amount = table.Column<int>(type: "int", nullable: false),
-                    Price = table.Column<double>(type: "float", nullable: false)
+                    Price = table.Column<double>(type: "float", nullable: false),
+                    TotalPrice = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {

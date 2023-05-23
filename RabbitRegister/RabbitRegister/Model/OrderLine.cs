@@ -10,7 +10,6 @@ namespace RabbitRegister.Model
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int OrderLineId { get; set; }
-
         [ForeignKey(nameof(ProductId))]
         [Required]
         public int ProductId { get; set; }
@@ -23,6 +22,8 @@ namespace RabbitRegister.Model
 
         [Required]
         public double Price { get; set; }
+        [Required]
+        public double TotalPrice { get; set; }
 
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]

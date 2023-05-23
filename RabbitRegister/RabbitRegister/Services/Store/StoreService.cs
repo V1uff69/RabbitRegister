@@ -7,6 +7,9 @@ namespace RabbitRegister.Services.Store
 {
     public class StoreService : IStoreService
     {
+
+        private int nextLineId = 0;
+
         private List<Order> _orders;
         private List<OrderLine> _orderLines = new List<OrderLine>();
 
@@ -29,11 +32,17 @@ namespace RabbitRegister.Services.Store
             await _dbServiceOrder.AddObjectAsync(order);
             _orders.Add(order);
             GetBasket();
-            foreach (OrderLine line in _orderLines) {
+            double TotalPrice = 0;
+            foreach (OrderLine line in _orderLines)
+            {
+                TotalPrice += line.TotalPrice;
                 line.OrderId = order.OrderId;
                 await _dbServiceOrderLine.AddObjectAsync(line);
-                _orderLines.Remove(line);
             }
+            order.TotalPrice = Math.Round(TotalPrice, 2);
+            await _dbServiceOrder.UpdateObjectAsync(order);
+            _orders.Clear();
+            _orderLines.Clear();
         }
 
         public Order GetLastOrder()
@@ -43,6 +52,7 @@ namespace RabbitRegister.Services.Store
 
         public async Task AddToBasketAsync(int productId, string productType)
         {
+
             if (productType == "Wool")
             {
                 // Check if the product is a Wool
@@ -54,17 +64,22 @@ namespace RabbitRegister.Services.Store
                     if (existingWool != null)
                     {
                         existingWool.Amount++;
+                        existingWool.TotalPrice = Math.Round(existingWool.Price * existingWool.Amount,2);
+
                     }
                     else
                     {
                         OrderLine WoolOrderline = new OrderLine
                         {
+                            OrderLineId = nextLineId +1,
                             ProductId = productId,
                             ProductType = productType,
                             Amount = 1,
                             Price = wool.Price,
+                            TotalPrice = wool.Price,
                             Order = null
                         };
+                        nextLineId ++;
                         _orderLines.Add(WoolOrderline);
                     }
 
@@ -82,18 +97,22 @@ namespace RabbitRegister.Services.Store
                     if (existingYarn != null)
                     {
                         existingYarn.Amount++;
+                        existingYarn.TotalPrice = Math.Round(existingYarn.Price * existingYarn.Amount,2);
                     }
                     else
                     {
 
                         OrderLine YarnOrderline = new OrderLine
                         {
+                            OrderLineId = nextLineId + 1 ,
                             ProductId = productId,
                             ProductType = productType,
                             Amount = 1,
                             Price = yarn.Price,
+                            TotalPrice = yarn.Price,
                             Order = null
                         };
+                        nextLineId ++ ;
                         _orderLines.Add(YarnOrderline);
                     }
 
@@ -130,10 +149,9 @@ namespace RabbitRegister.Services.Store
             if (thisOrderLine != null)
             {
                 thisOrderLine.Amount--;
-                await _dbServiceOrderLine.UpdateObjectAsync(thisOrderLine);
+                thisOrderLine.TotalPrice = Math.Round(thisOrderLine.Price * thisOrderLine.Amount, 2);
                 if (thisOrderLine.Amount == 0)
                 {
-                    await _dbServiceOrderLine.DeleteObjectAsync(thisOrderLine);
                     _orderLines.Remove(thisOrderLine); // Remove the OrderLine from _orderLines
                 }
             }
@@ -145,7 +163,7 @@ namespace RabbitRegister.Services.Store
             if (thisOrderLine != null)
             {
                 thisOrderLine.Amount++;
-                await _dbServiceOrderLine.UpdateObjectAsync(orderLine);
+                thisOrderLine.TotalPrice = Math.Round ( thisOrderLine.Price * thisOrderLine.Amount,2);
             }
         }
 

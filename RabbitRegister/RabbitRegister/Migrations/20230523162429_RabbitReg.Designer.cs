@@ -12,7 +12,7 @@ using RabbitRegister.EFDbContext;
 namespace RabbitRegister.Migrations
 {
     [DbContext(typeof(ItemDbContext))]
-    [Migration("20230523130534_RabbitReg")]
+    [Migration("20230523162429_RabbitReg")]
     partial class RabbitReg
     {
         /// <inheritdoc />
@@ -130,6 +130,9 @@ namespace RabbitRegister.Migrations
                     b.Property<string>("ProductType")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("TotalPrice")
+                        .HasColumnType("float");
 
                     b.HasKey("OrderLineId", "OrderId");
 

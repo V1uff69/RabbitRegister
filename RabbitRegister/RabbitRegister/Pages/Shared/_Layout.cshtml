@@ -75,39 +75,40 @@
                 </div>
 
 
-
-                <div>
-                    <a class="btn btn-success fa fa-shopping-basket" asp-page="/Main/Store/Basket"></a>
+                <div style="  display: flex; justify-content: space-between; align-items: center;">
                     <div>
-                        @if (TempData.ContainsKey("Notification"))
-                        {
-                            <p>@TempData["Notification"]</p>
-                        }
-                    </div>
+                        <a class="btn btn-success fa fa-shopping-basket" asp-page="/Main/Store/Basket"></a>
+                        <div>
+                            @if (TempData.ContainsKey("Notification"))
+                            {
+                                <p>@TempData["Notification"]</p>
+                            }
+                        </div>
 
-                </div>
-                <div>
-                    <ul class="navbar-nav">
-                        @{
-                            if (Context.User.Identity.Name == null)
-                            {
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-page="/Main/LogIn/LogInPage">Login</a>
-                                </li>
+                    </div>
+                    <div>
+                        <ul class="navbar-nav">
+                            @{
+                                if (Context.User.Identity.Name == null)
+                                {
+                                    <li class="nav-item">
+                                        <a class=" nav-link text-dark" asp-area="" asp-page="/Main/LogIn/LogInPage">Login</a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Breeder: @Context.User.Identity.Name
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item" asp-area="" asp-page="/Main/LogIn/LogOutPage">Logout</a>
+                                        </div>
+                                    </li>
+                                }
                             }
-                            else
-                            {
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Breeder: @Context.User.Identity.Name
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" asp-area="" asp-page="/Main/LogIn/LogOutPage">Logout</a>
-                                    </div>
-                                </li>
-                            }
-                        }
-                    </ul>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </nav>

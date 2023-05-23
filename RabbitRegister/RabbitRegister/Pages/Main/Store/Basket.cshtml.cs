@@ -1,10 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using RabbitRegister.EFDbContext;
 using RabbitRegister.Model;
 using RabbitRegister.Services.ProductService;
 using RabbitRegister.Services.Store;
+using static NuGet.Packaging.PackagingConstants;
 
 
 namespace RabbitRegister.Pages.Main.Store
@@ -72,17 +74,12 @@ namespace RabbitRegister.Pages.Main.Store
             return Page();
         }
 
-        public double CalculateOrderLineTotalPrice(OrderLine orderLine)
-        {
-                return orderLine.Price * orderLine.Amount;
-        }
-
         public double CalculateTotalPrice(List<OrderLine> orderLines)
         {
             double totalPrice = 0;
             foreach (var orderLine in orderLines)
             {
-                totalPrice += orderLine.Price * orderLine.Amount;
+                totalPrice = Math.Round(totalPrice + orderLine.TotalPrice,2);
             }
             return totalPrice;
         }
