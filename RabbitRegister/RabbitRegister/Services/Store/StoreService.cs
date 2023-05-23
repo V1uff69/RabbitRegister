@@ -8,7 +8,7 @@ namespace RabbitRegister.Services.Store
     public class StoreService : IStoreService
     {
         private List<Order> _orders;
-        private List<OrderLine> _orderLines;
+        private List<OrderLine> _orderLines = new List<OrderLine>();
 
         private DbGenericService<Order> _dbServiceOrder;
         private DbGenericService<OrderLine> _dbServiceOrderLine;
@@ -28,7 +28,9 @@ namespace RabbitRegister.Services.Store
         {
             await _dbServiceOrder.AddObjectAsync(order);
             _orders.Add(order);
+            GetBasket();
             foreach (OrderLine line in _orderLines) {
+                line.OrderId = order.OrderId;
                 await _dbServiceOrderLine.AddObjectAsync(line);
             }
         }
@@ -46,26 +48,23 @@ namespace RabbitRegister.Services.Store
                 Wool wool = _productService.GetWools(productId);
                 if (wool != null)
                 {
-                    OrderLine existingItem = _orderLines.FirstOrDefault(wool => wool.ProductId == productId);
+                    OrderLine existingWool = _orderLines.FirstOrDefault(wool => wool.ProductId == productId && wool.ProductType == productType);
 
-                    if (existingItem != null)
+                    if (existingWool != null)
                     {
-                        // If the product is already in the basket, increase the amount
-                        existingItem.Amount++;
-                        //await _dbServiceOrderLine.UpdateObjectAsync(existingItem);
+                        existingWool.Amount++;
                     }
                     else
                     {
-                        OrderLine newOrderline = new OrderLine
+                        OrderLine WoolOrderline = new OrderLine
                         {
                             ProductId = productId,
+                            ProductType = productType,
                             Amount = 1,
                             Price = wool.Price,
                             Order = null
                         };
-
-                        //await _dbServiceOrderLine.AddObjectAsync(newOrderline);
-                        _orderLines.Add(newOrderline);
+                        _orderLines.Add(WoolOrderline);
                     }
 
                     return;
@@ -77,35 +76,24 @@ namespace RabbitRegister.Services.Store
                 Yarn yarn = _productService.GetYarn(productId);
                 if (yarn != null)
                 {
-                    OrderLine existingItem = _orderLines.FirstOrDefault(yarn => yarn.ProductId == productId);
+                    OrderLine existingYarn = _orderLines.FirstOrDefault(yarn => yarn.ProductId == productId && yarn.ProductType == productType);
 
-                    if (existingItem != null)
+                    if (existingYarn != null)
                     {
-                        // If the product is already in the basket, increase the amount
-                        existingItem.Amount++;
-                        //await _dbServiceOrderLine.UpdateObjectAsync(existingItem);
+                        existingYarn.Amount++;
                     }
                     else
                     {
-                        //Order order = GetLastOrder();
 
-                        //if (order == null)
-                        //{
-                        //    // Create a new order
-                        //    order = new Order();
-                        //    await _dbServiceOrder.AddObjectAsync(order);
-                        //}
-
-                        OrderLine newOrderline = new OrderLine
+                        OrderLine YarnOrderline = new OrderLine
                         {
                             ProductId = productId,
+                            ProductType = productType,
                             Amount = 1,
                             Price = yarn.Price,
                             Order = null
                         };
-
-                        //await _dbServiceOrderLine.AddObjectAsync(newOrderline);
-                        _orderLines.Add(newOrderline);
+                        _orderLines.Add(YarnOrderline);
                     }
 
                     return;

@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using RabbitRegister.Model;
 using RabbitRegister.Services.ProductService;
 using RabbitRegister.Services.Store;
 
@@ -26,7 +25,7 @@ namespace RabbitRegister.Pages.Main.Store
             Wools = _productService.GetWools();
         }
 
-        public async Task<IActionResult> OnPostAddToBasket(int id, string type)
+        public async Task<IActionResult> OnPostAsync(int id, string type)
         {
             await _storeService.AddToBasketAsync(id, type);
 
@@ -34,7 +33,5 @@ namespace RabbitRegister.Pages.Main.Store
 
             return RedirectToPage("/Main/Store/Store");
         }
-
-
     }
 }
