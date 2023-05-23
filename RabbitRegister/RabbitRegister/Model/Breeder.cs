@@ -20,10 +20,6 @@ namespace RabbitRegister.Model
         public string Password { get; set; }
         public bool isAdmin { get; set; }
 
-        //[ForeignKey(nameof(Rabbit))]
-        //public int RabbitId { get; set; }
-        //public virtual Rabbit Rabbit { get; set; }
-
         public Breeder()
         {
         }

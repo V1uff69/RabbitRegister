@@ -56,7 +56,7 @@
                                                 <a class="dropdown-item" asp-area="" asp-page="/Main/Product/GetAllYarn">Garn</a>
                                             </div>
                                         </div>
-                                        <a class="dropdown-item" asp-area="" asp-page="/Main/Rabbit/GetAllRabbits">Mine Kaniner</a>
+                                        <a class="dropdown-item" asp-area="" asp-page="/Main/Rabbit/GetAllRabbits" asp-route-breederRegNo="@Context.User.Identity.Name">Mine Kaniner</a>
                                     </div>
                                 </li>
 

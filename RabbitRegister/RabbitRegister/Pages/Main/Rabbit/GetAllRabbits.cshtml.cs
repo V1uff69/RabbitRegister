@@ -4,9 +4,11 @@ using RabbitRegister.Pages.Main.LogIn;
 using RabbitRegister.Model;
 using RabbitRegister.Services.RabbitService;
 using RabbitRegister.Services.BreederService;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RabbitRegister.Pages.Main.Rabbit
 {
+    [Authorize(Policy = "BreederOnly")]
     public class GetAllRabbitsModel : PageModel
     {
         private IRabbitService _rabbitService;
