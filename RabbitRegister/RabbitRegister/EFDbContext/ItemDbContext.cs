@@ -6,7 +6,12 @@ namespace RabbitRegister.EFDbContext
 {
 	public class ItemDbContext : DbContext
 	{
-		protected override void OnConfiguring(DbContextOptionsBuilder options)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<OrderLine>()
+                .HasKey(o => new { o.OrderLineId, o.OrderId });
+        }
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
 		{
 			options.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=RabbitRegisterDb; Integrated Security=True; Connect Timeout=30; Encrypt=False");
 		}

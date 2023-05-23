@@ -32,6 +32,7 @@ namespace RabbitRegister.Services.Store
             foreach (OrderLine line in _orderLines) {
                 line.OrderId = order.OrderId;
                 await _dbServiceOrderLine.AddObjectAsync(line);
+                _orderLines.Remove(line);
             }
         }
 
