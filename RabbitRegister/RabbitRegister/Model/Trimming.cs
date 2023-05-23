@@ -59,9 +59,8 @@ namespace RabbitRegister.Model
         {
         }
 
-        public Trimming(int trimmingId, int rabbitRegNo, int breederRegNo, string name, DateTime date, int timeUsed, int hairLengthByDayNinety, float woolDensity, int firstSortmentWeight, int secondSortmentWeight, int disposableWoolWeight)
+        public Trimming(int rabbitRegNo, int breederRegNo, string name, DateTime date, int timeUsed, int hairLengthByDayNinety, float woolDensity, int firstSortmentWeight, int secondSortmentWeight, int disposableWoolWeight)
         {
-            TrimmingId = trimmingId;
             RabbitRegNo = rabbitRegNo;
             BreederRegNo = breederRegNo;
             Name = name;

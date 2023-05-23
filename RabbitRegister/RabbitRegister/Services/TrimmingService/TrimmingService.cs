@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RabbitRegister.EFDbContext;
+using RabbitRegister.MockData;
 using RabbitRegister.Model;
 using System.Data.SqlTypes;
 
@@ -16,9 +17,15 @@ namespace RabbitRegister.Services.TrimmingService
 		{
 			DbGenericService = dbGenericService;
 			_trimmings = DbGenericService.GetObjectsAsync().Result.ToList();
+
+			//_trimmings = MockTrimming.GetMockTrimming(); //DB tom? Ved første Debug kør denne kode, og udkommenter igen derefter
+			//foreach (var trimming in _trimmings)
+			//{
+			//	DbGenericService.AddObjectAsync(trimming).Wait();
+			//}
 		}
 
-		public Trimming GetTrimming(int id)
+        public Trimming GetTrimming(int id)
 		{
 			foreach (Trimming trimming in _trimmings)
 			{
