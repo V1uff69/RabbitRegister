@@ -44,7 +44,7 @@ namespace RabbitRegister.Pages.Main.Breeder
             }
             else
             {
-                return RedirectToPage("/Index"); // Erstat "/Layout" med din ønskede destinations-URL
+                return RedirectToPage("/Index");
             }
             //return RedirectToPage("GetAllBreeders");
         }
