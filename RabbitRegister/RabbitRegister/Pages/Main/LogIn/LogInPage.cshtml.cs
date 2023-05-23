@@ -63,7 +63,7 @@ namespace RabbitRegister.Pages.Main.LogIn
                 }
             }
 
-            Message = "Invalid attempt";
+            Message = "Forkert Avler Id eller Adgangskode";
             return Page();
         }
 
