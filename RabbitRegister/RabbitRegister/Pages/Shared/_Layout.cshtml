@@ -67,7 +67,7 @@
                             {
 
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-page="/Main/Breeder/CreateBreeder">Opret Avler</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Main/Breeder/GetAllBreeders">Avlere</a>
                                 </li>
                             }
                         }
@@ -101,7 +101,9 @@
                                     <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Breeder: @Context.User.Identity.Name
                                     </a>
+
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" asp-area="" asp-route-id="@Context.User.Identity.Name" asp-page="/Main/Breeder/EditBreeder">Edit</a>
                                         <a class="dropdown-item" asp-area="" asp-page="/Main/LogIn/LogOutPage">Logout</a>
                                     </div>
                                 </li>

@@ -45,45 +45,32 @@ namespace RabbitRegister.Pages.Main.LogIn
                         string UserName = BreederRegNo.ToString();
                         var claims = new List<Claim> { new Claim(ClaimTypes.Name, UserName), new Claim(ClaimTypes.Role, "Breeder") };
 
-                        if (breeder.isAdmin == true)
+                        if (breeder.isAdmin)
                         {
                             claims.Add(new Claim(ClaimTypes.Role, "Admin"));
                         }
 
                         var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
+                        var authProperties = new AuthenticationProperties
+                        {
+                            IsPersistent = true, // Remember user authentication across requests
+                            ExpiresUtc = DateTimeOffset.UtcNow.AddDays(1) // Set expiration time for the authentication cookie
+                        };
+
+                        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
                         return RedirectToPage("/Index");
                     }
                 }
             }
-            Message = "Invalid attempt";
+
+            Message = "Forkert Avler Id eller Adgangskode";
             return Page();
-
-            //List<User> users = _userService.Users;
-            //foreach (User user in users)
-            //{
-            //    if (UserName == user.UserName)
-            //    {
-            //        var passwordHasher = new PasswordHasher<string>();
-
-            //        if (passwordHasher.VerifyHashedPassword(null, user.Password, Password) == PasswordVerificationResult.Success)
-            //        {
-            //            // LoggedInUser = user;
-
-            //            var claims = new List<Claim> { new Claim(ClaimTypes.Name, UserName) };
-
-            //            if (UserName == "admin") claims.Add(new Claim(ClaimTypes.Role, "admin"));
-
-            //            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-            //            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
-            //            return RedirectToPage("/Index");
-            //        }
-            //    }
-            //}
-            //Message = "Invalid attempt";
-            //return Page();
-
         }
 
+
+
+
     }
+
 }
+

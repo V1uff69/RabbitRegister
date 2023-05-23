@@ -12,10 +12,10 @@ namespace RabbitRegister.Services.BreederService
         public BreederService(DbGenericService<Breeder> dbService)
         {
             _dbService = dbService;
+            //Breeders = MockBreeder.GetMockBreeders();
+            //_dbService.SaveObjects(Breeders);
             Breeders = _dbService.GetObjectsAsync().Result.ToList();
 
-            Breeders = MockBreeder.GetMockBreeders();
-            _dbService.SaveObjects(Breeders);
         }
 
         public async Task AddUserAsync(Breeder breeder)
@@ -27,6 +27,61 @@ namespace RabbitRegister.Services.BreederService
         {
             //return DbService.GetObjectByIdAsync(username).Result;
             return Breeders.Find(breeder => breeder.BreederRegNo == breederRegNo);
+        }
+
+        public List<Breeder> GetBreeders() { return Breeders; }
+
+        public Breeder GetBreeder(int breederRegNo)
+        {
+            foreach (Breeder b in Breeders)
+            {
+                if (b.BreederRegNo == breederRegNo)
+                    return b;
+            }
+            return null;
+        }
+
+        public async Task UpdateBreederAsync(Breeder breeder)
+        {
+            if (breeder != null)
+            {
+                foreach (Breeder i in Breeders)
+                {
+                    if (i.BreederRegNo == breeder.BreederRegNo /*&& i.Name == breeder.Name*/)
+                    {
+                        i.Name = breeder.Name;
+                        i.Adress = breeder.Adress;
+                        i.ZipCode = breeder.ZipCode;
+                        i.Email = breeder.Email;
+                        i.Phone = breeder.Phone;
+                        i.Password = breeder.Password;
+                        i.isAdmin = breeder.isAdmin;
+                        break;
+                    }
+                }
+                await _dbService.UpdateObjectAsync(breeder);
+            }
+        }
+
+        public async Task<Breeder> DeleteBreederAsync(int? breederRegNo)
+        {
+            Breeder breederToBeDeleted = null;
+            foreach (Breeder breeder in Breeders)
+            {
+                if (breeder.BreederRegNo == breederRegNo)
+                {
+                    breederToBeDeleted = breeder;
+                    break;
+                }
+            }
+
+            if (breederToBeDeleted != null)
+            {
+                Breeders.Remove(breederToBeDeleted);
+                await _dbService.DeleteObjectAsync(breederToBeDeleted);
+            }
+            return breederToBeDeleted;
+
         }
     }
 }

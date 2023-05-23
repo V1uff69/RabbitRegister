@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Http;
 using RabbitRegister.Services.BreederService;
 using Microsoft.AspNetCore.Authorization;
 using RabbitRegister.Services.Store;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,16 +29,17 @@ builder.Services.AddTransient<DbGenericService<Rabbit>, DbGenericService<Rabbit>
 builder.Services.AddTransient<DbGenericService<Breeder>, DbGenericService<Breeder>>();
 builder.Services.AddTransient<DbGenericService<Trimming>, DbGenericService<Trimming>>();
 builder.Services.AddTransient<DbGenericService<OrderLine>, DbGenericService<OrderLine>>();
+
 builder.Services.Configure<CookiePolicyOptions>(options => {
-	// This lambda determines whether user consent for non-essential cookies is needed for a given request. options.CheckConsentNeeded = context => true;
-	options.MinimumSameSitePolicy = SameSiteMode.None;
+    // This lambda determines whether user consent for non-essential cookies is needed for a given request. options.CheckConsentNeeded = context => true;
+    options.MinimumSameSitePolicy = SameSiteMode.None;
 
 });
 
 builder.Services.AddAuthorization();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(cookieOptions => {
-	cookieOptions.LoginPath = "/Main/Login/LogInPage";
+    cookieOptions.LoginPath = "/Main/Login/LogInPage";
 
 });
 
@@ -52,7 +54,7 @@ builder.Services.AddAuthorization(options =>
 });
 
 builder.Services.AddMvc().AddRazorPagesOptions(options => {
-	options.Conventions.AuthorizeFolder("/Main/Product/Yarn");
+    options.Conventions.AuthorizeFolder("/Main/Product/Yarn");
     options.Conventions.AuthorizeFolder("/Main/Product/Wool");
 
 
@@ -69,15 +71,6 @@ if (!app.Environment.IsDevelopment())
 }
 
 
-//app.Use(async (context, next) =>
-//{
-//    if (context.User.Identity.IsAuthenticated && !context.User.HasClaim(c => c.Type == "IsAdmin" && c.Value == "true"))
-//    {
-//        context.Response.Redirect("/AccessDenied");
-//        return;
-//    }
-//    await next.Invoke();
-//});
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
