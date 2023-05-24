@@ -7,8 +7,11 @@ namespace RabbitRegister.Services.Store
 {
     public class StoreService : IStoreService
     {
+
+        private int nextLineId = 0;
+
         private List<Order> _orders;
-        private List<OrderLine> _orderLines;
+        private List<OrderLine> _orderLines = new List<OrderLine>();
 
         private DbGenericService<Order> _dbServiceOrder;
         private DbGenericService<OrderLine> _dbServiceOrderLine;
@@ -28,9 +31,18 @@ namespace RabbitRegister.Services.Store
         {
             await _dbServiceOrder.AddObjectAsync(order);
             _orders.Add(order);
-            foreach (OrderLine line in _orderLines) {
+            GetBasket();
+            double TotalPrice = 0;
+            foreach (OrderLine line in _orderLines)
+            {
+                TotalPrice += line.TotalPrice;
+                line.OrderId = order.OrderId;
                 await _dbServiceOrderLine.AddObjectAsync(line);
             }
+            order.TotalPrice = Math.Round(TotalPrice, 2);
+            await _dbServiceOrder.UpdateObjectAsync(order);
+            _orders.Clear();
+            _orderLines.Clear();
         }
 
         public Order GetLastOrder()
@@ -40,32 +52,35 @@ namespace RabbitRegister.Services.Store
 
         public async Task AddToBasketAsync(int productId, string productType)
         {
+
             if (productType == "Wool")
             {
                 // Check if the product is a Wool
                 Wool wool = _productService.GetWools(productId);
                 if (wool != null)
                 {
-                    OrderLine existingItem = _orderLines.FirstOrDefault(wool => wool.ProductId == productId);
+                    OrderLine existingWool = _orderLines.FirstOrDefault(wool => wool.ProductId == productId && wool.ProductType == productType);
 
-                    if (existingItem != null)
+                    if (existingWool != null)
                     {
-                        // If the product is already in the basket, increase the amount
-                        existingItem.Amount++;
-                        //await _dbServiceOrderLine.UpdateObjectAsync(existingItem);
+                        existingWool.Amount++;
+                        existingWool.TotalPrice = Math.Round(existingWool.Price * existingWool.Amount,2);
+
                     }
                     else
                     {
-                        OrderLine newOrderline = new OrderLine
+                        OrderLine WoolOrderline = new OrderLine
                         {
+                            OrderLineId = nextLineId +1,
                             ProductId = productId,
+                            ProductType = productType,
                             Amount = 1,
                             Price = wool.Price,
+                            TotalPrice = wool.Price,
                             Order = null
                         };
-
-                        //await _dbServiceOrderLine.AddObjectAsync(newOrderline);
-                        _orderLines.Add(newOrderline);
+                        nextLineId ++;
+                        _orderLines.Add(WoolOrderline);
                     }
 
                     return;
@@ -77,35 +92,28 @@ namespace RabbitRegister.Services.Store
                 Yarn yarn = _productService.GetYarn(productId);
                 if (yarn != null)
                 {
-                    OrderLine existingItem = _orderLines.FirstOrDefault(yarn => yarn.ProductId == productId);
+                    OrderLine existingYarn = _orderLines.FirstOrDefault(yarn => yarn.ProductId == productId && yarn.ProductType == productType);
 
-                    if (existingItem != null)
+                    if (existingYarn != null)
                     {
-                        // If the product is already in the basket, increase the amount
-                        existingItem.Amount++;
-                        //await _dbServiceOrderLine.UpdateObjectAsync(existingItem);
+                        existingYarn.Amount++;
+                        existingYarn.TotalPrice = Math.Round(existingYarn.Price * existingYarn.Amount,2);
                     }
                     else
                     {
-                        //Order order = GetLastOrder();
 
-                        //if (order == null)
-                        //{
-                        //    // Create a new order
-                        //    order = new Order();
-                        //    await _dbServiceOrder.AddObjectAsync(order);
-                        //}
-
-                        OrderLine newOrderline = new OrderLine
+                        OrderLine YarnOrderline = new OrderLine
                         {
+                            OrderLineId = nextLineId + 1 ,
                             ProductId = productId,
+                            ProductType = productType,
                             Amount = 1,
                             Price = yarn.Price,
+                            TotalPrice = yarn.Price,
                             Order = null
                         };
-
-                        //await _dbServiceOrderLine.AddObjectAsync(newOrderline);
-                        _orderLines.Add(newOrderline);
+                        nextLineId ++ ;
+                        _orderLines.Add(YarnOrderline);
                     }
 
                     return;
@@ -141,10 +149,9 @@ namespace RabbitRegister.Services.Store
             if (thisOrderLine != null)
             {
                 thisOrderLine.Amount--;
-                await _dbServiceOrderLine.UpdateObjectAsync(thisOrderLine);
+                thisOrderLine.TotalPrice = Math.Round(thisOrderLine.Price * thisOrderLine.Amount, 2);
                 if (thisOrderLine.Amount == 0)
                 {
-                    await _dbServiceOrderLine.DeleteObjectAsync(thisOrderLine);
                     _orderLines.Remove(thisOrderLine); // Remove the OrderLine from _orderLines
                 }
             }
@@ -156,7 +163,7 @@ namespace RabbitRegister.Services.Store
             if (thisOrderLine != null)
             {
                 thisOrderLine.Amount++;
-                await _dbServiceOrderLine.UpdateObjectAsync(orderLine);
+                thisOrderLine.TotalPrice = Math.Round ( thisOrderLine.Price * thisOrderLine.Amount,2);
             }
         }
 

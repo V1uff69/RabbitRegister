@@ -7,45 +7,35 @@
 <html>
 <head>
     <title>Shopping Basket</title>
-    <style>
-        /* Add your CSS styles here */
-    </style>
 </head>
 <body>
     <h1>Shopping Basket</h1>
 
-    <table>
+    <table class="table table-bordered table-hover">
         <thead>
             <tr>
-                <th>ProductId</th>
+                <th>Id</th>
+                <th>Image</th>
                 <th>ProductName</th>
                 <th>Quantity</th>
                 <th>Price</th>
                 <th>Price</th>
-                <th>Actions</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
             <!-- Example row for a product -->
-            @foreach (Model.OrderLine orderLine in Model.OrderLines)
+            @foreach (Model.OrderLine orderLine in Model._orderLines)
             {
-                // Retrieve the Product object based on the ProductId
-                Model.Product product = null;
-
-                if (dbContext.Wools.Any(p => p.ProductId == orderLine.ProductId))
-                {
-                    product = dbContext.Wools.FirstOrDefault(p => p.ProductId == orderLine.ProductId);
-                }
-                else if (dbContext.Yarns.Any(p => p.ProductId == orderLine.ProductId))
-                {
-                    product = dbContext.Yarns.FirstOrDefault(p => p.ProductId == orderLine.ProductId);
-                }
                 <tr>
                     <td>
-                        @orderLine.ProductId
+                        @orderLine.OrderLineId
                     </td>
                     <td>
-                        @product.ProductName
+                        <img src="@Model.ProductImage(orderLine)" style="width: 75px;height:auto;"/>
+                    </td>
+                    <td>
+                        @Model.ProductName(orderLine)
                     </td>
                     <td>
                         @orderLine.Amount
@@ -54,12 +44,12 @@
                         @orderLine.Price Kr.
                     </td>
                     <td>
-                        @orderLine.Price * @orderLine.Amount Kr.
+                        @orderLine.TotalPrice Kr.
                     </td>
                     <td>
                         <form>
-                        <a class="btn btn-danger btn-sm fa fa-minus" type="submit" title="Decrease Amount" method="post" asp-page-handler="DecreaseAmount" asp-route-id="@orderLine.OrderLineId"></a>
-                        <a class="btn btn-success btn-sm fa fa-plus" type="submit" title="Increase Amount" method="post" asp-page-handler="IncreaseAmount" asp-route-id="@orderLine.OrderLineId"></a>
+                            <a class="btn btn-danger btn-sm fa fa-minus" type="submit" title="Decrease Amount" method="post" asp-page-handler="DecreaseAmount" asp-route-id="@orderLine.OrderLineId"></a>
+                            <a class="btn btn-success btn-sm fa fa-plus" type="submit" title="Increase Amount" method="post" asp-page-handler="IncreaseAmount" asp-route-id="@orderLine.OrderLineId"></a>
                         </form>
                     </td>
                 </tr>
@@ -70,15 +60,14 @@
             <tr>
                 <td colspan="3"></td>
                 <td>Total:</td>
-                <td>$39.98</td>
+                <td>
+                    @Model.CalculateTotalPrice(Model._orderLines) Kr.
+                </td>
             </tr>
         </tfoot>
     </table>
 
-    <button>Checkout</button>
+    <a class="btn btn-primary" asp-page="/Main/Store/CreateOrder">Fortsæt til Kassen</a>
 
-    <script>
-        // Add your JavaScript code here, if needed
-    </script>
 </body>
 </html>
