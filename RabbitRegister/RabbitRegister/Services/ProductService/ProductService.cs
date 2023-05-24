@@ -19,9 +19,9 @@ namespace RabbitRegister.Services.ProductService
             _dbYarnService = dbYarnService;
             _yarns = dbYarnService.GetObjectsAsync().Result.ToList();
 
-			_yarns = MockData.MockYarn.GetMockYarns();  //DB tom? Load dette ved første startup.. (NB: Den klarer også _yarns)
-			_wools = MockData.MockWool.GetMockWools();
-			_dbService.SaveObjects(_wools);
+			//DB tom? Load dette ved første startup.. (NB: Kan ikke klare "_yarns")
+			//_wools = MockData.MockWool.GetMockWools();
+			//_dbService.SaveObjects(_wools);
 		}
 
 		public List<Product> GetProduct(int productId)
@@ -85,6 +85,11 @@ namespace RabbitRegister.Services.ProductService
 		public List<Wool> GetMyWoolCreations(int breederRegNo)
 		{
 			return _wools.Where(wool => wool.BreederRegNo == breederRegNo).ToList();
+		}
+
+		public List<Yarn> GetMyYarnCreations(int breederRegNo)
+		{
+			return _yarns.Where(yarn => yarn.BreederRegNo == breederRegNo).ToList();
 		}
 
 		public Wool GetWools(int id)

@@ -3,15 +3,21 @@
 @{
 }
 
-<h1 class="font-monospace text-center">Garn</h1>
-<p class="from-group">
-	<a class="btn btn-primary text-center" style="background-color:green;margin-left:auto;margin-right:auto;display:block;margin-top:1%" asp-page="/Main/Product/CreateYarn"> Tilføj Nyt Garn </a>
-</p>
+<h2 class="text-center">Mine Garn-produkter</h2>
+
+<div class="d-flex justify-content-between">
+	<div class="d-flex flex-row">
+		<div class="p-2 bd-highlight">
+			<a class="btn-create btn" asp-page="CreateYarn">Opret Garn</a>
+		</div>
+	</div>
+</div>
+
 <table class="table table-bordered table-hover table-striped table-opacity" width="100%">
 	<thead>
 		<tr>
-			<th> Produkt Id </th>
 			<th> Avler Id </th>
+			<th> Produkt Id </th>
 			<th> Produkt Type </th>
 			<th> Produkt Name </th>
 			<th> Fiber </th>
@@ -32,8 +38,8 @@
 			foreach (var yarn in Model.Yarns)
 			{
 				<tr>
-					<td>@yarn.ProductId</td>
 					<td>@yarn.BreederRegNo</td>
+					<td>@yarn.ProductId</td>
 					<td>@yarn.ProductType</td>
 					<td>@yarn.ProductName</td>
 					<td>@yarn.Fiber</td>

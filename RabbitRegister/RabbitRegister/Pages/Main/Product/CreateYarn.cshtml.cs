@@ -31,7 +31,7 @@ namespace RabbitRegister.Pages.Main.Product
 				return Page();
 			}
 			await _yarnService.AddYarnAsync(yarn);
-			return RedirectToPage("GetAllYarn");
+			return RedirectToPage("GetAllYarn", new { breederRegNo = Yarn.BreederRegNo });
 		}
 	}
 }
