@@ -38,7 +38,15 @@ namespace RabbitRegister.Pages.Main.Breeder
             }
             breeder.Password = _passwordHasher.HashPassword(null, breeder.Password);
             await _breederService.UpdateBreederAsync(breeder);
-            return RedirectToPage("GetAllBreeders");
+            if (User.IsInRole("Admin"))
+            {
+                return RedirectToPage("GetAllBreeders");
+            }
+            else
+            {
+                return RedirectToPage("/Index");
+            }
+            //return RedirectToPage("GetAllBreeders");
         }
     }
 }

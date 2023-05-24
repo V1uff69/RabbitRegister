@@ -72,7 +72,7 @@ namespace RabbitRegister.Model
         [Range(typeof(float), minimum: "0", maximum: "100", ErrorMessage = "Kaninens bedømmelse må ligge imellem: {1} og {2}")]
         public float? Rating { get; set; } = null;
 
-        [Display(Name = "Ane-Kanin (Levende/Død): ")]
+        [Display(Name = "Status (Levende/Død): ")]
         [Required(ErrorMessage = "Der skal oplyses om kaninen er død eller levende")]
         public DeadOrAlive DeadOrAlive { get; set; }
 

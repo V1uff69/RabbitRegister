@@ -12,7 +12,7 @@ using RabbitRegister.EFDbContext;
 namespace RabbitRegister.Migrations
 {
     [DbContext(typeof(ItemDbContext))]
-    [Migration("20230524153940_Rab1")]
+    [Migration("20230524173414_Rab1")]
     partial class Rab1
     {
         /// <inheritdoc />

@@ -41,18 +41,25 @@
                         @{
                             if (Context.User.Identity.Name != null)
                             {
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-page="/Main/Trimming/GetAllTrimming" asp-route-breederRegNo="@Context.User.Identity.Name">Klipninger</a>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link text-dark dropdown-toggle" href="#" id="breederDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-auto-close="false">
+                                        For Breeder
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="breederDropdown">
+                                        <a class="dropdown-item" asp-area="" asp-page="/Main/Trimming/GetAllTrimming">Klipninger</a>
+                                        <div class="dropdown">
+                                            <a class="dropdown-item text-dark dropdown-toggle" href="#" id="productsDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Products
+                                            </a>
+                                            <div class="dropdown-menu" aria-labelledby="productsDropdown">
+                                                <a class="dropdown-item" asp-area="" asp-page="/Main/Product/GetAllWool">Uld</a>
+                                                <a class="dropdown-item" asp-area="" asp-page="/Main/Product/GetAllYarn">Garn</a>
+                                            </div>
+                                        </div>
+                                        <a class="dropdown-item" asp-area="" asp-page="/Main/Rabbit/GetAllRabbits" asp-route-breederRegNo="@Context.User.Identity.Name">Mine Kaniner</a>
+                                    </div>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-page="/Main/Product/GetAllWool" asp-route-breederRegNo="@Context.User.Identity.Name">Uld</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-page="/Main/Product/GetAllYarn" asp-route-breederRegNo="@Context.User.Identity.Name">Garn</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-page="/Main/Rabbit/GetAllRabbits" asp-route-breederRegNo="@Context.User.Identity.Name">Mine Kaniner</a>
-                                </li>
+
                             }
                         }
                         @{

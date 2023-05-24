@@ -12,9 +12,9 @@ namespace RabbitRegister.Services.BreederService
         public BreederService(DbGenericService<Breeder> dbService)
         {
             _dbService = dbService;
-            Breeders = _dbService.GetObjectsAsync().Result.ToList();
-            //Breeders = MockBreeder.GetMockBreeders();
-            //_dbService.SaveObjects(Breeders);
+            //Breeders = _dbService.GetObjectsAsync().Result.ToList();
+            Breeders = MockBreeder.GetMockBreeders();
+            _dbService.SaveObjects(Breeders);
         }
 
         public async Task AddUserAsync(Breeder breeder)
