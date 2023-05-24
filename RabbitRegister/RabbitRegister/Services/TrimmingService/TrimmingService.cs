@@ -24,7 +24,6 @@ namespace RabbitRegister.Services.TrimmingService
 			//	DbGenericService.AddObjectAsync(trimming).Wait();
 			//}
 		}
-
         public Trimming GetTrimming(int id)
 		{
 			foreach (Trimming trimming in _trimmings)

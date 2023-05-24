@@ -16,7 +16,6 @@ namespace RabbitRegister.MockData
             new Trimming(120, 4640, "Mulan", new DateTime(2022, 11, 03), 65, 5, 18, 65, 40, 40),
             new Trimming(120, 4640, "Mulan", new DateTime(2022, 05, 11), 75, 6, 16, 45, 85, 20),
             new Trimming(120, 4640, "Mulan", new DateTime(2023, 04, 16), 55, 5, 18, 85, 70, 20),
-
         };
 
         public static List<Trimming> GetMockTrimming()
