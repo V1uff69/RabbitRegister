@@ -12,7 +12,7 @@ using RabbitRegister.EFDbContext;
 namespace RabbitRegister.Migrations
 {
     [DbContext(typeof(ItemDbContext))]
-    [Migration("20230523070821_Rab1")]
+    [Migration("20230524153940_Rab1")]
     partial class Rab1
     {
         /// <inheritdoc />
@@ -85,8 +85,7 @@ namespace RabbitRegister.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RecipientName")
                         .IsRequired()
@@ -97,7 +96,6 @@ namespace RabbitRegister.Migrations
                         .HasColumnType("float");
 
                     b.Property<int>("ZipCode")
-                        .HasMaxLength(4)
                         .HasColumnType("int");
 
                     b.HasKey("OrderId");
@@ -108,15 +106,12 @@ namespace RabbitRegister.Migrations
             modelBuilder.Entity("RabbitRegister.Model.OrderLine", b =>
                 {
                     b.Property<int>("OrderLineId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderLineId"));
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
 
                     b.Property<int>("Amount")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("OrderId")
                         .HasColumnType("int");
 
                     b.Property<double>("Price")
@@ -129,7 +124,10 @@ namespace RabbitRegister.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("OrderLineId");
+                    b.Property<double>("TotalPrice")
+                        .HasColumnType("float");
+
+                    b.HasKey("OrderLineId", "OrderId");
 
                     b.HasIndex("OrderId");
 
@@ -348,15 +346,12 @@ namespace RabbitRegister.Migrations
             modelBuilder.Entity("RabbitRegister.Model.OrderLine", b =>
                 {
                     b.HasOne("RabbitRegister.Model.Order", "Order")
-                        .WithMany("OrderLines")
-                        .HasForeignKey("OrderId");
+                        .WithMany()
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Order");
-                });
-
-            modelBuilder.Entity("RabbitRegister.Model.Order", b =>
-                {
-                    b.Navigation("OrderLines");
                 });
 #pragma warning restore 612, 618
         }

@@ -25,112 +25,70 @@
 <body>
     <!--  Wool Info, price, name... -->
     <div>
-        <form method="post">
-            <div style="width: 100%" class="d-flex flex-wrap flex-row justify-content-center">
-                @if (Model.OrderLines != null)
+        <div style="width: 100%" class="d-flex flex-wrap flex-row justify-content-center">
+            @if (@Model.Wools != null)
+            {
+                foreach (var Wool in Model.Wools)
                 {
-                    foreach (OrderLine orderLine in Model.OrderLines)
-                    {
-                        @if (@orderLine.ProductType == "Wool")
-                        {
-                            var Wool = Model.Wools.First(Wool => Wool.ProductId == orderLine.ProductId);
-                            <div class="click-card flex-item">
-                                <div class="p-2-card text-center container rounded border border-dark" style="width: 100%;">
-                                    <a asp-page="/Main/Product/ProductInfo" asp-route-id="@Wool.ProductId">
-                                        @if (Wool.ImgString == "/Images/Products/Yarn/" || Wool.ImgString == null)
-                                        {
-                                            <img class="card-image" src="\Images\MissingImg.jpg">
-                                        }
-                                        else
-                                        {
-                                            <img class="card-image" src="@Wool.ImgString">
-                                        }
-                                        <p class="text-card font-monospace"> Name: @Wool.ProductName </p>
-                                        <p class="text-card font-monospace"> Price: @Wool.Price kr </p>
-                                        <p class="text-card font-monospace"> Stock: @Wool.Amount</p>
-                                    </a>
-                                    <div class="form-group">
-                                        <label asp-for="@orderLine.Amount" class="control-label"></label>
-                                        <input asp-for="@orderLine.Amount" class="form-control" />
-                                        <span asp-validation-for="@orderLine.Amount" class="text-danger"></span>
+                    <a class="click-card flex-item" asp-page="/Main/Product/ProductInfo" asp-route-id="@Wool.ProductId">
+                        <div class="p-2-card text-center container rounded border border-dark" style="width: 100%;">
+                            @if (Wool.ImgString == "/Images/Products/Yarn/" || Wool.ImgString == null)
+                            {
+                                <img class="card-image" src="\Images\MissingImg.jpg">
+                            }
+                            else
+                            {
+                                <img class="card-image" src="@Wool.ImgString">
+                            }
+                            <p class="text-card font-monospace"> Name: @Wool.ProductName </p>
+                            <p class="text-card font-monospace"> Price: @Wool.Price kr </p>
+                            <p class="text-card font-monospace"> Stock: @Wool.Amount</p>
+                            <div class="d-flex flex-wrap justify-content-center" style="margin-bottom: 5px; margin-top: 0px;">
+                                <a class="btn-card btn-primary btn-sm" type="button" title="Edit" asp-page="/Main/Product/EditWool" asp-route-id="@Wool.ProductId"><i class="fa fa-edit"></i></a>
+                                <a class="btn-card btn-danger btn-sm" type="button" title="Delete" asp-page="/Main/Product/DeleteWool" asp-route-id="@Wool.ProductId"><i class="fa fa-trash"></i></a>
+                                <form method="post">
+                                    <div>
+                                        <button class="btn-card btn alert-success btn-sm" asp-page-handler="AddToBasketAsync" asp-route-id="@Wool.ProductId" asp-route-type="@Wool.ProductType"><i class="fa fa-cart-plus"></i></button>
                                     </div>
-                                    <div class="d-flex flex-wrap justify-content-center" style="margin-bottom: 5px; margin-top: 0px;">
-                                        <a class="btn-card btn-primary btn-sm" type="button" title="Edit" asp-page="/Main/Product/EditWool" asp-route-id="@Wool.ProductId"><i class="fa fa-edit"></i></a>
-                                        <a class="btn-card btn-danger btn-sm" type="button" title="Delete" asp-page="/Main/Product/DeleteWool" asp-route-id="@Wool.ProductId"><i class="fa fa-trash"></i></a>
-                                        <a class="btn-card btn alert-success btn-sm" href="/Main/Store/Basket?ProductId=@Wool.ProductId&ProductType=@Wool.ProductType"><i class="fa fa-cart-plus"></i></a>
-                                        @* <a class="btn-card btn alert-success btn-sm" asp-page="/Main/Store/Basket" asp-page-handler="AddToBasketAsync" asp-route-id="@Wool.ProductId"><i class="fa fa-cart-plus"></i></a>*@
-                                    </div>
-                                </div>
+                                </form>
                             </div>
-                        }
-                        @if (orderLine.ProductType == "Yarn")
-                        {
-                            var Yarn = Model.Yarns.First(Yarn => Yarn.ProductId == orderLine.ProductId);
-                            <div class="click-card flex-item">
-                                <div class="p-2-card text-center container rounded border-dark">
-                                    <a asp-page="/Main/Product/ProductInfo" asp-route-id="@Yarn.ProductId">
-                                        @if (Yarn.ImgString == "/Images/Products/Yarn/" || Yarn.ImgString == null)
-                                        {
-                                            <img class="card-image" src="\Images\MissingImg.jpg">
-                                        }
-                                        else
-                                        {
-                                            <img class="card-image" src="@Yarn.ImgString">
-                                        }
-                                        <p class="text-card font-monospace"> Name: @Yarn.ProductName </p>
-                                        <p class="text-card font-monospace"> Price: @Yarn.Price kr </p>
-                                        <p class="text-card font-monospace"> Stock: @Yarn.Amount</p>
-                                    </a>
-                                    <div class="form-group">
-                                        <label asp-for="@orderLine.Amount" class="control-label"></label>
-                                        <input asp-for="@orderLine.Amount" class="form-control" />
-                                        <span asp-validation-for="@orderLine.Amount" class="text-danger"></span>
-                                    </div>
-                                    <div class="card-buttons d-flex flex-wrap justify-content-center" style="margin-bottom: 5px; margin-top: 0px;">
-                                        <a class="btn-card btn-primary btn-sm" type="button" title="Edit" asp-page="/Main/Product/EditYarn" asp-route-id="@Yarn.ProductId"><i class="fa fa-edit"></i></a>
-                                        <a class="btn-card btn-danger btn-sm" type="button" title="Delete" asp-page="/Main/Product/DeleteYarn" asp-route-id="@Yarn.ProductId"><i class="fa fa-trash"></i></a>
-                                        <a class="btn-card btn alert-success btn-sm" href="/Main/Store/Basket?ProductId=@Yarn.ProductId&ProductType=@Yarn.ProductType"><i class="fa fa-cart-plus"></i></a>
-                                        @*                                <a class="btn-card btn alert-success btn-sm" asp-page="/Main/Store/Basket" asp-page-handler="AddToBasketAsync" asp-route-id="@Yarn.ProductId"><i class="fa fa-cart-plus"></i></a>*@
-
-                                    </div>
-                                </div>
-                            </div>
-                        }
-                    }
+                        </div>
+                    </a>
                 }
-
-            </div>
-            <div class="form-group">
-                <label asp-for="@Model.Order.RecipientName" class="control-label"></label>
-                <input asp-for="@Model.Order.RecipientName" class="form-control" />
-                <span asp-validation-for="@Model.Order.RecipientName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="@Model.Order.DeliveryAddress" class="control-label"></label>
-                <input asp-for="@Model.Order.DeliveryAddress" class="form-control" />
-                <span asp-validation-for="@Model.Order.DeliveryAddress" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="@Model.Order.City" class="control-label"></label>
-                <input asp-for="@Model.Order.City" class="form-control" />
-                <span asp-validation-for="@Model.Order.City" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="@Model.Order.ZipCode" class="control-label"></label>
-                <input asp-for="@Model.Order.ZipCode" class="form-control" />
-                <span asp-validation-for="@Model.Order.ZipCode" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="@Model.Order.Email" class="control-label"></label>
-                <input asp-for="@Model.Order.Email" class="form-control" />
-                <span asp-validation-for="@Model.Order.Email" class="text-danger"></span>
-            </div>
-            <p>
-                <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-primary" />
-                </div>
-            </p>
-
-        </form>
+            }
+            @if (Model.Yarns != null)
+            {
+                foreach (var Yarn in Model.Yarns)
+                {
+                    <a class="click-card flex-item" asp-page="/Main/Product/ProductInfo" asp-route-id="@Yarn.ProductId">
+                        <div class="p-2-card text-center container rounded border-dark">
+                            @if (Yarn.ImgString == "/Images/Products/Yarn/" || Yarn.ImgString == null)
+                            {
+                                <img class="card-image" src="\Images\MissingImg.jpg">
+                            }
+                            else
+                            {
+                                <img class="card-image" src="@Yarn.ImgString">
+                            }
+                            <p class="text-card font-monospace"> Name: @Yarn.ProductName </p>
+                            <p class="text-card font-monospace"> Price: @Yarn.Price kr </p>
+                            <p class="text-card font-monospace"> Stock: @Yarn.Amount</p>
+                            <div class="card-buttons d-flex flex-wrap justify-content-center" style="margin-bottom: 5px; margin-top: 0px;">
+                                <a class="btn-card btn-primary btn-sm" type="button" title="Edit" asp-page="/Main/Product/EditYarn" asp-route-id="@Yarn.ProductId"><i class="fa fa-edit"></i></a>
+                                <a class="btn-card btn-danger btn-sm" type="button" title="Delete" asp-page="/Main/Product/DeleteYarn" asp-route-id="@Yarn.ProductId"><i class="fa fa-trash"></i></a>
+                                <form method="post">
+                                    <div>
+                                        <button class="btn-card btn alert-success btn-sm" asp-page-handler="AddToBasketAsync" asp-route-id="@Yarn.ProductId" asp-route-type="@Yarn.ProductType"><i class="fa fa-cart-plus"></i></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </a>
+                }
+            }
+        </div>
     </div>
+    <br />
+    <br />
+    <br />
 </body>

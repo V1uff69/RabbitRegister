@@ -1,0 +1,114 @@
+﻿@page
+@using RabbitRegister.EFDbContext
+@using RabbitRegister.Model;
+@inject ItemDbContext dbContext
+@model RabbitRegister.Pages.Main.Store.CreateOrderModel
+@{
+}
+
+<html>
+<head>
+    <title>Kassen</title>
+</head>
+<body>
+    <h1>Kassen</h1>
+
+    @*<table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>ProductName</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Example row for a product -->
+            @foreach (Model.OrderLine orderLine in Model._orderLines)
+            {
+                <tr>
+                    <td>
+                        <img src="@Model.ProductImage(orderLine)" style="width: 75px;height:auto;"/>
+                    </td>
+                    <td>
+                        @Model.ProductName(orderLine)
+                    </td>
+                    <td>
+                        @orderLine.Amount
+                    </td>
+                    <td>
+                        @orderLine.Price Kr.
+                    </td>
+                    <td>
+                        @Model.CalculateOrderLineTotalPrice(orderLine) Kr.
+                    </td>
+                    <td>
+                        <form>
+                            <a class="btn btn-danger btn-sm fa fa-minus" type="submit" title="Decrease Amount" method="post" asp-page-handler="DecreaseAmount" asp-route-id="@orderLine.OrderLineId"></a>
+                            <a class="btn btn-success btn-sm fa fa-plus" type="submit" title="Increase Amount" method="post" asp-page-handler="IncreaseAmount" asp-route-id="@orderLine.OrderLineId"></a>
+                        </form>
+                    </td>
+                </tr>
+            }
+            <!-- Add more rows for other products dynamically if needed -->
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3"></td>
+                <td>Total:</td>
+                <td>
+                    @Model.CalculateTotalPrice(Model._orderLines)
+                </td>
+            </tr>
+        </tfoot>
+    </table>*@
+
+    <form method="post">
+        <div class="form-group" hidden>
+            <label asp-for="@Model.Order.OrderId"></label>
+            <input asp-for="@Model.Order.OrderId" />
+        </div>
+        <div class="form-group" hidden>
+            <label asp-for="@Model.Order.Date"></label>
+            <input asp-for="@Model.Order.Date" />
+        </div>
+        <div class="form-group" hidden>
+            <label asp-for="@Model.Order.TotalPrice"></label>
+            <input asp-for="@Model.Order.TotalPrice"/>
+        </div>
+        <div>
+            <label asp-for="@Model.Order.RecipientName"></label>
+            <input asp-for="@Model.Order.RecipientName" />
+            <span asp-validation-for="@Model.Order.RecipientName"></span>
+        </div>
+        <div>
+            <label asp-for="@Model.Order.DeliveryAddress"></label>
+            <input asp-for="@Model.Order.DeliveryAddress" />
+            <span asp-validation-for="@Model.Order.DeliveryAddress"></span>
+        </div>
+        <div>
+            <label asp-for="@Model.Order.City"></label>
+            <input asp-for="@Model.Order.City" />
+            <span asp-validation-for="@Model.Order.City"></span>
+        </div>
+        <div>
+            <label asp-for="@Model.Order.ZipCode"></label>
+            <input asp-for="@Model.Order.ZipCode" />
+            <span asp-validation-for="@Model.Order.ZipCode"></span>
+        </div>
+        <div>
+            <label asp-for="@Model.Order.Email"></label>
+            <input asp-for="@Model.Order.Email" />
+            <span asp-validation-for="@Model.Order.Email"></span>
+        </div>
+
+        <!-- Add other fields here -->
+
+        <button type="submit">Submit</button>
+    </form>
+
+
+</body>
+</html>

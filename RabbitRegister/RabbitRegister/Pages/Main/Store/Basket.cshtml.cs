@@ -1,47 +1,44 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.CodeAnalysis;
+using Microsoft.EntityFrameworkCore;
+using RabbitRegister.EFDbContext;
 using RabbitRegister.Model;
 using RabbitRegister.Services.ProductService;
 using RabbitRegister.Services.Store;
+using static NuGet.Packaging.PackagingConstants;
 
 
 namespace RabbitRegister.Pages.Main.Store
 {
     public class BasketModel : PageModel
     {
-        private IStoreService _storeService { get; set; }
-        private IProductService _productService { get; set; }
-        [BindProperty] public Order _order { get; set; } = new Order();
-        public List<OrderLine> OrderLines { get; set; } = new List<OrderLine>();
+        public List<OrderLine> _orderLines { get; set; }
         public List<Model.Wool> Wools { get; set; }
         public List<Model.Yarn> Yarns { get; set; }
         public Model.Product Product { get; set; }
+        private IStoreService _storeService { get; set; }
+        public ItemDbContext dbContext { get; set; }
 
-        public BasketModel(IStoreService storeService, IProductService productService)
+        public BasketModel(IStoreService storeService, ItemDbContext DbContext)
         {
             _storeService = storeService;
-            _productService = productService;
+            dbContext = DbContext;
         }
 
-        public void OnGet()
-        {
-            Yarns = _productService.GetYarns();
-            Wools = _productService.GetWools();
-        }
-        public IActionResult OnGetBasket()
-        {
+        //public async Task<IActionResult> OnGetAddToBasketAsync(int id, string type)
+        //{
+        //        await _storeService.AddToBasketAsync(id,type);
 
-            OrderLines = _storeService.GetBasket();
+        //    TempData["Notification"] = "Product added to the basket.";
+
+        //    return RedirectToPage("/Main/Store/Store");
+        //}
+
+        public IActionResult OnGet()
+        {
+            _orderLines = _storeService.GetBasket();
             return Page();
-        }
-
-        public async Task<IActionResult> OnGetAddToBasketAsync(int ProductId, string ProductType)
-        {
-            await _storeService.AddToBasketAsync(ProductId, ProductType);
-
-            TempData["Notification"] = "Product added to the basket.";
-
-            return RedirectToPage("/Main/Store/Store");
         }
 
         public async Task<IActionResult> OnGetDecreaseAmount(int id)
@@ -54,7 +51,7 @@ namespace RabbitRegister.Pages.Main.Store
             }
 
             // Reload the necessary data
-            OrderLines = _storeService.GetBasket();
+            _orderLines = _storeService.GetBasket();
 
             return Page();
         }
@@ -75,5 +72,52 @@ namespace RabbitRegister.Pages.Main.Store
         {
             return Page();
         }
+
+        public double CalculateTotalPrice(List<OrderLine> orderLines)
+        {
+            double totalPrice = 0;
+            foreach (var orderLine in orderLines)
+            {
+                totalPrice = Math.Round(totalPrice + orderLine.TotalPrice,2);
+            }
+            return totalPrice;
+        }
+
+        public string ProductName(OrderLine orderLine)
+        {
+            Model.Product product = null;
+
+            if (orderLine.ProductType == "Wool")
+            {
+                product = dbContext.Wools.FirstOrDefault(p => p.ProductId == orderLine.ProductId);
+            }
+            else if (orderLine.ProductType == "Yarn")
+            {
+                product = dbContext.Yarns.FirstOrDefault(p => p.ProductId == orderLine.ProductId);
+            }
+
+            return product.ProductName;
+        }
+
+        public string ProductImage(OrderLine orderLine)
+        {
+            string Image = null;
+
+            if (orderLine.ProductType == "Wool")
+            {
+                //linq(funktionen) og lambda(anonym funktion "p=> p.___)
+                Model.Wool wool = dbContext.Wools.FirstOrDefault(p => p.ProductId == orderLine.ProductId);
+                return wool.ImgString;
+            }
+            else if (orderLine.ProductType == "Yarn")
+            {
+                Model.Yarn yarn = dbContext.Yarns.FirstOrDefault(p => p.ProductId == orderLine.ProductId);
+                return yarn.ImgString;
+            }
+
+            return Image;
+        }
+
     }
+
 }
