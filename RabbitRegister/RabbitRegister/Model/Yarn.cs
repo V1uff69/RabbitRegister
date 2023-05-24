@@ -37,14 +37,14 @@ namespace RabbitRegister.Model
         {
         }
 
-        public Yarn(string productType, int breederRegNo, string productName, string fiber, double needleSize, double length, string tension, string washing, string color, int amount, double price, string imgString) : base(productType, breederRegNo, productName, color, amount, price)
+        public Yarn(string productType, int breederRegNo, string productName, string fiber, double needleSize, double length, string tension, string washing, string color, int amount, double price, string? imgString) : base(productType, breederRegNo, productName, color, amount, price)
         {
             Fiber = fiber;
             NeedleSize = needleSize;
             Length = length;
             Tension = tension;
             Washing = washing;
-            ImgString = "/Images/Products/Yarn/" + imgString;
+            ImgString = "/Images/Products/Yarn/"+imgString;
 
         }
     }

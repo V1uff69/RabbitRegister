@@ -35,17 +35,6 @@ div.layer {
     margin-right: 10%;
 }
 
-
-table {
-    background-color: white;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.flex-item {
-    flex-basis: 0;
-    max-width: 100%;
-}
 .create-form {
     max-width: 500px;
     margin-left: auto;
@@ -60,9 +49,20 @@ table {
     margin-top: 1%
 }
 
-    .btn-create:hover {
-        background-color: mediumseagreen;
-    }
+.btn-create:hover {
+    background-color: mediumseagreen;
+}
+
+table {
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.flex-item {
+    flex-basis: 0;
+    max-width: 100%;
+}
 
 .p-2-card {
     min-height: 310px;
@@ -118,4 +118,3 @@ table {
     margin-bottom: 3px;
     margin-top: 3px;
 }
-
