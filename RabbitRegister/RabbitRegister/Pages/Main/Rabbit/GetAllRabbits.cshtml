@@ -4,44 +4,44 @@
 }
 
 <link rel="stylesheet" href="/css/rabbitSite.css" />
-<br />
+
+<!--  Side menu, Create kanpper -->
+<div class="d-flex justify-content-between">
+    <div class="d-flex flex-row">
+        <div class="p-2 bd-highlight">
+            <a class="btn-create btn" asp-page="CreateRabbit">Opret Kanin</a>
+        </div>
+        <div class="p-2 bd-highlight">
+            <a class="btn-create btn" asp-page="/Main/Trimming/CreateTrimming"> Opret Klip</a>
+        </div>
+    </div>
+</div>
+
 <h2 class="text-center">Mine Kaniner:</h2>
 <br />
 
 <!-- Filter: Hvilke kaniner der skal vises? -->
+<div class="container text-center mt-3">
+    <h4>Filter Kaniner:</h4>
+    <ul class="nav nav-pills justify-content-center">
+        <li class="nav-item">
+            <a class="nav-link active" href="/Main/Rabbit/GetAllRabbits?breederRegNo=@User.Identity.Name">Nuværende besætning</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Main/Rabbit/GetAllRabbits?breederRegNo=@User.Identity.Name&action=NotOwnedRabbitsWithMyBreederRegNo">Kaniner uden for min stald</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Main/Rabbit/GetAllRabbits?breederRegNo=@User.Identity.Name&action=OwnedDeadRabbits">Ane-kaniner</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/Main/Rabbit/GetAllRabbits?breederRegNo=@User.Identity.Name&action=AllRabbitsWithConnectionsToMe">Fulde register</a>
+        </li>
+    </ul>
+</div>
 
-<p class="text-center">Kaniner i eller uden for min stald:</p>
-
-<ul class="nav nav-pills">
-    <li class="nav-item">
-        <a class="nav-link active" href="/Main/Rabbit/GetAllRabbits?breederRegNo=@User.Identity.Name">Nuværende besætning</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/Main/Rabbit/GetAllRabbits?breederRegNo=@User.Identity.Name&action=NotOwnedRabbitsWithMyBreederRegNo">Kaniner uden for min stald</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/Main/Rabbit/GetAllRabbits?breederRegNo=@User.Identity.Name&action=OwnedDeadRabbits">Ane-kaniner</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/Main/Rabbit/GetAllRabbits?breederRegNo=@User.Identity.Name&action=AllRabbitsWithConnectionsToMe">Fulde register</a>
-    </li>
-
-</ul>
 
 <br />
 
-
-<p>
-    <a class="btn btn-primary" asp-page="CreateRabbit">Ny Kanin</a>
-</p>
-
-<style>
-    .card-image {
-        width: 100%;
-        height: 230px;
-        object-fit: cover;
-    }
-</style>
 
 <!-- Bootstrap Card setup, med tilhørende table til højre for billedet Card billedet -->
 
@@ -85,7 +85,7 @@
                                     </tr>
                                 </table>
                             </div>
-                            <div class="d-flex flex-row justify-content-end" style="margin-bottom: 5px; margin-top: 0px;">
+                            <div class="d-flex flex-row justify-content-end" style="margin-bottom: 5px; margin-top: 5px;">
                                 <a class="btn-card btn-primary btn-sm mr-1" type="button" title="Edit" asp-page="/Main/Rabbit/EditRabbit" asp-route-id="@Rabbit.RabbitRegNo" asp-route-breederRegNo="@Rabbit.BreederRegNo">
                                     <i class="fa fa-edit"></i>
                                 </a>

@@ -1,0 +1,61 @@
+﻿@page
+@model RabbitRegister.Pages.Main.Rabbit.RabbitStoreModel
+@{
+}
+
+<link rel="stylesheet" href="/css/rabbitSite.css" />
+
+
+<br />
+<h2 class="text-center">Salgs kaniner:</h2>
+<br />
+
+<body>
+    <div>
+        <div style="width: 100%" class="d-flex flex-wrap flex-row justify-content-center">
+            @if (@Model.Rabbits != null)
+            {
+                foreach (var Rabbit in Model.Rabbits)
+                {
+                    <a class="click-card flex-item" asp-page="/Main/Rabbit/RabbitProfile" asp-route-id="@Rabbit.RabbitRegNo" asp-route-breederRegNo="@Rabbit.BreederRegNo">
+
+                        <div class="p-2-card text-center container rounded border border-dark" style="width: 100%;">
+                            <div class="d-flex flex-row">
+                                <div>
+                                    @if (Rabbit.ImageString == "/Images/Rabbits/" || Rabbit.ImageString == null)
+                                    {
+                                        <img class="card-image" src="\Images\MissingImg.jpg">
+                                    }
+                                    else
+                                    {
+                                        <img class="card-image" src="@Rabbit.ImageString">
+                                    }
+                                </div>
+                                <table class="table table-opacity">
+                                    <tr>
+                                        <th>Ejer:</th>
+                                        <td>@Rabbit.Owner</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Kælenavn:</th>
+                                        <td>@Rabbit.Name</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Race:</th>
+                                        <td>@Rabbit.Race</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Farve:</th>
+                                        <td>@Rabbit.Color</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="d-flex flex-row justify-content-end" style="margin-bottom: 5px; margin-top: 0px;">
+                            </div>
+                        </div>
+                    </a>
+                }
+            }
+        </div>
+    </div>
+</body>

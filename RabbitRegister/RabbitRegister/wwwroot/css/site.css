@@ -8,16 +8,6 @@ html {
     }
 }
 
-
-.rabbit-profile-left img {
-    margin-top: 30px;
-    border-radius: 50%;     /*gør profil billedhjørner runde*/
-    width: 300px;
-    height: 300px;
-    margin-bottom: 15px;
-    object-fit: cover;
-}
-
 html {
     position: relative;
     min-height: 100%;
@@ -31,7 +21,7 @@ header {
 body {
     margin-bottom: 60px;
     background-image: url("../Images/Website/RabbitWallpaper.jpg");
-    background-color: pink;
+    background-color: whitesmoke;
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
@@ -45,8 +35,14 @@ div.layer {
     margin-right: 10%;
 }
 
+.create-form {
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .btn-create {
-    background-color: pink;
+    background-color: seagreen;
     margin-left: auto;
     margin-right: auto;
     display: block;
@@ -54,7 +50,7 @@ div.layer {
 }
 
 .btn-create:hover {
-    background-color: lightpink;
+    background-color: mediumseagreen;
     
 }
 
@@ -64,13 +60,12 @@ table {
     margin-right: auto;
 }
 
-.create-form {
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
+.flex-item {
+    flex-basis: 0;
+    max-width: 100%;
 }
 
-.p-2-card {
+/*.p-2-card {
     min-height: 310px;
     max-height: 310px;
     max-width: 200px;
@@ -89,14 +84,11 @@ table {
     margin-bottom: 10px;
 }
 
-.flex-item {
-    flex-basis: 0;
-    max-width: 100%;
-}
-
 .p-2-card:hover {
     background-color: lightgrey;
-}
+}*/
+
+
 
 .click-card {
     user-select: none;
@@ -125,5 +117,5 @@ table {
 }
 
 footer {
-    background-color: pink;
+    background-color: whitesmoke;
 }

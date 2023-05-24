@@ -13,23 +13,29 @@ namespace RabbitRegister.Model
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ProductId { get; set; }
+
         [Display(Name = "Produkt Type")]
         [Required(ErrorMessage ="Produkt type skal indtastes")]
         public string ProductType { get; set; }
+
         [Display(Name = "Avler ID")]
         [Required(ErrorMessage ="Avler ID er nødvendigt")]
         [ForeignKey(nameof(BreederRegNo))]
         public int BreederRegNo { get; set; }
+
         [Display(Name = "Produkt Navn")]
         [Required(ErrorMessage = "Husk at tilføje navn til produktet")]
         public string ProductName { get; set; }
+
         [Display(Name = "Farve")]
         [Required(ErrorMessage = "Husk at tilføje farve til produktet")]
         public string Color { get; set; }
         [Display(Name = "Antal")]
+
         [Required(ErrorMessage = "Husk at angiv antal til produktet")]
         public int Amount { get; set; }
         [Display(Name ="Pris")]
+
         [Required(ErrorMessage = "Husk at tilføje pris til produktet")]
         public double Price { get; set; }
 

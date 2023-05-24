@@ -80,6 +80,11 @@ namespace RabbitRegister.Services.ProductService
 		
 		public List<Wool> GetWools() { return _wools; }
 
+		public List<Wool> GetMyWoolCreations(int breederRegNo)
+		{
+			return _wools.Where(wool => wool.BreederRegNo == breederRegNo).ToList();
+		}
+
 		public Wool GetWools(int id)
 		{
 			foreach (Wool w in _wools)
