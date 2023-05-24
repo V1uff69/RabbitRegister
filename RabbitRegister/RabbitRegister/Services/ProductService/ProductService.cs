@@ -19,12 +19,12 @@ namespace RabbitRegister.Services.ProductService
             _dbYarnService = dbYarnService;
             _yarns = dbYarnService.GetObjectsAsync().Result.ToList();
 
-			//_yarns = MockData.MockYarn.GetMockYarns();  //DB tom? Load dette ved første startup.. (NB: Den klarer også _yarns)
-			//_wools = MockData.MockWool.GetMockWools();
-			//_dbService.SaveObjects(_wools);
+			_yarns = MockData.MockYarn.GetMockYarns();  //DB tom? Load dette ved første startup.. (NB: Den klarer også _yarns)
+			_wools = MockData.MockWool.GetMockWools();
+			_dbService.SaveObjects(_wools);
 		}
 
-        public List<Product> GetProduct(int productId)
+		public List<Product> GetProduct(int productId)
 		{
 			GetWools(productId);
 			GetYarn(productId);
