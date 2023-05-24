@@ -14,7 +14,8 @@ namespace RabbitRegister.Model
 
 		[Display(Name = "Nåle Størrelse")]
 		[Required(ErrorMessage = "Husk at tilføje størrelse på nål til garnet")]
-		public double NeedleSize { get; set; }
+        [AllowedNeedleSize(ErrorMessage = "Ugyldig nål størrelse")]
+        public double NeedleSize { get; set; }
 
 		[Display(Name = "Længde")]
 		[Required(ErrorMessage = "Husk at tilføje længde til garnet i meter")]
@@ -26,7 +27,7 @@ namespace RabbitRegister.Model
 		public string Tension { get; set; }
 
 		[Display(Name = "Vaske beskrivelse")]
-		[StringLength(50, MinimumLength = 1, ErrorMessage = "Strikkefasthed skal være mellem 1 og 50 tegn")]
+		[StringLength(50, MinimumLength = 1, ErrorMessage = "Vaske beskrivelsen skal være mellem 1 og 50 tegn")]
 		[Required(ErrorMessage = "Husk at tilføje vaske beskrivelse til garnet")]
 		public string Washing { get; set; }
 
@@ -47,5 +48,26 @@ namespace RabbitRegister.Model
             ImgString = "/Images/Products/Yarn/" + imgString;
 
         }
+
+        public class AllowedNeedleSizeAttribute : ValidationAttribute
+        {
+            private static readonly List<double> AllowedSizes = new List<double>
+        {
+            2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20
+        };
+
+            protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+            {
+                var needleSize = (double)value;
+
+                if (!AllowedSizes.Contains(needleSize))
+                {
+                    return new ValidationResult(ErrorMessage);
+                }
+
+                return ValidationResult.Success;
+            }
+        }
     }
 }
+
