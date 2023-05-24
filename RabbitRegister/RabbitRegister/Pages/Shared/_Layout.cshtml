@@ -32,31 +32,39 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav flex-grow-1 d-flex justify-content-center">
+
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Index">Hjem</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Main/Store/Store">Butik</a>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-dark dropdown-toggle" href="#" id="ShopDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-auto-close="false">
+                                Shop
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="ShopDropdown">
+                                <a class="dropdown-item" asp-area="" asp-page="/Main/Store/Store">Produkter</a>
+                                <a class="dropdown-item" asp-area="" asp-page="/Main/Rabbit/RabbitStore">Salgskaniner</a>                       
+                            </div>
                         </li>
                         @{
                             if (Context.User.Identity.Name != null)
                             {
                                 <li class="nav-item dropdown">
                                     <a class="nav-link text-dark dropdown-toggle" href="#" id="breederDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-auto-close="false">
-                                        For Breeder
+                                        Register
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="breederDropdown">
-                                        <a class="dropdown-item" asp-area="" asp-page="/Main/Trimming/GetAllTrimming">Klipninger</a>
+                                        <a class="dropdown-item" asp-area="" asp-page="/Main/Rabbit/GetAllRabbits" asp-route-breederRegNo="@Context.User.Identity.Name">Mine Kaniner</a>
+                                        <a class="dropdown-item" asp-area="" asp-page="/Main/Trimming/GetAllTrimming" asp-route-breederRegNo="@Context.User.Identity.Name">Klipninger</a>
                                         <div class="dropdown">
                                             <a class="dropdown-item text-dark dropdown-toggle" href="#" id="productsDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Products
+                                                Mine Produkter
                                             </a>
                                             <div class="dropdown-menu" aria-labelledby="productsDropdown">
-                                                <a class="dropdown-item" asp-area="" asp-page="/Main/Product/GetAllWool">Uld</a>
-                                                <a class="dropdown-item" asp-area="" asp-page="/Main/Product/GetAllYarn">Garn</a>
+                                                <a class="dropdown-item" asp-area="" asp-page="/Main/Product/GetAllWool" asp-route-breederRegNo="@Context.User.Identity.Name">Uld</a>
+                                                <a class="dropdown-item" asp-area="" asp-page="/Main/Product/GetAllYarn" asp-route-breederRegNo="@Context.User.Identity.Name">Garn</a>
                                             </div>
                                         </div>
-                                        <a class="dropdown-item" asp-area="" asp-page="/Main/Rabbit/GetAllRabbits" asp-route-breederRegNo="@Context.User.Identity.Name">Mine Kaniner</a>
                                     </div>
                                 </li>
 

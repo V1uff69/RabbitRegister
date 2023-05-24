@@ -1,0 +1,45 @@
+﻿.rabbit-profile-left img {
+    margin-top: 30px;
+    border-radius: 50%; /*gør profil billedhjørner runde*/
+    width: 300px;
+    height: 300px;
+    margin-bottom: 15px;
+    object-fit: cover;
+}
+
+.rabbit-profile {
+    display: flex;
+    flex-direction: row;
+}
+
+.rabbit-profile-left {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    border-radius: 10px;
+    margin-right: 5px;
+    flex: 1;
+}
+
+
+    .rabbit-profile-left h4 {
+        text-align: center;
+    }
+
+    .rabbit-profile-left a {
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    .rabbit-profile-left > div:last-child {
+        display: flex;
+        justify-content: center;
+    }
+
+.rabbit-profile-right {
+    flex: 2;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+

@@ -14,6 +14,14 @@ namespace RabbitRegister.Services.ProductService
 		Task<Wool> DeleteWoolAsync(int? Id);
         Task UpdateWoolAsync(Wool wool);
 		List<Wool> GetWools();
+
+        /// <summary>
+        /// Sørger for KUN at brugeren/breederen tilgår Items, den har skabt
+        /// </summary>
+        /// <param name="breederRegNo">Breederens ID</param>
+        /// <returns>Alle </returns>
+        List<Wool> GetMyWoolCreations(int breederRegNo);
+
 		Wool GetWools(int id);
 	
 

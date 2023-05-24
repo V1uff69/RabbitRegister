@@ -15,11 +15,21 @@ namespace RabbitRegister.Services.ProductService
 		public ProductService(DbGenericService<Wool> dbService, DbGenericService<Yarn> dbYarnService)
 		{
 			_dbService = dbService;
-			//_wools = MockWool.GetMockWools();
+            _dbYarnService = dbYarnService;
+
 			_wools = _dbService.GetObjectsAsync().Result.ToList();
-			_dbYarnService = dbYarnService;
-			//_yarns = MockYarn.GetMockYarns();
 			_yarns = dbYarnService.GetObjectsAsync().Result.ToList();
+
+			//_wools = MockWool.GetMockWools(); //DB tom? Ved første Debug kør denne kode, og udkommenter igen derefter
+			//foreach (var wool in _wools)
+			//{
+			//    dbService.AddObjectAsync(wool).Wait();
+			//}
+			//_yarns = MockYarn.GetMockYarns(); //DB tom? Ved første Debug kør denne kode, og udkommenter igen derefter
+			//foreach (var yarn in _yarns)
+			//{
+			//    dbYarnService.AddObjectAsync(yarn).Wait();
+			//}
 		}
 
 		public List<Product> GetProduct(int productId)
@@ -79,6 +89,11 @@ namespace RabbitRegister.Services.ProductService
 		}
 		
 		public List<Wool> GetWools() { return _wools; }
+
+		public List<Wool> GetMyWoolCreations(int breederRegNo)
+		{
+			return _wools.Where(wool => wool.BreederRegNo == breederRegNo).ToList();
+		}
 
 		public Wool GetWools(int id)
 		{

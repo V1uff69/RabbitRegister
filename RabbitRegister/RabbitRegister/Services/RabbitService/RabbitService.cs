@@ -15,11 +15,11 @@ namespace RabbitRegister.Services.RabbitService
             _dbGenericService = dbGenericService;
             _rabbits = _dbGenericService.GetObjectsAsync().Result.ToList();
 
-            _rabbits = MockRabbit.GetMockRabbits(); //DB tom? Ved første Debug kør denne kode, og udkommenter igen derefter
-            foreach (var rabbit in _rabbits)
-            {
-                _dbGenericService.AddObjectAsync(rabbit).Wait();
-            }
+            //_rabbits = MockRabbit.GetMockRabbits(); //DB tom? Ved første Debug kør denne kode, og udkommenter igen derefter
+            //foreach (var rabbit in _rabbits)
+            //{
+            //    _dbGenericService.AddObjectAsync(rabbit).Wait();
+            //}
         }
 
         public RabbitService()
@@ -150,6 +150,11 @@ namespace RabbitRegister.Services.RabbitService
 
         //---: ONGET() METODER :---
 
+        public List<Rabbit> GetIsForSaleRabbits()
+        {
+            return _rabbits.Where(rabbit => rabbit.IsForSale == IsForSale.Ja).ToList();
+        }
+
         public List<Rabbit> GetOwnedAliveRabbits(int breederRegNo)
         {
             return _rabbits.Where(rabbit => rabbit.Owner == breederRegNo && rabbit.DeadOrAlive == DeadOrAlive.Levende).ToList();
@@ -158,11 +163,6 @@ namespace RabbitRegister.Services.RabbitService
         public List<Rabbit> GetOwnedDeadRabbits(int breederRegNo)
         {
             return _rabbits.Where(rabbit => rabbit.Owner == breederRegNo && rabbit.DeadOrAlive == DeadOrAlive.Død).ToList();
-        }
-
-        public List<Rabbit> GetAllOwnedRabbits(int breederRegNo)
-        {
-            return _rabbits.Where(rabbit => rabbit.Owner == breederRegNo).ToList();
         }
 
         public List<Rabbit> GetAllRabbitsWithConnectionsToMe(int breederRegNo)

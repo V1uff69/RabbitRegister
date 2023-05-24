@@ -6,9 +6,12 @@
 <div class="create-form">
 <form method="post">
     <h1 style="text-align:center">Create Wool</h1>
-    <div class="from-group">
+            <br />            
+                <input type="button" value="Tilbage" onclick="history.go(-1)">
+            <br />
+            <div class="from-group">
         <label asp-for="@Model.Wool.BreederRegNo" class="control-label"></label>
-        <input asp-for="@Model.Wool.BreederRegNo" class="form-control" />
+        <input asp-for="@Model.Wool.BreederRegNo" value="@User.Identity.Name" class="form-control" readonly="@true" />
         <span asp-validation-for="@Model.Wool.BreederRegNo" class="text-danger"></span>
     </div>
     <div class="from-group">
