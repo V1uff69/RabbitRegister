@@ -38,7 +38,7 @@ namespace RabbitRegister.Pages.Main.Rabbit
 			try
 			{
 				await _rabbitService.AddRabbitAsync(Rabbit);
-				return RedirectToPage("GetAllRabbits", new { breederRegNo = Rabbit.BreederRegNo });
+				return RedirectToPage("GetAllRabbits", new { breederRegNo = User.Identity.Name });
 			}
 			catch (DbUpdateException)
 			{

@@ -36,7 +36,7 @@ namespace RabbitRegister.Pages.Main.Rabbit
 			//if (deletedRabbit == null)
 			//    return RedirectToPage("/NotFound"); //NotFound er ikke defineret endnu
 
-			return RedirectToPage("GetAllRabbits", new { breederRegNo = Rabbit.BreederRegNo });
+			return RedirectToPage("GetAllRabbits", new { breederRegNo = User.Identity.Name });
 		}
 	}
 }

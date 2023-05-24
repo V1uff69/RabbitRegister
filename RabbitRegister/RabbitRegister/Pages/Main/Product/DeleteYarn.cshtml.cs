@@ -32,7 +32,7 @@ namespace RabbitRegister.Pages.Main.Product
 		public IActionResult OnPost(int Id)
 		{
 			_yarnService.DeleteYarnAsync(Id);
-			return RedirectToPage("GetAllYarn", new { breederRegNo = Yarn.BreederRegNo });
+			return RedirectToPage("GetAllYarn", new { breederRegNo = User.Identity.Name });
 		}
 	}
 }
