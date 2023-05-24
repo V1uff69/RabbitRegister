@@ -8,7 +8,7 @@
     <form method="post" class="form-inline">
         <div class="input-group mb-3">
             <input asp-for="SearchString" class="form-control mr-1" placeholder="Søg efter navn" />
-            <input type="submit" asp-page-handler="NameSearch" value="Search" class="btn btn-primary" />
+            <input type="submit" asp-route-Owner="@User.Identity.Name" asp-page-handler="NameSearch" value="Search" class="btn btn-primary" />
         </div>
     </form>
 @*    <form method="post" class="form-inline">
@@ -22,7 +22,7 @@
     <div class="container-all">
         <h1></h1>
         <p class="from-group">
-            <a class="btn btn-primary text-center" style="background-color:green;margin-left:auto;margin-right:auto;display:block;margin-top:1%" asp-page="/Main/Trimming/CreateTrimming"> Create a new Trimming </a>
+            <a class="btn btn-primary text-center" style="background-color:green;margin-left:auto;margin-right:auto;display:block;margin-top:1%" asp-route-Owner="@User.Identity.Name" asp-page="/Main/Trimming/CreateTrimming"> Create a new Trimming </a>
         </p>
 
         <table class="table table-bordered table-hover table-striped table-opacity" width="100%">
@@ -31,8 +31,8 @@
                     <th>
                         Klip ID
                         <div>
-                            <a data-toggle="tooltip" title="Sort By Id" asp-page-handler="SortById"><i class="fa fa-angle-up"></i></a>
-                            <a data-toggle="tooltip" title="Sort By Id Descending" asp-page-handler="SortByIdDescending"><i class="fa fa-angle-down"></i></a>
+                            <a data-toggle="tooltip" title="Sort By Id" asp-route-Owner="@User.Identity.Name" asp-page-handler="SortById"><i class="fa fa-angle-up"></i></a>
+                            <a data-toggle="tooltip" title="Sort By Id Descending" asp-route-Owner="@User.Identity.Name" asp-page-handler="SortByIdDescending"><i class="fa fa-angle-down"></i></a>
                         </div>
                     </th>
                     <th>
@@ -47,8 +47,8 @@
                     <th>
                         Dato
                         <div>
-                            <a data-toggle="tooltip" title="Sort By Date" asp-page-handler="SortByDate"><i class="fa fa-angle-up"></i></a>
-                            <a data-toggle="tooltip" title="Sort By Date Descending" asp-page-handler="SortByDateDescending"><i class="fa fa-angle-down"></i></a>
+                            <a data-toggle="tooltip" title="Sort By Date" asp-route-Owner="@User.Identity.Name" asp-page-handler="SortByDate"><i class="fa fa-angle-up"></i></a>
+                            <a data-toggle="tooltip" title="Sort By Date Descending" asp-route-Owner="@User.Identity.Name" asp-page-handler="SortByDateDescending"><i class="fa fa-angle-down"></i></a>
                         </div>
                     </th>
                     <th> Tid i min </th>
@@ -79,8 +79,8 @@
                             <td> @item.SecondSortmentWeight </td>
                             <td> @item.DisposableWoolWeight </td>
                             <td>
-                                <a class="btn btn-primary btn-sm" type="button" title="Edit" asp-page="EditTrimming" asp-route-id="@item.TrimmingId"><i class="fa fa-edit"></i></a>
-                                <a class="btn btn-danger btn-sm " type="button" title="Delete" asp-page="DeleteTrimming" asp-route-id="@item.TrimmingId"><i class="fa fa-trash"></i></a>
+                                <a class="btn btn-primary btn-sm" type="button" title="Edit" asp-route-Owner="@User.Identity.Name" asp-page="EditTrimming" asp-route-id="@item.TrimmingId"><i class="fa fa-edit"></i></a>
+                                <a class="btn btn-danger btn-sm " type="button" title="Delete" asp-route-Owner="@User.Identity.Name" asp-page="DeleteTrimming" asp-route-id="@item.TrimmingId"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
                     }

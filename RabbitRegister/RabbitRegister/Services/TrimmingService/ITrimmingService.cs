@@ -8,14 +8,15 @@ namespace RabbitRegister.Services.TrimmingService
 		void UpdateTrimming(Trimming trimming, int id);
 		Trimming GetTrimming(int id);
 		Trimming DeleteTrimming(int? id);
-        IEnumerable<Trimming> NameSearch(string str);
+        IEnumerable<Trimming> NameSearch(string str, int Owner);
         IEnumerable<Trimming> RabbitIdSearch(int id);
-        IEnumerable<Trimming> SortById();
-        IEnumerable<Trimming> SortByIdDescending();
+        IEnumerable<Trimming> SortById(int Owner);
+        IEnumerable<Trimming> SortByIdDescending(int Owner);
         IEnumerable<Trimming> SortByRabbitId();
         IEnumerable<Trimming> SortByRabbitIdDescending();
-        IEnumerable<Trimming> SortByDate();
-        IEnumerable<Trimming> SortByDateDescending();
+        IEnumerable<Trimming> SortByDate(int Owner);
+        IEnumerable<Trimming> SortByDateDescending(int Owner);
+        List<Trimming> GetTrimmingsByOwnerId(int Owner);
         List<Trimming> GetTrimmingByRabbitRegNoAndBreederRegNo(int RabbitRegNo, int BreederRegNo);
         List<Trimming> GetTrimmings();
     }

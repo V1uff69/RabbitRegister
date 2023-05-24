@@ -67,5 +67,5 @@
 </form>
 
 <p>
-	<a asp-page="/Main/Trimming/GetAllTrimming">Tilbage til klipninger</a>
+	<a asp-route-Owner="@User.Identity.Name" asp-page="/Main/Trimming/GetAllTrimming">Tilbage til klipninger</a>
 </p>

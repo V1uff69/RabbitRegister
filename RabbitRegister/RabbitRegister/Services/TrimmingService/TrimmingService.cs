@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using NuGet.Packaging;
 using RabbitRegister.EFDbContext;
 using RabbitRegister.MockData;
 using RabbitRegister.Model;
+using RabbitRegister.Services.RabbitService;
 using System.Data.SqlTypes;
 
 namespace RabbitRegister.Services.TrimmingService
@@ -12,10 +14,12 @@ namespace RabbitRegister.Services.TrimmingService
         private List<Trimming> _trimmings;
 
 		private DbGenericService<Trimming> DbGenericService;
+		private IRabbitService RabbitService; 
 
-		public TrimmingService(DbGenericService<Trimming> dbGenericService)
+		public TrimmingService(DbGenericService<Trimming> dbGenericService, IRabbitService rabbitService)
 		{
 			DbGenericService = dbGenericService;
+			RabbitService = rabbitService;
 			_trimmings = DbGenericService.GetObjectsAsync().Result.ToList();
 
 			//_trimmings = MockTrimming.GetMockTrimming(); //DB tom? Ved første Debug kør denne kode, og udkommenter igen derefter
@@ -84,14 +88,14 @@ namespace RabbitRegister.Services.TrimmingService
 			return trimmingToBeDeleted;
 		}
 
-        public IEnumerable<Trimming> SortById()
+        public IEnumerable<Trimming> SortById(int Owner)
         {
-            return _trimmings.OrderBy(r => r.TrimmingId);
+            return GetTrimmingsByOwnerId(Owner).OrderBy(r => r.TrimmingId);
         }
 
-        public IEnumerable<Trimming> SortByIdDescending()
+        public IEnumerable<Trimming> SortByIdDescending(int Owner)
         {
-            return _trimmings.OrderByDescending(r => r.TrimmingId);
+            return GetTrimmingsByOwnerId(Owner).OrderByDescending(r => r.TrimmingId);
         }
 
         public IEnumerable<Trimming> SortByRabbitId()
@@ -104,25 +108,25 @@ namespace RabbitRegister.Services.TrimmingService
             return _trimmings.OrderByDescending(r => r.RabbitRegNo);
         }
 
-        public IEnumerable<Trimming> SortByDate()
+        public IEnumerable<Trimming> SortByDate(int Owner)
         {
-            return _trimmings.OrderBy(r => r.Date);
+            return GetTrimmingsByOwnerId(Owner).OrderBy(r => r.Date);
         }
 
-        public IEnumerable<Trimming> SortByDateDescending()
+        public IEnumerable<Trimming> SortByDateDescending(int Owner)
         {
-            return _trimmings.OrderByDescending(r => r.Date);
+            return GetTrimmingsByOwnerId(Owner).OrderByDescending(r => r.Date);
         }
 
-        public IEnumerable<Trimming> NameSearch(string str)
+        public IEnumerable<Trimming> NameSearch(string str, int Owner)
         {
             if (string.IsNullOrEmpty(str))
             {
-                return _trimmings;
+                return GetTrimmingsByOwnerId(Owner);
             }
             else
             {
-                return _trimmings.Where(Trimming => Trimming.Name.ToLower().Contains(str.ToLower()));
+                return GetTrimmingsByOwnerId(Owner).Where(Trimming => Trimming.Name.ToLower().Contains(str.ToLower()));
             }
         }
 
@@ -149,6 +153,21 @@ namespace RabbitRegister.Services.TrimmingService
 			}
 			return TrimmingByRabbitRegNo;
 		}
+
+		public List<Trimming> GetTrimmingsByOwnerId(int Owner)
+		{
+			List<Rabbit> rabbitsByOwner = RabbitService.GetAllRabbitsWithOwner(Owner);
+
+			List<Trimming> trimmingsByOwner = new List<Trimming>();
+			foreach (var Rabbit in rabbitsByOwner)
+			{
+				var trimmingsForRabbit = _trimmings.Where(trimming => trimming.BreederRegNo == Rabbit.BreederRegNo && trimming.RabbitRegNo == Rabbit.RabbitRegNo).ToList();
+
+				trimmingsByOwner.AddRange(trimmingsForRabbit);
+			}
+			return trimmingsByOwner;
+		}
+
         public List<Trimming> GetTrimmings() { return _trimmings; }
     }
 }

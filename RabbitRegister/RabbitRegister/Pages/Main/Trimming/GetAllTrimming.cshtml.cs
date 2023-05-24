@@ -23,27 +23,34 @@ namespace RabbitRegister.Pages.Main.Trimming
         public string SearchString { get; set; }
         [BindProperty]
         public int SearchId { get; set; }
+        [BindProperty]
+        public int OwnerId { get; set; }
 
-        public void OnGet(int RabbitRegNo, int BreederRegNo)
+        public void OnGet(int RabbitRegNo, int BreederRegNo, int? Owner)
         {
-            if (RabbitRegNo > 0 && BreederRegNo > 0)
+            if (Owner != null && Owner > 0)
+            {
+                OwnerId = (int)Owner;
+                Trimmings = _trimmingService.GetTrimmingsByOwnerId(OwnerId);
+            }
+            else if (RabbitRegNo > 0 && BreederRegNo > 0)
             {
                 Trimmings = _trimmingService.GetTrimmingByRabbitRegNoAndBreederRegNo(RabbitRegNo, BreederRegNo);
             }
             else
             {
-                Trimmings = _trimmingService.GetTrimmings();
+                Trimmings = new List<Model.Trimming>();
             }
         }
-        public IActionResult OnGetSortById()
+        public IActionResult OnGetSortById(int Owner)
         {
-            Trimmings = _trimmingService.SortById().ToList();
+            Trimmings = _trimmingService.SortById(Owner).ToList();
             return Page();
         }
 
-        public IActionResult OnGetSortByIdDescending()
+        public IActionResult OnGetSortByIdDescending(int Owner)
         {
-            Trimmings = _trimmingService.SortByIdDescending().ToList();
+            Trimmings = _trimmingService.SortByIdDescending(Owner).ToList();
             return Page();
         }
 
@@ -59,21 +66,21 @@ namespace RabbitRegister.Pages.Main.Trimming
             return Page();
         }
 
-        public IActionResult OnGetSortByDate()
+        public IActionResult OnGetSortByDate(int Owner)
         {
-            Trimmings = _trimmingService.SortByDate().ToList();
+            Trimmings = _trimmingService.SortByDate(Owner).ToList();
             return Page();
         }
 
-        public IActionResult OnGetSortByDateDescending()
+        public IActionResult OnGetSortByDateDescending(int Owner)
         {
-            Trimmings = _trimmingService.SortByDateDescending().ToList();
+            Trimmings = _trimmingService.SortByDateDescending(Owner).ToList();
             return Page();
         }
 
-        public IActionResult OnPostNameSearch()
+        public IActionResult OnPostNameSearch(int Owner)
         {
-            Trimmings = _trimmingService.NameSearch(SearchString).ToList();
+            Trimmings = _trimmingService.NameSearch(SearchString, Owner).ToList();
             return Page();
         }
 

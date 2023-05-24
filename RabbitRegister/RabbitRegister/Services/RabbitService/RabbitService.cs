@@ -170,6 +170,11 @@ namespace RabbitRegister.Services.RabbitService
             return _rabbits.Where(rabbit => rabbit.Owner == breederRegNo || rabbit.BreederRegNo == breederRegNo).ToList();
         }
 
+        public List<Rabbit> GetAllRabbitsWithOwner(int Owner)
+        {
+            return _rabbits.Where(rabbit => rabbit.Owner == Owner).ToList();
+        }
+
         public List<Rabbit> GetNotOwnedRabbitsWithMyBreederRegNo(int breederRegNo)
         {
             return _rabbits.Where(rabbit => rabbit.Owner != breederRegNo && rabbit.BreederRegNo == breederRegNo).ToList();

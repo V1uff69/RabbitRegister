@@ -16,8 +16,10 @@ namespace RabbitRegister.Pages.Main.Trimming
         }
         [BindProperty]
         public Model.Trimming Trimming { get; set; }
+		[FromQuery(Name = "Owner")]
+		public int OwnerId { get; set; }
 
-        public IActionResult OnGet(int id)
+		public IActionResult OnGet(int id)
         {
             Trimming = _trimmingService.GetTrimming(id);
             return Page();
@@ -25,7 +27,7 @@ namespace RabbitRegister.Pages.Main.Trimming
         public IActionResult OnPost(int id)
         {
             _trimmingService.DeleteTrimming(id);
-            return RedirectToPage("GetAllTrimming");
-        }
+			return RedirectToPage($"GetAllTrimming", new { Owner = OwnerId });
+		}
     }
 }

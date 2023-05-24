@@ -14,11 +14,11 @@ namespace RabbitRegister.Services.BreederService
             _dbService = dbService;
             Breeders = _dbService.GetObjectsAsync().Result.ToList();
 
-            Breeders = MockBreeder.GetMockBreeders(); //DB tom? Ved første Debug kør denne kode, og udkommenter igen derefter
-            foreach (var breeder in Breeders)
-            {
-                dbService.AddObjectAsync(breeder).Wait();
-            }
+            //Breeders = MockBreeder.GetMockBreeders(); //DB tom? Ved første Debug kør denne kode, og udkommenter igen derefter
+            //foreach (var breeder in Breeders)
+            //{
+            //    dbService.AddObjectAsync(breeder).Wait();
+            //}
         }
 
         public async Task AddUserAsync(Breeder breeder)

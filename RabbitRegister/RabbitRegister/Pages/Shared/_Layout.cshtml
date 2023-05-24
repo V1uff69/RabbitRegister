@@ -55,7 +55,7 @@
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="breederDropdown">
                                         <a class="dropdown-item" asp-area="" asp-page="/Main/Rabbit/GetAllRabbits" asp-route-breederRegNo="@Context.User.Identity.Name">Mine Kaniner</a>
-                                        <a class="dropdown-item" asp-area="" asp-page="/Main/Trimming/GetAllTrimming" asp-route-breederRegNo="@Context.User.Identity.Name">Klipninger</a>
+                                        <a class="dropdown-item" asp-area="" asp-page="/Main/Trimming/GetAllTrimming" asp-route-Owner="@Context.User.Identity.Name">Klipninger</a>
                                         <div class="dropdown">
                                             <a class="dropdown-item text-dark dropdown-toggle" href="#" id="productsDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 Mine Produkter

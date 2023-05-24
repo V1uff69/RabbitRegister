@@ -23,6 +23,7 @@ namespace RabbitRegister.Services.RabbitService
         List<Rabbit> GetOwnedAliveRabbits(int breederRegNo);
         List<Rabbit> GetOwnedDeadRabbits(int breederRegNo);
         List<Rabbit> GetAllRabbitsWithConnectionsToMe(int breederRegNo);
+        List<Rabbit> GetAllRabbitsWithOwner(int Owner);
         List<Rabbit> GetNotOwnedRabbitsWithMyBreederRegNo(int breederRegNo);
         List<Rabbit> GetIsForSaleRabbits();
     }
