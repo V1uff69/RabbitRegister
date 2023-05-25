@@ -20,27 +20,34 @@ namespace RabbitRegister.Pages.Main.Store
         private IStoreService _storeService { get; set; }
         public ItemDbContext dbContext { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the BasketModel class.
+        /// </summary>
+        /// <param name="storeService">The store service dependency.</param>
+        /// <param name="DbContext">The item database context dependency.</param>
         public BasketModel(IStoreService storeService, ItemDbContext DbContext)
         {
             _storeService = storeService;
             dbContext = DbContext;
         }
 
-        //public async Task<IActionResult> OnGetAddToBasketAsync(int id, string type)
-        //{
-        //        await _storeService.AddToBasketAsync(id,type);
-
-        //    TempData["Notification"] = "Product added to the basket.";
-
-        //    return RedirectToPage("/Main/Store/Store");
-        //}
-
+        /// <summary>
+        /// Called when the Basket page is requested via HTTP GET.
+        /// Retrieves the order lines from the store service and assigns them to the _orderLines property.
+        /// </summary>
+        /// <returns>The IActionResult representing the page result.</returns>
         public IActionResult OnGet()
         {
             _orderLines = _storeService.GetBasket();
             return Page();
         }
 
+        /// <summary>
+        /// Called when the "Decrease Amount" button is clicked.
+        /// Retrieves the specific order line from the store service and decreases its amount asynchronously.
+        /// </summary>
+        /// <param name="id">The ID of the order line to decrease the amount.</param>
+        /// <returns>the page result.</returns>
         public async Task<IActionResult> OnGetDecreaseAmount(int id)
         {
             OrderLine thisOrderLine = _storeService.GetOrderLine(id);
@@ -56,6 +63,13 @@ namespace RabbitRegister.Pages.Main.Store
             return Page();
         }
 
+        /// <summary>
+        /// Called when the "Increase Amount" button is clicked.
+        /// Retrieves the specific order line from the store service and increases its amount asynchronously.
+        /// Redirects the user back to the Basket page.
+        /// </summary>
+        /// <param name="id">The ID of the order line to increase the amount.</param>
+        /// <returns>the page result.</returns>
         public async Task<IActionResult> OnGetIncreaseAmount(int id)
         {
             OrderLine thisOrderLine = _storeService.GetOrderLine(id);
@@ -68,21 +82,35 @@ namespace RabbitRegister.Pages.Main.Store
             return RedirectToPage("/Main/Store/Basket");
         }
 
+        /// <summary>
+        /// Called when the form is submitted via HTTP POST.
+        /// </summary>
+        /// <returns>the page result.</returns>
         public IActionResult OnPostAsync()
         {
             return Page();
         }
 
+        /// <summary>
+        /// Calculates the total price of the order lines.
+        /// </summary>
+        /// <param name="orderLines">The list of order lines.</param>
+        /// <returns>The total price of the order lines.</returns>
         public double CalculateTotalPrice(List<OrderLine> orderLines)
         {
             double totalPrice = 0;
             foreach (var orderLine in orderLines)
             {
-                totalPrice = Math.Round(totalPrice + orderLine.TotalPrice,2);
+                totalPrice = Math.Round(totalPrice + orderLine.TotalPrice, 2);
             }
             return totalPrice;
         }
 
+        /// <summary>
+        /// Retrieves the product name of an order line.
+        /// </summary>
+        /// <param name="orderLine">The order line.</param>
+        /// <returns>The product name of the order line.</returns>
         public string ProductName(OrderLine orderLine)
         {
             Model.Product product = null;
@@ -99,13 +127,18 @@ namespace RabbitRegister.Pages.Main.Store
             return product.ProductName;
         }
 
+        /// <summary>
+        /// Retrieves the product image of an order line.
+        /// </summary>
+        /// <param name="orderLine">The order line.</param>
+        /// <returns>The product image of the order line.</returns>
         public string ProductImage(OrderLine orderLine)
         {
             string Image = null;
 
             if (orderLine.ProductType == "Wool")
             {
-                //linq(funktionen) og lambda(anonym funktion "p=> p.___)
+                // linq(funktionen) og lambda(anonym funktion "p=> p.___")
                 Model.Wool wool = dbContext.Wools.FirstOrDefault(p => p.ProductId == orderLine.ProductId);
                 return wool.ImgString;
             }
@@ -117,7 +150,7 @@ namespace RabbitRegister.Pages.Main.Store
 
             return Image;
         }
-
     }
+
 
 }

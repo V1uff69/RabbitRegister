@@ -20,17 +20,24 @@ namespace RabbitRegister.Pages.Main.Store
             _productService = productService;
             _storeService = storeService;
         }
+        // This method is called when the page is requested via HTTP GET
         public void OnGet()
         {
+            // Get the list of yarns and wools from the product service
             Yarns = _productService.GetYarns();
             Wools = _productService.GetWools();
         }
+
+        // This method is called when the form is submitted via HTTP POST
         public async Task<IActionResult> OnPostAsync(int id, string type)
         {
+            // Add the selected product to the basket asynchronously
             await _storeService.AddToBasketAsync(id, type);
 
+            // Set a temporary data value to display a notification message
             TempData["Notification"] = "Product added to the basket.";
 
+            // Redirect the user back to the Store page
             return RedirectToPage("/Main/Store/Store");
         }
     }

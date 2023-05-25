@@ -19,17 +19,32 @@ namespace RabbitRegister.Pages.Main.Product
         [BindProperty]
         public Wool Wool { get; set; }
 
+        /// <summary>
+        /// This method handles the HTTP GET request for retrieving a wool product to be deleted.
+        /// </summary>
+        /// <param name="id">The ID of the wool product.</param>
+        /// <returns>The page.</returns>
         public IActionResult OnGet(int id)
         {
+            // Retrieve the wool product with the specified ID using ProductService
             Wool = _productService.GetWools(id);
 
+            // Return the current page
             return Page();
         }
 
+        /// <summary>
+        /// This method handles the HTTP POST request for deleting a wool product.
+        /// </summary>
+        /// <param name="Id">The ID of the wool product to be deleted.</param>
         public async Task<IActionResult> OnPostAsync(int Id)
         {
+            // Delete the wool product asynchronously using ProductService
             await _productService.DeleteWoolAsync(Id);
-			return RedirectToPage("GetAllWool", new { breederRegNo = User.Identity.Name });
-		}
-	}
+
+            // Redirect to the "GetAllWool" page with the breederRegNo parameter set to the current user's name
+            return RedirectToPage("GetAllWool", new { breederRegNo = User.Identity.Name });
+        }
+    }
+
 }
