@@ -33,11 +33,10 @@ builder.Services.AddTransient<DbGenericService<Rabbit>, DbGenericService<Rabbit>
 builder.Services.AddTransient<DbGenericService<Breeder>, DbGenericService<Breeder>>();
 builder.Services.AddTransient<DbGenericService<Trimming>, DbGenericService<Trimming>>();
 builder.Services.AddTransient<DbGenericService<OrderLine>, DbGenericService<OrderLine>>();
+/// This lambda determines whether user consent for non-essential cookies is needed for a given request. options.CheckConsentNeeded = context => true;
 builder.Services.Configure<CookiePolicyOptions>(options =>
 {
-    // This lambda determines whether user consent for non-essential cookies is needed for a given request. options.CheckConsentNeeded = context => true;
     options.MinimumSameSitePolicy = SameSiteMode.None;
-
 });
 
 builder.Services.AddAuthorization();
@@ -47,13 +46,15 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     cookieOptions.LoginPath = "/Main/Login/LogInPage";
 
 });
-
+///This initiates custom authorization policies
 builder.Services.AddAuthorization(options =>
 {
-    options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
-});
-builder.Services.AddAuthorization(options =>
-{
+    /// Creates an authorization policy named "AdminOnly".
+    /// This policy allows access only to users with the "Admin" role.
+    options.AddPolicy("AdminOnly", policy =>
+        policy.RequireRole("Admin"));
+    /// Creates an authorization policy named "BreederOnly".
+    /// This policy allows access only to users with the "Breeder" role.
     options.AddPolicy("BreederOnly", policy =>
         policy.RequireRole("Breeder"));
 });
