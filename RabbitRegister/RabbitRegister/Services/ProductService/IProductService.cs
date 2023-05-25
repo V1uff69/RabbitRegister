@@ -15,17 +15,16 @@ namespace RabbitRegister.Services.ProductService
         Task UpdateWoolAsync(Wool wool);
 		List<Wool> GetWools();
 		Wool GetWools(int id);
-	
+
 
         /// <summary>
         /// Yarn
         /// </summary>
         /// <returns></returns>
-        List<Yarn> GetYarns();
-        Task AddYarnAsync(Yarn yarn);
-        void UpdateYarnAsync(Yarn yarn, int id);
-        Yarn GetYarn(int yarnId);
-        Task<Yarn> DeleteYarnAsync(int? Id);
-
+        List<Yarn> GetYarns(); // Returnerer alle garn-objekter
+        Task AddYarnAsync(Yarn yarn); // Tilføjer garn til databasen og den interne liste
+        void UpdateYarnAsync(Yarn yarn, int id); // Opdaterer garn i databasen og den interne liste
+        Yarn GetYarn(int yarnId); // Returnerer et specifikt garn-objekt baseret på id
+        Task<Yarn> DeleteYarnAsync(int? Id); // Sletter garn fra databasen og den interne liste
     }
 }

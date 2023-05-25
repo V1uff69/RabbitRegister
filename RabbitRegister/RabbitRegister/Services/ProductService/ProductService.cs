@@ -7,22 +7,23 @@ namespace RabbitRegister.Services.ProductService
 	{
 
 		private List<Wool> _wools;
-		private List<Yarn> _yarns;
+		private List<Yarn> _yarns; // Liste til opbevaring af garn-objekter
 
-		private DbGenericService<Wool> _dbService;
-		private DbGenericService<Yarn> _dbYarnService;
+        private DbGenericService<Wool> _dbService;
+		private DbGenericService<Yarn> _dbYarnService; // Serviceklasse til databehandling af garn
 
-		public ProductService(DbGenericService<Wool> dbService, DbGenericService<Yarn> dbYarnService)
+
+        public ProductService(DbGenericService<Wool> dbService, DbGenericService<Yarn> dbYarnService)
 		{
-			_dbService = dbService;
-			//_wools = MockData.MockWool.GetMockWools();
-			_wools = _dbService.GetObjectsAsync().Result.ToList();
+            _dbService = dbService;
+            //_wools = MockData.MockWool.GetMockWools(); 
+            _wools = _dbService.GetObjectsAsync().Result.ToList(); 
             _dbYarnService = dbYarnService;
-            //_yarns = MockYarn.GetMockYarns();
-            _yarns = dbYarnService.GetObjectsAsync().Result.ToList();
+            //_yarns = MockYarn.GetMockYarns(); // Henter garn fra mock-data
+            _yarns = dbYarnService.GetObjectsAsync().Result.ToList(); // Henter garn fra databasen og gemmer dem i den interne liste
         }
 
-		public List<Product> GetProduct(int productId)
+        public List<Product> GetProduct(int productId)
 		{
 			GetWools(productId);
 			GetYarn(productId);
