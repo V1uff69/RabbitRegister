@@ -29,7 +29,7 @@
             {
                 foreach (var Wool in Model.Wools)
                 {
-                    <a class="click-card flex-item" asp-page="/Main/Product/ProductInfo" asp-route-id="@Wool.ProductId">
+                    <a class="click-card flex-item" asp-page="/Main/Product/ProductInfo" asp-route-id="@Wool.ProductId" asp-route-type="@Wool.ProductType">
                         <div class="p-2-card text-center container rounded border border-dark" style="width: 100%;">
                             @if (Wool.ImgString == "/Images/Products/Yarn/" || Wool.ImgString == null)
                             {
@@ -62,7 +62,7 @@
             {
                 foreach (var Yarn in Model.Yarns)
                 {
-                    <a class="click-card flex-item" asp-page="/Main/Product/ProductInfo" asp-route-id="@Yarn.ProductId">
+                    <a class="click-card flex-item" asp-page="/Main/Product/ProductInfo" asp-route-id="@Yarn.ProductId" asp-route-type="@Yarn.ProductType">
                         <div class="p-2-card text-center container rounded border-dark">
                             @if (Yarn.ImgString == "/Images/Products/Yarn/" || Yarn.ImgString == null)
                             {
