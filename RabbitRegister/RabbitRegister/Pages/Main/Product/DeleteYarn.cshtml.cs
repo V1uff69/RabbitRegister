@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using RabbitRegister.Model;
 using RabbitRegister.Services.ProductService;
 
 namespace RabbitRegister.Pages.Main.Product
@@ -31,7 +32,7 @@ namespace RabbitRegister.Pages.Main.Product
 		public IActionResult OnPost(int Id)
 		{
 			_yarnService.DeleteYarnAsync(Id);
-			return RedirectToPage("GetAllYarn");
+			return RedirectToPage("GetAllYarn", new { breederRegNo = User.Identity.Name });
 		}
 	}
 }

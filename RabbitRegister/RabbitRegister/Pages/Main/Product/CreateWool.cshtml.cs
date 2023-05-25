@@ -30,9 +30,9 @@ namespace RabbitRegister.Pages.Main.Product
 			}
 			await _productService.AddWoolAsync(wool);
                 
-            return RedirectToPage("GetAllWool");
-            
-        }
+            return RedirectToPage("GetAllWool", new { breederRegNo = User.Identity.Name });
+
+		}
         
     }
 }

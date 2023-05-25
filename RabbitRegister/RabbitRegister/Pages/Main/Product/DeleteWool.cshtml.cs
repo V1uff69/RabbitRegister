@@ -29,7 +29,7 @@ namespace RabbitRegister.Pages.Main.Product
         public async Task<IActionResult> OnPostAsync(int Id)
         {
             await _productService.DeleteWoolAsync(Id);
-            return RedirectToPage("GetAllWool");
-        }
-    }
+			return RedirectToPage("GetAllWool", new { breederRegNo = User.Identity.Name });
+		}
+	}
 }

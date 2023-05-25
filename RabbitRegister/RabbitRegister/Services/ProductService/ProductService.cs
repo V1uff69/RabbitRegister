@@ -23,12 +23,12 @@ namespace RabbitRegister.Services.ProductService
 			//_wools = MockWool.GetMockWools(); //DB tom? Ved første Debug kør denne kode, og udkommenter igen derefter
 			//foreach (var wool in _wools)
 			//{
-			//    dbService.AddObjectAsync(wool).Wait();
+			//	dbService.AddObjectAsync(wool).Wait();
 			//}
 			//_yarns = MockYarn.GetMockYarns(); //DB tom? Ved første Debug kør denne kode, og udkommenter igen derefter
 			//foreach (var yarn in _yarns)
 			//{
-			//    dbYarnService.AddObjectAsync(yarn).Wait();
+			//	dbYarnService.AddObjectAsync(yarn).Wait();
 			//}
 		}
 
@@ -93,6 +93,11 @@ namespace RabbitRegister.Services.ProductService
 		public List<Wool> GetMyWoolCreations(int breederRegNo)
 		{
 			return _wools.Where(wool => wool.BreederRegNo == breederRegNo).ToList();
+		}
+
+		public List<Yarn> GetMyYarnCreations(int breederRegNo)
+		{
+			return _yarns.Where(yarn => yarn.BreederRegNo == breederRegNo).ToList();
 		}
 
 		public Wool GetWools(int id)

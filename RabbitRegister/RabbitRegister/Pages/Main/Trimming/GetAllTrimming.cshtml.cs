@@ -7,9 +7,11 @@ using RabbitRegister.Model;
 using RabbitRegister.Services.TrimmingService;
 using System.Linq;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RabbitRegister.Pages.Main.Trimming
 {
+    [Authorize(Policy = "BreederOnly")]
     public class GetAllTrimmingModel : PageModel
     {
         private ITrimmingService _trimmingService;

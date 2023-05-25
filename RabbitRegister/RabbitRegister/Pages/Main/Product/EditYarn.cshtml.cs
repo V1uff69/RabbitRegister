@@ -27,7 +27,7 @@ namespace RabbitRegister.Pages.Main.Product
 		public IActionResult OnPost(int id)
 		{
 			_yarnService.UpdateYarnAsync(Yarn, id);
-			return RedirectToPage("GetAllYarn");
+			return RedirectToPage("GetAllYarn", new { breederRegNo = User.Identity.Name });
 		}
 	}
 }

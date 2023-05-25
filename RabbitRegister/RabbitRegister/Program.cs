@@ -33,7 +33,6 @@ builder.Services.AddTransient<DbGenericService<Rabbit>, DbGenericService<Rabbit>
 builder.Services.AddTransient<DbGenericService<Breeder>, DbGenericService<Breeder>>();
 builder.Services.AddTransient<DbGenericService<Trimming>, DbGenericService<Trimming>>();
 builder.Services.AddTransient<DbGenericService<OrderLine>, DbGenericService<OrderLine>>();
-
 builder.Services.Configure<CookiePolicyOptions>(options =>
 {
     // This lambda determines whether user consent for non-essential cookies is needed for a given request. options.CheckConsentNeeded = context => true;

@@ -21,6 +21,7 @@ namespace RabbitRegister.Services.ProductService
         /// <param name="breederRegNo">Breederens ID</param>
         /// <returns>Alle </returns>
         List<Wool> GetMyWoolCreations(int breederRegNo);
+        List<Yarn> GetMyYarnCreations(int breederRegNo);
 
 		Wool GetWools(int id);
 	

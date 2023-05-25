@@ -6,6 +6,8 @@
 <link rel="stylesheet" href="/css/rabbitSite.css" />
 
 <!--  Side menu, Create kanpper -->
+
+
 <div class="d-flex justify-content-between">
     <div class="d-flex flex-row">
         <div class="p-2 bd-highlight">
@@ -16,27 +18,39 @@
         </div>
     </div>
 </div>
+<br />
+
+<!-- Knap til offcanvas sidebar -->
+<button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#filterRabbits">
+    Filter funktioner
+</button>
 
 <h2 class="text-center">Mine Kaniner:</h2>
 <br />
 
-<!-- Filter: Hvilke kaniner der skal vises? -->
-<div class="container text-center mt-3">
-    <h4>Filter Kaniner:</h4>
-    <ul class="nav nav-pills justify-content-center">
-        <li class="nav-item">
-            <a class="nav-link active" href="/Main/Rabbit/GetAllRabbits?breederRegNo=@User.Identity.Name">Nuværende besætning</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/Main/Rabbit/GetAllRabbits?breederRegNo=@User.Identity.Name&action=NotOwnedRabbitsWithMyBreederRegNo">Kaniner uden for min stald</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/Main/Rabbit/GetAllRabbits?breederRegNo=@User.Identity.Name&action=OwnedDeadRabbits">Ane-kaniner</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/Main/Rabbit/GetAllRabbits?breederRegNo=@User.Identity.Name&action=AllRabbitsWithConnectionsToMe">Fulde register</a>
-        </li>
-    </ul>
+<!-- Offcanvas Sidebar -->
+<div class="offcanvas offcanvas-start" id="filterRabbits">
+    <div class="offcanvas-header">
+        <h1 class="offcanvas-title">Filter funktioner</h1>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body">
+        <p>Hidtil implementerede søgefunktioner for kaniner</p>
+        <ul class="nav nav-pills flex-column list-unstyled">
+            <li class="nav-item">
+                <a class="nav-link" href="/Main/Rabbit/GetAllRabbits?breederRegNo=@User.Identity.Name">Nuværende besætning</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Main/Rabbit/GetAllRabbits?breederRegNo=@User.Identity.Name&action=NotOwnedRabbitsWithMyBreederRegNo">Kaniner uden for min stald</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Main/Rabbit/GetAllRabbits?breederRegNo=@User.Identity.Name&action=OwnedDeadRabbits">Ane-kaniner</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Main/Rabbit/GetAllRabbits?breederRegNo=@User.Identity.Name&action=AllRabbitsWithConnectionsToMe">Fulde register</a>
+            </li>
+        </ul>
+    </div>
 </div>
 
 
@@ -44,7 +58,6 @@
 
 
 <!-- Bootstrap Card setup, med tilhørende table til højre for billedet Card billedet -->
-
 <body>
     <div>
         <div style="width: 100%" class="d-flex flex-wrap flex-row justify-content-center">
