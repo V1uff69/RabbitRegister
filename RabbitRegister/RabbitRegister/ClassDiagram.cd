@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="RabbitRegister.Model.Order">
+    <Position X="13.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAACAACAAIACAAAAAAAAAAQAABAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Order.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RabbitRegister.Model.OrderLine">
+    <Position X="10.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAEAAAAQAQQAAAAAAAAAAACAAAAAQAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\OrderLine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RabbitRegister.Model.Product">
+    <Position X="5.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAQAQAAAABAAAAAAACAAAAAAAAAAAAAgAAIAAA=</HashCode>
+      <FileName>Model\Product.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RabbitRegister.Model.Wool">
+    <Position X="7.75" Y="3.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAACAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>Model\Wool.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RabbitRegister.Model.Yarn">
+    <Position X="7.75" Y="5.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="RabbitRegister.Model.Yarn.AllowedNeedleSizeAttribute" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Model\Yarn.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAEAAAAAAAAAIBAABAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>Model\Yarn.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RabbitRegister.Services.Store.StoreService">
+    <Position X="15.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAQQAAIEBAEAAAAAAAAQAAAAAAACAAAAAIIAQIAA=</HashCode>
+      <FileName>Services\Store\StoreService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.263" />
+  </Class>
+  <Class Name="RabbitRegister.Services.ProductService.ProductService">
+    <Position X="2.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAKQAIAAAABAAAAAQgAAAAEAAAQAAIQAAACACAAFA=</HashCode>
+      <FileName>Services\ProductService\ProductService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="RabbitRegister.Pages.Main.Store.StoreModel">
+    <Position X="19.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAECAAwAAAgAAAAAAAAAAAAAAAAAAAAAAAQEACAAAAA=</HashCode>
+      <FileName>Pages\Main\Store\Store.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RabbitRegister.Pages.Main.Store.BasketModel">
+    <Position X="19.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIACAAkAAEiBAAAAAQAAAAAAAAAAAAAAAAQEACAIAAA=</HashCode>
+      <FileName>Pages\Main\Store\Basket.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RabbitRegister.Pages.Main.Store.CreateOrderModel">
+    <Position X="17.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAECAAgAAAgBAAAAAQAAAAAAAAAAAAAAAAQAACAAAAA=</HashCode>
+      <FileName>Pages\Main\Store\CreateOrder.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -22,25 +22,45 @@ namespace RabbitRegister.Pages.Main.Product
             _storeService = storeService;
         }
 
+        /// <summary>
+        /// This method handles the HTTP GET request for retrieving product details.
+        /// </summary>
+        /// <param name="Id">The ID of the product.</param>
+        /// <param name="type">The type of the product ("Wool" or "Yarn").</param>
+        /// <returns>The page.</returns>
         public IActionResult OnGet(int Id, string type)
         {
             if (type == "Wool")
             {
+                // Retrieve Wool product details using ProductService
                 Wool = _productService.GetWools(Id);
             }
             else if (type == "Yarn")
             {
+                // Retrieve Yarn product details using ProductService
                 Yarn = _productService.GetYarn(Id);
             }
+
+            // Return the current page
             return Page();
         }
+
+        /// <summary>
+        /// This method handles the HTTP POST request for adding a product to the basket.
+        /// </summary>
+        /// <param name="id">The ID of the product.</param>
+        /// <param name="type">The type of the product ("Wool" or "Yarn").</param>
         public async Task<IActionResult> OnPostAsync(int id, string type)
         {
+            // Add the product to the basket asynchronously using StoreService
             await _storeService.AddToBasketAsync(id, type);
 
+            // Set a notification message to be displayed on the next page
             TempData["Notification"] = "Product added to the basket.";
 
+            // Redirect to the "/Main/Store/Store" page
             return RedirectToPage("/Main/Store/Store");
         }
+
     }
 }
