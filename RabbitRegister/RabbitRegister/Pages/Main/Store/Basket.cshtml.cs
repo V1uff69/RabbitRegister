@@ -35,7 +35,7 @@ namespace RabbitRegister.Pages.Main.Store
         /// Called when the Basket page is requested via HTTP GET.
         /// Retrieves the order lines from the store service and assigns them to the _orderLines property.
         /// </summary>
-        /// <returns>The IActionResult representing the page result.</returns>
+        /// <returns> the page result.</returns>
         public IActionResult OnGet()
         {
             _orderLines = _storeService.GetBasket();
