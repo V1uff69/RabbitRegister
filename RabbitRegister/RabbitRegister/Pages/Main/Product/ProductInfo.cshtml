@@ -1,0 +1,143 @@
+﻿@page "[id:int]"
+@model RabbitRegister.Pages.Main.Product.ProductInfoModel
+@{
+}
+
+<style>
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .image {
+        flex: 1;
+    }
+
+    .table {
+        flex: 2;
+        margin-left: 20px;
+    }
+
+    table {
+        border-collapse: collapse;
+    }
+
+        table td {
+            padding: 5px;
+            border: 1px solid black;
+        }
+
+    .label {
+        font-weight: bold;
+        width: 100px;
+    }
+</style>
+
+<html>
+<head>
+    <title>Product Information</title>
+</head>
+<body>
+    <div class="container">
+        @if (Model.Wool != null)
+        {
+            <div class="image">
+                <img src="@Model.Wool.ImgString" alt="Product Image" style="max-width: 500px; height: auto">
+            </div>
+
+            <div class="table">
+                <h1>@Model.Wool.ProductName</h1>
+                <table>
+                    <tr>
+                        <td class="label">Product Name</td>
+                        <td>@Model.Wool.ProductName</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Weight</td>
+                        <td>@Model.Wool.Weight</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Quality</td>
+                        <td>@Model.Wool.Quality</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Color</td>
+                        <td>@Model.Wool.Color</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Amount</td>
+                        <td>@Model.Wool.Amount</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Price</td>
+                        <td>@Model.Wool.Price</td>
+                    </tr>
+                </table>
+
+                <form method="post">
+                    <div>
+                        <button class="btn-card btn alert-success btn-sm" asp-page-handler="AddToBasketAsync" asp-route-id="@Model.Wool.ProductId" asp-route-type="@Model.Wool.ProductType"><i class="fa fa-cart-plus"></i></button>
+                    </div>
+                </form>
+            </div>
+        }
+
+        @if (Model.Yarn != null)
+        {
+            <div class="image">
+                <img src="@Model.Yarn.ImgString" alt="Product Image" style="max-width: 500px; height: auto">
+            </div>
+
+            <div class="table">
+                <h1>@Model.Yarn.ProductName</h1>
+                <table>
+                    <tr>
+                        <td class="label">Product Name</td>
+                        <td>@Model.Yarn.ProductName</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Fiber</td>
+                        <td>@Model.Yarn.Fiber</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Needle Size</td>
+                        <td>@Model.Yarn.NeedleSize</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Length</td>
+                        <td>@Model.Yarn.Length</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Tension</td>
+                        <td>@Model.Yarn.Tension</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Washing</td>
+                        <td>@Model.Yarn.Washing</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Color</td>
+                        <td>@Model.Yarn.Color</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Amount</td>
+                        <td>@Model.Yarn.Amount</td>
+                    </tr>
+                    <tr>
+                        <td class="label">Price</td>
+                        <td>@Model.Yarn.Price</td>
+                    </tr>
+                </table>
+
+                <form method="post">
+                    <div>
+                        <button class="btn-card btn alert-success btn-sm" asp-page-handler="AddToBasketAsync" asp-route-id="@Model.Yarn.ProductId" asp-route-type="@Model.Yarn.ProductType"><i class="fa fa-cart-plus"></i></button>
+                    </div>
+                </form>
+            </div>
+        }
+    </div>
+</body>
+</html>

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RabbitRegister.Model;
@@ -5,6 +6,7 @@ using RabbitRegister.Services.ProductService;
 
 namespace RabbitRegister.Pages.Main.Product
 {
+    [Authorize(Policy = "BreederOnly")]
     public class EditWoolModel : PageModel
     {
         private IProductService _productService;
@@ -31,7 +33,7 @@ namespace RabbitRegister.Pages.Main.Product
                 return Page();
             }
             await _productService.UpdateWoolAsync(Wool);
-            return RedirectToPage("GetAllWool");
-        }
-    }
+			return RedirectToPage("GetAllWool", new { breederRegNo = User.Identity.Name });
+		}
+	}
 }

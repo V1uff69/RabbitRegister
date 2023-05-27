@@ -1,0 +1,77 @@
+﻿@page
+@using RabbitRegister.EFDbContext
+@inject ItemDbContext dbContext
+@model RabbitRegister.Pages.Main.Store.BasketModel
+@{
+}
+<html>
+<head>
+    <title>Shopping Basket</title>
+</head>
+<body>
+    <h1>Shopping Basket</h1>
+
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Image</th>
+                <th>ProductName</th>
+                <th>ProductType</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Example row for a product -->
+            @foreach (Model.OrderLine orderLine in Model._orderLines)
+            {
+                <tr>
+                    <td>
+                        @orderLine.OrderLineId
+                    </td>
+                    <td>
+                        <img src="@Model.ProductImage(orderLine)" style="width: 75px;height:auto;"/>
+                    </td>
+                    <td>
+                        @Model.ProductName(orderLine)
+                    </td>
+                    <td>
+                        @orderLine.ProductType
+                    </td>
+                    <td>
+                        @orderLine.Amount
+                    </td>
+                    <td>
+                        @orderLine.Price Kr.
+                    </td>
+                    <td>
+                        @orderLine.TotalPrice Kr.
+                    </td>
+                    <td>
+                        <form>
+                            <a class="btn btn-danger btn-sm fa fa-minus" type="submit" title="Decrease Amount" method="post" asp-page-handler="DecreaseAmount" asp-route-id="@orderLine.OrderLineId"></a>
+                            <a class="btn btn-success btn-sm fa fa-plus" type="submit" title="Increase Amount" method="post" asp-page-handler="IncreaseAmount" asp-route-id="@orderLine.OrderLineId"></a>
+                        </form>
+                    </td>
+                </tr>
+            }
+            <!-- Add more rows for other products dynamically if needed -->
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3"></td>
+                <td>Total:</td>
+                <td>
+                    @Model.CalculateTotalPrice(Model._orderLines) Kr.
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <a class="btn btn-primary" asp-page="/Main/Store/CreateOrder">Fortsæt til Kassen</a>
+
+</body>
+</html>

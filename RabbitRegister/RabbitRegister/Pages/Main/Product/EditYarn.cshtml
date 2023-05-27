@@ -3,7 +3,13 @@
 @{
 }
 
+
 <form method="post">
+
+	  <br>
+        <p>
+            <button onclick="history.back()">Tilbage</button>
+        </p>
 
 	<div class="form-group">
 		<label asp-for="Yarn.ProductId" class="control-lable"></label>
@@ -63,14 +69,19 @@
 		<input asp-for="Yarn.Price" class="form-control" />
 		<span asp-validation-for="Yarn.Price" class="text-danger"></span>
 	</div>
+    <div class="from-group">
+        <label asp-for="Yarn.ImgString" class="control-label"></label>
+        <input asp-for="Yarn.ImgString" class="form-control" />
+        <span asp-validation-for="Yarn.ImgString" class="text-danger"></span>
+    </div>
 
 	<p>
 		<div class="form-group">
-			<input type="submit" value="Update" class="btn btn-primary" />
+			<input type="submit" value="Opdater" class="btn btn-primary" />
 		</div>
 	</p>
 </form>
 
 <p>
-	<a asp-page="/Main/Product/GetAllYarn">Back to List</a>
+	<button onclick="history.back()">Tilbage</button>
 </p>

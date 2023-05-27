@@ -1,0 +1,120 @@
+﻿html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+header {
+    position: sticky;
+    top: 0;
+}
+
+body {
+    margin-bottom: 60px;
+    background-image: url("../Images/Website/RabbitWallpaper.jpg");
+    background-color: whitesmoke;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+div.layer {
+    background-color: rgba(255,255,255,.7);
+    min-height: 1440px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.create-form {
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn-create {
+    background-color: seagreen;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-top: 1%
+}
+
+.btn-create:hover {
+    background-color: mediumseagreen;
+}
+
+table {
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.flex-item {
+    flex-basis: 0;
+    max-width: 100%;
+}
+
+.p-2-card {
+    min-height: 310px;
+    max-height: 310px;
+    max-width: 400px;
+    min-width: 100px;
+    margin-left: 8px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    background-color: whitesmoke;
+    outline-color: black;
+}
+
+/*.card-image {
+    max-width: 100%;
+    height: 55%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}*/
+
+.card-image {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+}
+
+.p-2-card:hover {
+    background-color: lightgrey;
+}
+
+.click-card {
+    user-select: none;
+    text-decoration: none;
+    color: black;
+    width: 100%;
+    height: 85%;
+}
+
+    .click-card:hover {
+        color: black;
+    }
+
+.card-buttons {
+}
+
+.btn-card {
+    margin: 2px;
+    width: 30px;
+    height: 30px;
+}
+
+.text-card {
+    margin-bottom: 3px;
+    margin-top: 3px;
+}

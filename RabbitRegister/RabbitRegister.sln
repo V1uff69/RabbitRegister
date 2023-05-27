@@ -5,6 +5,8 @@ VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RabbitRegister", "RabbitRegister\RabbitRegister.csproj", "{9692B3E1-7E2B-45B4-A984-7CA18308B191}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitRegTests", "RabbitRegTests\RabbitRegTests.csproj", "{0E192360-1822-4BD4-9734-6C40A67A88A0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{9692B3E1-7E2B-45B4-A984-7CA18308B191}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9692B3E1-7E2B-45B4-A984-7CA18308B191}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9692B3E1-7E2B-45B4-A984-7CA18308B191}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E192360-1822-4BD4-9734-6C40A67A88A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E192360-1822-4BD4-9734-6C40A67A88A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E192360-1822-4BD4-9734-6C40A67A88A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E192360-1822-4BD4-9734-6C40A67A88A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

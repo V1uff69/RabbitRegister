@@ -3,24 +3,33 @@
 @{
 }
 
-<h1>Yarn</h1>
+<h2 class="text-center">Mine Garn-produkter</h2>
+
+<div class="d-flex justify-content-between">
+	<div class="d-flex flex-row">
+		<div class="p-2 bd-highlight">
+			<a class="btn-create btn" asp-page="CreateYarn">Opret Garn</a>
+		</div>
+	</div>
+</div>
 
 <table class="table table-bordered table-hover table-striped table-opacity" width="100%">
 	<thead>
 		<tr>
-			<th> Product Id </th>
-			<th> BreederRegno </th>
-			<th> Product Type </th>
-			<th> Product Name </th>
+			<th> Avler Id </th>
+			<th> Produkt Id </th>
+			<th> Produkt Type </th>
+			<th> Produkt Name </th>
 			<th> Fiber </th>
-			<th> NeedleSize </th>
-			<th> Length </th>
-			<th> Tension </th>
-			<th> Washing </th>
-			<th> Color </th>
-			<th> Amount </th>
-			<th> Price </th>
-			<th> Action </th>
+			<th> Nål Størrelse </th>
+			<th> Længde </th>
+			<th> Strikkefasthed </th>
+			<th> Vaske Beskrivelse </th>
+			<th> Farve </th>
+			<th> Antal </th>
+			<th> Pris </th>
+			<th> Billede </th>
+			<th> Muligheder </th>
 		</tr>
 	</thead>
 	<tbody>
@@ -29,8 +38,8 @@
 			foreach (var yarn in Model.Yarns)
 			{
 				<tr>
-					<td>@yarn.ProductId</td>
 					<td>@yarn.BreederRegNo</td>
+					<td>@yarn.ProductId</td>
 					<td>@yarn.ProductType</td>
 					<td>@yarn.ProductName</td>
 					<td>@yarn.Fiber</td>
@@ -41,6 +50,7 @@
 					<td>@yarn.Color</td>
 					<td>@yarn.Amount</td>
 					<td>@yarn.Price</td>
+					<td><img src="@yarn.ImgString" style="max-width: 100px; height: auto"></td>
 					<td>
 						<a class="btn btn-primary btn-sm" type="button" title="Edit" asp-page="EditYarn" asp-route-id="@yarn.ProductId"><i class="fa fa-edit"></i></a>
 						<a class="btn btn-danger btn-sm " type="button" title="Delete" asp-page="/Main/Product/DeleteYarn" asp-route-id="@yarn.ProductId"><i class="fa fa-trash"></i></a>
@@ -51,7 +61,3 @@
 		}
 	</tbody>
 </table>
-
-<p>
-	<a class="btn btn-primary" asp-page="CreateYarn"> Create a new Yarn </a>
-</p>

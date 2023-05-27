@@ -1,23 +1,35 @@
-﻿namespace RabbitRegister.Model
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace RabbitRegister.Model
 {
+    [Keyless]
     public class OrderLine
     {
+        [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int OrderLineId { get; set; }
+        [ForeignKey(nameof(ProductId))]
+        [Required]
+        public int ProductId { get; set; }
 
-        public int Id { get; set; }
-        public Product Product { get; set; }
+        [Required]
+        public string ProductType { get; set; }
+
+        [Required]
         public int Amount { get; set; }
+
+        [Required]
         public double Price { get; set; }
+        [Required]
+        public double TotalPrice { get; set; }
 
-        public OrderLine()
-        {
-        }
+        [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int OrderId { get; set; }
 
-        public OrderLine(int id, Product product, int amount, double price)
-        {
-            Id = id;
-            Product = product;
-            Amount = amount;
-            Price = price;
-        }
+        [Required]
+        public Order? Order { get; set; }
     }
 }

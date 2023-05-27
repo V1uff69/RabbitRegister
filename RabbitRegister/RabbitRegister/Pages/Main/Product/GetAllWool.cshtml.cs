@@ -16,11 +16,19 @@ namespace RabbitRegister.Pages.Main.Product
             _productService = productService;
         }
 
-        public void OnGet()
-        {
-            Wools = _productService.GetWools();
-        }
-        public void OnPost()
+		public IActionResult OnGet(int breederRegNo)
+		{
+			Wools = _productService.GetMyWoolCreations(breederRegNo);
+
+			return Page();
+		}
+
+		//public void OnGet()
+		//{
+		//    Wools = _productService.GetWools();
+		//}
+
+		public void OnPost()
         {
 
         }

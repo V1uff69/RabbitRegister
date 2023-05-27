@@ -2,75 +2,86 @@
 @model RabbitRegister.Pages.Main.Product.CreateYarnModel
 @{
 }
+<div class="create-form">
+    <form method="post">
+        <h1 style="text-align:center">Tilføj Nyt Garn</h1>
 
-<form method="post">
-	<div class="from-group">
-		<label asp-for="@Model.Yarn.ProductId" class="control-label"></label>
-		<input asp-for="@Model.Yarn.ProductId" class="form-control" readonly="@(true)" />
-	</div>
-	<div class="form-group">
-		<label asp-for="@Model.Yarn.BreederRegNo" class="control-label"></label>
-		<input asp-for="@Model.Yarn.BreederRegNo" class="form-control" />
-		<span asp-validation-for="@Model.Yarn.BreederRegNo" class="text-danger"></span>
-	</div>
-	<div class="form-group">
-		<label asp-for="@Model.Yarn.ProductType" class="control-label"></label>
-		<input asp-for="@Model.Yarn.ProductType" value="Yarn" class="form-control" readonly="@(true)"/>
-	</div>
-	<div class="form-group">
-		<label asp-for="@Model.Yarn.ProductName" class="control-label"></label>
-		<input asp-for="@Model.Yarn.ProductName" class="form-control" />
-		<span asp-validation-for="@Model.Yarn.ProductName" class="text-danger"></span>
-	</div>
-	<div class="form-group">
-		<label asp-for="@Model.Yarn.Fiber" class="control-label"></label>
-		<input asp-for="@Model.Yarn.Fiber" class="form-control" />
-		<span asp-validation-for="@Model.Yarn.Fiber" class="text-danger"></span>
-	</div>
-	<div class="form-group">
-		<label asp-for="@Model.Yarn.NeedleSize" class="control-label"></label>
-		<input asp-for="@Model.Yarn.NeedleSize" class="form-control" />
-		<span asp-validation-for="@Model.Yarn.NeedleSize" class="text-danger"></span>
-	</div>
-	<div class="form-group">
-		<label asp-for="@Model.Yarn.Length" class="control-label"></label>
-		<input asp-for="@Model.Yarn.Length" class="form-control" />
-		<span asp-validation-for="@Model.Yarn.Length" class="text-danger"></span>
-	</div>
-	<div class="form-group">
-		<label asp-for="@Model.Yarn.Tension" class="control-label"></label>
-		<input asp-for="@Model.Yarn.Tension" class="form-control" />
-		<span asp-validation-for="@Model.Yarn.Tension" class="text-danger"></span>
-	</div>
-	<div class="form-group">
-		<label asp-for="@Model.Yarn.Washing" class="control-label"></label>
-		<input asp-for="@Model.Yarn.Washing" class="form-control" />
-		<span asp-validation-for="@Model.Yarn.Washing" class="text-danger"></span>
-	</div>
-	<div class="form-group">
-		<label asp-for="@Model.Yarn.Color" class="control-label"></label>
-		<input asp-for="@Model.Yarn.Color" class="form-control" />
-		<span asp-validation-for="@Model.Yarn.Color" class="text-danger"></span>
-	</div>
-	<div class="form-group">
-		<label asp-for="@Model.Yarn.Amount" class="control-label"></label>
-		<input asp-for="@Model.Yarn.Amount" class="form-control" />
-		<span asp-validation-for="@Model.Yarn.Amount" class="text-danger"></span>
-	</div>
-	<div class="form-group">
-		<label asp-for="@Model.Yarn.Price" class="control-label"></label>
-		<input asp-for="@Model.Yarn.Price" class="form-control" />
-		<span asp-validation-for="@Model.Yarn.Price" class="text-danger"></span>
-	</div>
+        <br />
+        <input type="button" value="Tilbage" onclick="history.go(-1)">
+        <br />
 
-	<p>
-		<div class="form-group">
-			<input type="submit" value="Create" class="btn btn-primary" />
-		</div>
-	</p>
-	
-</form>
+        <div class="from-group">
+            <label asp-for="@Model.Yarn.BreederRegNo" class="control-label"></label>
+            <input asp-for="@Model.Yarn.BreederRegNo" value="@User.Identity.Name" class="form-control" readonly="@true" />
+            <span asp-validation-for="@Model.Yarn.BreederRegNo" class="text-danger"></span>
+        </div>
 
-<p>
-	<button onclick="history.back()">Go Back</button>
-</p>
+        <div class="from-group">
+            <label asp-for="@Model.Yarn.ProductId" class="control-label"></label>
+            <input asp-for="@Model.Yarn.ProductId" class="form-control" readonly="@(true)" />
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Yarn.ProductType" class="control-label"></label>
+            <input asp-for="@Model.Yarn.ProductType" value="Yarn" class="form-control" readonly="@(true)" />
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Yarn.ProductName" class="control-label"></label>
+            <input asp-for="@Model.Yarn.ProductName" class="form-control" />
+            <span asp-validation-for="@Model.Yarn.ProductName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Yarn.Fiber" class="control-label"></label>
+            <input asp-for="@Model.Yarn.Fiber" class="form-control" />
+            <span asp-validation-for="@Model.Yarn.Fiber" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Yarn.NeedleSize" class="control-label"></label>
+            <input asp-for="@Model.Yarn.NeedleSize" class="form-control" />
+            <span asp-validation-for="@Model.Yarn.NeedleSize" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Yarn.Length" class="control-label"></label>
+            <input asp-for="@Model.Yarn.Length" class="form-control" />
+            <span asp-validation-for="@Model.Yarn.Length" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Yarn.Tension" class="control-label"></label>
+            <input asp-for="@Model.Yarn.Tension" class="form-control" />
+            <span asp-validation-for="@Model.Yarn.Tension" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Yarn.Washing" class="control-label"></label>
+            <input asp-for="@Model.Yarn.Washing" class="form-control" />
+            <span asp-validation-for="@Model.Yarn.Washing" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Yarn.Color" class="control-label"></label>
+            <input asp-for="@Model.Yarn.Color" class="form-control" />
+            <span asp-validation-for="@Model.Yarn.Color" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Yarn.Amount" class="control-label"></label>
+            <input asp-for="@Model.Yarn.Amount" class="form-control" />
+            <span asp-validation-for="@Model.Yarn.Amount" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Yarn.Price" class="control-label"></label>
+            <input asp-for="@Model.Yarn.Price" class="form-control" />
+            <span asp-validation-for="@Model.Yarn.Price" class="text-danger"></span>
+        </div>
+        <div class="from-group">
+            <label asp-for="@Model.Yarn.ImgString" class="control-label"></label>
+            <input asp-for="@Model.Yarn.ImgString" value="/Images/Products/Yarn/" class="form-control" />
+            <span asp-validation-for="@Model.Yarn.ImgString" class="text-danger"></span>
+        </div>
+
+        <p align="center">
+            <div class="form-group">
+                <input type="submit" style="background-color:green;color:white;margin-left:auto;margin-right:auto;display:block;width:100%;border-radius:8px" value="Tilføj" class="btn text-center" />
+                <br />
+                <input type="submit" asp-page="/Main/Product/GetAllYarn" class="btn text-center" style="background-color:red;color:white;margin-left:auto;margin-right:auto;display:block;width:100%;border-radius:8px" value="Afbryd Opretning" />
+            </div>
+        </p>
+
+    </form>
+</div>
