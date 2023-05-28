@@ -26,7 +26,13 @@ namespace RabbitRegister.Pages.Main.Rabbit
             return Page();
         }
 
-   		public async Task<IActionResult> OnPostAsync(int id, int breederRegNo)
+        /// <summary>
+        /// Edit en kanins properties ud fra dens Id - bemærk der mangler exceptions for hvilken Avler som kan edit den
+        /// </summary>
+        /// <param name="id">Første nøgle-del for kaninens composite key(RabbitRegNo)</param>
+        /// <param name="breederRegNo">Anden nøgle-del for kaninens composite key</param>
+        /// <returns>Omdirigerer til GetAllRabbits med avlerens, Avler-ID</returns>
+        public async Task<IActionResult> OnPostAsync(int id, int breederRegNo)
 		{
 			if (!ModelState.IsValid)
 			{

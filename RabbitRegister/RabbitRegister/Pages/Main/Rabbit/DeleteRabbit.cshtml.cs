@@ -30,6 +30,12 @@ namespace RabbitRegister.Pages.Main.Rabbit
             return Page();
         }
 
+        /// <summary>
+        /// Sletter en kanin med den angivne Id - bemærk der mangler exceptions for hvilken Avler som kan slette den
+        /// </summary>
+        /// <param name="id">Første nøgle-del for kaninens composite key(RabbitRegNo)</param>
+        /// <param name="breederRegNo">Anden nøgle-del for kaninens composite key</param>
+        /// <returns>Omdirigerer til GetAllRabbits med avlerens, Avler-ID</returns>
         public async Task<IActionResult> OnPostAsync(int id, int breederRegNo)
         {
             Model.Rabbit deletedRabbit = await _rabbitService.DeleteRabbitAsync(id, breederRegNo);
