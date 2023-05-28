@@ -50,12 +50,8 @@ namespace RabbitRegister.Pages.Main.Store
         /// <returns>the page result.</returns>
         public async Task<IActionResult> OnGetDecreaseAmount(int id)
         {
-            OrderLine thisOrderLine = _storeService.GetOrderLine(id);
-
-            if (thisOrderLine != null)
-            {
-                await _storeService.DecreaseAmount(thisOrderLine, id);
-            }
+ 
+                await _storeService.DecreaseAmount(id);
 
             // Reload the necessary data
             _orderLines = _storeService.GetBasket();
@@ -72,12 +68,8 @@ namespace RabbitRegister.Pages.Main.Store
         /// <returns>the page result.</returns>
         public async Task<IActionResult> OnGetIncreaseAmount(int id)
         {
-            OrderLine thisOrderLine = _storeService.GetOrderLine(id);
 
-            if (thisOrderLine != null)
-            {
-                await _storeService.IncreaseAmount(thisOrderLine, id);
-            }
+                await _storeService.IncreaseAmount(id);
 
             // Reload the necessary data
             _orderLines = _storeService.GetBasket();

@@ -186,9 +186,9 @@ namespace RabbitRegister.Services.Store
         /// <summary>
         /// Decreases the amount (quantity) of an order line.
         /// </summary>
-        /// <param name="orderLine">The order line to decrease the amount for.</param>
+        /// <param name="thisOrderLine">The order line to decrease the amount for.</param>
         /// <param name="id">The ID of the order line.</param>
-        public async Task DecreaseAmount(OrderLine orderLine, int id)
+        public async Task DecreaseAmount(int id)
         {
             OrderLine thisOrderLine = GetOrderLine(id);
 
@@ -206,9 +206,9 @@ namespace RabbitRegister.Services.Store
         /// <summary>
         /// Increases the amount (quantity) of an order line.
         /// </summary>
-        /// <param name="orderLine">The order line to increase the amount for.</param>
+        /// <param name="thisOrderLine">The order line to increase the amount for.</param>
         /// <param name="id">The ID of the order line.</param>
-        public async Task IncreaseAmount(OrderLine orderLine, int id)
+        public async Task IncreaseAmount(int id)
         {
             OrderLine thisOrderLine = GetOrderLine(id);
             if (thisOrderLine != null)
