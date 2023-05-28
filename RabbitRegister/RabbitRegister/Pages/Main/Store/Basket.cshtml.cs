@@ -79,7 +79,10 @@ namespace RabbitRegister.Pages.Main.Store
                 await _storeService.IncreaseAmount(thisOrderLine, id);
             }
 
-            return RedirectToPage("/Main/Store/Basket");
+            // Reload the necessary data
+            _orderLines = _storeService.GetBasket();
+
+            return Page();
         }
 
         /// <summary>
