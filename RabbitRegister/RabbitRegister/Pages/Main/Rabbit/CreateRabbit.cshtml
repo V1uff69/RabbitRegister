@@ -18,12 +18,17 @@
 <br />
 
 <form method="post">
-
+    <!-- Ved oprettelse af en kanin sættes Owner propertien til den avleren som er logget på. Read-only, så man ikke kan ændre den -->
     <div class="form-group">
         <label asp-for="@Model.Rabbit.Owner" class="control-label"></label>
         <input asp-for="@Model.Rabbit.Owner" value="@User.Identity.Name" class="form-control" readonly="@true" />
     </div>
 
+    <!-- I den nederste del af denne blok vises et <span>-element med teksten fra Model.exceptionText,
+        og dens synlighed styres af værdien af Model.exceptionFound. Hvis Model.exceptionFound er True,
+        vil <span>-elementet vises med rød. (CSS-klasse "text-danger") ellers vil det være skjult (False)
+        (CSS-styling "display:none").
+    -->
     <div class="form-group">
         <label asp-for="@Model.Rabbit.RabbitRegNo" class="control-label"></label>
         <input asp-for="@Model.Rabbit.RabbitRegNo" class="form-control" />

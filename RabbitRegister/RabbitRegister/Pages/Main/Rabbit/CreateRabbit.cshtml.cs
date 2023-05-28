@@ -28,10 +28,14 @@ namespace RabbitRegister.Pages.Main.Rabbit
 
         public bool exceptionFound { get; set; }
         public string exceptionText { get; set; }
-	
-		public async Task<IActionResult> OnPostAsync(Model.Rabbit Rabbit)
+        /// <summary>
+        /// Forsøger at oprette en kanin, hvis ikke ID allerede findes
+        /// </summary>
+        /// <param name="Rabbit">Kanin objekt som skal tilføjes</param>
+        /// <returns>Forsøger at tilføje en kanin og returnere avleren til GetAllRabbits med sit Avler-ID</returns>
+        public async Task<IActionResult> OnPostAsync(Model.Rabbit Rabbit)
 		{
-			if (!ModelState.IsValid)
+			if (!ModelState.IsValid)    //Denne del kigger på brugerens INPUT. Er de korrekt udført? 
 			{
 				return Page();
 			}
@@ -42,7 +46,7 @@ namespace RabbitRegister.Pages.Main.Rabbit
 			}
 			catch (DbUpdateException)
 			{
-				this.exceptionFound = true;
+				this.exceptionFound = true;     
 				this.exceptionText = "ID Findes allerede!!!";
 			}
 			return null;

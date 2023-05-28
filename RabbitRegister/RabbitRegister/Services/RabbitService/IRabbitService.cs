@@ -6,8 +6,7 @@ namespace RabbitRegister.Services.RabbitService
     {
         Rabbit GetRabbit(int id, int breederRegNo);
         //Rabbit GetRabbit(int id);
-        List<Rabbit> GetAllRabbits(int id, int breederRegNo);
-        //List<Rabbit> GetAllRabbits();
+        List<Rabbit> GetAllRabbits();
         Task AddRabbitAsync(Rabbit rabbit);
         //Task UpdateRabbitAsync(Rabbit rabbit, int id);
         Task UpdateRabbitAsync(Rabbit rabbit, int id, int breederRegNo);
