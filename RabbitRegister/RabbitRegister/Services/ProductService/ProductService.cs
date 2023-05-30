@@ -2,7 +2,6 @@
 using RabbitRegister.Model;
 
 
-// mikkel din bøv
 namespace RabbitRegister.Services.ProductService
 {
     public class ProductService : IProductService
