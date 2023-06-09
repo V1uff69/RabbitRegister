@@ -1,10 +1,16 @@
 ﻿@page
 @using RabbitRegister.Model;
+@using RabbitRegister.Pages.Main.LogIn
+@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
 @model RabbitRegister.Pages.Main.Store.StoreModel
 @{
 }
 
 <!--  page menu -->
+@{
+    if ((await AuthorizationService.AuthorizeAsync(User, null, "AdminOnly")).Succeeded)
+    {
 <div class="d-flex justify-content-between">
     <div class="d-flex flex-row">
         <div class="p-2 bd-highlight">
@@ -15,7 +21,8 @@
         </div>
     </div>
 </div>
-
+    }
+}
 
 
 <!--  Product tabel on the website -->
@@ -41,9 +48,9 @@
                             {
                                 <img class="card-image" src="@Wool.ImgString">
                             }
-                            <p class="text-card font-monospace"> Name: @Wool.ProductName </p>
-                            <p class="text-card font-monospace"> Price: @Wool.Price kr </p>
-                            <p class="text-card font-monospace"> Stock: @Wool.Amount</p>
+                            <p class="text-card font-monospace"> Navn: @Wool.ProductName </p>
+                            <p class="text-card font-monospace"> Pris: @Wool.Price kr </p>
+                            <p class="text-card font-monospace"> Beholdning: @Wool.Amount</p>
                             <div class="d-flex flex-wrap justify-content-center" style="margin-bottom: 5px; margin-top: 0px;">
                                 <a class="btn-card btn-primary btn-sm" type="button" title="Edit" asp-page="/Main/Product/EditWool" asp-route-id="@Wool.ProductId"><i class="fa fa-edit"></i></a>
                                 <a class="btn-card btn-danger btn-sm" type="button" title="Delete" asp-page="/Main/Product/DeleteWool" asp-route-id="@Wool.ProductId"><i class="fa fa-trash"></i></a>
@@ -71,9 +78,9 @@
                             {
                                 <img class="card-image" src="@Yarn.ImgString">
                             }
-                            <p class="text-card font-monospace"> Name: @Yarn.ProductName </p>
-                            <p class="text-card font-monospace"> Price: @Yarn.Price kr </p>
-                            <p class="text-card font-monospace"> Stock: @Yarn.Amount</p>
+                            <p class="text-card font-monospace"> Navn: @Yarn.ProductName </p>
+                            <p class="text-card font-monospace"> Pris: @Yarn.Price kr </p>
+                            <p class="text-card font-monospace"> Beholdning: @Yarn.Amount</p>
                             <div class="card-buttons d-flex flex-wrap justify-content-center" style="margin-bottom: 5px; margin-top: 0px;">
                                 <a class="btn-card btn-primary btn-sm" type="button" title="Edit" asp-page="/Main/Product/EditYarn" asp-route-id="@Yarn.ProductId"><i class="fa fa-edit"></i></a>
                                 <a class="btn-card btn-danger btn-sm" type="button" title="Delete" asp-page="/Main/Product/DeleteYarn" asp-route-id="@Yarn.ProductId"><i class="fa fa-trash"></i></a>
