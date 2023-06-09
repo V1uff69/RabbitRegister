@@ -26,7 +26,12 @@ namespace RabbitRegister.Pages.Main.Rabbit
         [BindProperty]
         public int MinRating { get; set; }
 
-
+        /// <summary>
+        /// Henter kaniner baseret på den angivne handling og brugeren/avlerens ID
+        /// </summary>
+        /// <param name="breederRegNo">Brugerens/Avler-ID</param>
+        /// <param name="action">"Handling" Bestemmer hvordan kaninerne filtreres ved brug af LINQ og Lamda</param>
+        /// <returns>GetOwnedAliveRabbits som standard, eller en af de andre metoder via Filter knappen</returns>
         public IActionResult OnGet(int breederRegNo, string action)
         {
             if (action == "OwnedDeadRabbits")
@@ -49,7 +54,10 @@ namespace RabbitRegister.Pages.Main.Rabbit
             return Page();
         }
 
-
+        /// <summary>
+        /// En søgefunktion som søger efter kaninens navn
+        /// </summary>
+        /// <returns>Returnere kaniner med samme bogstavs sekvens som brugeren indtaster</returns>
         public IActionResult OnPostNameSearch()
         {
             Rabbits = _rabbitService.NameSearch(SearchString).ToList();

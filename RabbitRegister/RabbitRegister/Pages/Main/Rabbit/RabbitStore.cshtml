@@ -2,7 +2,7 @@
 @model RabbitRegister.Pages.Main.Rabbit.RabbitStoreModel
 @{
 }
-
+<!-- IKKE IMPLEMENTERET SIDE! NÅEDE IKKE AT BLIVE FÆRDIG -->
 <link rel="stylesheet" href="/css/rabbitSite.css" />
 
 
@@ -17,6 +17,10 @@
             {
                 foreach (var Rabbit in Model.Rabbits)
                 {
+                    <!-- Bemærk: Her linkes til RabbitProfile. Her skal istedet linkes til en RabbitSaleProfile, som ikke
+                    endnu ikke er lavet. Kunden skal selvfølgelig ikke være istand til delete/edit og og samme mængde
+                    informationer om kaninen
+                    -->
                     <a class="click-card flex-item" asp-page="/Main/Rabbit/RabbitProfile" asp-route-id="@Rabbit.RabbitRegNo" asp-route-breederRegNo="@Rabbit.BreederRegNo">
 
                         <div class="p-2-card text-center container rounded border border-dark" style="width: 100%;">
