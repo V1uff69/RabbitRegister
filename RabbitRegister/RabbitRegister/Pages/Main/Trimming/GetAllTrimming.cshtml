@@ -8,7 +8,7 @@
     <form method="post" class="form-inline">
         <div class="input-group mb-3">
             <input asp-for="SearchString" class="form-control mr-1" placeholder="Søg efter navn" />
-            <input type="submit" asp-route-Owner="@User.Identity.Name" asp-page-handler="NameSearch" value="Search" class="btn btn-primary" />
+            <input type="submit" asp-route-Owner="@User.Identity.Name" asp-page-handler="NameSearch" value="Søg" class="btn btn-primary" />
         </div>
     </form>
 @*    <form method="post" class="form-inline">
@@ -79,8 +79,8 @@
                             <td> @item.SecondSortmentWeight </td>
                             <td> @item.DisposableWoolWeight </td>
                             <td>
-                                <a class="btn btn-primary btn-sm" type="button" title="Edit" asp-route-Owner="@User.Identity.Name" asp-page="EditTrimming" asp-route-id="@item.TrimmingId"><i class="fa fa-edit"></i></a>
-                                <a class="btn btn-danger btn-sm " type="button" title="Delete" asp-route-Owner="@User.Identity.Name" asp-page="DeleteTrimming" asp-route-id="@item.TrimmingId"><i class="fa fa-trash"></i></a>
+                                <a class="btn btn-primary btn-sm" type="button" title="Opdater" asp-route-Owner="@User.Identity.Name" asp-page="EditTrimming" asp-route-id="@item.TrimmingId"><i class="fa fa-edit"></i></a>
+                                <a class="btn btn-danger btn-sm " type="button" title="Slet" asp-route-Owner="@User.Identity.Name" asp-page="DeleteTrimming" asp-route-id="@item.TrimmingId"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
                     }
