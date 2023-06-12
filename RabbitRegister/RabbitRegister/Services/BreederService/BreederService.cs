@@ -16,16 +16,16 @@ namespace RabbitRegister.Services.BreederService
             _dbService = dbService;
 
             // Hent alle avlere fra databasen og konverter til en liste
-            //Breeders = _dbService.GetObjectsAsync().Result.ToList();
+            Breeders = _dbService.GetObjectsAsync().Result.ToList();
 
             // Hvis databasen er tom, brug mock-data 
             //Breeders = MockBreeder.GetMockBreeders();
 
-            Breeders = MockBreeder.GetMockBreeders(); //DB tom? Ved første Debug kør denne kode, og udkommenter igen derefter
-            foreach (var breeder in Breeders)
-            {
-                dbService.AddObjectAsync(breeder).Wait();
-            }
+            //Breeders = MockBreeder.GetMockBreeders(); //DB tom? Ved første Debug kør denne kode, og udkommenter igen derefter
+            //foreach (var breeder in Breeders)
+            //{
+            //    dbService.AddObjectAsync(breeder).Wait();
+            //}
         }
 
         // Tilføj en avler til listen og databasen

@@ -16,28 +16,28 @@ namespace RabbitRegister.Model
         public DateTime Date { get; set; } = DateTime.Now;
         public double? TotalPrice { get; set; }
 
-        [Display(Name = "Name of recipient")]
-        [Required(ErrorMessage = "Name is required to check out order")]
+        [Display(Name = "Navn på kvitteringen")]
+        [Required(ErrorMessage = "Navn på kvitteringen er påkrævet")]
         [StringLength(50, MinimumLength = 1)]
         public string RecipientName { get; set; }
 
-        [Display(Name = "Delivery address")]
-        [Required(ErrorMessage = "Delivery address is required to check out order")]
+        [Display(Name = "leveringsadresse")]
+        [Required(ErrorMessage = "leveringsadresse er påkrævet")]
         [StringLength(50, MinimumLength = 1)]
         public string DeliveryAddress { get; set; }
 
-        [Display(Name = "Name of City")]
-        [Required(ErrorMessage = "City is required to check out order")]
+        [Display(Name = "By navn")]
+        [Required(ErrorMessage = "Navnet på din by er påkrævet")]
         [StringLength(50, MinimumLength = 1)]
         public string City { get; set; }
 
-        [Display(Name = "Zipcode of City")]
-        [Required(ErrorMessage = "Zipcode is required to check out order")]
+        [Display(Name = "Postnummer")]
+        [Required(ErrorMessage = "Postnummer er påkrævet")]
         [Range(1000, 9999)]
         public int ZipCode { get; set; }
 
         [Display(Name = "Email")]
-        [Required(ErrorMessage = "Email is required to check out order")]
+        [Required(ErrorMessage = "Email skal være udfyldt")]
         [RegularExpression(@"^[^@\s]+@[^@\s]+\.[^@\s]+$", ErrorMessage = "Invalid email format")]
         public string Email { get; set; }
     }

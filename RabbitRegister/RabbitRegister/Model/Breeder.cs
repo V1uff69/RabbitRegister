@@ -36,7 +36,8 @@ namespace RabbitRegister.Model
         [RegularExpression("^[0-9]*$", ErrorMessage = "Telefonnummer skal kun indeholde tal.")]
         public string Phone { get; set; } // Avlerens telefonnummer
 
-        [Required]
+        [Display(Name = "Adgangskode")]
+        [Required(ErrorMessage = "Adgangkoden skal udfyldes for bekræftning")]
         public string Password { get; set; } // Avlerens adgangskode
 
         public bool isAdmin { get; set; } // Angiver om avleren er administrator

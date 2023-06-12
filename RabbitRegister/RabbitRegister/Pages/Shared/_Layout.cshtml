@@ -114,7 +114,8 @@
                                             Avler: @Context.User.Identity.Name
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" asp-area="" asp-page="/Main/LogIn/LogOutPage">Logout</a>
+                                            <a class="dropdown-item" asp-area="" asp-route-id="@Context.User.Identity.Name" asp-page="/Main/Breeder/EditBreeder">Opdater Oplysninger</a>
+                                            <a class="dropdown-item" asp-area="" asp-page="/Main/LogIn/LogOutPage">Log ud</a>
                                         </div>
                                     </li>
                                 }

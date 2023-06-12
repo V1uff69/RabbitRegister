@@ -35,7 +35,7 @@ namespace RabbitRegister.Pages.Main.Store
             await _storeService.AddToBasketAsync(id, type);
 
             // Set a temporary data value to display a notification message
-            TempData["Notification"] = "Product added to the basket.";
+            TempData["Notification"] = "Produkt tilføjet til kurv";
 
             // Redirect the user back to the Store page
             return RedirectToPage("/Main/Store/Store");

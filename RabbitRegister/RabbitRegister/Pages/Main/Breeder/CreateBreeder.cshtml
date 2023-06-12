@@ -3,11 +3,9 @@
 @{
 }
 <div class="create-form">
+    <h1 style="text-align:center">Opret Ny Avler</h1>
     <form method="post">
-        <h1 style="text-align:center">Create Breeder</h1>
-        <form>
-            <input type="button" value="Tilbage" onclick="history.go(-1)">
-        </form>
+        <input type="button" value="Tilbage" onclick="history.go(-1)">
         <div class="from-group">
             <label asp-for="@Model.Breeder.BreederRegNo" class="control-label"></label>
             <input asp-for="@Model.Breeder.BreederRegNo" class="form-control" />
@@ -52,13 +50,9 @@
             <span asp-validation-for="Breeder.isAdmin" class="text-danger"></span>
         </div>
 
-        
-        <p align="center">
-            <div class="form-group">
-                <input type="submit" style="background-color:green;color:white;margin-left:auto;margin-right:auto;display:block;width:100%;border-radius:8px" value="Create" class="btn text-center" />
-                <br />
-            </div>
-        </p>
-
+        <div class="form-group">
+            <input type="submit" style="background-color:green;color:white;margin-left:auto;margin-right:auto;display:block;width:100%;border-radius:8px" value="Create" class="btn text-center" />
+            <br />
+        </div>
     </form>
 </div>

@@ -21,6 +21,7 @@ builder.Services.AddSingleton<IRabbitService, RabbitService>();
 builder.Services.AddSingleton<IProductService, ProductService>();
 builder.Services.AddSingleton<IBreederService, BreederService>();
 builder.Services.AddSingleton<ITrimmingService, TrimmingService>();
+builder.Services.AddScoped<PasswordHasher<string>>();
 //We are using Singleton because Transient creates a new instance of our lists
 //when navigationg to other pages in the same session, and it need to stay
 //saved from the moment something is added on one page, and then transfers to other pages
