@@ -3,6 +3,12 @@
 @{
 }
 
+<br />
+<form>
+	<input type="button" value="Tilbage" onclick="history.go(-1)">
+</form>
+<br />
+
 <form method="post">
 	<div class="form-group">
 		<label asp-for="Trimming.TrimmingId" class="control-lable"></label>
@@ -61,7 +67,7 @@
 
 	<p>
 		<div class="form-group">
-			<input type="submit" value="Update" class="btn btn-primary" />
+			<input type="submit" value="Opdater" class="btn btn-primary" />
 		</div>
 	</p>
 </form>

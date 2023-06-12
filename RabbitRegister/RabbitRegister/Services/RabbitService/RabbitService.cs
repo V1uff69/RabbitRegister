@@ -13,13 +13,13 @@ namespace RabbitRegister.Services.RabbitService
         public RabbitService(DbGenericService<Rabbit> dbGenericService)
         {
             _dbGenericService = dbGenericService;
-            //_rabbits = _dbGenericService.GetObjectsAsync().Result.ToList();
+            _rabbits = _dbGenericService.GetObjectsAsync().Result.ToList();
 
-            _rabbits = MockRabbit.GetMockRabbits(); //DB tom? Ved første Debug kør denne kode, og udkommenter igen derefter
-            foreach (var rabbit in _rabbits)
-            {
-                _dbGenericService.AddObjectAsync(rabbit).Wait();
-            }
+            //_rabbits = MockRabbit.GetMockRabbits(); //DB tom? Ved første Debug kør denne kode, og udkommenter igen derefter
+            //foreach (var rabbit in _rabbits)
+            //{
+            //    _dbGenericService.AddObjectAsync(rabbit).Wait();
+            //}
         }
         public RabbitService()
         {
