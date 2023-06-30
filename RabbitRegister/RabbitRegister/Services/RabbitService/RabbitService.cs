@@ -93,6 +93,11 @@ namespace RabbitRegister.Services.RabbitService
             }
         }
 
+        public async Task ChangeOwnership(Rabbit rabbit, int oldOwner, int newOwner)
+        {
+
+        }
+
         /// <summary>
         /// Sletter en kanin baseret på dens angivne composite-key.
         /// 
@@ -133,7 +138,7 @@ namespace RabbitRegister.Services.RabbitService
         /// </summary>
         /// <param name="str">String, der skal matches med kanin navn</param>
         /// <returns>En samling af kaniner, der matcher stringen</returns>
-        public IEnumerable<Rabbit> NameSearch(string str)
+        public IEnumerable<Rabbit> SearchByName(string str)
         {
             if (string.IsNullOrEmpty(str))
                 return _rabbits;

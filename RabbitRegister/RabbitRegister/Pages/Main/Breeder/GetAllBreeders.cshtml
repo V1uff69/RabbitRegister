@@ -6,6 +6,35 @@
 <p class="from-group">
     <a class="btn btn-primary text-center" style="background-color:green;margin-left:auto;margin-right:auto;display:block;margin-top:1%" asp-page="/Main/Breeder/CreateBreeder"> Opret Ny Avler </a>
 </p>
+
+<div class="row">
+    <div class="col-7"><h5>Søg Avler-ID</h5></div>
+    <div class="col-4"><h5>Søg Avler-navn</h5></div>
+    <div class="col-1"></div>
+</div>
+
+<div class="row">
+    <div class="col-4">
+        <form method="post" class="form-inline">
+            <div class="input-group mb-3">
+                <input asp-for="SearchBreederRegNo" class="form-control mr-1" placeholder="Indtast Avler-ID" />
+                <input type="submit" asp-page-handler="SearchByBreederRegNo" value="Søg" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+    <div class="col-3"></div>
+    <div class="col-5">
+        <form method="post" class="form-inline">
+            <div class="input-group mb-3">
+                <input asp-for="SearchName" class="form-control mr-1" placeholder="Indtast Avler-navn" />
+                <input type="submit" asp-page-handler="SearchByBreederName" value="Søg" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+
+
+</div>
+
 <table class="table table-bordered table-hover table-striped table-opacity" width="100%">
     <thead>
         <tr>

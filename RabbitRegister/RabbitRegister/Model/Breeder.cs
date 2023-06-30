@@ -8,7 +8,7 @@ namespace RabbitRegister.Model
     [PrimaryKey("BreederRegNo")] // Angiver primærnøglen for tabellen
     public class Breeder
     {
-        [Display(Name = "Avler Id")]
+        [Display(Name = "Avler-ID")]
         [RegularExpression(@"^\d{4}$", ErrorMessage = "Avler-ID, SKAL bestå af 4 tal")]
         [DatabaseGenerated(DatabaseGeneratedOption.None)] // Angiver, at værdien ikke genereres automatisk af databasen
         public int BreederRegNo { get; set; } // Avlerens registreringsnummer

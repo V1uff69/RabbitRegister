@@ -39,6 +39,12 @@
     <form method="post">
         <input type="hidden" asp-for="Rabbit.RabbitRegNo" />
         <button type="submit" class="btn btn-danger">Ja</button>
-        <a class="btn btn-primary" asp-page="/Main/Rabbit/GetAllRabbits">Nej</a>
+        @*<a class="btn btn-primary" asp-route-breederRegNo="@User.Identity.Name" asp-page="/Main/Rabbit/GetAllRabbits">Nej</a>*@
+        <button type="button" onclick="history.go(-1)" class="btn btn-primary">Nej</button>
+        @*<input type="submit" value="Opdater" class="btn btn-primary" />*@
+
+       
+        
+
     </form>
 </div>

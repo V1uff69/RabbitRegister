@@ -39,8 +39,9 @@ namespace RabbitRegister.Model
         [RegularExpression(@"^\d{4}$", ErrorMessage = "Avler-nr, SKAL bestå af 4 tal!")]
         public int BreederRegNo { get; set; }
 
-        [Display(Name = "Ejer (Avler-nr): ")]
-        [RegularExpression(@"^\d{4}$", ErrorMessage = "Kaninen SKAL have en Ejer!")]
+        [Display(Name = "Ejers af (Avler-ID): ")]
+        [Required(ErrorMessage = "Kaninen skal have en ejer!")]
+        [RegularExpression(@"^\d{4}$", ErrorMessage = "Avler-ID består af 4tal!")]
         [ForeignKey(nameof(BreederRegNo))]
         public int Owner { get; set; }
 
@@ -50,11 +51,11 @@ namespace RabbitRegister.Model
 
 
         [Display(Name = "Race: ")]
-        [Required(ErrorMessage = "Kaninen skal have en race")]
+        [Required(ErrorMessage = "Kaninen skal have en race"), MaxLength(20)]
         public string Race { get; set; }
 
         [Display(Name = "Farve: ")]
-        [Required(ErrorMessage = "Kaninen skal have en farve")]
+        [Required(ErrorMessage = "Kaninen skal have en farve"), MaxLength(20)]
         public string Color { get; set; }
 
         [Display(Name = "Køn (Han/Hun: ")]

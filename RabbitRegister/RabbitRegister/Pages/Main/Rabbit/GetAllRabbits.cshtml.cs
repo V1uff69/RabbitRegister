@@ -58,12 +58,11 @@ namespace RabbitRegister.Pages.Main.Rabbit
         /// En søgefunktion som søger efter kaninens navn
         /// </summary>
         /// <returns>Returnere kaniner med samme bogstavs sekvens som brugeren indtaster</returns>
-        public IActionResult OnPostNameSearch()
+        public IActionResult OnPostSearchByName()
         {
-            Rabbits = _rabbitService.NameSearch(SearchString).ToList();
+            Rabbits = _rabbitService.SearchByName(SearchString).ToList();
             return Page();
         }
-
   
     }
 }

@@ -30,10 +30,10 @@
 <br />
 
 <!-- Offcanvas Sidebar -->
-<div class="offcanvas offcanvas-start" id="filterRabbits">
+<div class="offcanvas offcanvas-start bg-dark" id="filterRabbits">
     <div class="offcanvas-header">
         <h1 class="offcanvas-title">Filter funktioner</h1>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+        <button type="button" class="btn-close btn-close-white text-reset" data-bs-dismiss="offcanvas"></button>
     </div>
     <div class="offcanvas-body">
         <p>Hidtil implementerede søgefunktioner for kaniner</p>
@@ -104,7 +104,8 @@
                                     <i class="fa fa-edit"></i>
                                 </a>
                                 <a class="btn-card btn-danger btn-sm" type="button" title="Delete" asp-page="/Main/Rabbit/DeleteRabbit" asp-route-id="@Rabbit.RabbitRegNo" asp-route-breederRegNo="@Rabbit.BreederRegNo">
-                                    <i class="fa fa-trash"></i></a>
+                                    <i class="fa fa-trash"></i>
+                                </a>
                             </div>
                         </div>
                     </a>

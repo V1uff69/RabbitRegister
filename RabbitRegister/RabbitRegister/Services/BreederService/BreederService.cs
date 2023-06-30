@@ -18,9 +18,6 @@ namespace RabbitRegister.Services.BreederService
             // Hent alle avlere fra databasen og konverter til en liste
             Breeders = _dbService.GetObjectsAsync().Result.ToList();
 
-            // Hvis databasen er tom, brug mock-data 
-            //Breeders = MockBreeder.GetMockBreeders();
-
             //Breeders = MockBreeder.GetMockBreeders(); //DB tom? Ved første Debug kør denne kode, og udkommenter igen derefter
             //foreach (var breeder in Breeders)
             //{
@@ -39,6 +36,18 @@ namespace RabbitRegister.Services.BreederService
         public Breeder GetBreedByBreederRegNo(int breederRegNo)
         {
             return Breeders.Find(breeder => breeder.BreederRegNo == breederRegNo);
+        }
+
+        public IEnumerable<Breeder> SearchByBreederRegNo(string breederRegNo)
+        {
+            if (string.IsNullOrEmpty(breederRegNo)) return Breeders;
+            return from breeder in Breeders where breeder.BreederRegNo.ToString().Contains(breederRegNo) select breeder;
+        }
+
+        public IEnumerable<Breeder> SearchByBreederName(string name)
+        {
+            if (string.IsNullOrEmpty(name)) return Breeders;
+            return from breeder in Breeders where breeder.Name.ToLower().Contains(name.ToLower()) select breeder;
         }
 
         // Hent alle avlere fra listen

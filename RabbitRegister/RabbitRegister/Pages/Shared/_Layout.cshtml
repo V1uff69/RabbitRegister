@@ -11,20 +11,14 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/RabbitRegister.styles.css" asp-append-version="true" />
+    <!-- Basket icon grafik -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" href="/Images/RabbitReg.ico" type="image/x-icon">
 </head>
+
 <body>
-    <header style="background-color: white;">
-        <div class="container" style="display: flex; justify-content: center;">
-            <a class="navbar-brand" style="text-decoration: none; margin-top: 1%; display: flex; align-items: center;" asp-area="" asp-page="/Index">
-                <img src="~/Images/RabbitReg.ico" alt="Icon" style="max-width: 100px; max-height: 100px;">
-                <h1 class="text-Brand" style="margin-left: 10px; margin-top: 70px">RabbitRegister</h1>
-            </a>
-        </div>
-
-
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-dark border-bottom box-shadow mb-3">
             <div class="container">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,16 +28,16 @@
                     <ul class="navbar-nav flex-grow-1 d-flex justify-content-center">
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Hjem</a>
+                            <a class="nav-link text-light" asp-area="" asp-page="/Index">Hjem</a>
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link text-dark dropdown-toggle" href="#" id="ShopDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-auto-close="false">
+                            <a class="nav-link text-light dropdown-toggle" href="#" id="ShopDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-auto-close="false">
                                 Shop
                             </a>
                             <div class="dropdown-menu" aria-labelledby="ShopDropdown">
                                 <a class="dropdown-item" asp-area="" asp-page="/Main/Store/Store">Produkter</a>
-@*                                <a class="dropdown-item" asp-area="" asp-page="/Main/Rabbit/RabbitStore">Salgskaniner</a> *@                      
+                                <a class="dropdown-item" asp-area="" asp-page="/Main/Rabbit/RabbitStore">Salgskaniner</a>                    
                             </div>
                         </li>
 
@@ -52,14 +46,14 @@
                             {
                                 // Dropdown menu for registered users
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link text-dark dropdown-toggle" href="#" id="breederDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-auto-close="false">
+                                    <a class="nav-link text-light dropdown-toggle" href="#" id="breederDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-auto-close="false">
                                         Register
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="breederDropdown">
                                         <a class="dropdown-item" asp-area="" asp-page="/Main/Rabbit/GetAllRabbits" asp-route-breederRegNo="@Context.User.Identity.Name">Mine Kaniner</a>
                                         <a class="dropdown-item" asp-area="" asp-page="/Main/Trimming/GetAllTrimming" asp-route-Owner="@Context.User.Identity.Name">Klipninger</a>
                                         <div class="dropdown">
-                                            <a class="dropdown-item text-dark dropdown-toggle" href="#" id="productsDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <a class="dropdown-item text-light dropdown-toggle" href="#" id="productsDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 Mine Produkter
                                             </a>
                                             <div class="dropdown-menu" aria-labelledby="productsDropdown">
@@ -77,7 +71,7 @@
                             {
                                 // Menu item for admins
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-page="/Main/Breeder/GetAllBreeders">Avlere</a>
+                                    <a class="nav-link text-light" asp-area="" asp-page="/Main/Breeder/GetAllBreeders">Avlere</a>
                                 </li>
                             }
                         }
@@ -103,14 +97,14 @@
                                 {
                                     // Display login option
                                     <li class="nav-item">
-                                        <a class="nav-link text-dark" asp-area="" asp-page="/Main/LogIn/LogInPage">Login</a>
+                                        <a class="nav-link text-light" asp-area="" asp-page="/Main/LogIn/LogInPage">Login</a>
                                     </li>
                                 }
                                 else
                                 {
                                 // Dropdown menu for logged-in users
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             Avler: @Context.User.Identity.Name
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -135,7 +129,7 @@
         </div>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer text-muted bg-dark">
         <div class="container">
             &copy; 2023 - RabbitRegister - <a asp-area="" asp-page="/Privacy">Kontakt</a>
         </div>
