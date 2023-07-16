@@ -14,10 +14,83 @@
     <!-- Basket icon grafik -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" href="/Images/RabbitReg.ico" type="image/x-icon">
+
+    <!-- W3 SCHOOLS STYLESHEET -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 </head>
 
+
+
+
 <body>
-    <header>
+    <div class="w3-top">
+        <div class="w3-bar bg-dark w3-border-bottom">
+            <a href="/Index" class="w3-bar-item w3-text-light-grey w3-button w3-margin-left w3-mobile w3-border-right">HJEM</a>
+            <a href="/Main/Store/Store" class="w3-bar-item w3-text-light-grey w3-button w3-mobile w3-border-right">ULD & GARN</a>
+            <a href="/Main/Rabbit/RabbitStore" class="w3-bar-item w3-text-light-grey w3-button w3-mobile w3-border-right">KANINER</a>
+
+            <!-- AVLER MENU -->
+            @{
+                if (Context.User.Identity.Name != null)
+                {
+                    <div class="w3-dropdown-hover w3-mobile">
+                        <button class="w3-button w3-text-light-grey w3-border-right">REGISTER <i class="fa fa-caret-down"></i></button>
+                        <div class="w3-dropdown-content w3-bar-block w3-dark-grey">
+                            <a asp-area="" asp-page="/Main/Rabbit/GetAllRabbits" asp-route-breederRegNo="@Context.User.Identity.Name" class="w3-bar-item w3-text-light-grey w3-button w3-mobile">MINE KANINER</a>
+                            <a asp-area="" asp-page="/Main/Trimming/GetAllTrimming" asp-route-Owner="@Context.User.Identity.Name" class="w3-bar-item w3-text-light-grey w3-button w3-mobile">MINE KLIPNINGER</a>
+                            <a asp-area="" asp-page="/Main/Product/GetAllWool" asp-route-breederRegNo="@Context.User.Identity.Name" class="w3-bar-item w3-text-light-grey w3-button w3-mobile">MIT ULD</a>
+                            <a asp-area="" asp-page="/Main/Product/GetAllYarn" asp-route-breederRegNo="@Context.User.Identity.Name" class="w3-bar-item w3-text-light-grey w3-button w3-mobile">MIT GARN</a>
+                        </div>
+                    </div>
+                }
+            }
+
+            <!-- LOGIN / LOGOUT / UPDATE -->
+            @{
+                if (Context.User.Identity.Name == null)
+                {
+                    <a asp-area="" asp-page="/Main/Rabbit/GetAllRabbits" class="w3-bar-item w3-text-light-grey w3-button w3-margin-right w3-mobile w3-right w3-border-left">LOGIN <i class="fa fa-user-circle" style="font-size:24px; color:dimgray"></i></a>
+                }
+                else
+                {
+                    <div class="w3-dropdown-hover w3-mobile w3-right">
+                        <button class="w3-button w3-margin-right w3-text-light-grey w3-border-left">
+                            AVLER-ID: @Context.User.Identity.Name <i class="fa fa-user-circle-o" style="font-size:24px; color:steelblue"></i>
+                        </button>
+                        <div class="w3-dropdown-content w3-bar-block w3-dark-grey">
+                            <a asp-area="" asp-route-id="@Context.User.Identity.Name" asp-page="/Main/Breeder/EditBreeder" class="w3-bar-item w3-text-light-grey w3-button w3-mobile">UPDATE </a>
+                            <a asp-area="" asp-page="/Main/LogIn/LogOutPage" class="w3-bar-item w3-text-light-grey w3-button w3-mobile">LOGOUT </a>
+                        </div>
+                    </div>
+                }
+            }
+
+            <!-- KURV -->
+
+            <a asp-page="/Main/Store/Basket" class="w3-bar-item w3-text-light-grey w3-button w3-margin-right w3-mobile w3-right"> <i class="fa fa-shopping-bag" style="font-size:24px; color:dimgray">  </i></a>
+            <div>
+                @if (TempData.ContainsKey("Notification"))
+                {
+                    // Display notification
+                    <p>@TempData["Notification"]</p>
+                }
+            </div>
+
+
+            <!-- ADMIN KNAP -->
+            @{
+                if ((await AuthorizationService.AuthorizeAsync(User, null, "AdminOnly")).Succeeded)
+                {
+                    <a asp-area="" asp-page="/Main/Breeder/GetAllBreeders" class="w3-bar-item w3-text-light-grey w3-button w3-margin-left w3-mobile w3-right w3-border-left">BRUGERE </a>
+                }
+            }
+
+        </div>
+    </div>
+
+
+    @*<header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-dark border-bottom box-shadow mb-3">
             <div class="container">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -119,8 +192,8 @@
                 </div>
             </div>
         </nav>
+    </header>*@
 
-    </header>
     <div class="layer">
         <div class="container">
             <main role="main" class="pb-3">

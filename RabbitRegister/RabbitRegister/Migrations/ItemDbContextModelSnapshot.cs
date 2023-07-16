@@ -147,7 +147,8 @@ namespace RabbitRegister.Migrations
 
                     b.Property<string>("Color")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("Comments")
                         .HasMaxLength(300)
@@ -175,7 +176,8 @@ namespace RabbitRegister.Migrations
 
                     b.Property<string>("Race")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<float?>("Rating")
                         .HasColumnType("real");
