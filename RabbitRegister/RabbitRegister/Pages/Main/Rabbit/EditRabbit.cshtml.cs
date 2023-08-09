@@ -34,10 +34,11 @@ namespace RabbitRegister.Pages.Main.Rabbit
         /// <returns>Omdirigerer til GetAllRabbits med avlerens, Avler-ID</returns>
         public async Task<IActionResult> OnPostAsync(int id, int breederRegNo)
 		{
-			if (!ModelState.IsValid)
-			{
-				return Page();
-			}
+			//if (ModelState.IsValid)
+			//{
+			//	return Page();
+			//}
+
 			await _rabbitService.UpdateRabbitAsync(Rabbit, id, breederRegNo);
 			return RedirectToPage("GetAllRabbits", new { breederRegNo = User.Identity.Name});
 		}

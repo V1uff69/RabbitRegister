@@ -20,7 +20,6 @@ namespace RabbitRegister.Services.ProductService
             _wools = _dbService.GetObjectsAsync().Result.ToList();
             _yarns = dbYarnService.GetObjectsAsync().Result.ToList();
 
-            // Using mock data for debugging purposes
             //_wools = MockWool.GetMockWools(); // Fetch mock wools data (replace with database query)
             //foreach (var wool in _wools)
             //{

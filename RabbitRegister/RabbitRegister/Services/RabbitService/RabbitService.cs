@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 ﻿using RabbitRegister.MockData;
 using RabbitRegister.Model;
+using RabbitRegister.Services.BreederService;
 
 namespace RabbitRegister.Services.RabbitService
 {
@@ -9,9 +10,11 @@ namespace RabbitRegister.Services.RabbitService
         public static List<Rabbit> _rabbits;
 
         private DbGenericService<Rabbit> _dbGenericService;
+        private IBreederService _breederService;
 
-        public RabbitService(DbGenericService<Rabbit> dbGenericService)
+        public RabbitService(DbGenericService<Rabbit> dbGenericService, IBreederService breederService)
         {
+            _breederService = breederService;
             _dbGenericService = dbGenericService;
             _rabbits = _dbGenericService.GetObjectsAsync().Result.ToList();
 
@@ -34,8 +37,9 @@ namespace RabbitRegister.Services.RabbitService
         /// </summary>
         /// <param name="rabbit">Kanin objekt som tilføjes listen _rabbits OG tilføjes til DB via dbGenericService</param>
         /// <returns>En Task, der repræsenterer asynkron udførelse af operationen</returns>
-        public async Task AddRabbitAsync(Rabbit rabbit)
+        public async Task AddRabbitAsync(Rabbit rabbit, Breeder breeder)
         {
+            rabbit.Breeder = breeder;
             _rabbits.Add(rabbit);
             await _dbGenericService.AddObjectAsync(rabbit);
         }

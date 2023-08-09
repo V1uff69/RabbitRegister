@@ -163,7 +163,7 @@ namespace RabbitRegister.Migrations
                     b.Property<string>("ImageString")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("IsForSale")
+                    b.Property<int?>("IsForSale")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -171,7 +171,7 @@ namespace RabbitRegister.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<int>("Owner")
+                    b.Property<int?>("Owner")
                         .HasColumnType("int");
 
                     b.Property<string>("Race")
@@ -189,10 +189,12 @@ namespace RabbitRegister.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
-                    b.Property<float?>("Weight")
-                        .HasColumnType("real");
+                    b.Property<int?>("Weight")
+                        .HasColumnType("int");
 
                     b.HasKey("RabbitRegNo", "BreederRegNo");
+
+                    b.HasIndex("Owner");
 
                     b.ToTable("Rabbits");
                 });
@@ -351,6 +353,15 @@ namespace RabbitRegister.Migrations
                         .IsRequired();
 
                     b.Navigation("Order");
+                });
+
+            modelBuilder.Entity("RabbitRegister.Model.Rabbit", b =>
+                {
+                    b.HasOne("RabbitRegister.Model.Breeder", "Breeder")
+                        .WithMany()
+                        .HasForeignKey("Owner");
+
+                    b.Navigation("Breeder");
                 });
 #pragma warning restore 612, 618
         }

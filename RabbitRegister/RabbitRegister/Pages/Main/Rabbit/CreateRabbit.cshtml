@@ -4,129 +4,334 @@
 @{
 }
 
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GetAllRabbits</title>
-    <link rel="stylesheet" href="/css/rabbitSite.css" />
-</head>
+
+@*<link rel="stylesheet" href="/css/rabbitSite.css" />*@
+<link rel="stylesheet" href="/css/responsiveForm.css" />
 
 <br />
-<form>
-    <input type="button" value="Tilbage" onclick="history.go(-1)">
-</form>
+<br />
 <br />
 
-<form method="post">
-    <!-- Ved oprettelse af en kanin sættes Owner propertien til den avleren som er logget på. Read-only, så man ikke kan ændre den -->
-    <div class="form-group">
-        <label asp-for="@Model.Rabbit.Owner" class="control-label"></label>
-        <input asp-for="@Model.Rabbit.Owner" value="@User.Identity.Name" class="form-control" readonly="@true" />
+
+
+<body>
+
+    <link rel="stylesheet" href="/css/responsiveForm.css" />
+
+    <div class="create-container">
+        <form method="post">
+            <!-- Ved oprettelse af en kanin sættes Owner propertien til den avleren som er logget på. Read-only, så man ikke kan ændre den -->
+            <div class="row">
+                <div class="col-25">
+                    <label asp-for="@Model.Rabbit.Owner" class="control-label">Nuværende ejer </label>
+                </div>
+                <div class="col-75">
+                    <input asp-for="@Model.Rabbit.Owner" value="@User.Identity.Name" class="form-control" readonly="@true" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label asp-for="@Model.Rabbit.RabbitRegNo" class="control-label"></label>
+                </div>
+                <div class="col-25">
+                    <input asp-for="@Model.Rabbit.RabbitRegNo" class="form-control" value="" placeholder="Venstre-øre ID" />
+                    <span asp-validation-for="@Model.Rabbit.RabbitRegNo" class="text-danger"></span>
+                    <span class="text-danger" style="@(@Model.exceptionFound ? "display:block" : "display:none")">@(Model.exceptionText)</span>
+                </div>
+                <div class="col-25">
+                    <label asp-for="@Model.Rabbit.BreederRegNo" class="control-label"></label>
+                </div>
+                <div class="col-25">
+                    <input asp-for="@Model.Rabbit.BreederRegNo" class="form-control" value="" placeholder="Højre-øre ID" />
+                    <span asp-validation-for="@Model.Rabbit.BreederRegNo" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label asp-for="@Model.Rabbit.DateOfBirth" class="control-label"></label>
+                </div>
+                <div class="col-75">
+                    <input asp-for="@Model.Rabbit.DateOfBirth" value="DateTime.Now" class="form-control" />
+                    <span asp-validation-for="@Model.Rabbit.DateOfBirth" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label asp-for="@Model.Rabbit.Name" class="control-label"></label>
+                </div>
+                <div class="col-75">
+                    <input asp-for="@Model.Rabbit.Name" class="form-control" />
+                    <span asp-validation-for="@Model.Rabbit.Name" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label asp-for="@Model.Rabbit.Race" class="control-label"></label>
+                </div>
+                <div class="col-25">
+                    <select asp-for="@Model.Rabbit.Race" class="form-control">
+                        <option value="Angora">Angora</option>
+                        <option value="Satin-Angora">Satin-Angora</option>
+                    </select>
+                    <span asp-validation-for="@Model.Rabbit.Race" class="text-danger"></span>
+                </div>
+                <div class="col-25">
+                    <label asp-for="@Model.Rabbit.Color" class="control-label"></label>
+                </div>
+                <div class="col-25">
+                    <select asp-for="@Model.Rabbit.Color" class="form-control">
+                        <option value="Grå">Grå</option>
+                        <option value="Gul">Gul</option>
+                        <option value="Gul">Blå</option>
+                        <option value="Gul">Beige</option>
+                        <option value="Gul">Sort</option>
+                        <option value="Gul">Hvid</option>
+                        <option value="Gul">Rød</option>
+                        <option value="Gul">Brun</option>
+                    </select>
+                    <span asp-validation-for="@Model.Rabbit.Color" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label asp-for="@Model.Rabbit.DeadOrAlive" class="control-label">Status</label>
+                </div>
+                <div class="col-25">
+                    <div>
+                        <label>
+                            <input type="radio" asp-for="@Model.Rabbit.DeadOrAlive" value="Levende" /> Levende
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <input type="radio" asp-for="@Model.Rabbit.DeadOrAlive" value="Død" /> Død
+                        </label>
+                    </div>
+                    <span asp-validation-for="@Model.Rabbit.DeadOrAlive" class="text-danger"></span>
+                </div>
+                <div class="col-25">
+                    <label asp-for="@Model.Rabbit.Sex" class="control-label">Køn</label>
+                </div>
+                <div class="col-25">
+                    <div>
+                        <label>
+                            <input type="radio" asp-for="@Model.Rabbit.Sex" value="Han" /> Han
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <input type="radio" asp-for="@Model.Rabbit.Sex" value="Hun" /> Hun
+                        </label>
+                    </div>
+                    <span asp-validation-for="@Model.Rabbit.Sex" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label asp-for="@Model.Rabbit.IsForSale" class="control-label">Til salg</label>
+                </div>
+                <div class="col-75">
+                    <div>
+                        <label>
+                            <input type="radio" asp-for="@Model.Rabbit.IsForSale" value="Nej" /> Nej
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <input type="radio" asp-for="@Model.Rabbit.IsForSale" value="Ja" /> Ja
+                        </label>
+                    </div>
+                    <span asp-validation-for="@Model.Rabbit.IsForSale" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label asp-for="@Model.Rabbit.ImageString" class="control-label">Billede</label>
+                </div>
+                <div class="col-75">
+                    <input asp-for="@Model.Rabbit.ImageString" value="/Images/Rabbits/" class="form-control" />
+                    <span asp-validation-for="@Model.Rabbit.ImageString" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-75">
+                    <input type="submit" value="Opret" class="btn btn-success" />
+                    <a href="/Main/Rabbit/GetAllRabbits?breederRegNo=@User.Identity.Name" class="btn btn-warning text-white">Fortryd</a>
+                </div>
+            </div>
+        </form>
+
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="alert alert-danger" role="alert">
+                <ul>
+                    @foreach (var key in ViewData.ModelState.Keys)
+                    {
+                        foreach (var error in ViewData.ModelState[key].Errors)
+                        {
+                            <li>@error.ErrorMessage</li>
+                        }
+                    }
+                </ul>
+            </div>
+        }
+
     </div>
 
-    <!-- I den nederste del af denne blok vises et <span>-element med teksten fra Model.exceptionText,
-        og dens synlighed styres af værdien af Model.exceptionFound. Hvis Model.exceptionFound er True,
-        vil <span>-elementet vises med rød. (CSS-klasse "text-danger") ellers vil det være skjult (False)
-        (CSS-styling "display:none").
-    -->
-    <div class="form-group">
-        <label asp-for="@Model.Rabbit.RabbitRegNo" class="control-label"></label>
-        <input asp-for="@Model.Rabbit.RabbitRegNo" class="form-control" />
-        <span asp-validation-for="@Model.Rabbit.RabbitRegNo" class="text-danger"></span>
-        <span class="text-danger" style="@(@Model.exceptionFound ? "display:block" : "display:none")"> @(Model.exceptionText)</span>
-    </div>
+</body>
 
-    <div class="form-group">
-        <label asp-for="@Model.Rabbit.BreederRegNo" class="control-label"></label>
-        <input asp-for="@Model.Rabbit.BreederRegNo" class="form-control" />
-        <span asp-validation-for="@Model.Rabbit.BreederRegNo" class="text-danger"></span>
-    </div>
 
-    <div class="form-group">
-        <label asp-for="@Model.Rabbit.Name" class="control-label"></label>
-        <input asp-for="@Model.Rabbit.Name" class="form-control" />
-        <span asp-validation-for="@Model.Rabbit.Name" class="text-danger"></span>
-    </div>
+@*<div class="create-form">
 
-    <div class="form-group">
-        <label asp-for="@Model.Rabbit.Race" class="control-label"></label>
-        <input asp-for="@Model.Rabbit.Race" class="form-control" />
-        <span asp-validation-for="@Model.Rabbit.Race" class="text-danger"></span>
-    </div>
+    <br>
+    <form>
+        <input type="button" value="Tilbage" onclick="history.go(-1)">
+    </form>
+    </br>
 
-    <div class="form-group">
-        <label asp-for="@Model.Rabbit.Color" class="control-label"></label>
-        <input asp-for="@Model.Rabbit.Color" class="form-control" />
-        <span asp-validation-for="@Model.Rabbit.Color" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="@Model.Rabbit.Sex" class="control-label"></label>
-        <input asp-for="@Model.Rabbit.Sex" class="form-control" />
-        <span asp-validation-for="@Model.Rabbit.Sex" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="@Model.Rabbit.DateOfBirth" class="control-label"></label>
-        <input asp-for="@Model.Rabbit.DateOfBirth" class="form-control" />
-        <span asp-validation-for="@Model.Rabbit.DateOfBirth" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="@Model.Rabbit.Weight" class="control-label"></label>
-        <input asp-for="@Model.Rabbit.Weight" class="form-control" />
-        <span asp-validation-for="@Model.Rabbit.Weight" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="@Model.Rabbit.Rating" class="control-label"></label>
-        <input asp-for="@Model.Rabbit.Rating" class="form-control" />
-        <span asp-validation-for="@Model.Rabbit.Rating" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="@Model.Rabbit.DeadOrAlive" class="control-label"></label>
-        <input asp-for="@Model.Rabbit.DeadOrAlive" value="Levende" class="form-control" />
-        <span asp-validation-for="@Model.Rabbit.DeadOrAlive" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="@Model.Rabbit.IsForSale" class="control-label"></label>
-        <input asp-for="@Model.Rabbit.IsForSale" value="Nej" class="form-control" />
-        <span asp-validation-for="@Model.Rabbit.IsForSale" class="text-danger"></span>
-    </div>
-
+    <form method="post">
+        <!-- Ved oprettelse af en kanin sættes Owner propertien til den avleren som er logget på. Read-only, så man ikke kan ændre den -->
         <div class="form-group">
-    <label asp-for="@Model.Rabbit.SuitableForBreeding" class="control-label"></label>
-    <input asp-for="@Model.Rabbit.SuitableForBreeding" class="form-control" />
-    <span asp-validation-for="@Model.Rabbit.SuitableForBreeding" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-    <label asp-for="@Model.Rabbit.CauseOfDeath" class="control-label"></label>
-    <input asp-for="@Model.Rabbit.CauseOfDeath" class="form-control" />
-    <span asp-validation-for="@Model.Rabbit.CauseOfDeath" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="@Model.Rabbit.Comments" class="control-label"></label>
-        <input asp-for="@Model.Rabbit.Comments" class="form-control" />
-        <span asp-validation-for="@Model.Rabbit.Comments" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="@Model.Rabbit.ImageString" class="control-label"></label>
-        <input asp-for="@Model.Rabbit.ImageString" value="/Images/Rabbits/" class="form-control" />
-        <span asp-validation-for="@Model.Rabbit.ImageString" class="text-danger"></span>
-    </div>
-
-    <p>
-        <div class="form-group">
-            <input type="submit" value="opret kanin" class="btn btn-primary" />
+            <label asp-for="@Model.Rabbit.Owner" class="control-label"></label>
+            <input asp-for="@Model.Rabbit.Owner" value="@User.Identity.Name" class="form-control" readonly="@true" />
         </div>
-    </p>
-</form>
 
-<p>
-    <a asp-page="/Main/Rabbit/GetAllRabbits">Back to List</a>
-</p>
+
+        <!-- I den nederste del af denne blok vises et <span>-element med teksten fra Model.exceptionText,
+            og dens synlighed styres af værdien af Model.exceptionFound. Hvis Model.exceptionFound er True,
+            vil <span>-elementet vises med rød. (CSS-klasse "text-danger") ellers vil det være skjult (False)
+            (CSS-styling "display:none").
+        -->
+
+        <div class="form-group">
+            <label asp-for="@Model.Rabbit.RabbitRegNo" class="control-label"></label>
+            <input asp-for="@Model.Rabbit.RabbitRegNo" class="form-control" />
+            <span asp-validation-for="@Model.Rabbit.RabbitRegNo" class="text-danger"></span>
+            <span class="text-danger" style="@(@Model.exceptionFound ? "display:block" : "display:none")"> @(Model.exceptionText)</span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="@Model.Rabbit.BreederRegNo" class="control-label"></label>
+            <input asp-for="@Model.Rabbit.BreederRegNo" class="form-control" />
+            <span asp-validation-for="@Model.Rabbit.BreederRegNo" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="@Model.Rabbit.Name" class="control-label"></label>
+            <input asp-for="@Model.Rabbit.Name" class="form-control" />
+            <span asp-validation-for="@Model.Rabbit.Name" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="@Model.Rabbit.Race" class="control-label"></label>
+            <input asp-for="@Model.Rabbit.Race" class="form-control" />
+            <span asp-validation-for="@Model.Rabbit.Race" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="@Model.Rabbit.Color" class="control-label"></label>
+            <input asp-for="@Model.Rabbit.Color" class="form-control" />
+            <span asp-validation-for="@Model.Rabbit.Color" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="@Model.Rabbit.Sex" class="control-label"></label>
+            <input asp-for="@Model.Rabbit.Sex" class="form-control" />
+            <span asp-validation-for="@Model.Rabbit.Sex" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="@Model.Rabbit.DateOfBirth" class="control-label"></label>
+            <input asp-for="@Model.Rabbit.DateOfBirth" class="form-control" />
+            <span asp-validation-for="@Model.Rabbit.DateOfBirth" class="text-danger"></span>
+        </div>
+
+        <!--
+        <div class="form-group">
+            <label asp-for="@Model.Rabbit.Weight" class="control-label"></label>
+            <input asp-for="@Model.Rabbit.Weight" class="form-control" />
+            <span asp-validation-for="@Model.Rabbit.Weight" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="@Model.Rabbit.Rating" class="control-label"></label>
+            <input asp-for="@Model.Rabbit.Rating" class="form-control" />
+            <span asp-validation-for="@Model.Rabbit.Rating" class="text-danger"></span>
+        </div>
+            -->
+
+        <div class="form-group">
+            <label asp-for="@Model.Rabbit.DeadOrAlive" class="control-label"></label>
+            <input asp-for="@Model.Rabbit.DeadOrAlive" value="Levende" class="form-control" />
+            <span asp-validation-for="@Model.Rabbit.DeadOrAlive" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="@Model.Rabbit.IsForSale" class="control-label"></label>
+            <input asp-for="@Model.Rabbit.IsForSale" value="Nej" class="form-control" />
+            <span asp-validation-for="@Model.Rabbit.IsForSale" class="text-danger"></span>
+        </div>
+
+        <!--
+        <div class="form-group">
+        <label asp-for="@Model.Rabbit.SuitableForBreeding" class="control-label"></label>
+        <input asp-for="@Model.Rabbit.SuitableForBreeding" class="form-control" />
+        <span asp-validation-for="@Model.Rabbit.SuitableForBreeding" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+        <label asp-for="@Model.Rabbit.CauseOfDeath" class="control-label"></label>
+        <input asp-for="@Model.Rabbit.CauseOfDeath" class="form-control" />
+        <span asp-validation-for="@Model.Rabbit.CauseOfDeath" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="@Model.Rabbit.Comments" class="control-label"></label>
+            <input asp-for="@Model.Rabbit.Comments" class="form-control" />
+            <span asp-validation-for="@Model.Rabbit.Comments" class="text-danger"></span>
+        </div>
+        -->
+
+        <div class="form-group">
+            <label asp-for="@Model.Rabbit.ImageString" class="control-label"></label>
+            <input asp-for="@Model.Rabbit.ImageString" value="/Images/Rabbits/" class="form-control" />
+            <span asp-validation-for="@Model.Rabbit.ImageString" class="text-danger"></span>
+        </div>
+
+        <p>
+            <div class="form-group">
+                <input type="submit" value="Opret" class="btn btn-success" />
+                <a asp-page="/Main/Rabbit/GetAllRabbits" class="btn btn-warning text-white">Fortryd </a>
+            </div>
+        </p>
+
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="alert alert-danger" role="alert">
+                <ul>
+                    @foreach (var key in ViewData.ModelState.Keys)
+                    {
+                        foreach (var error in ViewData.ModelState[key].Errors)
+                        {
+                            <li>@error.ErrorMessage</li>
+                        }
+                    }
+                </ul>
+            </div>
+        }
+
+    </form>
+</div>*@
+
+
+
+</br>
+</br>

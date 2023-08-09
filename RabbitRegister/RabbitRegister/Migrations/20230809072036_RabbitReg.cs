@@ -49,32 +49,6 @@ namespace RabbitRegister.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Rabbits",
-                columns: table => new
-                {
-                    RabbitRegNo = table.Column<int>(type: "int", nullable: false),
-                    BreederRegNo = table.Column<int>(type: "int", nullable: false),
-                    Owner = table.Column<int>(type: "int", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    Race = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    Color = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    Sex = table.Column<int>(type: "int", nullable: false),
-                    DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Weight = table.Column<float>(type: "real", nullable: true),
-                    Rating = table.Column<float>(type: "real", nullable: true),
-                    DeadOrAlive = table.Column<int>(type: "int", nullable: false),
-                    IsForSale = table.Column<int>(type: "int", nullable: false),
-                    SuitableForBreeding = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
-                    CauseOfDeath = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
-                    Comments = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
-                    ImageString = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Rabbits", x => new { x.RabbitRegNo, x.BreederRegNo });
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Trimmings",
                 columns: table => new
                 {
@@ -142,6 +116,37 @@ namespace RabbitRegister.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Rabbits",
+                columns: table => new
+                {
+                    RabbitRegNo = table.Column<int>(type: "int", nullable: false),
+                    BreederRegNo = table.Column<int>(type: "int", nullable: false),
+                    Owner = table.Column<int>(type: "int", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Race = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Color = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Weight = table.Column<int>(type: "int", nullable: true),
+                    Rating = table.Column<float>(type: "real", nullable: true),
+                    DeadOrAlive = table.Column<int>(type: "int", nullable: false),
+                    Sex = table.Column<int>(type: "int", nullable: false),
+                    IsForSale = table.Column<int>(type: "int", nullable: true),
+                    SuitableForBreeding = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
+                    CauseOfDeath = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
+                    Comments = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
+                    ImageString = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Rabbits", x => new { x.RabbitRegNo, x.BreederRegNo });
+                    table.ForeignKey(
+                        name: "FK_Rabbits_Breeder_Owner",
+                        column: x => x.Owner,
+                        principalTable: "Breeder",
+                        principalColumn: "BreederRegNo");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "OrderLines",
                 columns: table => new
                 {
@@ -168,14 +173,16 @@ namespace RabbitRegister.Migrations
                 name: "IX_OrderLines_OrderId",
                 table: "OrderLines",
                 column: "OrderId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Rabbits_Owner",
+                table: "Rabbits",
+                column: "Owner");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Breeder");
-
             migrationBuilder.DropTable(
                 name: "OrderLines");
 
@@ -193,6 +200,9 @@ namespace RabbitRegister.Migrations
 
             migrationBuilder.DropTable(
                 name: "Order");
+
+            migrationBuilder.DropTable(
+                name: "Breeder");
         }
     }
 }

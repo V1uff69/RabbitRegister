@@ -2,6 +2,8 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
+using System.Runtime.CompilerServices;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace RabbitRegister.Model
 {
@@ -28,22 +30,23 @@ namespace RabbitRegister.Model
 
         [Key]
         [Column(Order = 0)]
-        [Display(Name = "Kanin ID")]
+        [Display(Name = "Kanin-ID")]
         [Required(ErrorMessage = "Din kanins skal have et ID")]
-        [Range(typeof(int), "1", "9999", ErrorMessage = "Kaninens ID skal være imellem {1} og {2} tal")]
+        [Range(typeof(int), "1", "9999", ErrorMessage = "Kaninens ID skal være imellem {1} og 4 cifre")]
         public int RabbitRegNo { get; set; }
 
         [Key]
         [Column(Order = 1)]
-        [Display(Name = "Avler-nr: ")]
+        [Display(Name = "Avler-ID")]
         [RegularExpression(@"^\d{4}$", ErrorMessage = "Avler-nr, SKAL bestå af 4 tal!")]
         public int BreederRegNo { get; set; }
 
-        [Display(Name = "Ejers af (Avler-ID): ")]
-        [Required(ErrorMessage = "Kaninen skal have en ejer!")]
-        [RegularExpression(@"^\d{4}$", ErrorMessage = "Avler-ID består af 4tal!")]
-        [ForeignKey(nameof(BreederRegNo))]
-        public int Owner { get; set; }
+        
+        [ForeignKey("Breeder")]
+        [Display(Name = "Ejer (Avler-ID): ")]
+        public int? Owner { get; set; }
+        [BindNever]
+        public virtual Breeder Breeder { get; set;} // virtual -> lazy loading (færre DB requests)
 
         [Display(Name = "Kælenavn: ")]
         [Required(ErrorMessage = "Kaninen skal have et navn"), MaxLength(20)]
@@ -58,18 +61,14 @@ namespace RabbitRegister.Model
         [Required(ErrorMessage = "Kaninen skal have en farve"), MaxLength(20)]
         public string Color { get; set; }
 
-        [Display(Name = "Køn (Han/Hun: ")]
-        [Required(ErrorMessage = "Skal udfyldes, du kan ændre senere")]
-        public Sex Sex { get; set; }
-
         [Display(Name = "Fødsels dato: ")]
         public DateTime DateOfBirth { get; set; }
 
-        [Display(Name = "Vægt i kilo: ")]
-        [Range(typeof(float), minimum: "0", maximum: "10", ErrorMessage = "Vægten må have værdier imellem: {1} og {2}")]
-        public float? Weight { get; set; }
+        [Display(Name = "Vægt i gram: ")]
+        [Range(typeof(float), minimum: "150", maximum: "2000", ErrorMessage = "Vægten må have værdier imellem: {1} og {2}")]
+        public int? Weight { get; set; }
 
-        [Display(Name = "Rating: ")]
+        [Display(Name = "Bedømmelse: ")]
         [Range(typeof(float), minimum: "0", maximum: "100", ErrorMessage = "Kaninens bedømmelse må ligge imellem: {1} og {2}")]
         public float? Rating { get; set; } = null;
 
@@ -77,9 +76,13 @@ namespace RabbitRegister.Model
         [Required(ErrorMessage = "Der skal oplyses om kaninen er død eller levende")]
         public DeadOrAlive DeadOrAlive { get; set; }
 
+        [Display(Name = "Køn (Han/Hun: ")]
+        [Required(ErrorMessage = "Skal udfyldes, du kan ændre senere")]
+        public Sex Sex { get; set; }
+
         [Display(Name = "Til salg? (Ja/Nej): ")]
-        [Required(ErrorMessage = "Der skal oplyses om kaninen er til salg")]
-        public IsForSale IsForSale { get; set; }
+        //[Required(ErrorMessage = "Der skal oplyses om kaninen er til salg")]
+        public IsForSale? IsForSale { get; set; }
 
         [Display(Name = "Egnet til avl? (beskrivelse): ")]
         [MaxLength(300)]
@@ -98,7 +101,7 @@ namespace RabbitRegister.Model
 
         public Rabbit() { }
 
-        public Rabbit(int rabbitRegNo, int breederRegNo, int owner, string name, string race, string color, Sex sex, DateTime dateOfBirth, float? weight, float? rating, DeadOrAlive deadOrAlive, IsForSale isForSale, string? suitableForBreeding, string? causeOfDeath, string? imageString)
+        public Rabbit(int rabbitRegNo, int breederRegNo, int owner, string name, string race, string color, Sex sex, DateTime dateOfBirth, int weight, float? rating, DeadOrAlive deadOrAlive, IsForSale isForSale, string? suitableForBreeding, string? causeOfDeath, string? imageString)
         {
             RabbitRegNo = rabbitRegNo;
             BreederRegNo = breederRegNo;

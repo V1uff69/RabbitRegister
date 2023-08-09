@@ -14,8 +14,6 @@ namespace RabbitRegister.Services.BreederService
         public BreederService(DbGenericService<Breeder> dbService)
         {
             _dbService = dbService;
-
-            // Hent alle avlere fra databasen og konverter til en liste
             Breeders = _dbService.GetObjectsAsync().Result.ToList();
 
             //Breeders = MockBreeder.GetMockBreeders(); //DB tom? Ved første Debug kør denne kode, og udkommenter igen derefter
@@ -42,6 +40,11 @@ namespace RabbitRegister.Services.BreederService
         {
             if (string.IsNullOrEmpty(breederRegNo)) return Breeders;
             return from breeder in Breeders where breeder.BreederRegNo.ToString().Contains(breederRegNo) select breeder;
+        }
+
+        public async Task<Breeder> GetBreederByNameAsync(string name)
+        {
+            return await Task.Run(() => Breeders.FirstOrDefault(breeder => breeder.Name.Equals(name, StringComparison.OrdinalIgnoreCase)));
         }
 
         public IEnumerable<Breeder> SearchByBreederName(string name)

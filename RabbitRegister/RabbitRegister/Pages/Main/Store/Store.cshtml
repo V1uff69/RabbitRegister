@@ -7,20 +7,25 @@
 @{
 }
 
+<br>
+</br>
+</br>
+
+
 <!--  page menu -->
 @{
     if ((await AuthorizationService.AuthorizeAsync(User, null, "AdminOnly")).Succeeded)
     {
-<div class="d-flex justify-content-between">
-    <div class="d-flex flex-row">
-        <div class="p-2 bd-highlight">
-            <a class="btn-create btn" asp-page="/Main/Product/CreateWool"> Opret Uld </a>
+        <div class="d-flex justify-content-between">
+            <div class="d-flex flex-row">
+                <div class="p-2 bd-highlight">
+                    <a class="btn-create btn" asp-page="/Main/Product/CreateWool"> Opret Uld </a>
+                </div>
+                <div class="p-2 bd-highlight">
+                    <a class="btn-create btn" asp-page="/Main/Product/CreateYarn"> Opret Garn </a>
+                </div>
+            </div>
         </div>
-        <div class="p-2 bd-highlight">
-            <a class="btn-create btn" asp-page="/Main/Product/CreateYarn"> Opret Garn </a>
-        </div>
-    </div>
-</div>
     }
 }
 
@@ -28,7 +33,7 @@
 <!--  Product tabel on the website -->
 <h2 class="text-center">Produkter</h2>
 
-<br/>
+<br />
 
 <body>
     <!--  Wool Info, price, name... -->
@@ -52,8 +57,6 @@
                             <p class="text-card font-monospace"> Pris: @Wool.Price kr </p>
                             <p class="text-card font-monospace"> Beholdning: @Wool.Amount</p>
                             <div class="d-flex flex-wrap justify-content-center" style="margin-bottom: 5px; margin-top: 0px;">
-                                <a class="btn-card btn-primary btn-sm" type="button" title="Edit" asp-page="/Main/Product/EditWool" asp-route-id="@Wool.ProductId"><i class="fa fa-edit"></i></a>
-                                <a class="btn-card btn-danger btn-sm" type="button" title="Delete" asp-page="/Main/Product/DeleteWool" asp-route-id="@Wool.ProductId"><i class="fa fa-trash"></i></a>
                                 <form method="post">
                                     <div>
                                         <button class="btn-card btn alert-success btn-sm" asp-page-handler="AddToBasketAsync" asp-route-id="@Wool.ProductId" asp-route-type="@Wool.ProductType"><i class="fa fa-cart-plus"></i></button>
@@ -82,8 +85,6 @@
                             <p class="text-card font-monospace"> Pris: @Yarn.Price kr </p>
                             <p class="text-card font-monospace"> Beholdning: @Yarn.Amount</p>
                             <div class="card-buttons d-flex flex-wrap justify-content-center" style="margin-bottom: 5px; margin-top: 0px;">
-                                <a class="btn-card btn-primary btn-sm" type="button" title="Edit" asp-page="/Main/Product/EditYarn" asp-route-id="@Yarn.ProductId"><i class="fa fa-edit"></i></a>
-                                <a class="btn-card btn-danger btn-sm" type="button" title="Delete" asp-page="/Main/Product/DeleteYarn" asp-route-id="@Yarn.ProductId"><i class="fa fa-trash"></i></a>
                                 <form method="post">
                                     <div>
                                         <button class="btn-card btn alert-success btn-sm" asp-page-handler="AddToBasketAsync" asp-route-id="@Yarn.ProductId" asp-route-type="@Yarn.ProductType"><i class="fa fa-cart-plus"></i></button>

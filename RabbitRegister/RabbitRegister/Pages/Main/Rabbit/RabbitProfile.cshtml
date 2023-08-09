@@ -31,7 +31,16 @@
 <div class="rabbit-profile row">
     <div class="@*col-sm-4*@ rabbit-profile-left">
         <div style="display:flex; flex-direction:column; align-items:center;">
-            <img src="@Model.Rabbit?.ImageString" />
+
+            @if (Model.Rabbit.ImageString == "/Images/Rabbits/" || Model.Rabbit.ImageString == null)
+            {
+                <img class="card-image" src="\Images\MissingImg.jpg">
+            }
+            else
+            {
+                <img class="card-image" src="@Model.Rabbit.ImageString">
+            }
+
             <h5>RabbitRegNo: @Model.Rabbit?.RabbitRegNo</h5>
             <h5>BreederRegNo: @Model.Rabbit?.BreederRegNo</h5>
         </div>

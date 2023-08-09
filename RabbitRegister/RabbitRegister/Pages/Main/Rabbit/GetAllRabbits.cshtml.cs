@@ -27,7 +27,7 @@ namespace RabbitRegister.Pages.Main.Rabbit
         public int MinRating { get; set; }
 
         /// <summary>
-        /// Henter kaniner baseret på den angivne handling og brugeren/avlerens ID
+        /// Henter kaniner baseret på den angivne handling og brugerens/avlerens ID
         /// </summary>
         /// <param name="breederRegNo">Brugerens/Avler-ID</param>
         /// <param name="action">"Handling" Bestemmer hvordan kaninerne filtreres ved brug af LINQ og Lamda</param>

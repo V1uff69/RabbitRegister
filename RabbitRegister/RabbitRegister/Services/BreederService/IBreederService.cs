@@ -8,6 +8,7 @@ namespace RabbitRegister.Services.BreederService
 
         Breeder GetBreedByBreederRegNo(int breederRegNo);
         IEnumerable<Breeder> SearchByBreederRegNo(string breederRegNo);
+        Task<Breeder> GetBreederByNameAsync(string name);
         IEnumerable<Breeder> SearchByBreederName(string name);
         Task AddUserAsync(Breeder breeder);
         List<Breeder>  GetBreeders();

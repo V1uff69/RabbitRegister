@@ -11,20 +11,23 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/RabbitRegister.styles.css" asp-append-version="true" />
-    <!-- Basket icon grafik -->
+    <!-- FONT AWESOME STYLESHEET -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="icon" href="/Images/RabbitReg.ico" type="image/x-icon">
 
     <!-- W3 SCHOOLS STYLESHEET -->
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
+    <!-- BROWSER TAB IKON -->
+    <link rel="icon" href="/Images/RabbitReg.ico" type="image/x-icon">
 </head>
 
 
-
-
 <body>
+    <header>
+    <!-- TOP NAV SETUP -->
     <div class="w3-top">
+
+            <!-- SHOPs ULD&GARN + KANINER -->
         <div class="w3-bar bg-dark w3-border-bottom">
             <a href="/Index" class="w3-bar-item w3-text-light-grey w3-button w3-margin-left w3-mobile w3-border-right">HJEM</a>
             <a href="/Main/Store/Store" class="w3-bar-item w3-text-light-grey w3-button w3-mobile w3-border-right">ULD & GARN</a>
@@ -67,7 +70,6 @@
             }
 
             <!-- KURV -->
-
             <a asp-page="/Main/Store/Basket" class="w3-bar-item w3-text-light-grey w3-button w3-margin-right w3-mobile w3-right"> <i class="fa fa-shopping-bag" style="font-size:24px; color:dimgray">  </i></a>
             <div>
                 @if (TempData.ContainsKey("Notification"))
@@ -88,7 +90,7 @@
 
         </div>
     </div>
-
+    </header>
 
     @*<header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-dark border-bottom box-shadow mb-3">

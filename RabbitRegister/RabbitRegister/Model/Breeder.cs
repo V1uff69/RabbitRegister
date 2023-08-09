@@ -42,10 +42,6 @@ namespace RabbitRegister.Model
 
         public bool isAdmin { get; set; } // Angiver om avleren er administrator
 
-        // [ForeignKey(nameof(Rabbit))] 
-        // public int RabbitId { get; set; }
-        // public virtual Rabbit Rabbit { get; set; }
-
         public Breeder()
         {
             // Tom constructor
