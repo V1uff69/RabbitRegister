@@ -31,7 +31,7 @@ namespace RabbitRegister.Model
         [Key]
         [Column(Order = 0)]
         [Display(Name = "Kanin-ID")]
-        [Required(ErrorMessage = "Din kanins skal have et ID")]
+        [Required(ErrorMessage = "Din kanins skal have et ID")]   // WIP: Vi får ikke denne fejlbesked
         [Range(typeof(int), "1", "9999", ErrorMessage = "Kaninens ID skal være imellem {1} og 4 cifre")]
         public int RabbitRegNo { get; set; }
 
@@ -45,7 +45,7 @@ namespace RabbitRegister.Model
         [ForeignKey("Breeder")]
         [Display(Name = "Ejer (Avler-ID): ")]
         public int? Owner { get; set; }
-        [BindNever]
+        //[BindNever]
         public virtual Breeder Breeder { get; set;} // virtual -> lazy loading (færre DB requests)
 
         [Display(Name = "Kælenavn: ")]

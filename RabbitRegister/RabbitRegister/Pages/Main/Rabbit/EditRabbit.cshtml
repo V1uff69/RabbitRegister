@@ -14,16 +14,11 @@
 <link rel="stylesheet" href="/css/rabbitSite.css" />
 @*<link rel="stylesheet" href="/css/responsiveForm.css" />*@
 
-<br />
+<br>
+</br>
 <br />
 
 <div class="create-form">
-
-    <br>
-    <form>
-        <input type="button" value="Tilbage" onclick="history.go(-1)">
-    </form>
-    </br>
 
     <form method="post" asp-page="EditRabbit" asp-page-handler="OnPostAsync">
         <div class="form-group">
@@ -121,7 +116,7 @@
         <p>
             <div class="form-group">
                 <input type="submit" value="Opdater" class="btn btn-success" />
-                <a asp-page="/Main/Rabbit/GetAllRabbits" class="btn btn-warning text-white">Fortryd </a>
+                <a href="/Main/Rabbit/GetAllRabbits?breederRegNo=@User.Identity.Name" class="btn btn-warning text-white">Fortryd </a>
             </div>
         </p>
     </form>

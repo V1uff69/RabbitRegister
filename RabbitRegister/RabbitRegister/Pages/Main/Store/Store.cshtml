@@ -7,94 +7,113 @@
 @{
 }
 
+<link rel="stylesheet" href="/css/site.css" />
+
+
 <br>
 </br>
 </br>
 
-
-<!--  page menu -->
-@{
+<body>
+    @*@{
     if ((await AuthorizationService.AuthorizeAsync(User, null, "AdminOnly")).Succeeded)
     {
-        <div class="d-flex justify-content-between">
-            <div class="d-flex flex-row">
-                <div class="p-2 bd-highlight">
-                    <a class="btn-create btn" asp-page="/Main/Product/CreateWool"> Opret Uld </a>
-                </div>
-                <div class="p-2 bd-highlight">
-                    <a class="btn-create btn" asp-page="/Main/Product/CreateYarn"> Opret Garn </a>
-                </div>
-            </div>
-        </div>
+    <div class="d-flex justify-content-between">
+    <div class="d-flex flex-row">
+    <div class="p-2 bd-highlight">
+    <a class="btn-create btn" asp-page="/Main/Product/CreateWool"> Opret Uld </a>
+    </div>
+    <div class="p-2 bd-highlight">
+    <a class="btn-create btn" asp-page="/Main/Product/CreateYarn"> Opret Garn </a>
+    </div>
+    </div>
+    </div>
     }
-}
+    }*@
 
+    <!-- Sidebar -->
+    <nav class="w3-sidebar w3-round-large w3-bar-block w3-border w3-collapse w3-theme-l5" id="mySidebar">
+        <a href="javascript:void(0)" onclick="w3_close()" class="w3-right w3-xlarge w3-padding-large w3-hover-black w3-hide-large" title="Close Menu">
+            <i class="fa fa-remove"></i>
+        </a>
+        <h4 class="w3-bar-item"><b>Filtre</b></h4>
+        <a class="w3-bar-item w3-button w3-hover-dark-gray" href="#">Nuværende besætning</a>
+        <a class="w3-bar-item w3-button w3-hover-dark-gray" href="#">Kaniner uden for min stald</a>
+        <a class="w3-bar-item w3-button w3-hover-dark-gray" href="#">Ane-kaniner</a>
+        <a class="w3-bar-item w3-button w3-hover-dark-gray" href="#">Fulde register</a>
+        <br></br>
+    </nav>
 
-<!--  Product tabel on the website -->
-<h2 class="text-center">Produkter</h2>
+    <!-- Overlay effect when opening sidebar on small screens -->
+    <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
-<br />
+    <!-- Main content: Shift content,  to the right, by 280 pixels, WHEN the sidebar is visible -->
+    <div class="w3-main" style="margin-left:280px">
 
-<body>
-    <!--  Wool Info, price, name... -->
-    <div>
-        <div style="width: 100%" class="d-flex flex-wrap flex-row justify-content-center">
-            @if (@Model.Wools != null)
-            {
-                foreach (var Wool in Model.Wools)
+        <!--  Product tabel on the website -->
+        <h2 class="text-center">Produkter</h2>
+
+        <br />
+
+        <!--  Wool Info, price, name... -->
+        <div>
+            <div style="width: 100%" class="d-flex flex-wrap flex-row justify-content-center">
+                @if (@Model.Wools != null)
                 {
-                    <a class="click-card flex-item" asp-page="/Main/Product/ProductInfo" asp-route-id="@Wool.ProductId" asp-route-type="@Wool.ProductType">
-                        <div class="p-2-card text-center container rounded border border-dark" style="width: 100%;">
-                            @if (Wool.ImgString == "/Images/Products/Yarn/" || Wool.ImgString == null)
-                            {
-                                <img class="card-image" src="\Images\MissingImg.jpg">
-                            }
-                            else
-                            {
-                                <img class="card-image" src="@Wool.ImgString">
-                            }
-                            <p class="text-card font-monospace"> Navn: @Wool.ProductName </p>
-                            <p class="text-card font-monospace"> Pris: @Wool.Price kr </p>
-                            <p class="text-card font-monospace"> Beholdning: @Wool.Amount</p>
-                            <div class="d-flex flex-wrap justify-content-center" style="margin-bottom: 5px; margin-top: 0px;">
-                                <form method="post">
-                                    <div>
-                                        <button class="btn-card btn alert-success btn-sm" asp-page-handler="AddToBasketAsync" asp-route-id="@Wool.ProductId" asp-route-type="@Wool.ProductType"><i class="fa fa-cart-plus"></i></button>
-                                    </div>
-                                </form>
+                    foreach (var Wool in Model.Wools)
+                    {
+                        <a asp-page="/Main/Product/ProductInfo" asp-route-id="@Wool.ProductId" asp-route-type="@Wool.ProductType">
+                            <div class="card">
+                                @if (Wool.ImgString == "/Images/Products/Wool/" || Wool.ImgString == null)
+                                {
+                                    <img class="card-image" src="\Images\MissingImg.jpg">
+                                }
+                                else
+                                {
+                                    <img class="card-image" src="@Wool.ImgString">
+                                }
+                                <div class="w3-container">
+                                    <h6 class="w3-center"><b>@Wool.ProductName</b></h6>
+                                    <p> @Wool.Price </p>
+                                    <p> Lager: @Wool.Amount </p>
+
+                                    <form method="post">
+                                        <button class="w3-button w3-block w3-ripple alert-success" asp-page-handler="AddToBasketAsync" asp-route-id="@Wool.ProductId" asp-route-type="@Wool.ProductType"><i class="fa fa-cart-plus"></i></button>
+                                    </form>
+                                </div>
                             </div>
-                        </div>
-                    </a>
+                        </a>
+                    }
                 }
-            }
-            @if (Model.Yarns != null)
-            {
-                foreach (var Yarn in Model.Yarns)
+
+                @if (@Model.Yarns != null)
                 {
-                    <a class="click-card flex-item" asp-page="/Main/Product/ProductInfo" asp-route-id="@Yarn.ProductId" asp-route-type="@Yarn.ProductType">
-                        <div class="p-2-card text-center container rounded border-dark">
-                            @if (Yarn.ImgString == "/Images/Products/Yarn/" || Yarn.ImgString == null)
-                            {
-                                <img class="card-image" src="\Images\MissingImg.jpg">
-                            }
-                            else
-                            {
-                                <img class="card-image" src="@Yarn.ImgString">
-                            }
-                            <p class="text-card font-monospace"> Navn: @Yarn.ProductName </p>
-                            <p class="text-card font-monospace"> Pris: @Yarn.Price kr </p>
-                            <p class="text-card font-monospace"> Beholdning: @Yarn.Amount</p>
-                            <div class="card-buttons d-flex flex-wrap justify-content-center" style="margin-bottom: 5px; margin-top: 0px;">
-                                <form method="post">
-                                    <div>
+                    foreach (var Yarn in Model.Yarns)
+                    {
+                        <a asp-page="/Main/Product/ProductInfo" asp-route-id="@Yarn.ProductId" asp-route-type="@Yarn.ProductType">
+                            <div class="card">
+                                @if (Yarn.ImgString == "/Images/Products/Yarn/" || Yarn.ImgString == null)
+                                {
+                                    <img class="card-image" src="\Images\MissingImg.jpg">
+                                }
+                                else
+                                {
+                                    <img class="card-image" src="@Yarn.ImgString">
+                                }
+                                <div class="w3-container">
+                                    <h6 class="w3-center"><b>@Yarn.ProductName</b></h6>
+                                    <p> @Yarn.Price </p>
+                                    <p> Lager: @Yarn.Amount </p>
+
+                                    <form method="post">
                                         <button class="btn-card btn alert-success btn-sm" asp-page-handler="AddToBasketAsync" asp-route-id="@Yarn.ProductId" asp-route-type="@Yarn.ProductType"><i class="fa fa-cart-plus"></i></button>
-                                    </div>
-                                </form>
+                                    </form>
+                                </div>
                             </div>
-                        </div>
-                    </a>
+                        </a>
+                    }
                 }
-            }
+            </div>
         </div>
     </div>
     <br />

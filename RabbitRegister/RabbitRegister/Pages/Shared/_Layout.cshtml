@@ -11,39 +11,45 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/RabbitRegister.styles.css" asp-append-version="true" />
+
     <!-- FONT AWESOME STYLESHEET -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <!-- W3 BLACK THEME -->
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
     <!-- W3 SCHOOLS STYLESHEET -->
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
     <!-- BROWSER TAB IKON -->
     <link rel="icon" href="/Images/RabbitReg.ico" type="image/x-icon">
 </head>
 
+<body class="w3-content" style="max-width:1420px">
 
-<body>
-    <header>
-    <!-- TOP NAV SETUP -->
+   
+
+    <!-- STICKY TOP-SETUP -->
     <div class="w3-top">
 
-            <!-- SHOPs ULD&GARN + KANINER -->
-        <div class="w3-bar bg-dark w3-border-bottom">
-            <a href="/Index" class="w3-bar-item w3-text-light-grey w3-button w3-margin-left w3-mobile w3-border-right">HJEM</a>
-            <a href="/Main/Store/Store" class="w3-bar-item w3-text-light-grey w3-button w3-mobile w3-border-right">ULD & GARN</a>
-            <a href="/Main/Rabbit/RabbitStore" class="w3-bar-item w3-text-light-grey w3-button w3-mobile w3-border-right">KANINER</a>
+        <!-- NAVBAR SETUP -->
+        <div class="w3-theme-l1 w3-padding w3-round-xxlarge w3-card-2" style="max-width:1420px">
+            <div class="w3-col m2">
+                <!-- MENU -->
+                <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-round-xxlarge w3-theme-l1" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
+                <a href="/Index" class="w3-bar-item w3-text-light-grey w3-button w3-round-xxlarge">HJEM</a>
+            </div>
+            <a href="/Main/Store/Store" class="w3-bar-item w3-text-light-grey w3-button w3-round-xxlarge">ULD & GARN</a>
+            <a href="/Main/Rabbit/RabbitStore" class="w3-bar-item w3-text-light-grey w3-button w3-round-xxlarge">KANINER</a>
 
             <!-- AVLER MENU -->
             @{
                 if (Context.User.Identity.Name != null)
                 {
-                    <div class="w3-dropdown-hover w3-mobile">
-                        <button class="w3-button w3-text-light-grey w3-border-right">REGISTER <i class="fa fa-caret-down"></i></button>
+                    <div class="w3-dropdown-hover">
+                        <button class="w3-bar-item w3-button w3-round-xxlarge w3-text-light-grey">REGISTER <i class="fa fa-caret-down"></i></button>
                         <div class="w3-dropdown-content w3-bar-block w3-dark-grey">
-                            <a asp-area="" asp-page="/Main/Rabbit/GetAllRabbits" asp-route-breederRegNo="@Context.User.Identity.Name" class="w3-bar-item w3-text-light-grey w3-button w3-mobile">MINE KANINER</a>
-                            <a asp-area="" asp-page="/Main/Trimming/GetAllTrimming" asp-route-Owner="@Context.User.Identity.Name" class="w3-bar-item w3-text-light-grey w3-button w3-mobile">MINE KLIPNINGER</a>
-                            <a asp-area="" asp-page="/Main/Product/GetAllWool" asp-route-breederRegNo="@Context.User.Identity.Name" class="w3-bar-item w3-text-light-grey w3-button w3-mobile">MIT ULD</a>
-                            <a asp-area="" asp-page="/Main/Product/GetAllYarn" asp-route-breederRegNo="@Context.User.Identity.Name" class="w3-bar-item w3-text-light-grey w3-button w3-mobile">MIT GARN</a>
+                            <a asp-area="" asp-page="/Main/Rabbit/GetAllRabbits" asp-route-breederRegNo="@Context.User.Identity.Name" class="w3-bar-item w3-text-light-grey w3-button">MINE KANINER</a>
+                            <a asp-area="" asp-page="/Main/Trimming/GetAllTrimming" asp-route-Owner="@Context.User.Identity.Name" class="w3-bar-item w3-text-light-grey w3-button">MINE KLIPNINGER</a>
+                            <a asp-area="" asp-page="/Main/Product/GetAllWool" asp-route-breederRegNo="@Context.User.Identity.Name" class="w3-bar-item w3-text-light-grey w3-button">MIT ULD</a>
+                            <a asp-area="" asp-page="/Main/Product/GetAllYarn" asp-route-breederRegNo="@Context.User.Identity.Name" class="w3-bar-item w3-text-light-grey w3-button">MIT GARN</a>
                         </div>
                     </div>
                 }
@@ -53,24 +59,64 @@
             @{
                 if (Context.User.Identity.Name == null)
                 {
-                    <a asp-area="" asp-page="/Main/Rabbit/GetAllRabbits" class="w3-bar-item w3-text-light-grey w3-button w3-margin-right w3-mobile w3-right w3-border-left">LOGIN <i class="fa fa-user-circle" style="font-size:24px; color:dimgray"></i></a>
+                    <a asp-area="" asp-page="/Main/LogIn/LogInPage" class="w3-bar-item w3-text-light-grey w3-button w3-round-xxlarge w3-right"> <i class="fa fa-user-circle w3-xlarge" style="color:dimgray"> </i> LOGIN</a>
                 }
+
+                //if (Context.User.Identity.Name == null)
+                //{
+                //    //<button onclick="loadloginform()" class="w3-bar-item w3-text-light-grey w3-button w3-round-xxlarge w3-right">
+                //    //    <i class="fa fa-user-circle w3-xlarge" style="color:dimgray"></i> login
+                //    //</button>
+
+                //    <button onclick="document.getElementById('loginModal').style.display='block'" class="w3-bar-item w3-text-light-grey w3-button w3-round-xxlarge w3-right"> <i class="fa fa-user-circle w3-xlarge" style="color:dimgray"> </i> LOGIN </button>
+
+                //    <div id="loginModal" class="w3-modal">
+                //        <div class="w3-modal-content w3-card-4 w3-animate-top" style="max-width:600px">
+
+                //            <div class="w3-center">
+                //                <br>
+                //                <span onclick="document.getElementById('loginModal').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
+
+                //                <!-- <img src="img_avatar4.png" alt="Avatar" style="width:30%" class="w3-circle w3-margin-top"> -->
+                //            </div>
+
+                //            <div id="loginFormContainer">
+                //                <!-- AJAX login form will be loaded here -->
+                //            </div>
+
+                //            <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+                //                <button onclick="document.getElementById('loginModal').style.display='none'" type="button" class="w3-button w3-red">Cancel</button>
+                //                <span class="w3-right w3-padding w3-hide-small">Forgot <a href="#">password?</a></span>
+                //            </div>
+                //        </div>
+                //    </div>
+                //}
+
                 else
                 {
-                    <div class="w3-dropdown-hover w3-mobile w3-right">
-                        <button class="w3-button w3-margin-right w3-text-light-grey w3-border-left">
-                            AVLER-ID: @Context.User.Identity.Name <i class="fa fa-user-circle-o" style="font-size:24px; color:steelblue"></i>
+                    <div class="w3-dropdown-hover w3-right">
+                        <button class="w3-button w3-round-xxlarge w3-text-light-grey">
+                            <i class="fa fa-user-circle w3-xlarge" style="color:steelblue"></i>
+                            ID: @Context.User.Identity.Name
                         </button>
                         <div class="w3-dropdown-content w3-bar-block w3-dark-grey">
-                            <a asp-area="" asp-route-id="@Context.User.Identity.Name" asp-page="/Main/Breeder/EditBreeder" class="w3-bar-item w3-text-light-grey w3-button w3-mobile">UPDATE </a>
-                            <a asp-area="" asp-page="/Main/LogIn/LogOutPage" class="w3-bar-item w3-text-light-grey w3-button w3-mobile">LOGOUT </a>
+                            <a asp-area="" asp-route-id="@Context.User.Identity.Name" asp-page="/Main/Breeder/EditBreeder" class="w3-bar-item w3-text-light-grey w3-button">UPDATE </a>
+                            <a asp-area="" asp-page="/Main/LogIn/LogOutPage" class="w3-bar-item w3-text-light-grey w3-button">LOGOUT </a>
                         </div>
                     </div>
                 }
             }
 
+            <!-- ADMIN KNAP -->
+            @{
+                if ((await AuthorizationService.AuthorizeAsync(User, null, "AdminOnly")).Succeeded)
+                {
+                    <a asp-area="" asp-page="/Main/Breeder/GetAllBreeders" class="w3-bar-item w3-text-light-grey w3-button w3-round-xxlarge w3-right">BRUGERE  </a>
+                }
+            }
+
             <!-- KURV -->
-            <a asp-page="/Main/Store/Basket" class="w3-bar-item w3-text-light-grey w3-button w3-margin-right w3-mobile w3-right"> <i class="fa fa-shopping-bag" style="font-size:24px; color:dimgray">  </i></a>
+            <a asp-page="/Main/Store/Basket" class="w3-bar-item w3-text-light-grey w3-button w3-round-xxlarge w3-margin-right w3-right"> <i class="fa fa-shopping-bag" style="font-size:24px; color:dimgray"> </i></a>
             <div>
                 @if (TempData.ContainsKey("Notification"))
                 {
@@ -78,137 +124,67 @@
                     <p>@TempData["Notification"]</p>
                 }
             </div>
-
-
-            <!-- ADMIN KNAP -->
-            @{
-                if ((await AuthorizationService.AuthorizeAsync(User, null, "AdminOnly")).Succeeded)
-                {
-                    <a asp-area="" asp-page="/Main/Breeder/GetAllBreeders" class="w3-bar-item w3-text-light-grey w3-button w3-margin-left w3-mobile w3-right w3-border-left">BRUGERE </a>
-                }
-            }
-
         </div>
     </div>
-    </header>
 
-    @*<header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-dark border-bottom box-shadow mb-3">
-            <div class="container">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav flex-grow-1 d-flex justify-content-center">
-
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-page="/Index">Hjem</a>
-                        </li>
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link text-light dropdown-toggle" href="#" id="ShopDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-auto-close="false">
-                                Shop
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="ShopDropdown">
-                                <a class="dropdown-item" asp-area="" asp-page="/Main/Store/Store">Produkter</a>
-                                <a class="dropdown-item" asp-area="" asp-page="/Main/Rabbit/RabbitStore">Salgskaniner</a>                    
-                            </div>
-                        </li>
-
-                        @{
-                            if (Context.User.Identity.Name != null)
-                            {
-                                // Dropdown menu for registered users
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link text-light dropdown-toggle" href="#" id="breederDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-auto-close="false">
-                                        Register
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="breederDropdown">
-                                        <a class="dropdown-item" asp-area="" asp-page="/Main/Rabbit/GetAllRabbits" asp-route-breederRegNo="@Context.User.Identity.Name">Mine Kaniner</a>
-                                        <a class="dropdown-item" asp-area="" asp-page="/Main/Trimming/GetAllTrimming" asp-route-Owner="@Context.User.Identity.Name">Klipninger</a>
-                                        <div class="dropdown">
-                                            <a class="dropdown-item text-light dropdown-toggle" href="#" id="productsDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Mine Produkter
-                                            </a>
-                                            <div class="dropdown-menu" aria-labelledby="productsDropdown">
-                                                <a class="dropdown-item" asp-area="" asp-page="/Main/Product/GetAllWool" asp-route-breederRegNo="@Context.User.Identity.Name">Uld</a>
-                                                <a class="dropdown-item" asp-area="" asp-page="/Main/Product/GetAllYarn" asp-route-breederRegNo="@Context.User.Identity.Name">Garn</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            }
-                        }
-
-                        @{
-                            if ((await AuthorizationService.AuthorizeAsync(User, null, "AdminOnly")).Succeeded)
-                            {
-                                // Menu item for admins
-                                <li class="nav-item">
-                                    <a class="nav-link text-light" asp-area="" asp-page="/Main/Breeder/GetAllBreeders">Avlere</a>
-                                </li>
-                            }
-                        }
-                    </ul>
-                </div>
-
-                <div style="  display: flex; justify-content: space-between; align-items: center;">
-                    <div>
-                        <a class="btn btn-success fa fa-shopping-basket" asp-page="/Main/Store/Basket"></a>
-                        <div>
-                            @if (TempData.ContainsKey("Notification"))
-                            {
-                                // Display notification
-                                <p>@TempData["Notification"]</p>
-                            }
-                        </div>
-                    </div>
-
-                    <div>
-                        <ul class="navbar-nav">
-                            @{
-                                if (Context.User.Identity.Name == null)
-                                {
-                                    // Display login option
-                                    <li class="nav-item">
-                                        <a class="nav-link text-light" asp-area="" asp-page="/Main/LogIn/LogInPage">Login</a>
-                                    </li>
-                                }
-                                else
-                                {
-                                // Dropdown menu for logged-in users
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Avler: @Context.User.Identity.Name
-                                        </a>
-                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" asp-area="" asp-route-id="@Context.User.Identity.Name" asp-page="/Main/Breeder/EditBreeder">Opdater Oplysninger</a>
-                                            <a class="dropdown-item" asp-area="" asp-page="/Main/LogIn/LogOutPage">Log ud</a>
-                                        </div>
-                                    </li>
-                                }
-                            }
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </header>*@
-
-    <div class="layer">
-        <div class="container">
+    <div class="w3-layer">
+        <div class="w3-container">
             <main role="main" class="pb-3">
                 @RenderBody()
             </main>
         </div>
     </div>
 
-    <footer class="border-top footer text-muted bg-dark">
-        <div class="container">
-            &copy; 2023 - RabbitRegister - <a asp-area="" asp-page="/Privacy">Kontakt</a>
+    <footer id="myFooter">
+        <div class="w3-container w3-round w3-theme-l1 w3-border-top w3-padding-16">
+            <h2>Footer</h2>
+
+            <div class="w3-container w3-stretch w3-theme-l2">
+                <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+                &copy; 2023 - RabbitRegister - <a asp-area="" asp-page="/Privacy">Kontakt</a>
+            </div>
         </div>
     </footer>
+
+    <script>
+        // Get the Sidebar
+        var mySidebar = document.getElementById("mySidebar");
+
+        // Get the DIV with overlay effect
+        var overlayBg = document.getElementById("myOverlay");
+
+        // Toggle between showing and hiding the sidebar, and add overlay effect
+        function w3_open() {
+            if (mySidebar.style.display === 'block') {
+                mySidebar.style.display = 'none';
+                overlayBg.style.display = "none";
+            } else {
+                mySidebar.style.display = 'block';
+                overlayBg.style.display = "block";
+            }
+        }
+
+        // Close the sidebar with the close button
+        function w3_close() {
+            mySidebar.style.display = "none";
+            overlayBg.style.display = "none";
+        }
+
+
+        async function loadLoginForm() {
+            try {
+                const response = await fetch('/Main/LogIn/LogInPage', { method: 'GET' });
+                if (response.ok) {
+                    const content = await response.text();
+                    document.getElementById('loginFormContainer').innerHTML = content;
+                } else {
+                    console.error('Failed to load content:', response.statusText);
+                }
+            } catch (error) {
+                console.error('An error occurred:', error);
+            }
+        }
+    </script>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

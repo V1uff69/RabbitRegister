@@ -76,7 +76,7 @@ namespace RabbitRegister.Pages.Main.LogIn
             }
 
             // Hvis ingen avler matcher det indtastede avler Id eller adgangskoden er forkert, vises "Message" med en fejlmeddelelse
-            Message = "Forkert Avler Id eller Adgangskode";
+            Message = "Forkert Avler-ID eller adgangskode";
             return Page();
         }
     }

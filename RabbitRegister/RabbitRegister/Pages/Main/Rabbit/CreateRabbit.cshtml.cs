@@ -2,12 +2,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using RabbitRegister.Model;
 using RabbitRegister.Services.BreederService;
 using RabbitRegister.Services.RabbitService;
-using System.ComponentModel.DataAnnotations;
 
 namespace RabbitRegister.Pages.Main.Rabbit
 {
@@ -24,11 +21,26 @@ namespace RabbitRegister.Pages.Main.Rabbit
         }
 
         [BindProperty]
-        public Model.Rabbit Rabbit { get; set; } = new Model.Rabbit();
-        //public Model.Breeder Breeder = User.Identity.Name;
+        public RabbitDTO RabbitCreateDto { get; set; } = new RabbitDTO();
+
+        public List<SelectListItem> BreederList { get; set; }
 
         public bool exceptionFound { get; set; }
         public string exceptionText { get; set; }
+        
+
+
+        public async Task OnGet()
+        {
+            // Hent en liste over breeders og opret drop-down-listen
+            var breeders = _breederService.GetBreeders();
+            BreederList = breeders.Select(b => new SelectListItem
+            {
+                Value = b.BreederRegNo.ToString(),
+                Text = b.BreederRegNo.ToString()
+            }).ToList();
+        }
+
 
         /// <summary>
         /// Forsøger at oprette en kanin, hvis ikke ID allerede findes
@@ -44,7 +56,7 @@ namespace RabbitRegister.Pages.Main.Rabbit
             }
 
             // Nedenstående sikrer der ikke oprettes en fantom-kanin på "GetAllRabbits"
-            var existingRabbit = _rabbitService.GetRabbit(Rabbit.RabbitRegNo, Rabbit.BreederRegNo);
+            var existingRabbit = _rabbitService.GetRabbit(RabbitCreateDto.RabbitRegNo, RabbitCreateDto.BreederRegNo);
             if (existingRabbit != null)
             {
                 this.exceptionFound = true;
@@ -53,9 +65,9 @@ namespace RabbitRegister.Pages.Main.Rabbit
             }
 
             var breeder = await _breederService.GetBreederByNameAsync(User.Identity.Name);
-            await _rabbitService.AddRabbitAsync(Rabbit, breeder);
+            
+            await _rabbitService.AddRabbitAsync(RabbitCreateDto, breeder);
             return RedirectToPage("GetAllRabbits", new { breederRegNo = User.Identity.Name });
-
         }
 
     }

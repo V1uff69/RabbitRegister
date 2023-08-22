@@ -12,6 +12,14 @@ namespace RabbitRegister.Services.RabbitService
         private DbGenericService<Rabbit> _dbGenericService;
         private IBreederService _breederService;
 
+        /// <summary>
+        /// Initialisere hvorfra kaninere hentes..
+        /// 
+        /// Kaninerne kan hentes via DB eller MOCKDATA, alt efter hvilken kodeblok,
+        /// som kommenteres ud/ind.
+        /// </summary>
+        /// <param name="dbGenericService">Dependency injection</param>
+        /// <param name="breederService">Dependency injection</param>
         public RabbitService(DbGenericService<Rabbit> dbGenericService, IBreederService breederService)
         {
             _breederService = breederService;
@@ -30,20 +38,53 @@ namespace RabbitRegister.Services.RabbitService
         }
 
         /// <summary>
-        /// Tilføjer kaninen til servicens lokale liste _rabbits og DB.
+        /// Tilføjer et kanin objekt til den lokale liste: _rabbits med dens tilhørende avler.
+        /// Gemmer derefter kaninen i via. en DBGenericService metode.
         /// 
         /// "Async" muliggør en mere effektiv udnyttelse af systemressourcer. Tråden som kalder AddRabbitAsync,
         /// behøver ikke at vente på operationen er fuldført, før den fortsætter med andre opgaver 
         /// </summary>
-        /// <param name="rabbit">Kanin objekt som tilføjes listen _rabbits OG tilføjes til DB via dbGenericService</param>
+        /// <param name="rabbit">Kanin objektet som tilføjes til listen _rabbits OG tilføjes til DB via dbGenericService</param>
+        /// <param name="breeder">Avler objektet, som tilhører kaninen</param>
         /// <returns>En Task, der repræsenterer asynkron udførelse af operationen</returns>
         public async Task AddRabbitAsync(Rabbit rabbit, Breeder breeder)
         {
-            rabbit.Breeder = breeder;
             _rabbits.Add(rabbit);
+            rabbit.Breeder = breeder;
+
             await _dbGenericService.AddObjectAsync(rabbit);
         }
 
+        /// <summary>
+        /// Konvertere brugerens input til at passe med: class Rabbit 
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <param name="breeder"></param>
+        /// <returns></returns>
+        public async Task AddRabbitAsync(RabbitDTO dto, Breeder breeder)
+        {
+            Rabbit newRabbit = new Rabbit();
+
+            newRabbit.RabbitRegNo = dto.RabbitRegNo;
+            newRabbit.BreederRegNo = dto.BreederRegNo;
+            newRabbit.Owner = dto.Owner;
+            newRabbit.Name = dto.Name;
+            newRabbit.Race = dto.Race;
+            newRabbit.Color = dto.Color;
+            newRabbit.DateOfBirth = dto.DateOfBirth;
+            newRabbit.DeadOrAlive = dto.DeadOrAlive;
+            newRabbit.Sex = dto.Sex;
+            newRabbit.IsForSale = dto.IsForSale;
+            newRabbit.ImageString = dto.ImageString;
+
+            newRabbit.Breeder = breeder;
+            breeder.Rabbits.Add(newRabbit);
+
+            _rabbits.Add(newRabbit);
+            await _dbGenericService.AddObjectAsync(newRabbit);
+        }
+
+    
         /// <summary>
         /// Henter en kanin fra listen _rabbits via. LAMBDA og LINQ ud fra dens composite-key
         /// </summary>
@@ -62,6 +103,7 @@ namespace RabbitRegister.Services.RabbitService
         public List<Rabbit> GetAllRabbits()
         {
             return _rabbits.ToList();
+            //return _dbGenericService.GetObjectsAsync().Result.ToList();
         }
 
         /// <summary>

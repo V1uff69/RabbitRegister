@@ -2,69 +2,55 @@
 @model RabbitRegister.Pages.Main.Rabbit.GetAllRabbitsModel
 @{
 }
-<!-- Styling reference -->
-
-<link rel="stylesheet" href="/css/rabbitSite.css" />
-
-<!--  Side menu, Create kanpper -->
-
-<br>
-</br>
-
-<h2 class="text-center">Mine Kaniner:</h2>
+<html>
+<head>
+    <!-- Styling reference -->
+    @*<link rel="stylesheet" href="/css/rabbitSite.css" />*@
+    <link rel="stylesheet" href="/css/site.css" />
+</head>
+<body class="w3-auto">
 
 
-<div class="d-flex justify-content-between">
-    <div class="d-flex flex-row">
-        <div class="p-2 bd-highlight">
-            <a class="btn-create btn" asp-page="CreateRabbit">Opret Kanin</a>
+    <!-- Sidebar -->
+    <nav class="w3-sidebar w3-round-large w3-bar-block w3-border w3-collapse w3-theme-l5" id="mySidebar">
+        <a href="javascript:void(0)" onclick="w3_close()" class="w3-right w3-xlarge w3-padding-large w3-hover-black w3-hide-large" title="Close Menu">
+            <i class="fa fa-remove"></i>
+        </a>
+        <h4 class="w3-bar-item"><b>Filtre</b></h4>
+        <a class="w3-bar-item w3-button w3-hover-dark-gray" href="/Main/Rabbit/GetAllRabbits?breederRegNo=@User.Identity.Name">Nuværende besætning</a>
+        <a class="w3-bar-item w3-button w3-hover-dark-gray" href="/Main/Rabbit/GetAllRabbits?breederRegNo=@User.Identity.Name&action=NotOwnedRabbitsWithMyBreederRegNo">Kaniner uden for min stald</a>
+        <a class="w3-bar-item w3-button w3-hover-dark-gray" href="/Main/Rabbit/GetAllRabbits?breederRegNo=@User.Identity.Name&action=OwnedDeadRabbits">Ane-kaniner</a>
+        <a class="w3-bar-item w3-button w3-hover-dark-gray" href="/Main/Rabbit/GetAllRabbits?breederRegNo=@User.Identity.Name&action=AllRabbitsWithConnectionsToMe">Fulde register</a>
+        <br></br>
+    </nav>
+
+    <!-- Overlay effect when opening sidebar on small screens -->
+    <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+    <!-- Main content: shift it to the right by 280 pixels when the sidebar is visible -->
+    <div class="w3-main" style="margin-left:280px">
+
+        <br>
+        </br>
+        </br>
+
+        <h2 class="w3-center">Mine Kaniner:</h2>
+
+        <div class="d-flex justify-content-between">
+            <div class="d-flex flex-row">
+                <div class="p-2 bd-highlight">
+                    <a class="btn-create btn" asp-page="CreateRabbit">Opret Kanin</a>
+                </div>
+                <div class="p-2 bd-highlight">
+                    <a class="btn-create btn" asp-route-Owner="@User.Identity.Name" asp-page="/Main/Trimming/CreateTrimming"> Opret Klip</a>
+                </div>
+            </div>
         </div>
-        <div class="p-2 bd-highlight">
-            <a class="btn-create btn" asp-route-Owner="@User.Identity.Name" asp-page="/Main/Trimming/CreateTrimming"> Opret Klip</a>
-        </div>
-    </div>
-</div>
-<br />
 
-<!-- Knap til offcanvas sidebar -->
-<button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#filterRabbits">
-    Filter funktioner
-</button>
+        <br />
+        <br />
 
-<br />
-
-<!-- Offcanvas Sidebar -->
-<div class="offcanvas offcanvas-start bg-dark" id="filterRabbits">
-    <div class="offcanvas-header">
-        <h1 class="offcanvas-title">Filter funktioner</h1>
-        <button type="button" class="btn-close btn-close-white text-reset" data-bs-dismiss="offcanvas"></button>
-    </div>
-    <div class="offcanvas-body">
-        <p>Hidtil implementerede søgefunktioner for kaniner</p>
-        <ul class="nav nav-pills flex-column list-unstyled">
-            <li class="nav-item">
-                <a class="nav-link" href="/Main/Rabbit/GetAllRabbits?breederRegNo=@User.Identity.Name">Nuværende besætning</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/Main/Rabbit/GetAllRabbits?breederRegNo=@User.Identity.Name&action=NotOwnedRabbitsWithMyBreederRegNo">Kaniner uden for min stald</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/Main/Rabbit/GetAllRabbits?breederRegNo=@User.Identity.Name&action=OwnedDeadRabbits">Ane-kaniner</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/Main/Rabbit/GetAllRabbits?breederRegNo=@User.Identity.Name&action=AllRabbitsWithConnectionsToMe">Fulde register</a>
-            </li>
-        </ul>
-    </div>
-</div>
-
-
-<br />
-
-
-<!-- Bootstrap Card setup, med tilhørende table til højre for billedet Card billedet -->
-<body>
-    <div>
+        <!-- Bootstrap Card setup, med tilhørende table til højre for billedet Card billedet -->
         <div style="width: 100%" class="d-flex flex-wrap flex-row justify-content-center">
             @if (@Model.Rabbits != null)
             {
@@ -72,38 +58,19 @@
                 {
                     <a class="click-card flex-item" asp-page="/Main/Rabbit/RabbitProfile" asp-route-id="@Rabbit.RabbitRegNo" asp-route-breederRegNo="@Rabbit.BreederRegNo">
 
-                        <div class="p-2-card text-center container rounded border border-dark" style="width: 100%;">
-                            <div class="d-flex flex-row">
-                                <div>
-                                    @if (Rabbit.ImageString == "/Images/Rabbits/" || Rabbit.ImageString == null)
-                                    {
-                                        <img class="card-image" src="\Images\MissingImg.jpg">
-                                    }
-                                    else
-                                    {
-                                        <img class="card-image" src="@Rabbit.ImageString">
-                                    }
-                                </div>
-                                <table class="table table-opacity">
-                                    <tr>
-                                        <th>Ejer:</th>
-                                        <td>@Rabbit.Owner</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Kanin ID:</th>
-                                        <td>@Rabbit.RabbitRegNo</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Avler ID:</th>
-                                        <td>@Rabbit.BreederRegNo</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Navn:</th>
-                                        <td>@Rabbit.Name</td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div class="d-flex flex-row justify-content-end" style="margin-bottom: 5px; margin-top: 5px;">
+                        <div class="card">
+                            @if (Rabbit.ImageString == "/Images/Rabbits/" || Rabbit.ImageString == null)
+                            {
+                                <img class="card-image" src="\Images\NoImage.jpg">
+                            }
+                            else
+                            {
+                                <img class="card-image" src="@Rabbit.ImageString">
+                            }
+                            <div class="container">
+                                <h4><b>@Rabbit.Name</b></h4>
+                                <p>Left-ID: @Rabbit.RabbitRegNo Right-ID: @Rabbit.BreederRegNo </p>
+
                                 <a class="btn-card btn-primary btn-sm mr-1" type="button" title="Edit" asp-page="/Main/Rabbit/EditRabbit" asp-route-id="@Rabbit.RabbitRegNo" asp-route-breederRegNo="@Rabbit.BreederRegNo">
                                     <i class="fa fa-edit"></i>
                                 </a>
@@ -117,8 +84,9 @@
             }
         </div>
     </div>
+    </br>
+    </br>
+    </br>
+    
 </body>
-
-</br>
-</br>
-</br>
+</html>

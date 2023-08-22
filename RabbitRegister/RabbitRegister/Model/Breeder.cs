@@ -4,10 +4,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RabbitRegister.Model
 {
-    [Table("Breeder")] // Angiver tabellens navn i databasen
-    [PrimaryKey("BreederRegNo")] // Angiver primærnøglen for tabellen
+    [Table("Breeder")] // Angiver tabellens navn i databasen              // Overflødig
+    //[PrimaryKey("BreederRegNo")] // Angiver primærnøglen for tabellen     // Også en mulighed.. Men [Key] ovenover propertien er lettere..
     public class Breeder
     {
+        [Key]
         [Display(Name = "Avler-ID")]
         [RegularExpression(@"^\d{4}$", ErrorMessage = "Avler-ID, SKAL bestå af 4 tal")]
         [DatabaseGenerated(DatabaseGeneratedOption.None)] // Angiver, at værdien ikke genereres automatisk af databasen
@@ -41,6 +42,9 @@ namespace RabbitRegister.Model
         public string Password { get; set; } // Avlerens adgangskode
 
         public bool isAdmin { get; set; } // Angiver om avleren er administrator
+
+        public virtual ICollection<Rabbit> Rabbits { get; set; }
+
 
         public Breeder()
         {
