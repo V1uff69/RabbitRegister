@@ -21,9 +21,18 @@
                     <label asp-for="@Model.RabbitCreateDto.Owner" class="control-label">Nuværende ejer </label>
                 </div>
                 <div class="col-75">
-                    <input asp-for="@Model.RabbitCreateDto.Owner" value="@User.Identity.Name" class="form-control" readonly="@true" />
+                    <input asp-for="@Model.RabbitCreateDto.Owner" value="@User.Identity.Name" class="form-control"/>
                 </div>
             </div>
+
+            @*<div class="row">
+                <div class="col-25">
+                    <label asp-for="@Model.BreederList" class="control-label">Nuværende ejer </label>
+                </div>
+                <div class="col-75">
+                    <input asp-for="@Model.BreederList" value="@User.Identity.Name" class="form-control" readonly="@true" />
+                </div>
+            </div>*@
 
             @*<div class="create-form">
                 <label asp-for="@Model.RabbitCreateDto.Owner" class="control-label">Ejers af (Avler-ID): </label>

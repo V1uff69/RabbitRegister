@@ -47,13 +47,18 @@ namespace RabbitRegister.Services.RabbitService
         /// <param name="rabbit">Kanin objektet som tilføjes til listen _rabbits OG tilføjes til DB via dbGenericService</param>
         /// <param name="breeder">Avler objektet, som tilhører kaninen</param>
         /// <returns>En Task, der repræsenterer asynkron udførelse af operationen</returns>
-        public async Task AddRabbitAsync(Rabbit rabbit, Breeder breeder)
+        /// 
+
+
+        public async Task AddRabbitAsync(Rabbit rabbit, Breeder breeder)  //Denne add metode spørger efter Rabbit Breeder propertien -.-' 
         {
             _rabbits.Add(rabbit);
             rabbit.Breeder = breeder;
 
             await _dbGenericService.AddObjectAsync(rabbit);
         }
+
+
 
         /// <summary>
         /// Konvertere brugerens input til at passe med: class Rabbit 
@@ -77,14 +82,21 @@ namespace RabbitRegister.Services.RabbitService
             newRabbit.IsForSale = dto.IsForSale;
             newRabbit.ImageString = dto.ImageString;
 
-            newRabbit.Breeder = breeder;
-            breeder.Rabbits.Add(newRabbit);
-
+            //newRabbit.Breeder = breeder;
+            
             _rabbits.Add(newRabbit);
             await _dbGenericService.AddObjectAsync(newRabbit);
+
+            if (breeder.Rabbits == null)
+            {
+                breeder.Rabbits = new List<Rabbit>();
+            }
+
+            breeder.Rabbits.Add(newRabbit);
+
         }
 
-    
+
         /// <summary>
         /// Henter en kanin fra listen _rabbits via. LAMBDA og LINQ ud fra dens composite-key
         /// </summary>

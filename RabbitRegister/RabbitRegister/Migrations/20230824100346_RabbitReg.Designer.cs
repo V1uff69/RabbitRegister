@@ -12,7 +12,7 @@ using RabbitRegister.EFDbContext;
 namespace RabbitRegister.Migrations
 {
     [DbContext(typeof(ItemDbContext))]
-    [Migration("20230809072036_RabbitReg")]
+    [Migration("20230824100346_RabbitReg")]
     partial class RabbitReg
     {
         /// <inheritdoc />
@@ -361,10 +361,15 @@ namespace RabbitRegister.Migrations
             modelBuilder.Entity("RabbitRegister.Model.Rabbit", b =>
                 {
                     b.HasOne("RabbitRegister.Model.Breeder", "Breeder")
-                        .WithMany()
+                        .WithMany("Rabbits")
                         .HasForeignKey("Owner");
 
                     b.Navigation("Breeder");
+                });
+
+            modelBuilder.Entity("RabbitRegister.Model.Breeder", b =>
+                {
+                    b.Navigation("Rabbits");
                 });
 #pragma warning restore 612, 618
         }

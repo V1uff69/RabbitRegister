@@ -358,10 +358,15 @@ namespace RabbitRegister.Migrations
             modelBuilder.Entity("RabbitRegister.Model.Rabbit", b =>
                 {
                     b.HasOne("RabbitRegister.Model.Breeder", "Breeder")
-                        .WithMany()
+                        .WithMany("Rabbits")
                         .HasForeignKey("Owner");
 
                     b.Navigation("Breeder");
+                });
+
+            modelBuilder.Entity("RabbitRegister.Model.Breeder", b =>
+                {
+                    b.Navigation("Rabbits");
                 });
 #pragma warning restore 612, 618
         }

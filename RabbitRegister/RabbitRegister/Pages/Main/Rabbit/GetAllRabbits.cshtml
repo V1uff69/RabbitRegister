@@ -36,21 +36,18 @@
 
         <h2 class="w3-center">Mine Kaniner:</h2>
 
+        <!-- CREATE KNAPPER -->
         <div class="d-flex justify-content-between">
             <div class="d-flex flex-row">
-                <div class="p-2 bd-highlight">
-                    <a class="btn-create btn" asp-page="CreateRabbit">Opret Kanin</a>
-                </div>
-                <div class="p-2 bd-highlight">
-                    <a class="btn-create btn" asp-route-Owner="@User.Identity.Name" asp-page="/Main/Trimming/CreateTrimming"> Opret Klip</a>
-                </div>
+                <a class="btn btn-outline-green" asp-page="CreateRabbit">Opret Kanin</a>
+                <a class="btn btn-outline-green" asp-route-Owner="@User.Identity.Name" asp-page="/Main/Trimming/CreateTrimming"> Opret Klip</a>
             </div>
         </div>
 
         <br />
         <br />
 
-        <!-- Bootstrap Card setup, med tilhørende table til højre for billedet Card billedet -->
+        <!-- W3 HTML & CSS, CARD SETUP -->
         <div style="width: 100%" class="d-flex flex-wrap flex-row justify-content-center">
             @if (@Model.Rabbits != null)
             {
@@ -87,6 +84,6 @@
     </br>
     </br>
     </br>
-    
+
 </body>
 </html>
