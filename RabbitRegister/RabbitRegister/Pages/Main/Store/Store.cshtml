@@ -7,14 +7,12 @@
 @{
 }
 
-<link rel="stylesheet" href="/css/site.css" />
+<head>
+    <!-- Styling reference -->
+    <link rel="stylesheet" href="/css/site.css" />
+</head>
 
-
-<br>
-</br>
-</br>
-
-<body>
+<body class="w3-auto">
     @*@{
     if ((await AuthorizationService.AuthorizeAsync(User, null, "AdminOnly")).Succeeded)
     {
@@ -31,7 +29,7 @@
     }
     }*@
 
-    <!-- Sidebar -->
+    <!-- SIDEBAR -->
     <nav class="w3-sidebar w3-round-large w3-bar-block w3-border w3-collapse w3-theme-l5" id="mySidebar">
         <a href="javascript:void(0)" onclick="w3_close()" class="w3-right w3-xlarge w3-padding-large w3-hover-black w3-hide-large" title="Close Menu">
             <i class="fa fa-remove"></i>
@@ -43,21 +41,20 @@
         <a class="w3-bar-item w3-button w3-hover-dark-gray" href="#"> -- </a>
         <br></br>
     </nav>
-
     <!-- Overlay effect when opening sidebar on small screens -->
     <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
-    <!-- Main content: Shift content,  to the right, by 280 pixels, WHEN the sidebar is visible -->
-    <div class="w3-main" style="margin-left:280px">
+    <!-- MAIN CONTENT: Shift content, to the right, by 280 pixels, WHEN the sidebar is visible -->
+    <div class="w3-main min-vh-100" style="margin-left:280px">
 
         <!--  Product tabel on the website -->
-        <h2 class="text-center">Produkter</h2>
+        <br></br></br>
 
-        <br />
+        <h2 class="w3-center">Produkter: </h2>
 
         <!--  Wool Info, price, name... -->
         <div>
-            <div style="width: 100%" class="d-flex flex-wrap flex-row justify-content-center">
+            <div class="d-flex flex-wrap flex-row">
                 @if (@Model.Wools != null)
                 {
                     foreach (var Wool in Model.Wools)
@@ -73,7 +70,7 @@
                                     <img class="card-image" src="@Wool.ImgString">
                                 }
                                 <div class="w3-container">
-                                    <h6 class="w3-center"><b>@Wool.ProductName</b></h6>
+                                    <h6><b>@Wool.ProductName</b></h6>
                                     <p> @Wool.Price </p>
                                     <p> Lager: @Wool.Amount </p>
 
@@ -101,12 +98,12 @@
                                     <img class="card-image" src="@Yarn.ImgString">
                                 }
                                 <div class="w3-container">
-                                    <h6 class="w3-center"><b>@Yarn.ProductName</b></h6>
+                                    <h6><b>@Yarn.ProductName</b></h6>
                                     <p> @Yarn.Price </p>
                                     <p> Lager: @Yarn.Amount </p>
 
                                     <form method="post">
-                                        <button class="btn-card btn alert-success btn-sm" asp-page-handler="AddToBasketAsync" asp-route-id="@Yarn.ProductId" asp-route-type="@Yarn.ProductType"><i class="fa fa-cart-plus"></i></button>
+                                        <button class="w3-button w3-block w3-ripple alert-success" asp-page-handler="AddToBasketAsync" asp-route-id="@Yarn.ProductId" asp-route-type="@Yarn.ProductType"><i class="fa fa-cart-plus"></i></button>
                                     </form>
                                 </div>
                             </div>

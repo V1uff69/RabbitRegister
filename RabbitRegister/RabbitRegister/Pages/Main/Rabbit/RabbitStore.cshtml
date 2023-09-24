@@ -2,60 +2,68 @@
 @model RabbitRegister.Pages.Main.Rabbit.RabbitStoreModel
 @{
 }
-<!-- IKKE IMPLEMENTERET SIDE! NÅEDE IKKE AT BLIVE FÆRDIG -->
-<link rel="stylesheet" href="/css/rabbitSite.css" />
+<head>
+    <!-- Styling reference -->
+    <link rel="stylesheet" href="/css/site.css" />
+</head>
 
-<br>
-</br>
-</br>
+<body class="w3-auto">
 
-<h2 class="text-center">Salgs kaniner:</h2>
+    <!-- Sidebar -->
+    <nav class="w3-sidebar w3-round-large w3-bar-block w3-border w3-collapse w3-theme-l5" id="mySidebar">
+        <a href="javascript:void(0)" onclick="w3_close()" class="w3-right w3-xlarge w3-padding-large w3-hover-black w3-hide-large" title="Close Menu">
+            <i class="fa fa-remove"></i>
+        </a>
+        <h4 class="w3-bar-item"><b>Filtre</b></h4>
+        <a class="w3-bar-item w3-button w3-hover-dark-gray" href="">-</a>
+        <a class="w3-bar-item w3-button w3-hover-dark-gray" href="">-</a>
+        <a class="w3-bar-item w3-button w3-hover-dark-gray" href="">-</a>
+        <a class="w3-bar-item w3-button w3-hover-dark-gray" href="">-</a>
+        <br></br>
+    </nav>
 
-<body>
-    <div>
-        <div style="width: 100%" class="d-flex flex-wrap flex-row justify-content-center">
+    <!-- Overlay effect when opening sidebar on small screens -->
+    <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+    <!-- Main content: shift it to the right by 280 pixels when the sidebar is visible -->
+    <div class="w3-main min-vh-100" style="margin-left:280px">
+
+        <br></br></br>
+
+        <h2 class="w3-center">Kaniner: </h2>
+
+@*        <!-- CREATE KNAPPER -->
+        <div class="d-flex justify-content-between">
+            <div class="d-flex flex-row">
+                <a class="btn btn-outline-green" asp-page="CreateRabbit">Opret Kanin</a>
+                <a class="btn btn-outline-green" asp-route-Owner="@User.Identity.Name" asp-page="/Main/Trimming/CreateTrimming"> Opret Klip</a>
+            </div>
+        </div>
+
+        <br />
+        <br />*@
+
+        <!-- W3 HTML & CSS, CARD SETUP -->
+        <div style="width: 100%" class="d-flex flex-wrap flex-row">
             @if (@Model.Rabbits != null)
             {
                 foreach (var Rabbit in Model.Rabbits)
                 {
-                    <!-- Bemærk: Her linkes til RabbitProfile. Her skal istedet linkes til en RabbitSaleProfile, som ikke
-                    endnu ikke er lavet. Kunden skal selvfølgelig ikke være istand til delete/edit og og samme mængde
-                    informationer om kaninen
-                    -->
                     <a class="click-card flex-item" asp-page="/Main/Rabbit/RabbitProfile" asp-route-id="@Rabbit.RabbitRegNo" asp-route-breederRegNo="@Rabbit.BreederRegNo">
 
-                        <div class="p-2-card text-center container rounded border border-dark" style="width: 100%;">
-                            <div class="d-flex flex-row">
-                                <div>
-                                    @if (Rabbit.ImageString == "/Images/Rabbits/" || Rabbit.ImageString == null)
-                                    {
-                                        <img class="card-image" src="\Images\MissingImg.jpg">
-                                    }
-                                    else
-                                    {
-                                        <img class="card-image" src="@Rabbit.ImageString">
-                                    }
-                                </div>
-                                <table class="table table-opacity">
-                                    <tr>
-                                        <th>Ejer:</th>
-                                        <td>@Rabbit.Owner</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Kælenavn:</th>
-                                        <td>@Rabbit.Name</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Race:</th>
-                                        <td>@Rabbit.Race</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Farve:</th>
-                                        <td>@Rabbit.Color</td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div class="d-flex flex-row justify-content-end" style="margin-bottom: 5px; margin-top: 0px;">
+                        <div class="card">
+                            @if (Rabbit.ImageString == "/Images/Rabbits/" || Rabbit.ImageString == null)
+                            {
+                                <img class="card-image" src="\Images\NoImage.jpg">
+                            }
+                            else
+                            {
+                                <img class="card-image" src="@Rabbit.ImageString">
+                            }
+                            <div class="container">
+                                <h6><b>@Rabbit.Name</b></h6>
+                                <p>Left-ID: @Rabbit.RabbitRegNo</p>
+                                <p> Right-ID: @Rabbit.BreederRegNo </p>
                             </div>
                         </div>
                     </a>
@@ -63,4 +71,5 @@
             }
         </div>
     </div>
+    <br></br>
 </body>

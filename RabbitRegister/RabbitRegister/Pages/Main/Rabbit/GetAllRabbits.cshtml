@@ -2,14 +2,13 @@
 @model RabbitRegister.Pages.Main.Rabbit.GetAllRabbitsModel
 @{
 }
-<html>
+
 <head>
     <!-- Styling reference -->
-    @*<link rel="stylesheet" href="/css/rabbitSite.css" />*@
     <link rel="stylesheet" href="/css/site.css" />
 </head>
-<body class="w3-auto">
 
+<body class="w3-auto">
 
     <!-- Sidebar -->
     <nav class="w3-sidebar w3-round-large w3-bar-block w3-border w3-collapse w3-theme-l5" id="mySidebar">
@@ -18,9 +17,9 @@
         </a>
         <h4 class="w3-bar-item"><b>Filtre</b></h4>
         <a class="w3-bar-item w3-button w3-hover-dark-gray" href="/Main/Rabbit/GetAllRabbits?breederRegNo=@User.Identity.Name">Nuværende besætning</a>
-        <a class="w3-bar-item w3-button w3-hover-dark-gray" href="/Main/Rabbit/GetAllRabbits?breederRegNo=@User.Identity.Name&action=NotOwnedRabbitsWithMyBreederRegNo">Kaniner uden for min stald</a>
+        <a class="w3-bar-item w3-button w3-hover-dark-gray" href="/Main/Rabbit/GetAllRabbits?breederRegNo=@User.Identity.Name&action=NotOwnedRabbitsWithMyBreederRegNo">Kaniner med mit Avler-nr</a>
         <a class="w3-bar-item w3-button w3-hover-dark-gray" href="/Main/Rabbit/GetAllRabbits?breederRegNo=@User.Identity.Name&action=OwnedDeadRabbits">Ane-kaniner</a>
-        <a class="w3-bar-item w3-button w3-hover-dark-gray" href="/Main/Rabbit/GetAllRabbits?breederRegNo=@User.Identity.Name&action=AllRabbitsWithConnectionsToMe">Fulde register</a>
+        <a class="w3-bar-item w3-button w3-hover-dark-gray" href="/Main/Rabbit/GetAllRabbits?breederRegNo=@User.Identity.Name&action=AllRabbitsWithConnectionsToMe">Alle kaniner</a>
         <br></br>
     </nav>
 
@@ -28,11 +27,9 @@
     <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
     <!-- Main content: shift it to the right by 280 pixels when the sidebar is visible -->
-    <div class="w3-main" style="margin-left:280px">
+    <div class="w3-main min-vh-100" style="margin-left:280px">
 
-        <br>
-        </br>
-        </br>
+        <br></br></br>
 
         <h2 class="w3-center">Mine Kaniner:</h2>
 
@@ -48,7 +45,7 @@
         <br />
 
         <!-- W3 HTML & CSS, CARD SETUP -->
-        <div style="width: 100%" class="d-flex flex-wrap flex-row justify-content-center">
+        <div class="d-flex flex-wrap flex-row">
             @if (@Model.Rabbits != null)
             {
                 foreach (var Rabbit in Model.Rabbits)
@@ -64,9 +61,10 @@
                             {
                                 <img class="card-image" src="@Rabbit.ImageString">
                             }
-                            <div class="container">
-                                <h4><b>@Rabbit.Name</b></h4>
-                                <p>Left-ID: @Rabbit.RabbitRegNo Right-ID: @Rabbit.BreederRegNo </p>
+                            <div class="w3-container">
+                                <h6><b>@Rabbit.Name</b></h6>
+                                <p>Left-ID: @Rabbit.RabbitRegNo</p>
+                                <p> Right-ID: @Rabbit.BreederRegNo </p>
 
                                 <a class="btn-card btn-primary btn-sm mr-1" type="button" title="Edit" asp-page="/Main/Rabbit/EditRabbit" asp-route-id="@Rabbit.RabbitRegNo" asp-route-breederRegNo="@Rabbit.BreederRegNo">
                                     <i class="fa fa-edit"></i>
@@ -81,9 +79,5 @@
             }
         </div>
     </div>
-    </br>
-    </br>
-    </br>
-
+    <br></br>
 </body>
-</html>

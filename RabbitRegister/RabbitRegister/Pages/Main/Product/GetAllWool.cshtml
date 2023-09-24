@@ -3,21 +3,28 @@
 @{
  }
 
+ <head>
+    <!-- Styling reference -->
+    <link rel="stylesheet" href="/css/site.css" />
+</head>
     
-<body>
-	<!-- Product(Wool) Table on page-->
-	<h2 class="text-center">Mine Uld-produkter</h2>
+<body class="w3-auto">
+    <div class="min-vh-100">
+        <br><br></br>
 
-	<div class="d-flex justify-content-between">
-    <div class="d-flex flex-row">
-        <div class="p-2 bd-highlight">
-            <a class="btn-create btn" asp-page="CreateWool">Opret Uld</a>
-        </div>       
-    </div>
-    </div>
+        <div class="w3-main w3-center">
+		<h2 class="text-center">Mine Uld-produkter</h2>
+
+			<div class="d-flex justify-content-between">
+				<div class="d-flex flex-row">
+					<div class="p-2 bd-highlight">
+					<a class="btn-create btn" asp-page="CreateWool">Opret Uld</a>
+					</div>       
+				</div>
+			</div>
 
 
-		<table class="table table-bordered table-hover">
+			<table class="table table-bordered table-hover">
 			<thead>
 				<tr class="@*btn-secondary active*@">
 					<th>
@@ -105,7 +112,8 @@
 					}
 				}
 			</tbody>
-		</table>
+			</table>
 
+		</div>
 	</div>
 </body>

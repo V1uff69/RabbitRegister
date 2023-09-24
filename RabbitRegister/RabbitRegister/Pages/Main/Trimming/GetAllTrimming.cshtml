@@ -4,94 +4,116 @@
     ViewData["Title"] = "Trimmings";
 }
 
-<body>
-    <br />
-    <br />
-    <h2 class="text-center">Klipninger</h2>
-    <br />
+<head>
+    <!-- Styling reference -->
+    <link rel="stylesheet" href="/css/site.css" />
+</head>
 
+<body class="w3-auto">
 
+    <!-- Sidebar -->
+    <nav class="w3-sidebar w3-round-large w3-bar-block w3-border w3-collapse w3-theme-l5" id="mySidebar">
+        <a href="javascript:void(0)" onclick="w3_close()" class="w3-right w3-xlarge w3-padding-large w3-hover-black w3-hide-large" title="Close Menu">
+            <i class="fa fa-remove"></i>
+        </a>
+        <h4 class="w3-bar-item"><b>Filtre</b></h4>
+        <a class="w3-bar-item w3-button w3-hover-dark-gray" href="/Main/Rabbit/GetAllRabbits?breederRegNo=@User.Identity.Name">Nuværende besætning</a>
+        <a class="w3-bar-item w3-button w3-hover-dark-gray" href="/Main/Rabbit/GetAllRabbits?breederRegNo=@User.Identity.Name&action=NotOwnedRabbitsWithMyBreederRegNo">Kaniner med mit Avler-nr</a>
+        <a class="w3-bar-item w3-button w3-hover-dark-gray" href="/Main/Rabbit/GetAllRabbits?breederRegNo=@User.Identity.Name&action=OwnedDeadRabbits">Ane-kaniner</a>
+        <a class="w3-bar-item w3-button w3-hover-dark-gray" href="/Main/Rabbit/GetAllRabbits?breederRegNo=@User.Identity.Name&action=AllRabbitsWithConnectionsToMe">Alle kaniner</a>
+        <br></br>
+    </nav>
 
-    <form method="post" class="form-inline">
-        <div class="input-group mb-3">
-            <input asp-for="SearchString" class="form-control mr-1" placeholder="Søg efter navn" />
-            <input type="submit" asp-route-Owner="@User.Identity.Name" asp-page-handler="NameSearch" value="Søg" class="btn btn-primary" />
+    <!-- Overlay effect when opening sidebar on small screens -->
+    <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+    <div class="w3-main min-vh-100" style="margin-left:280px">
+
+        <br></br></br>
+
+        <h2 class="w3-center">Mine Klipninger:</h2>
+
+        <!-- CREATE KNAPPER -->
+        <div class="d-flex justify-content-between">
+            <div class="d-flex flex-row">
+                <a class="btn btn-outline-green" asp-route-Owner="@User.Identity.Name" asp-page="/Main/Trimming/CreateTrimming"> Opret Klip </a>
+            </div>
         </div>
-    </form>
-@*    <form method="post" class="form-inline">
-        <div class="input-group mb-3">
-            <input asp-for="SearchId" class="form-control mr-1" placeholder="Søg efter Kanin ID" />
-            <input type="submit" asp-page-handler="RabbitIdSearch" value="Search" class="btn btn-primary" />
-        </div>
-    </form>*@
 
-    <div class="container-all">
-        <h1></h1>
-        <p class="from-group">
-            <a class="btn btn-primary text-center" style="background-color:green;margin-left:auto;margin-right:auto;display:block;margin-top:1%" asp-route-Owner="@User.Identity.Name" asp-page="/Main/Trimming/CreateTrimming"> Opret Klip </a>
-        </p>
+        <br />
+        <br />
 
-        <table class="table table-bordered table-hover table-striped table-opacity" width="100%">
-            <thead>
-                <tr>
-                    <th>
-                        Klip ID
-                        <div>
-                            <a data-toggle="tooltip" title="Sort By Id" asp-route-Owner="@User.Identity.Name" asp-page-handler="SortById"><i class="fa fa-angle-up"></i></a>
-                            <a data-toggle="tooltip" title="Sort By Id Descending" asp-route-Owner="@User.Identity.Name" asp-page-handler="SortByIdDescending"><i class="fa fa-angle-down"></i></a>
-                        </div>
-                    </th>
-                    <th>
-                        Kanin ID
-@*                        <div>
+        <form method="post" class="form-inline">
+            <div class="input-group mb-3">
+                <input asp-for="SearchString" class="form-control mr-1" placeholder="Søg efter navn" />
+                <input type="submit" asp-route-Owner="@User.Identity.Name" asp-page-handler="NameSearch" value="Søg" class="btn btn-primary" />
+            </div>
+        </form>
+
+        <div class="container-all">
+
+            <table class="table table-bordered table-hover table-striped table-opacity" width="100%">
+                <thead>
+                    <tr>
+                        <th>
+                            Klip ID
+                            <div>
+                                <a data-toggle="tooltip" title="Sort By Id" asp-route-Owner="@User.Identity.Name" asp-page-handler="SortById"><i class="fa fa-angle-up"></i></a>
+                                <a data-toggle="tooltip" title="Sort By Id Descending" asp-route-Owner="@User.Identity.Name" asp-page-handler="SortByIdDescending"><i class="fa fa-angle-down"></i></a>
+                            </div>
+                        </th>
+                        <th>
+                            Kanin ID
+                            @*                        <div>
                             <a data-toggle="tooltip" title="Sort By Id" asp-page-handler="SortByRabbitId"><i class="fa fa-angle-up"></i></a>
                             <a data-toggle="tooltip" title="Sort By Id Descending" asp-page-handler="SortByRabbitIdDescending"><i class="fa fa-angle-down"></i></a>
-                        </div>*@
-                    </th>
-                    <th> Avler ID  </th>
-                    <th> Navn  </th>
-                    <th>
-                        Dato
-                        <div>
-                            <a data-toggle="tooltip" title="Sort By Date" asp-route-Owner="@User.Identity.Name" asp-page-handler="SortByDate"><i class="fa fa-angle-up"></i></a>
-                            <a data-toggle="tooltip" title="Sort By Date Descending" asp-route-Owner="@User.Identity.Name" asp-page-handler="SortByDateDescending"><i class="fa fa-angle-down"></i></a>
-                        </div>
-                    </th>
-                    <th> Tid i min </th>
-                    <th> Hår dag 90 </th>
-                    <th> Uld tæthed </th>
-                    <th> 1. Sortering </th>
-                    <th> 2. Sortering </th>
-                    <th> Kasseret Uld </th>
-                    <th> Actions </th>
-                </tr>
-            </thead>
-            <tbody>
+                            </div>*@
+                        </th>
+                        <th> Avler ID  </th>
+                        <th> Navn  </th>
+                        <th>
+                            Dato
+                            <div>
+                                <a data-toggle="tooltip" title="Sort By Date" asp-route-Owner="@User.Identity.Name" asp-page-handler="SortByDate"><i class="fa fa-angle-up"></i></a>
+                                <a data-toggle="tooltip" title="Sort By Date Descending" asp-route-Owner="@User.Identity.Name" asp-page-handler="SortByDateDescending"><i class="fa fa-angle-down"></i></a>
+                            </div>
+                        </th>
+                        <th> Tid i min </th>
+                        <th> Hår dag 90 </th>
+                        <th> Uld tæthed </th>
+                        <th> 1. Sortering </th>
+                        <th> 2. Sortering </th>
+                        <th> Kasseret Uld </th>
+                        <th> Actions </th>
+                    </tr>
+                </thead>
+                <tbody>
 
-                @if (Model.Trimmings != null)
-                {
-                    @foreach (var item in Model.Trimmings)
+                    @if (Model.Trimmings != null)
                     {
-                        <tr>
-                            <td> @item.TrimmingId </td>
-                            <td> @item.RabbitRegNo </td>
-                            <td> @item.BreederRegNo </td>
-                            <td> @item.Name </td>
-                            <td> @item.Date.ToString("dd-MM-yyyy") </td>
-                            <td> @item.TimeUsed </td>
-                            <td> @item.HairLengthByDayNinety </td>
-                            <td> @item.WoolDensity </td>
-                            <td> @item.FirstSortmentWeight </td>
-                            <td> @item.SecondSortmentWeight </td>
-                            <td> @item.DisposableWoolWeight </td>
-                            <td>
-                                <a class="btn btn-primary btn-sm" type="button" title="Opdater" asp-route-Owner="@User.Identity.Name" asp-page="EditTrimming" asp-route-id="@item.TrimmingId"><i class="fa fa-edit"></i></a>
-                                <a class="btn btn-danger btn-sm " type="button" title="Slet" asp-route-Owner="@User.Identity.Name" asp-page="DeleteTrimming" asp-route-id="@item.TrimmingId"><i class="fa fa-trash"></i></a>
-                            </td>
-                        </tr>
+                        @foreach (var item in Model.Trimmings)
+                        {
+                            <tr>
+                                <td> @item.TrimmingId </td>
+                                <td> @item.RabbitRegNo </td>
+                                <td> @item.BreederRegNo </td>
+                                <td> @item.Name </td>
+                                <td> @item.Date.ToString("dd-MM-yyyy") </td>
+                                <td> @item.TimeUsed </td>
+                                <td> @item.HairLengthByDayNinety </td>
+                                <td> @item.WoolDensity </td>
+                                <td> @item.FirstSortmentWeight </td>
+                                <td> @item.SecondSortmentWeight </td>
+                                <td> @item.DisposableWoolWeight </td>
+                                <td>
+                                    <a class="btn btn-primary btn-sm" type="button" title="Opdater" asp-route-Owner="@User.Identity.Name" asp-page="EditTrimming" asp-route-id="@item.TrimmingId"><i class="fa fa-edit"></i></a>
+                                    <a class="btn btn-danger btn-sm " type="button" title="Slet" asp-route-Owner="@User.Identity.Name" asp-page="DeleteTrimming" asp-route-id="@item.TrimmingId"><i class="fa fa-trash"></i></a>
+                                </td>
+                            </tr>
+                        }
                     }
-                }
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
     </div>
 </body>
