@@ -8,11 +8,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - RabbitRegister</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <!-- BOOTSTRAP -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/RabbitRegister.styles.css" asp-append-version="true" />
-
-    <!-- FONT AWESOME STYLESHEET -->
+    <!-- FONT AWESOME STYLESHEET: Fa-fa trash mm. -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- W3 BLACK THEME -->
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
@@ -24,111 +27,110 @@
 
 <body class="w3-auto">
 
-        <!-- NAVBAR SETUP -->
-        <div class="w3-top w3-auto w3-theme-l1 w3-padding w3-round-xxlarge w3-card-2">
-            <div class="w3-col m2">
-                <!-- MENU -->
-                <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-round-xxlarge w3-theme-l1" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
-                <a href="/Index" class="w3-bar-item w3-text-light-grey w3-button w3-round-xxlarge">HJEM</a>
-            </div>
-            <a href="/Main/Store/Store" class="w3-bar-item w3-text-light-grey w3-button w3-round-xxlarge">ULD & GARN</a>
-            <a href="/Main/Rabbit/RabbitStore" class="w3-bar-item w3-text-light-grey w3-button w3-round-xxlarge">KANINER</a>
+    <!-- NAVBAR SETUP -->
+    <div class="w3-top w3-auto w3-theme-l1 w3-padding w3-round-xxlarge w3-card-2">
+        <div class="w3-col m2">
+            <!-- MENU -->
+            <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-round-xxlarge w3-theme-l1" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
+            <a href="/Index" class="w3-bar-item w3-text-light-grey w3-button w3-round-xxlarge">HJEM</a>
+        </div>
+        <a href="/Main/Store/Store" class="w3-bar-item w3-text-light-grey w3-button w3-round-xxlarge">ULD & GARN</a>
+        <a href="/Main/Rabbit/RabbitStore" class="w3-bar-item w3-text-light-grey w3-button w3-round-xxlarge">KANINER</a>
 
-            <!-- AVLER MENU -->
-            @{
-                if (Context.User.Identity.Name != null)
-                {
-                    <div class="w3-dropdown-hover">
-                        <button class="w3-bar-item w3-button w3-round-xxlarge w3-text-light-grey">REGISTER <i class="fa fa-caret-down"></i></button>
-                        <div class="w3-dropdown-content w3-bar-block w3-dark-grey">
-                            <a asp-area="" asp-page="/Main/Rabbit/GetAllRabbits" asp-route-breederRegNo="@Context.User.Identity.Name" class="w3-bar-item w3-text-light-grey w3-button">MINE KANINER</a>
-                            <a asp-area="" asp-page="/Main/Trimming/GetAllTrimming" asp-route-Owner="@Context.User.Identity.Name" class="w3-bar-item w3-text-light-grey w3-button">MINE KLIPNINGER</a>
-                            <a asp-area="" asp-page="/Main/Product/GetAllWool" asp-route-breederRegNo="@Context.User.Identity.Name" class="w3-bar-item w3-text-light-grey w3-button">MIT ULD</a>
-                            <a asp-area="" asp-page="/Main/Product/GetAllYarn" asp-route-breederRegNo="@Context.User.Identity.Name" class="w3-bar-item w3-text-light-grey w3-button">MIT GARN</a>
-                        </div>
+        <!-- AVLER MENU -->
+        @{
+            if (Context.User.Identity.Name != null)
+            {
+                <div class="w3-dropdown-hover">
+                    <button class="w3-bar-item w3-button w3-round-xxlarge w3-text-light-grey">REGISTER <i class="fa fa-caret-down"></i></button>
+                    <div class="w3-dropdown-content w3-bar-block w3-dark-grey">
+                        <a asp-area="" asp-page="/Main/Rabbit/GetAllRabbits" asp-route-breederRegNo="@Context.User.Identity.Name" class="w3-bar-item w3-text-light-grey w3-button">MINE KANINER</a>
+                        <a asp-area="" asp-page="/Main/Trimming/GetAllTrimming" asp-route-Owner="@Context.User.Identity.Name" class="w3-bar-item w3-text-light-grey w3-button">MINE KLIPNINGER</a>
+                        <a asp-area="" asp-page="/Main/Product/GetAllWool" asp-route-breederRegNo="@Context.User.Identity.Name" class="w3-bar-item w3-text-light-grey w3-button">MIT ULD</a>
+                        <a asp-area="" asp-page="/Main/Product/GetAllYarn" asp-route-breederRegNo="@Context.User.Identity.Name" class="w3-bar-item w3-text-light-grey w3-button">MIT GARN</a>
                     </div>
-                }
+                </div>
+            }
+        }
+
+        <!-- LOGIN / LOGOUT / UPDATE -->
+        @{
+            if (Context.User.Identity.Name == null)
+            {
+                <a asp-area="" asp-page="/Main/LogIn/LogInPage" class="w3-bar-item w3-text-light-grey w3-button w3-round-xxlarge w3-right"> <i class="fa fa-user-circle w3-xlarge" style="color:dimgray"> </i> LOGIN</a>
             }
 
-            <!-- LOGIN / LOGOUT / UPDATE -->
-            @{
-                if (Context.User.Identity.Name == null)
-                {
-                    <a asp-area="" asp-page="/Main/LogIn/LogInPage" class="w3-bar-item w3-text-light-grey w3-button w3-round-xxlarge w3-right"> <i class="fa fa-user-circle w3-xlarge" style="color:dimgray"> </i> LOGIN</a>
-                }
+            //if (Context.User.Identity.Name == null)
+            //{
+            //    //<button onclick="loadloginform()" class="w3-bar-item w3-text-light-grey w3-button w3-round-xxlarge w3-right">
+            //    //    <i class="fa fa-user-circle w3-xlarge" style="color:dimgray"></i> login
+            //    //</button>
 
-                //if (Context.User.Identity.Name == null)
-                //{
-                //    //<button onclick="loadloginform()" class="w3-bar-item w3-text-light-grey w3-button w3-round-xxlarge w3-right">
-                //    //    <i class="fa fa-user-circle w3-xlarge" style="color:dimgray"></i> login
-                //    //</button>
+            //    <button onclick="document.getElementById('loginModal').style.display='block'" class="w3-bar-item w3-text-light-grey w3-button w3-round-xxlarge w3-right"> <i class="fa fa-user-circle w3-xlarge" style="color:dimgray"> </i> LOGIN </button>
 
-                //    <button onclick="document.getElementById('loginModal').style.display='block'" class="w3-bar-item w3-text-light-grey w3-button w3-round-xxlarge w3-right"> <i class="fa fa-user-circle w3-xlarge" style="color:dimgray"> </i> LOGIN </button>
+            //    <div id="loginModal" class="w3-modal">
+            //        <div class="w3-modal-content w3-card-4 w3-animate-top" style="max-width:600px">
 
-                //    <div id="loginModal" class="w3-modal">
-                //        <div class="w3-modal-content w3-card-4 w3-animate-top" style="max-width:600px">
+            //            <div class="w3-center">
+            //                <br>
+            //                <span onclick="document.getElementById('loginModal').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
 
-                //            <div class="w3-center">
-                //                <br>
-                //                <span onclick="document.getElementById('loginModal').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
+            //                <!-- <img src="img_avatar4.png" alt="Avatar" style="width:30%" class="w3-circle w3-margin-top"> -->
+            //            </div>
 
-                //                <!-- <img src="img_avatar4.png" alt="Avatar" style="width:30%" class="w3-circle w3-margin-top"> -->
-                //            </div>
+            //            <div id="loginFormContainer">
+            //                <!-- AJAX login form will be loaded here -->
+            //            </div>
 
-                //            <div id="loginFormContainer">
-                //                <!-- AJAX login form will be loaded here -->
-                //            </div>
+            //            <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+            //                <button onclick="document.getElementById('loginModal').style.display='none'" type="button" class="w3-button w3-red">Cancel</button>
+            //                <span class="w3-right w3-padding w3-hide-small">Forgot <a href="#">password?</a></span>
+            //            </div>
+            //        </div>
+            //    </div>
+            //}
 
-                //            <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
-                //                <button onclick="document.getElementById('loginModal').style.display='none'" type="button" class="w3-button w3-red">Cancel</button>
-                //                <span class="w3-right w3-padding w3-hide-small">Forgot <a href="#">password?</a></span>
-                //            </div>
-                //        </div>
-                //    </div>
-                //}
-
-                else
-                {
-                    <div class="w3-dropdown-hover w3-right">
-                        <button class="w3-button w3-round-xxlarge w3-text-light-grey">
-                            <i class="fa fa-user-circle w3-xlarge" style="color:steelblue"></i>
-                            ID: @Context.User.Identity.Name
-                        </button>
-                        <div class="w3-dropdown-content w3-bar-block w3-dark-grey">
-                            <a asp-area="" asp-route-id="@Context.User.Identity.Name" asp-page="/Main/Breeder/EditBreeder" class="w3-bar-item w3-text-light-grey w3-button">UPDATE </a>
-                            <a asp-area="" asp-page="/Main/LogIn/LogOutPage" class="w3-bar-item w3-text-light-grey w3-button">LOGOUT </a>
-                        </div>
+            else
+            {
+                <div class="w3-dropdown-hover w3-right">
+                    <button class="w3-button w3-round-xxlarge w3-text-light-grey">
+                        <i class="fa fa-user-circle w3-xlarge" style="color:steelblue"></i>
+                        ID: @Context.User.Identity.Name
+                    </button>
+                    <div class="w3-dropdown-content w3-bar-block w3-dark-grey">
+                        <a asp-area="" asp-route-id="@Context.User.Identity.Name" asp-page="/Main/Breeder/EditBreeder" class="w3-bar-item w3-text-light-grey w3-button">UPDATE </a>
+                        <a asp-area="" asp-page="/Main/LogIn/LogOutPage" class="w3-bar-item w3-text-light-grey w3-button">LOGOUT </a>
                     </div>
-                }
+                </div>
             }
+        }
 
-            <!-- ADMIN KNAP -->
-            @{
-                if ((await AuthorizationService.AuthorizeAsync(User, null, "AdminOnly")).Succeeded)
-                {
-                    <a asp-area="" asp-page="/Main/Breeder/GetAllBreeders" class="w3-bar-item w3-text-light-grey w3-button w3-round-xxlarge w3-right">BRUGERE  </a>
-                }
+        <!-- ADMIN KNAP -->
+        @{
+            if ((await AuthorizationService.AuthorizeAsync(User, null, "AdminOnly")).Succeeded)
+            {
+                <a asp-area="" asp-page="/Main/Breeder/GetAllBreeders" class="w3-bar-item w3-text-light-grey w3-button w3-round-xxlarge w3-right">BRUGERE  </a>
             }
+        }
 
-            <!-- KURV -->
-            <a asp-page="/Main/Store/Basket" class="w3-bar-item w3-text-light-grey w3-button w3-round-xxlarge w3-margin-right w3-right"> <i class="fa fa-shopping-bag" style="font-size:24px; color:dimgray"> </i></a>
-            <div>
-                @if (TempData.ContainsKey("Notification"))
-                {
-                    // Display notification
-                    <p>@TempData["Notification"]</p>
-                }
-            </div>
+        <!-- KURV -->
+        <a asp-page="/Main/Store/Basket" class="w3-bar-item w3-text-light-grey w3-button w3-round-xxlarge w3-margin-right w3-right"> <i class="fa fa-shopping-bag" style="font-size:24px; color:dimgray"> </i></a>
+        <div>
+            @if (TempData.ContainsKey("Notification"))
+            {
+                // Display notification
+                <p>@TempData["Notification"]</p>
+            }
         </div>
     </div>
 
-        <div class="w3-layer">
-            <div class="w3-container">
-                <main role="main" class="pb-3">
-                    @RenderBody()
-                </main>
-            </div>
+    <div class="w3-layer">
+        <div class="w3-container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
         </div>
+    </div>
 
     <footer id="myFooter">
         <div class="w3-container w3-round w3-theme-l1 w3-border-top w3-padding-16">

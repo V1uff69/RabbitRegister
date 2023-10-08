@@ -51,7 +51,7 @@
                 </div>
                 <div>
                     <p>
-                        @if (Model.Rabbit != null)
+                        @if (Model.Rabbit != null && User.Identity != null)
                         {
                             <button class="btn-primary" value="Klip Kanin" onclick="window.location.href='/Main/Trimming/CreateTrimming?Owner=@User.Identity.Name&RabbitRegNo=@Model.Rabbit.RabbitRegNo&BreederRegNo=@Model.Rabbit.BreederRegNo'"> Klip Kanin </button>
                             <button class="btn-primary" value="Klippe Historik" onclick="window.location.href='/Main/Trimming/GetAllTrimming?RabbitRegNo=@Model.Rabbit.RabbitRegNo&BreederRegNo=@Model.Rabbit.BreederRegNo'"> Klippe Historik</button>
