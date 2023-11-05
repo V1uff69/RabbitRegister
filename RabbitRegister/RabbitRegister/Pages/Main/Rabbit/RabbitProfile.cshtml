@@ -15,9 +15,6 @@
         <h2 class="text-center">Profil:</h2>
         <br />
 
-        @*<form>
-            <input type="" onclick="history.go(-1)">
-        </form>*@
         <div class="w3-button w3-light-blue w3-text-white w3-hover-pale-blue w3-hover-text-white w3-round-large w3-ripple" type="" onclick="history.go(-1)"><b>Tilbage</b></div>
 
         @if (Model.Rabbit != null)
@@ -47,8 +44,8 @@
                         <img class="card-image" src="@Model.Rabbit.ImageString">
                     }
 
-                    <h5>RabbitRegNo: @Model.Rabbit?.RabbitRegNo</h5>
-                    <h5>BreederRegNo: @Model.Rabbit?.OriginRegNo</h5>
+                    <h5>Venstre øre-ID: @Model.Rabbit?.RabbitRegNo</h5>
+                    <h5>Højre øre-ID: @Model.Rabbit?.OriginRegNo</h5>
                 </div>
                 <div>
                     <p>

@@ -19,13 +19,10 @@
         <form method="post" class="form-inline">
             <input type="hidden" name="breederRegNo" value="@Model.BreederRegNo" />
             <div class="input-group">
-                <input asp-for="SearchString" class="form-control" placeholder="Kælenavn"/>
+                <input asp-for="SearchString" class="form-control" placeholder="Kælenavn" />
                 <input type="submit" asp-page-handler="SearchByName" value="Search" class="btn btn-primary" />
             </div>
         </form>
-        <a class="w3-bar-item w3-button w3-hover-dark-gray" href="/Main/Rabbit/GetAllRabbits?breederRegNo=@User.Identity.Name&action=NotOwnedRabbitsWithMyBreederRegNo">Kaniner med mit Avler-nr</a>
-        <a class="w3-bar-item w3-button w3-hover-dark-gray" href="/Main/Rabbit/GetAllRabbits?breederRegNo=@User.Identity.Name&action=OwnedDeadRabbits">Ane-kaniner</a>
-        <a class="w3-bar-item w3-button w3-hover-dark-gray" href="/Main/Rabbit/GetAllRabbits?breederRegNo=@User.Identity.Name&action=AllRabbitsWithConnectionsToMe">Alle kaniner</a>
         <br></br>
     </nav>
 
@@ -44,7 +41,6 @@
             <div>
                 <br>
                 <a class="w3-button w3-ripple w3-green w3-hover-light-green w3-hover-text-white w3-round-large" asp-page="CreateRabbit">Opret Kanin</a> <!--  href="/Main/Rabbit/CreateRabbit/" -->
-                @*<a class="w3-button w3-ripple w3-green w3-hover-light-green w3-hover-text-white w3-round-large w3-margin-left" asp-route-Owner="@User.Identity.Name" asp-page="/Main/Trimming/CreateTrimming"><b>Opret Klip</b></a>*@
             </div>
             <br>
             <div class="w3-center">
@@ -64,8 +60,7 @@
             </div>
         </div>
 
-        <br />
-        <br />
+        <br><br>
 
         <!-- W3 HTML & CSS, CARD SETUP -->
         <div class="d-flex flex-wrap flex-row">
@@ -73,31 +68,31 @@
             {
                 foreach (var Rabbit in Model.Rabbits)
                 {
-                    <a class="click-card flex-item" asp-page="/Main/Rabbit/RabbitProfile" asp-route-id="@Rabbit.RabbitRegNo" asp-route-breederRegNo="@Rabbit.OriginRegNo">
+                    <a class="click-card flex-item" asp-page="/Main/Rabbit/RabbitProfile" asp-route-id="@Rabbit.RabbitRegNo" asp-route-originRegNo="@Rabbit.OriginRegNo">
 
-                            <div class="card">
-                                @if (Rabbit.ImageString == "/Images/Rabbits/" || Rabbit.ImageString == null)
-                                {
-                                    <img class="card-image" src="\Images\NoImage.jpg">
-                                }
-                                else
-                                {
-                                    <img class="card-image" src="@Rabbit.ImageString">
-                                }
-                                <div class="w3-container">
-                                    <h6><b>@Rabbit.Name</b></h6>
-                                    <p>Left-ID: @Rabbit.RabbitRegNo</p>
-                                    <p> Right-ID: @Rabbit.OriginRegNo </p>
+                        <div class="card">
+                            @if (Rabbit.ImageString == "/Images/Rabbits/" || Rabbit.ImageString == null)
+                            {
+                                <img class="card-image" src="\Images\NoImage.jpg">
+                            }
+                            else
+                            {
+                                <img class="card-image" src="@Rabbit.ImageString">
+                            }
+                            <div class="w3-container">
+                                <h6><b>@Rabbit.Name</b></h6>
+                                <p>Left-ID: @Rabbit.RabbitRegNo</p>
+                                <p> Right-ID: @Rabbit.OriginRegNo </p>
 
-                                    <a class="btn-card btn-primary btn-sm mr-1" type="button" title="Edit" asp-page="/Main/Rabbit/EditRabbit" asp-route-id="@Rabbit.RabbitRegNo" asp-route-breederRegNo="@Rabbit.OriginRegNo">
-                                        <i class="fa fa-edit"></i>
-                                    </a>
-                                    <a class="btn-card btn-danger btn-sm" type="button" title="Delete" asp-page="/Main/Rabbit/DeleteRabbit" asp-route-id="@Rabbit.RabbitRegNo" asp-route-breederRegNo="@Rabbit.OriginRegNo">
-                                        <i class="fa fa-trash"></i>
-                                    </a>
-                                </div>
+                                <a class="btn-card btn-primary btn-sm mr-1" type="button" title="Edit" asp-page="/Main/Rabbit/EditRabbit" asp-route-id="@Rabbit.RabbitRegNo" asp-route-breederRegNo="@Rabbit.OriginRegNo">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <a class="btn-card btn-danger btn-sm" type="button" title="Delete" asp-page="/Main/Rabbit/DeleteRabbit" asp-route-id="@Rabbit.RabbitRegNo" asp-route-breederRegNo="@Rabbit.OriginRegNo">
+                                    <i class="fa fa-trash"></i>
+                                </a>
                             </div>
-                        </a>
+                        </div>
+                    </a>
                 }
             }
         </div>
