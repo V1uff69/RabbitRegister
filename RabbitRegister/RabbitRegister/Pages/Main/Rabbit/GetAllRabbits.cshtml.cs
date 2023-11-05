@@ -18,6 +18,9 @@ namespace RabbitRegister.Pages.Main.Rabbit
             _rabbitService = rabbitService;
         }
 
+        [BindProperty(SupportsGet = true)]
+        public int BreederRegNo { get; set; }
+
         public List<Model.Rabbit>? Rabbits { get; private set; }
 
         [BindProperty]

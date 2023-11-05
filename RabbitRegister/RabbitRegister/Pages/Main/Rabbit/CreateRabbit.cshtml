@@ -21,21 +21,13 @@
                     <label asp-for="@Model.RabbitCreateDto.Owner" class="control-label">Nuværende ejer </label>
                 </div>
                 <div class="col-75">
-                    <input asp-for="@Model.RabbitCreateDto.Owner" value="@User.Identity.Name" class="form-control"/>
+                    <input asp-for="@Model.RabbitCreateDto.Owner" value="@User.Identity.Name" class="form-control" readonly="@true" />
                 </div>
             </div>
 
-            @*<div class="row">
-                <div class="col-25">
-                    <label asp-for="@Model.BreederList" class="control-label">Nuværende ejer </label>
-                </div>
-                <div class="col-75">
-                    <input asp-for="@Model.BreederList" value="@User.Identity.Name" class="form-control" readonly="@true" />
-                </div>
-            </div>*@
-
+            <!-- DROPDOWN OWNER -->
             @*<div class="create-form">
-                <label asp-for="@Model.RabbitCreateDto.Owner" class="control-label">Ejers af (Avler-ID): </label>
+                <label asp-for="@Model.RabbitCreateDto.Owner" class="control-label">Nuværende ejer </label>
                 <select asp-for="@Model.RabbitCreateDto.Owner" asp-items="@Model.BreederList" class="form-control"></select>
                 <span asp-validation-for="@Model.RabbitCreateDto.Owner" class="text-danger"></span>
             </div>*@
@@ -195,16 +187,16 @@
                 var raceDropdown = document.getElementById("raceDropdown");
                 var colorDropdown = document.getElementById("colorDropdown");
 
-                // Array af mulige farver for hver race
+                // Array af lovlige farver for hver race
                 var colorsByRace = {
                     "Angora": ["Grå", "Gul", "Blå", "Hvid"],
                     "Satin-Angora": ["Beige", "Sort", "Rød", "Brun"]
                 };
 
-                // Funktion til at opdatere farvedropdown baseret på valgt race
+                // Opdatere farvedropdown baseret på race
                 function updateColorDropdown() {
                     var selectedRace = raceDropdown.value;
-                    colorDropdown.innerHTML = ""; // Fjern tidligere indhold
+                    colorDropdown.innerHTML = "";
 
                     colorsByRace[selectedRace].forEach(function (color) {
                         var option = document.createElement("option");
@@ -214,7 +206,7 @@
                     });
                 }
 
-                // Lyt efter ændringer i racen og opdater farven
+                // Lytter efter ændringer i racen, opdatere farven
                 raceDropdown.addEventListener("change", updateColorDropdown);
 
                 // Initial opdatering ved siden indlæsning
