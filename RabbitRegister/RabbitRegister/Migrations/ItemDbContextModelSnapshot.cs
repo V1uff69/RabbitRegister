@@ -137,7 +137,7 @@ namespace RabbitRegister.Migrations
                         .HasColumnType("int")
                         .HasColumnOrder(0);
 
-                    b.Property<int>("BreederRegNo")
+                    b.Property<int>("OriginRegNo")
                         .HasColumnType("int")
                         .HasColumnOrder(1);
 
@@ -192,7 +192,7 @@ namespace RabbitRegister.Migrations
                     b.Property<int?>("Weight")
                         .HasColumnType("int");
 
-                    b.HasKey("RabbitRegNo", "BreederRegNo");
+                    b.HasKey("RabbitRegNo", "OriginRegNo");
 
                     b.HasIndex("Owner");
 
@@ -206,9 +206,6 @@ namespace RabbitRegister.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TrimmingId"));
-
-                    b.Property<int>("BreederRegNo")
-                        .HasColumnType("int");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
@@ -226,6 +223,9 @@ namespace RabbitRegister.Migrations
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
+
+                    b.Property<int>("OriginRegNo")
+                        .HasColumnType("int");
 
                     b.Property<int>("RabbitRegNo")
                         .HasColumnType("int");

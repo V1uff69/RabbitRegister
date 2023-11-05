@@ -44,7 +44,7 @@
                 <div class="w3-dropdown-hover">
                     <button class="w3-bar-item w3-button w3-round-xxlarge w3-text-light-grey">REGISTER <i class="fa fa-caret-down"></i></button>
                     <div class="w3-dropdown-content w3-bar-block w3-dark-grey">
-                        <a asp-area="" asp-page="/Main/Rabbit/GetAllRabbits" asp-route-breederRegNo="@Context.User.Identity.Name" class="w3-bar-item w3-text-light-grey w3-button">MINE KANINER</a>
+                        <a asp-area="" asp-page="/Main/Rabbit/GetAllRabbits" class="w3-bar-item w3-text-light-grey w3-button">MINE KANINER</a>
                         <a asp-area="" asp-page="/Main/Trimming/GetAllTrimming" asp-route-Owner="@Context.User.Identity.Name" class="w3-bar-item w3-text-light-grey w3-button">MINE KLIPNINGER</a>
                         <a asp-area="" asp-page="/Main/Product/GetAllWool" asp-route-breederRegNo="@Context.User.Identity.Name" class="w3-bar-item w3-text-light-grey w3-button">MIT ULD</a>
                         <a asp-area="" asp-page="/Main/Product/GetAllYarn" asp-route-breederRegNo="@Context.User.Identity.Name" class="w3-bar-item w3-text-light-grey w3-button">MIT GARN</a>

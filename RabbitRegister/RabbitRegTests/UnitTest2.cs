@@ -59,7 +59,7 @@ namespace Test2
             int BreederRegNo = 5095;
 
             // Act
-            List<Trimming> trimmingsByRabbitRegNoAndBreederRegNo = _trimmingService.GetTrimmingByRabbitRegNoAndBreederRegNo(RabbitRegNo, BreederRegNo);
+            List<Trimming> trimmingsByRabbitRegNoAndBreederRegNo = _trimmingService.GetTrimmingByRabbitRegNoAndOriginRegNo(RabbitRegNo, BreederRegNo);
 
             // Assert
             var expected = 4;

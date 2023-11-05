@@ -80,7 +80,7 @@ namespace RabbitRegister.Services.TrimmingService
 					if (trim.TrimmingId == id)
 					{
 						trim.RabbitRegNo = trimming.RabbitRegNo;
-						trim.BreederRegNo = trimming.BreederRegNo;
+						trim.OriginRegNo = trimming.OriginRegNo;
 						trim.Name = trimming.Name;
 						trim.Date = trimming.Date;
 						trim.TimeUsed = trimming.TimeUsed;
@@ -205,18 +205,18 @@ namespace RabbitRegister.Services.TrimmingService
             }
         }
 		/// <summary>
-		/// Returns a list of trimmings matching RabbitRegNo and BreederRegNo
+		/// Returns a list of trimmings matching RabbitRegNo and OriginRegNo
 		/// </summary>
 		/// <param name="RabbitRegNo"></param>
-		/// <param name="BreederRegNo"></param>
+		/// <param name="OriginRegNo"></param>
 		/// <returns></returns>
-		public List<Trimming> GetTrimmingByRabbitRegNoAndBreederRegNo (int RabbitRegNo, int BreederRegNo)
+		public List<Trimming> GetTrimmingByRabbitRegNoAndOriginRegNo (int RabbitRegNo, int OriginRegNo)
 		{
 			var Trimmings = GetTrimmings();
 			List<Trimming> TrimmingByRabbitRegNo = new List<Trimming>();
 			foreach (var Trimming in Trimmings)
 			{
-				if (Trimming.RabbitRegNo == RabbitRegNo && Trimming.BreederRegNo == BreederRegNo)
+				if (Trimming.RabbitRegNo == RabbitRegNo && Trimming.OriginRegNo == OriginRegNo)
 					TrimmingByRabbitRegNo.Add(Trimming);
 			}
 			return TrimmingByRabbitRegNo;
@@ -233,7 +233,7 @@ namespace RabbitRegister.Services.TrimmingService
 			List<Trimming> trimmingsByOwner = new List<Trimming>();
 			foreach (var Rabbit in rabbitsByOwner)
 			{
-				var trimmingsForRabbit = _trimmings.Where(trimming => trimming.BreederRegNo == Rabbit.BreederRegNo && trimming.RabbitRegNo == Rabbit.RabbitRegNo).ToList();
+				var trimmingsForRabbit = _trimmings.Where(trimming => trimming.OriginRegNo == Rabbit.OriginRegNo && trimming.RabbitRegNo == Rabbit.RabbitRegNo).ToList();
 
 				trimmingsByOwner.AddRange(trimmingsForRabbit);
 			}

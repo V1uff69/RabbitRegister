@@ -55,10 +55,10 @@
                 </div>
                 <div class="w3-show-inline-block">
                     <div class="w3-bar w3-round-large" id="tabButtons">
-                        <a class="w3-bar-item w3-button tablink w3-ripple w3-text-white w3-light-blue w3-hover-pale-blue" href="/Main/Rabbit/GetAllRabbits?breederRegNo=@User.Identity.Name">Nuværende besætning</a>
-                        <a class="w3-bar-item w3-button tablink w3-ripple w3-text-white w3-light-blue w3-hover-pale-blue" href="/Main/Rabbit/GetAllRabbits?breederRegNo=@User.Identity.Name&action=NotOwnedRabbitsWithMyBreederRegNo">Kaniner med mit Avler-nr</a>
-                        <a class="w3-bar-item w3-button tablink w3-ripple w3-text-white w3-light-blue w3-hover-pale-blue" href="/Main/Rabbit/GetAllRabbits?breederRegNo=@User.Identity.Name&action=OwnedDeadRabbits">Ane-kaniner</a>
-                        <a class="w3-bar-item w3-button tablink w3-ripple w3-text-white w3-light-blue w3-hover-pale-blue" href="/Main/Rabbit/GetAllRabbits?breederRegNo=@User.Identity.Name&action=AllRabbitsWithConnectionsToMe">Alle kaniner</a>
+                        <a class="w3-bar-item w3-button tablink w3-ripple w3-text-white w3-light-blue w3-hover-pale-blue" href="/Main/Rabbit/GetAllRabbits?">Nuværende besætning</a>
+                        <a class="w3-bar-item w3-button tablink w3-ripple w3-text-white w3-light-blue w3-hover-pale-blue" href="/Main/Rabbit/GetAllRabbits?action=NotOwnedRabbitsWithMyBreederRegNo">Kaniner med mit Avler-nr</a>
+                        <a class="w3-bar-item w3-button tablink w3-ripple w3-text-white w3-light-blue w3-hover-pale-blue" href="/Main/Rabbit/GetAllRabbits?action=OwnedDeadRabbits">Ane-kaniner</a>
+                        <a class="w3-bar-item w3-button tablink w3-ripple w3-text-white w3-light-blue w3-hover-pale-blue" href="/Main/Rabbit/GetAllRabbits?action=AllRabbitsWithConnectionsToMe">Alle kaniner</a>
                     </div>
                 </div>
             </div>
@@ -73,7 +73,7 @@
             {
                 foreach (var Rabbit in Model.Rabbits)
                 {
-                        <a class="click-card flex-item" asp-page="/Main/Rabbit/RabbitProfile" asp-route-id="@Rabbit.RabbitRegNo" asp-route-breederRegNo="@Rabbit.BreederRegNo">
+                    <a class="click-card flex-item" asp-page="/Main/Rabbit/RabbitProfile" asp-route-id="@Rabbit.RabbitRegNo" asp-route-breederRegNo="@Rabbit.OriginRegNo">
 
                             <div class="card">
                                 @if (Rabbit.ImageString == "/Images/Rabbits/" || Rabbit.ImageString == null)
@@ -87,12 +87,12 @@
                                 <div class="w3-container">
                                     <h6><b>@Rabbit.Name</b></h6>
                                     <p>Left-ID: @Rabbit.RabbitRegNo</p>
-                                    <p> Right-ID: @Rabbit.BreederRegNo </p>
+                                    <p> Right-ID: @Rabbit.OriginRegNo </p>
 
-                                    <a class="btn-card btn-primary btn-sm mr-1" type="button" title="Edit" asp-page="/Main/Rabbit/EditRabbit" asp-route-id="@Rabbit.RabbitRegNo" asp-route-breederRegNo="@Rabbit.BreederRegNo">
+                                    <a class="btn-card btn-primary btn-sm mr-1" type="button" title="Edit" asp-page="/Main/Rabbit/EditRabbit" asp-route-id="@Rabbit.RabbitRegNo" asp-route-breederRegNo="@Rabbit.OriginRegNo">
                                         <i class="fa fa-edit"></i>
                                     </a>
-                                    <a class="btn-card btn-danger btn-sm" type="button" title="Delete" asp-page="/Main/Rabbit/DeleteRabbit" asp-route-id="@Rabbit.RabbitRegNo" asp-route-breederRegNo="@Rabbit.BreederRegNo">
+                                    <a class="btn-card btn-danger btn-sm" type="button" title="Delete" asp-page="/Main/Rabbit/DeleteRabbit" asp-route-id="@Rabbit.RabbitRegNo" asp-route-breederRegNo="@Rabbit.OriginRegNo">
                                         <i class="fa fa-trash"></i>
                                     </a>
                                 </div>

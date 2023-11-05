@@ -42,11 +42,11 @@
                     <span class="text-danger" style="@(@Model.exceptionFound ? "display:block" : "display:none")">@(Model.exceptionText)</span>
                 </div>
                 <div class="col-25">
-                    <label asp-for="@Model.RabbitCreateDto.BreederRegNo" class="control-label"></label>
+                    <label asp-for="@Model.RabbitCreateDto.OriginRegNo" class="control-label"></label>
                 </div>
                 <div class="col-25">
-                    <input asp-for="@Model.RabbitCreateDto.BreederRegNo" class="form-control" value="" placeholder="Højre-øre ID" />
-                    <span asp-validation-for="@Model.RabbitCreateDto.BreederRegNo" class="text-danger"></span>
+                    <input asp-for="@Model.RabbitCreateDto.OriginRegNo" class="form-control" value="" placeholder="Højre-øre ID" />
+                    <span asp-validation-for="@Model.RabbitCreateDto.OriginRegNo" class="text-danger"></span>
                 </div>
             </div>
 

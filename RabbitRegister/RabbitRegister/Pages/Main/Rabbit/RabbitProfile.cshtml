@@ -23,10 +23,10 @@
         @if (Model.Rabbit != null)
         {
             <div class="d-flex flex-row justify-content-end" style="margin-bottom: 5px; margin-top: 0px;">
-                <a class="btn-card btn-primary btn-sm mr-1" type="button" title="Edit" asp-page="/Main/Rabbit/EditRabbit" asp-route-id="@Model.Rabbit.RabbitRegNo" asp-route-breederRegNo="@Model.Rabbit.BreederRegNo">
+                <a class="btn-card btn-primary btn-sm mr-1" type="button" title="Edit" asp-page="/Main/Rabbit/EditRabbit" asp-route-id="@Model.Rabbit.RabbitRegNo" asp-route-originRegNo="@Model.Rabbit.OriginRegNo">
                     <i class="fa fa-edit"></i>
                 </a>
-                <a class="btn-card btn-danger btn-sm" type="button" title="Delete" asp-page="/Main/Rabbit/DeleteRabbit" asp-route-id="@Model.Rabbit.RabbitRegNo" asp-route-breederRegNo="@Model.Rabbit.BreederRegNo">
+                <a class="btn-card btn-danger btn-sm" type="button" title="Delete" asp-page="/Main/Rabbit/DeleteRabbit" asp-route-id="@Model.Rabbit.RabbitRegNo" asp-route-originRegNo="@Model.Rabbit.OriginRegNo">
                     <i class="fa fa-trash"></i>
                 </a>
             </div>
@@ -48,14 +48,14 @@
                     }
 
                     <h5>RabbitRegNo: @Model.Rabbit?.RabbitRegNo</h5>
-                    <h5>BreederRegNo: @Model.Rabbit?.BreederRegNo</h5>
+                    <h5>BreederRegNo: @Model.Rabbit?.OriginRegNo</h5>
                 </div>
                 <div>
                     <p>
                         @if (Model.Rabbit != null && User.Identity != null)
                         {
-                            <button class="btn-primary" value="Klip Kanin" onclick="window.location.href='/Main/Trimming/CreateTrimming?Owner=@User.Identity.Name&RabbitRegNo=@Model.Rabbit.RabbitRegNo&BreederRegNo=@Model.Rabbit.BreederRegNo'"> Klip Kanin </button>
-                            <button class="btn-primary" value="Klippe Historik" onclick="window.location.href='/Main/Trimming/GetAllTrimming?RabbitRegNo=@Model.Rabbit.RabbitRegNo&BreederRegNo=@Model.Rabbit.BreederRegNo'"> Klippe Historik</button>
+                            <button class="btn-primary" value="Klip Kanin" onclick="window.location.href='/Main/Trimming/CreateTrimming?Owner=@User.Identity.Name&RabbitRegNo=@Model.Rabbit.RabbitRegNo&OriginRegNo=@Model.Rabbit.OriginRegNo'"> Klip Kanin </button>
+                            <button class="btn-primary" value="Klippe Historik" onclick="window.location.href='/Main/Trimming/GetAllTrimming?RabbitRegNo=@Model.Rabbit.RabbitRegNo&OriginRegNo=@Model.Rabbit.OriginRegNo'"> Klippe Historik</button>
                         }
                     </p>
                 </div>

@@ -35,8 +35,10 @@ namespace RabbitRegister.Pages.Main.Rabbit
         /// <param name="breederRegNo">Brugerens/Avler-ID</param>
         /// <param name="action">"Handling" Bestemmer hvordan kaninerne filtreres ved brug af LINQ og Lamda</param>
         /// <returns>GetOwnedAliveRabbits som standard, eller en af de andre metoder via Filter knappen</returns>
-        public IActionResult OnGet(int breederRegNo, string action)
+        public IActionResult OnGet(string action)
         {
+            int breederRegNo = int.Parse(User.Identity.Name);
+
             if (action == "OwnedDeadRabbits")
             {
                 Rabbits = _rabbitService.GetOwnedDeadRabbits(breederRegNo);

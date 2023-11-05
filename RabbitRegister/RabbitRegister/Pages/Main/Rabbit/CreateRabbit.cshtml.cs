@@ -56,7 +56,7 @@ namespace RabbitRegister.Pages.Main.Rabbit
             }
 
             // Nedenstående sikrer der ikke oprettes en fantom-kanin på "GetAllRabbits"
-            var existingRabbit = _rabbitService.GetRabbit(RabbitCreateDto.RabbitRegNo, RabbitCreateDto.BreederRegNo);
+            var existingRabbit = _rabbitService.GetRabbit(RabbitCreateDto.RabbitRegNo, RabbitCreateDto.OriginRegNo);
             if (existingRabbit != null)
             {
                 this.exceptionFound = true;

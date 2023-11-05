@@ -41,18 +41,18 @@ namespace RabbitRegister.Pages.Main.Trimming
         [FromQuery(Name = "Owner")]
         public int OwnerId { get; set; }
         /// <summary>
-        /// Loads either a empty trimming or a trimming for specific rabbit identified by RabbitRegNo and BreederRegNo
+        /// Loads either a empty trimming or a trimming for specific rabbit identified by RabbitRegNo and OriginRegNo
         /// </summary>
         /// <param name="RabbitRegNo"></param>
-        /// <param name="BreederRegNo"></param>
+        /// <param name="OriginRegNo"></param>
         /// <returns></returns>
-        public IActionResult OnGet(int RabbitRegNo, int BreederRegNo)
+        public IActionResult OnGet(int RabbitRegNo, int OriginRegNo)
         {
-            if (RabbitRegNo > 0 && BreederRegNo > 0)
+            if (RabbitRegNo > 0 && OriginRegNo > 0)
             {
-                Model.Rabbit RabbitOb = _rabbitService.GetRabbit(RabbitRegNo, BreederRegNo);
+                Model.Rabbit RabbitOb = _rabbitService.GetRabbit(RabbitRegNo, OriginRegNo);
                 Trimming.RabbitRegNo = RabbitOb.RabbitRegNo;
-                Trimming.BreederRegNo = RabbitOb.BreederRegNo;
+                Trimming.OriginRegNo = RabbitOb.OriginRegNo;
                 Trimming.Name = RabbitOb.Name;
             }
 

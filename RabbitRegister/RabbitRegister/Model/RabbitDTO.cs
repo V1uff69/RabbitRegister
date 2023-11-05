@@ -14,7 +14,7 @@ namespace RabbitRegister.Model
         public int RabbitRegNo { get; set; }
 
         [RegularExpression(@"^\d{4}$", ErrorMessage = "Avler-nr, SKAL bestå af 4 tal!")]
-        public int BreederRegNo { get; set; }
+        public int OriginRegNo { get; set; }
 
         public int Owner { get; set; }
 

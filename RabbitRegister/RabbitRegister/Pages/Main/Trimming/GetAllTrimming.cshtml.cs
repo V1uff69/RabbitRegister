@@ -51,22 +51,22 @@ namespace RabbitRegister.Pages.Main.Trimming
         /// <summary>
         /// When page loads, we initialize Trimmings, either by:
         /// - Owner
-        /// - RabbitRegNo and BreederRegNo
+        /// - RabbitRegNo and OriginRegNo
         /// - Or default/empty
         /// </summary>
         /// <param name="RabbitRegNo"></param>
-        /// <param name="BreederRegNo"></param>
+        /// <param name="OriginRegNo"></param>
         /// <param name="Owner"></param>
-        public void OnGet(int RabbitRegNo, int BreederRegNo, int? Owner)
+        public void OnGet(int RabbitRegNo, int OriginRegNo, int? Owner)
         {
             if (Owner != null && Owner > 0)
             {
                 OwnerId = (int)Owner;
                 Trimmings = _trimmingService.GetTrimmingsByOwnerId(OwnerId);
             }
-            else if (RabbitRegNo > 0 && BreederRegNo > 0)
+            else if (RabbitRegNo > 0 && OriginRegNo > 0)
             {
-                Trimmings = _trimmingService.GetTrimmingByRabbitRegNoAndBreederRegNo(RabbitRegNo, BreederRegNo);
+                Trimmings = _trimmingService.GetTrimmingByRabbitRegNoAndOriginRegNo(RabbitRegNo, OriginRegNo);
             }
             else
             {

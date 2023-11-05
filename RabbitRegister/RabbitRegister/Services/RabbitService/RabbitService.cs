@@ -71,7 +71,7 @@ namespace RabbitRegister.Services.RabbitService
             Rabbit newRabbit = new Rabbit();
 
             newRabbit.RabbitRegNo = dto.RabbitRegNo;
-            newRabbit.BreederRegNo = dto.BreederRegNo;
+            newRabbit.OriginRegNo = dto.OriginRegNo;
             newRabbit.Owner = dto.Owner;
             newRabbit.Name = dto.Name;
             newRabbit.Race = dto.Race;
@@ -101,11 +101,11 @@ namespace RabbitRegister.Services.RabbitService
         /// Henter en kanin fra listen _rabbits via. LAMBDA og LINQ ud fra dens composite-key
         /// </summary>
         /// <param name="id">Første nøgle-del for kaninens composite key(RabbitRegNo)</param>
-        /// <param name="breederRegNo">Anden nøgle-del for kaninens composite key</param>
+        /// <param name="OriginRegNo">Anden nøgle-del for kaninens composite key</param>
         /// <returns>Et kanin objekt</returns>
-        public Rabbit GetRabbit(int id, int breederRegNo)
+        public Rabbit GetRabbit(int id, int originRegNo)
         {
-            return _rabbits.Find(r => r.RabbitRegNo == id && r.BreederRegNo == breederRegNo);
+            return _rabbits.Find(r => r.RabbitRegNo == id && r.OriginRegNo == originRegNo);
         }
 
         /// <summary>
@@ -123,13 +123,13 @@ namespace RabbitRegister.Services.RabbitService
         /// </summary>
         /// <param name="rabbit">Kaninen som opdateres</param>
         /// <param name="id">Første nøgle-del for kaninens composite key(RabbitRegNo)</param>
-        /// <param name="breederRegNo">Anden nøgle-del for kaninens composite key</param>
+        /// <param name="originRegNo">Anden nøgle-del for kaninens composite key</param>
         /// <returns>Asynkron Task, der repræsenterer opdateringsoperationen</returns>
-        public async Task UpdateRabbitAsync(Rabbit rabbit, int id, int breederRegNo)
+        public async Task UpdateRabbitAsync(Rabbit rabbit, int id, int originRegNo)
         {
             if (rabbit != null)
             {
-                Rabbit existingRabbit = _rabbits.FirstOrDefault(r => r.RabbitRegNo == id && r.BreederRegNo == breederRegNo);
+                Rabbit existingRabbit = _rabbits.FirstOrDefault(r => r.RabbitRegNo == id && r.OriginRegNo == originRegNo);
                 if (existingRabbit != null)
                 {
                     existingRabbit.Name = rabbit.Name;
@@ -164,14 +164,14 @@ namespace RabbitRegister.Services.RabbitService
         /// kan slettes fra DB
         /// </summary>
         /// <param name="id">Første nøgle-del for kaninens composite key(RabbitRegNo)</param>
-        /// <param name="breederRegNo">Anden nøgle-del for kaninens composite key</param>
+        /// <param name="originRegNo">Anden nøgle-del for kaninens composite key</param>
         /// <returns>Task, der repræsenterer sletningsoperationen</returns>
-        public async Task<Rabbit> DeleteRabbitAsync(int? id, int? breederRegNo)
+        public async Task<Rabbit> DeleteRabbitAsync(int? id, int? originRegNo)
         {
             Rabbit rabbitToBeDeleted = null;
             foreach (Rabbit rabbit in _rabbits)
             {
-                if (rabbit.RabbitRegNo == id && rabbit.BreederRegNo == breederRegNo)
+                if (rabbit.RabbitRegNo == id && rabbit.OriginRegNo == originRegNo)
                 {
                     rabbitToBeDeleted = rabbit;
                     break;      //Dette optimere koden så den ikke fortsætter med at iterere igennem
@@ -207,7 +207,7 @@ namespace RabbitRegister.Services.RabbitService
         }
 
 
-        public IEnumerable<Rabbit> RatingFilter(int maxRating, int minRating = 0)    //LINQ (_rabbits.where) && LAMDA (rabbit => )
+        public IEnumerable<Rabbit> RatingFilter(int? maxRating, int? minRating)    //LINQ (_rabbits.where) && LAMDA (rabbit => )
         {
             return _rabbits.Where(
                 rabbit => (minRating == 0 || rabbit.Rating >= minRating) &&
@@ -275,11 +275,11 @@ namespace RabbitRegister.Services.RabbitService
         /// Tager udgangspunkt i brugerens avler-ID og kæder det sammen med de kaniner,
         /// avleren ejer, som er i live.
         /// </summary>
-        /// <param name="breederRegNo">Brugerens avler-ID</param>
+        /// <param name="OriginRegNo">Brugerens avler-ID</param>
         /// <returns>En liste af avlerens ejede kaniner, som er levende</returns>
-        public List<Rabbit> GetOwnedAliveRabbits(int breederRegNo)
+        public List<Rabbit> GetOwnedAliveRabbits(int originRegNo)
         {
-            return _rabbits.Where(rabbit => rabbit.Owner == breederRegNo && rabbit.DeadOrAlive == DeadOrAlive.Levende).ToList();
+            return _rabbits.Where(rabbit => rabbit.Owner == originRegNo && rabbit.DeadOrAlive == DeadOrAlive.Levende).ToList();
         }
 
         /// <summary>
@@ -288,11 +288,11 @@ namespace RabbitRegister.Services.RabbitService
         /// Tager udgangspunkt i brugerens avler-ID og kæder det sammen med de kaniner,
         /// avleren ejer, som er døde.
         /// </summary>
-        /// <param name="breederRegNo">Brugerens avler-ID</param>
+        /// <param name="OriginRegNo">Brugerens avler-ID</param>
         /// <returns>En liste af avlerens ejede kaniner, som er døde</returns>
-        public List<Rabbit> GetOwnedDeadRabbits(int breederRegNo)
+        public List<Rabbit> GetOwnedDeadRabbits(int originRegNo)
         {
-            return _rabbits.Where(rabbit => rabbit.Owner == breederRegNo && rabbit.DeadOrAlive == DeadOrAlive.Død).ToList();
+            return _rabbits.Where(rabbit => rabbit.Owner == originRegNo && rabbit.DeadOrAlive == DeadOrAlive.Død).ToList();
         }
 
         /// <summary>
@@ -301,11 +301,11 @@ namespace RabbitRegister.Services.RabbitService
         /// Tager udgangspunkt i brugerens avler-ID og kæder det sammen med de kaniner,
         /// avleren ejer ELLER har forbindelse til (kaniner med avlerens ID)
         /// </summary>
-        /// <param name="breederRegNo">Brugerens avler-ID</param>
+        /// <param name="originRegNo">Brugerens avler-ID</param>
         /// <returns>En liste af avlerens ejede kaniner, og kaniner med avlerens ID</returns>
-        public List<Rabbit> GetAllRabbitsWithConnectionsToMe(int breederRegNo)
+        public List<Rabbit> GetAllRabbitsWithConnectionsToMe(int originRegNo)
         {
-            return _rabbits.Where(rabbit => rabbit.Owner == breederRegNo || rabbit.BreederRegNo == breederRegNo).ToList();
+            return _rabbits.Where(rabbit => rabbit.Owner == originRegNo || rabbit.OriginRegNo == originRegNo).ToList();
         }
 
         public virtual List<Rabbit> GetAllRabbitsWithOwner(int Owner)
@@ -319,11 +319,11 @@ namespace RabbitRegister.Services.RabbitService
         /// Tager udgangspunkt i alle kaniner som kommer fra avlerens stald,
         /// men som ikke længere ejes af avleren.
         /// </summary>
-        /// <param name="breederRegNo">Brugerens avler-ID</param>
+        /// <param name="originRegNo">Brugerens avler-ID</param>
         /// <returns>En liste af kaniner, som avleren IKKE ejer, men er rigistreret med avlerens avler-ID</returns>
-        public List<Rabbit> GetNotOwnedRabbitsWithMyBreederRegNo(int breederRegNo)
+        public List<Rabbit> GetNotOwnedRabbitsWithMyBreederRegNo(int originRegNo)
         {
-            return _rabbits.Where(rabbit => rabbit.Owner != breederRegNo && rabbit.BreederRegNo == breederRegNo).ToList();
+            return _rabbits.Where(rabbit => rabbit.Owner != originRegNo && rabbit.OriginRegNo == originRegNo).ToList();
         }
 
 

@@ -17,7 +17,7 @@ namespace RabbitRegister.EFDbContext
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Rabbit>()
-                .HasKey(r => new { r.RabbitRegNo, r.BreederRegNo });
+                .HasKey(r => new { r.RabbitRegNo, r.OriginRegNo });
             modelBuilder.Entity<OrderLine>()
                 .HasKey(o => new { o.OrderLineId, o.OrderId });
         }

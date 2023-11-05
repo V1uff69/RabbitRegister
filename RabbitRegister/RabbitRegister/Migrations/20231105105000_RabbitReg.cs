@@ -55,7 +55,7 @@ namespace RabbitRegister.Migrations
                     TrimmingId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     RabbitRegNo = table.Column<int>(type: "int", nullable: false),
-                    BreederRegNo = table.Column<int>(type: "int", nullable: false),
+                    OriginRegNo = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     TimeUsed = table.Column<int>(type: "int", nullable: true),
@@ -120,7 +120,7 @@ namespace RabbitRegister.Migrations
                 columns: table => new
                 {
                     RabbitRegNo = table.Column<int>(type: "int", nullable: false),
-                    BreederRegNo = table.Column<int>(type: "int", nullable: false),
+                    OriginRegNo = table.Column<int>(type: "int", nullable: false),
                     Owner = table.Column<int>(type: "int", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     Race = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
@@ -138,7 +138,7 @@ namespace RabbitRegister.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Rabbits", x => new { x.RabbitRegNo, x.BreederRegNo });
+                    table.PrimaryKey("PK_Rabbits", x => new { x.RabbitRegNo, x.OriginRegNo });
                     table.ForeignKey(
                         name: "FK_Rabbits_Breeder_Owner",
                         column: x => x.Owner,

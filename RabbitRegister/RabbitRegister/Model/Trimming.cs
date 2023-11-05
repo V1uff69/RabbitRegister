@@ -18,7 +18,7 @@ namespace RabbitRegister.Model
         [Display(Name = "Avler ID")]
         [Required]
 		[Range(typeof(int), "1000", "9999", ErrorMessage = "Avler ID skal være imellem {1} og {2}")]
-		public int BreederRegNo { get; set; }
+		public int OriginRegNo { get; set; }
 
         [Display(Name = "Kaninens Navn")]
         [Required(ErrorMessage = "Der skal angives et Kanin Navn"), MaxLength(20)]
@@ -59,10 +59,10 @@ namespace RabbitRegister.Model
         {
         }
 
-        public Trimming(int rabbitRegNo, int breederRegNo, string name, DateTime date, int timeUsed, int hairLengthByDayNinety, float woolDensity, int firstSortmentWeight, int secondSortmentWeight, int disposableWoolWeight)
+        public Trimming(int rabbitRegNo, int originRegNo, string name, DateTime date, int timeUsed, int hairLengthByDayNinety, float woolDensity, int firstSortmentWeight, int secondSortmentWeight, int disposableWoolWeight)
         {
             RabbitRegNo = rabbitRegNo;
-            BreederRegNo = breederRegNo;
+            OriginRegNo = originRegNo;
             Name = name;
             Date = date;
             TimeUsed = timeUsed;

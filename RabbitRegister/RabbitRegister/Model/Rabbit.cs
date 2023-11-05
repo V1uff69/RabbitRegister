@@ -39,13 +39,12 @@ namespace RabbitRegister.Model
         [Column(Order = 1)]
         [Display(Name = "Avler-ID")]
         [RegularExpression(@"^\d{4}$", ErrorMessage = "Avler-nr, SKAL bestå af 4 tal!")]
-        public int BreederRegNo { get; set; }
+        public int OriginRegNo { get; set; }
 
         
         [ForeignKey("Breeder")]
         [Display(Name = "Ejer (Avler-ID): ")]
         public int? Owner { get; set; }
-        //[BindNever]
         public virtual Breeder Breeder { get; set;} // virtual -> lazy loading (færre DB requests)
 
         [Display(Name = "Kælenavn: ")]
@@ -101,10 +100,10 @@ namespace RabbitRegister.Model
 
         public Rabbit() { }
 
-        public Rabbit(int rabbitRegNo, int breederRegNo, int owner, string name, string race, string color, Sex sex, DateTime dateOfBirth, int weight, float? rating, DeadOrAlive deadOrAlive, IsForSale isForSale, string? suitableForBreeding, string? causeOfDeath, string? imageString)
+        public Rabbit(int rabbitRegNo, int originRegNo, int owner, string name, string race, string color, Sex sex, DateTime dateOfBirth, int weight, float? rating, DeadOrAlive deadOrAlive, IsForSale isForSale, string? suitableForBreeding, string? causeOfDeath, string? imageString)
         {
             RabbitRegNo = rabbitRegNo;
-            BreederRegNo = breederRegNo;
+            OriginRegNo = originRegNo;
             Owner = owner;
             Name = name;
             Race = race;
