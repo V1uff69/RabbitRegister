@@ -55,12 +55,19 @@ namespace RabbitRegister.Pages.Main.Rabbit
                 return Page();
             }
 
+            if (!RabbitCreateDto.Validate())
+            {
+                exceptionFound = true;
+                exceptionText = "Kaninrace og farve, er ikke en gyldig kombination";
+                return Page();
+            }
+
             // Nedenstående sikrer der ikke oprettes en fantom-kanin på "GetAllRabbits"
             var existingRabbit = _rabbitService.GetRabbit(RabbitCreateDto.RabbitRegNo, RabbitCreateDto.OriginRegNo);
             if (existingRabbit != null)
             {
                 this.exceptionFound = true;
-                this.exceptionText = "En Kanin med samme ID findes allerede";
+                this.exceptionText = "En kanin med samme ID, findes allerede";
                 return Page();
             }
 
@@ -70,7 +77,8 @@ namespace RabbitRegister.Pages.Main.Rabbit
             //var breeder = await _breederService.GetBreederByNameAsync(User.Identity.Name);
 
             await _rabbitService.AddRabbitAsync(RabbitCreateDto, breeder);
-            return RedirectToPage("GetAllRabbits", new { breederRegNo = User.Identity.Name });
+            //return RedirectToPage("GetAllRabbits", new { breederRegNo = User.Identity.Name });
+            return RedirectToPage("GetAllRabbits");
         }
 
     }

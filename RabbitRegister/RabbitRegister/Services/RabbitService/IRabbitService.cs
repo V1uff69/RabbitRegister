@@ -10,21 +10,21 @@ namespace RabbitRegister.Services.RabbitService
         Task AddRabbitAsync(RabbitDTO dto, Breeder breeder);
         //Task AddRabbitAsync(Rabbit rabbit, Breeder breeder);
         //Task UpdateRabbitAsync(Rabbit rabbit, int id);
-        Task UpdateRabbitAsync(Rabbit rabbit, int id, int originRegNo);
-        Task<Rabbit> DeleteRabbitAsync(int? id, int? originRegNo);
-        IEnumerable<Rabbit> SearchByName(string str);
-        IEnumerable<Rabbit> RatingFilter(int? maxRating, int? minRating);
+        Task UpdateRabbitAsync(Rabbit rabbit, int rabbitRegNo, int originRegNo);
+        Task<Rabbit> DeleteRabbitAsync(int? rabbitRegNo, int? originRegNo);
+        IEnumerable<Rabbit> SearchByName(string str, int breederRegNo);
+        IEnumerable<Rabbit> RatingFilter(int breederRegNo, int? maxRating = null, int? minRating = null);
         IEnumerable<Rabbit> SortById();
         IEnumerable<Rabbit> SortByIdDescending();
         IEnumerable<Rabbit> SortByName();
         IEnumerable<Rabbit> SortByNameDescending();
         IEnumerable<Rabbit> SortByRating();
         IEnumerable<Rabbit> SortByRatingDescending();
-        List<Rabbit> GetOwnedAliveRabbits(int originRegNo);
-        List<Rabbit> GetOwnedDeadRabbits(int originRegNo);
-        List<Rabbit> GetAllRabbitsWithConnectionsToMe(int originRegNo);
+        List<Rabbit> GetOwnedAliveRabbits(int breederRegNo);
+        List<Rabbit> GetOwnedDeadRabbits(int breederRegNo);
+        List<Rabbit> GetAllRabbitsWithConnectionsToMe(int breederRegNo);
         List<Rabbit> GetAllRabbitsWithOwner(int Owner);
-        List<Rabbit> GetNotOwnedRabbitsWithMyBreederRegNo(int originRegNo);
+        List<Rabbit> GetNotOwnedRabbitsWithMyBreederRegNo(int breederRegNo);
         List<Rabbit> GetIsForSaleRabbits();
     }
 }

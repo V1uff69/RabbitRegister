@@ -118,5 +118,13 @@ namespace RabbitRegister.Model
             CauseOfDeath = causeOfDeath;
             ImageString = imageString;
         }
+
+        public bool ValidateRace()
+        {
+            var validRaces = new List<string> { "Angora", "Satin-Angora" };
+            return validRaces.Contains(Race);
+        }
+
+        
     }
 }

@@ -1,18 +1,15 @@
-﻿@page "{id:int}/{breederRegNo:int}"
+﻿@page "{rabbitRegNo:int}/{originRegNo:int}"
 @model RabbitRegister.Pages.Main.Rabbit.EditRabbitModel
 @{
 }
 
-<!-- LIDT OM "{id:int/{breederRegNo}}"
-    Du fortæller Razor-sidemodellen at den kan forvente denne rutebinding og dermed behandle den korrekt.
-    Når der trykkes på "Update", matches URL'en som fx /EditRabbit/1/5095, hvor 1 er (RabbitRegNo) {id},
-    og 5095 er {breederRegNo}.. Avleren som er logget på..
-
-    Dette er nyttigt, når du har brug for at modtage og bruge flere værdier fra URL'en i din sidebehandling.
-    Uden denne rutebinding ville URL'en ikke matche nogen rute, og OnPost-metoden vil IKKE blive udløst.-->
+<!-- LIDT OM "{rabbitRegNo:int/{originRegNo}}"
+    Du fortæller Razor-sidemodellen hvordan dens URL-adresse skal se ud.
+    Den tager kort sagt kun dens værdi. ID1 og ID2.. Uden nogen tekst foran som beskriver hvad nøglen er.
+    URL'en kommer derfor til at stå som noget ala: /EditRabbit/1/5095, hvor 1 er {rabbitRegNo}, og 5095 er {originRegNo}..
+    Kaninens sekundære composite ID -->
 
 <link rel="stylesheet" href="/css/rabbitSite.css" />
-@*<link rel="stylesheet" href="/css/responsiveForm.css" />*@
 
 <br><br><br>
 

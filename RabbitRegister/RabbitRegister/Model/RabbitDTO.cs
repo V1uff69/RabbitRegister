@@ -29,6 +29,54 @@ namespace RabbitRegister.Model
         public IsForSale? IsForSale { get; set; }
         public string? ImageString { get; set; }
 
+        // Definer en metode for at validere farven
+        //public bool ValidateColor()
+        //{
+        //    // Opret en dictionary, der mapper racer til gyldige farver
+        //    var colorsByRace = new Dictionary<string, List<string>>
+        //    {
+        //        ["Angora"] = new List<string> { "Grå", "Gul", "Blå", "Hvid", "Sort" },
+        //        ["Satin-Angora"] = new List<string> { "Beige", "Sort", "Rød", "Brun" }
+        //    };
 
+        //    // Kontroller, om den valgte farve er gyldig for den valgte race
+        //    if (colorsByRace.ContainsKey(Race))
+        //    {
+        //        return colorsByRace[Race].Contains(Color);
+        //    }
+
+        //    return false;
+        //}
+
+
+        public bool Validate()
+        {
+            return ValidateRace() &&
+                   ValidateColor();
+        }
+
+        private bool ValidateRace()
+        {
+            var validRaces = new List<string> { "Angora", "Satin-Angora" };
+            return validRaces.Contains(Race);
+        }
+
+        private bool ValidateColor()
+        {
+            // Opret en dictionary, der mapper racer til gyldige farver
+            var colorsByRace = new Dictionary<string, List<string>>
+            {
+                ["Angora"] = new List<string> { "Grå", "Gul", "Blå", "Hvid", "Sort" },
+                ["Satin-Angora"] = new List<string> { "Beige", "Sort", "Rød", "Brun" }
+            };
+
+            // Kontroller, om den valgte farve er gyldig for den valgte race
+            if (colorsByRace.ContainsKey(Race))
+            {
+                return colorsByRace[Race].Contains(Color);
+            }
+
+            return false;
+        }
     }
 }

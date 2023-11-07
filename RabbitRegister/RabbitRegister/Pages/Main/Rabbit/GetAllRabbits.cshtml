@@ -10,19 +10,31 @@
 
 <body class="w3-auto">
 
-    <!-- Sidebar -->
+    <!-- Filter Sidebar -->
     <nav class="w3-sidebar w3-round-large w3-bar-block w3-border w3-collapse w3-theme-l5" id="mySidebar">
         <a href="javascript:void(0)" onclick="w3_close()" class="w3-right w3-xlarge w3-padding-large w3-hover-black w3-hide-large" title="Close Menu">
             <i class="fa fa-remove"></i>
         </a>
         <h4 class="w3-bar-item"><b>Filtre</b></h4>
-        <form method="post" class="form-inline">
-            <input type="hidden" name="breederRegNo" value="@Model.BreederRegNo" />
-            <div class="input-group">
+        <!-- Søgefeldt -->
+        <form method="post" class="form-inline mb-3">
+@*            <input type="hidden" name="breederRegNo" value="@Model.BreederRegNo" />
+*@            <div class="input-group">
                 <input asp-for="SearchString" class="form-control" placeholder="Kælenavn" />
-                <input type="submit" asp-page-handler="SearchByName" value="Search" class="btn btn-primary" />
+                <input type="submit" asp-page-handler="SearchByName" value="Søg" class="btn btn-primary" />
             </div>
         </form>
+
+        <!-- Rating filter input fields -->
+        <form method="post" class="form-inline mb-3">
+@*            <input type="hidden" name="breederRegNo" value="@Model.BreederRegNo" />
+*@            <div class="input-group">
+                <input asp-for="MinRating" class="form-control" value="" placeholder="Min" min="0" max="100" />
+                <input asp-for="MaxRating" class="form-control" value="" placeholder="Max" min="0" max="100" />
+                <input type="submit" asp-page-handler="RatingFilter" value="Rating" class="btn btn-primary" />
+            </div>
+        </form>
+
         <br></br>
     </nav>
 
@@ -52,9 +64,9 @@
                 <div class="w3-show-inline-block">
                     <div class="w3-bar w3-round-large" id="tabButtons">
                         <a class="w3-bar-item w3-button tablink w3-ripple w3-text-white w3-light-blue w3-hover-pale-blue" href="/Main/Rabbit/GetAllRabbits?">Nuværende besætning</a>
-                        <a class="w3-bar-item w3-button tablink w3-ripple w3-text-white w3-light-blue w3-hover-pale-blue" href="/Main/Rabbit/GetAllRabbits?action=NotOwnedRabbitsWithMyBreederRegNo">Kaniner med mit Avler-nr</a>
                         <a class="w3-bar-item w3-button tablink w3-ripple w3-text-white w3-light-blue w3-hover-pale-blue" href="/Main/Rabbit/GetAllRabbits?action=OwnedDeadRabbits">Ane-kaniner</a>
-                        <a class="w3-bar-item w3-button tablink w3-ripple w3-text-white w3-light-blue w3-hover-pale-blue" href="/Main/Rabbit/GetAllRabbits?action=AllRabbitsWithConnectionsToMe">Alle kaniner</a>
+                        <a class="w3-bar-item w3-button tablink w3-ripple w3-text-white w3-light-blue w3-hover-pale-blue" href="/Main/Rabbit/GetAllRabbits?action=NotOwnedRabbitsWithMyBreederRegNo">Kaniner med mit Avler-ID</a>
+                        <a class="w3-bar-item w3-button tablink w3-ripple w3-text-white w3-light-blue w3-hover-pale-blue" href="/Main/Rabbit/GetAllRabbits?action=AllRabbitsWithConnectionsToMe">Kaniner relateret til mig</a>
                     </div>
                 </div>
             </div>
@@ -68,7 +80,8 @@
             {
                 foreach (var Rabbit in Model.Rabbits)
                 {
-                    <a class="click-card flex-item" asp-page="/Main/Rabbit/RabbitProfile" asp-route-id="@Rabbit.RabbitRegNo" asp-route-originRegNo="@Rabbit.OriginRegNo">
+                    <!-- Profil link -->
+                    <a class="click-card flex-item" asp-page="/Main/Rabbit/RabbitProfile" asp-route-rabbitRegNo="@Rabbit.RabbitRegNo" asp-route-originRegNo="@Rabbit.OriginRegNo">
 
                         <div class="card">
                             @if (Rabbit.ImageString == "/Images/Rabbits/" || Rabbit.ImageString == null)
@@ -84,10 +97,10 @@
                                 <p>Left-ID: @Rabbit.RabbitRegNo</p>
                                 <p> Right-ID: @Rabbit.OriginRegNo </p>
 
-                                <a class="btn-card btn-primary btn-sm mr-1" type="button" title="Edit" asp-page="/Main/Rabbit/EditRabbit" asp-route-id="@Rabbit.RabbitRegNo" asp-route-breederRegNo="@Rabbit.OriginRegNo">
+                                <a class="btn-card btn-primary btn-sm mr-1" type="button" title="Edit" asp-page="/Main/Rabbit/EditRabbit" asp-route-rabbitRegNo="@Rabbit.RabbitRegNo" asp-route-originRegNo="@Rabbit.OriginRegNo">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <a class="btn-card btn-danger btn-sm" type="button" title="Delete" asp-page="/Main/Rabbit/DeleteRabbit" asp-route-id="@Rabbit.RabbitRegNo" asp-route-breederRegNo="@Rabbit.OriginRegNo">
+                                <a class="btn-card btn-danger btn-sm" type="button" title="Delete" asp-page="/Main/Rabbit/DeleteRabbit" asp-route-rabbitRegNo="@Rabbit.RabbitRegNo" asp-route-originRegNo="@Rabbit.OriginRegNo">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </div>

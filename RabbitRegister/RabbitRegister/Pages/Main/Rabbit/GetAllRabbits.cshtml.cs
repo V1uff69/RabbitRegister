@@ -29,6 +29,9 @@ namespace RabbitRegister.Pages.Main.Rabbit
         [BindProperty]
         public int MinRating { get; set; }
 
+        [BindProperty]
+        public int MaxRating { get; set; }
+
         /// <summary>
         /// Henter kaniner baseret på den angivne handling og brugerens avler-ID
         /// </summary>
@@ -62,11 +65,27 @@ namespace RabbitRegister.Pages.Main.Rabbit
         /// En søgefunktion som søger efter kaninens navn
         /// </summary>
         /// <returns>Returnere kaniner med samme bogstavs sekvens som brugeren indtaster</returns>
+        //public IActionResult OnPostSearchByName()
+        //{
+        //    Rabbits = _rabbitService.SearchByName(SearchString).ToList();
+        //    return Page();
+        //}
+
         public IActionResult OnPostSearchByName()
         {
-            Rabbits = _rabbitService.SearchByName(SearchString).ToList();
+            var breederRegNo = int.Parse(User.Identity.Name);
+            Rabbits = _rabbitService.SearchByName(SearchString, breederRegNo).ToList();
             return Page();
         }
-  
+
+        public IActionResult OnPostRatingFilter(int? maxRating, int? minRating)
+        {
+            int breederRegNo = int.Parse(User.Identity.Name);
+
+            Rabbits = _rabbitService.RatingFilter(breederRegNo, maxRating, minRating).ToList();
+
+            return Page();
+        }
+
     }
 }

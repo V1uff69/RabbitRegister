@@ -20,27 +20,27 @@ namespace RabbitRegister.Pages.Main.Rabbit
         [BindProperty]
         public Model.Rabbit Rabbit { get; set; }
 
-        public IActionResult OnGet(int id, int breederRegNo)
+        public IActionResult OnGet(int rabbitRegNo, int originRegNo)
         {
-            Rabbit = _rabbitService.GetRabbit(id, breederRegNo);
+            Rabbit = _rabbitService.GetRabbit(rabbitRegNo, originRegNo);
             return Page();
         }
 
         /// <summary>
         /// Edit en kanins properties ud fra dens Id - bemærk der mangler exceptions for hvilken Avler som kan edit den
         /// </summary>
-        /// <param name="id">Første nøgle-del for kaninens composite key(RabbitRegNo)</param>
-        /// <param name="breederRegNo">Anden nøgle-del for kaninens composite key</param>
+        /// <param name="rabbitRegNo">Første nøgle-del for kaninens composite key(RabbitRegNo)</param>
+        /// <param name="originRegNo">Anden nøgle-del for kaninens composite key</param>
         /// <returns>Omdirigerer til GetAllRabbits med avlerens, Avler-ID</returns>
-        public async Task<IActionResult> OnPostAsync(int id, int breederRegNo)
+        public async Task<IActionResult> OnPostAsync(int rabbitRegNo, int originRegNo)
 		{
 			//if (ModelState.IsValid)
 			//{
 			//	return Page();
 			//}
 
-			await _rabbitService.UpdateRabbitAsync(Rabbit, id, breederRegNo);
-			return RedirectToPage("GetAllRabbits", new { breederRegNo = User.Identity.Name});
+			await _rabbitService.UpdateRabbitAsync(Rabbit, rabbitRegNo, originRegNo);
+			return RedirectToPage("GetAllRabbits");
 		}
 	}
 }

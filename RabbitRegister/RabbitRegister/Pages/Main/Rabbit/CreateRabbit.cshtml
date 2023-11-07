@@ -8,9 +8,7 @@
 @*<link rel="stylesheet" href="/css/rabbitSite.css" />*@
 <link rel="stylesheet" href="/css/responsiveForm.css" />
 
-<br />
-<br />
-<br />
+<br><br><br>
 
 <body>
     <div class="create-container">
@@ -184,12 +182,12 @@
     @section Scripts {
         <script>
             document.addEventListener("DOMContentLoaded", function () {
-                var raceDropdown = document.getElementById("raceDropdown");
+                var raceDropdown = document.getElementById("raceDropdown"); //  [selectedRace] De 2 racer er allerede defineret længere oppe
                 var colorDropdown = document.getElementById("colorDropdown");
 
                 // Array af lovlige farver for hver race
                 var colorsByRace = {
-                    "Angora": ["Grå", "Gul", "Blå", "Hvid"],
+                    "Angora": ["Grå", "Gul", "Blå", "Hvid", "Sort"],
                     "Satin-Angora": ["Beige", "Sort", "Rød", "Brun"]
                 };
 

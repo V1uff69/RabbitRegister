@@ -19,9 +19,9 @@ namespace RabbitRegister.Pages.Main.Rabbit
         public Model.Rabbit Rabbit { get; set; }
 
 
-        public IActionResult OnGet(int id, int breederRegNo)
+        public IActionResult OnGet(int rabbitRegNo, int originRegNo)
         {
-            Rabbit = _rabbitService.GetRabbit(id, breederRegNo);
+            Rabbit = _rabbitService.GetRabbit(rabbitRegNo, originRegNo);
             if (Rabbit == null)
             {
                 return RedirectToPage("/NotFound");
@@ -33,16 +33,16 @@ namespace RabbitRegister.Pages.Main.Rabbit
         /// <summary>
         /// Sletter en kanin med den angivne Id - bemærk der mangler exceptions for hvilken Avler som kan slette den
         /// </summary>
-        /// <param name="id">Første nøgle-del for kaninens composite key(RabbitRegNo)</param>
-        /// <param name="breederRegNo">Anden nøgle-del for kaninens composite key</param>
+        /// <param name="rabbitRegNo">Første nøgle-del for kaninens composite key</param>
+        /// <param name="originRegNo">Anden nøgle-del for kaninens composite key</param>
         /// <returns>Omdirigerer til GetAllRabbits med avlerens, Avler-ID</returns>
-        public async Task<IActionResult> OnPostAsync(int id, int breederRegNo)
+        public async Task<IActionResult> OnPostAsync(int rabbitRegNo, int originRegNo)
         {
-            Model.Rabbit deletedRabbit = await _rabbitService.DeleteRabbitAsync(id, breederRegNo);
+            Model.Rabbit deletedRabbit = await _rabbitService.DeleteRabbitAsync(rabbitRegNo, originRegNo);
 			//if (deletedRabbit == null)
 			//    return RedirectToPage("/NotFound"); //NotFound er ikke defineret endnu
 
-			return RedirectToPage("GetAllRabbits", new { breederRegNo = User.Identity.Name });
+			return RedirectToPage("GetAllRabbits");
 		}
 	}
 }

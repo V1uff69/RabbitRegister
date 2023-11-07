@@ -49,7 +49,7 @@
             {
                 foreach (var Rabbit in Model.Rabbits)
                 {
-                    <a class="click-card flex-item" asp-page="/Main/Rabbit/RabbitProfile" asp-route-id="@Rabbit.RabbitRegNo" asp-route-originRegNo="@Rabbit.OriginRegNo">
+                    <a class="click-card flex-item" asp-page="/Main/Rabbit/RabbitProfile" asp-route-rabbitRegNo="@Rabbit.RabbitRegNo" asp-route-originRegNo="@Rabbit.OriginRegNo">
 
                         <div class="card">
                             @if (Rabbit.ImageString == "/Images/Rabbits/" || Rabbit.ImageString == null)

@@ -21,9 +21,9 @@ namespace RabbitRegister.Pages.Main.Rabbit
         [BindProperty]
         public Model.Rabbit Rabbit { get; set; }
 
-        public IActionResult OnGet(int id, int originRegNo)
+        public IActionResult OnGet(int rabbitRegNo, int originRegNo)
         {
-            Rabbit = _rabbitService.GetRabbit(id, originRegNo);
+            Rabbit = _rabbitService.GetRabbit(rabbitRegNo, originRegNo);
 
             if (Rabbit == null)
             {
