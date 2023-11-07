@@ -70,7 +70,7 @@ namespace RabbitRegister.Pages.Main.LogIn
                         await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
 
                         // Omdiriger til "/Index" siden efter succesfuld login
-                        return RedirectToPage("/Index");
+                        return RedirectToPage("/Main/Rabbit/GetAllRabbits");
                     }
                 }
             }

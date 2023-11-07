@@ -218,6 +218,17 @@ namespace RabbitRegister.Services.RabbitService
                 );
         }
 
+        public IEnumerable<Rabbit> SearchByRegNo(int? rabbitRegNo, int? originRegNo, int breederRegNo)
+        {
+            var rabbitsWithConnections = GetAllRabbitsWithConnectionsToMe(breederRegNo);
+
+            return rabbitsWithConnections
+                .Where(rabbit =>
+                    (!rabbitRegNo.HasValue || rabbit.RabbitRegNo == rabbitRegNo) &&
+                    (!originRegNo.HasValue || rabbit.OriginRegNo == originRegNo)
+                );
+        }
+
         //----: ENDNU IKKE IMPLEMENTERET KODE. FORTSAT RELEVANT? :---- 
         public IEnumerable<Rabbit> SortById()     //LINQ & LAMBDA
         {

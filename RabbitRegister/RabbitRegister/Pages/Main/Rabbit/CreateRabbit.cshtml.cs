@@ -23,30 +23,30 @@ namespace RabbitRegister.Pages.Main.Rabbit
         [BindProperty]
         public RabbitDTO RabbitCreateDto { get; set; } = new RabbitDTO();
 
-        public List<SelectListItem> BreederList { get; set; }
+        //public List<SelectListItem> BreederList { get; set; }
 
         public bool exceptionFound { get; set; }
         public string exceptionText { get; set; }
         
 
 
-        public async Task OnGet()
-        {
-            // Hent en liste over breeders og opret drop-down-listen
-            var breeders = _breederService.GetBreeders();
-            BreederList = breeders.Select(b => new SelectListItem
-            {
-                Value = b.BreederRegNo.ToString(),
-                Text = b.BreederRegNo.ToString()
-            }).ToList();
-        }
+        //public async Task OnGet()
+        //{
+        //    // Hent en liste over breeders og opret drop-down-listen
+        //    var breeders = _breederService.GetBreeders();
+        //    BreederList = breeders.Select(b => new SelectListItem
+        //    {
+        //        Value = b.BreederRegNo.ToString(),
+        //        Text = b.BreederRegNo.ToString()
+        //    }).ToList();
+        //}
 
 
         /// <summary>
-        /// Forsøger at oprette en kanin, hvis ikke ID allerede findes
+        /// Forsøger at oprette en kanin, hvis en ikke allerede kanin med samme ID.
+        /// Der tjekkes også om brugeren har snydt med race og farve dropdown muligheds betingelserne
         /// </summary>
-        /// <param name="Rabbit">Kanin objekt som skal tilføjes</param>
-        /// <returns>Forsøger at tilføje en kanin og returnere avleren til GetAllRabbits med sit Avler-ID</returns>
+        /// <returns>Forsøger at tilføje en kanin og returnere avleren til GetAllRabbits</returns>
         public async Task<IActionResult> OnPostAsync()
         {
             //Denne del kigger på brugerens INPUT er korrekt udført.NB: IKKE om kanin med samme ID eksistere

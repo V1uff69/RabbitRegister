@@ -23,8 +23,21 @@ namespace RabbitRegister.Pages.Main.Rabbit
         public IActionResult OnGet(int rabbitRegNo, int originRegNo)
         {
             Rabbit = _rabbitService.GetRabbit(rabbitRegNo, originRegNo);
+
+            if (Rabbit == null)
+            {
+                return NotFound();
+            }
+
+            if (User.Identity.Name != Rabbit.Owner.ToString())
+            {
+                return Forbid();
+            }
+
             return Page();
         }
+
+
 
         /// <summary>
         /// Edit en kanins properties ud fra dens Id - bemærk der mangler exceptions for hvilken Avler som kan edit den
@@ -33,14 +46,26 @@ namespace RabbitRegister.Pages.Main.Rabbit
         /// <param name="originRegNo">Anden nøgle-del for kaninens composite key</param>
         /// <returns>Omdirigerer til GetAllRabbits med avlerens, Avler-ID</returns>
         public async Task<IActionResult> OnPostAsync(int rabbitRegNo, int originRegNo)
-		{
-			//if (ModelState.IsValid)
-			//{
-			//	return Page();
-			//}
+        {
+            var existingRabbit = _rabbitService.GetRabbit(rabbitRegNo, originRegNo);
 
-			await _rabbitService.UpdateRabbitAsync(Rabbit, rabbitRegNo, originRegNo);
-			return RedirectToPage("GetAllRabbits");
-		}
-	}
+            if (existingRabbit == null)
+            {
+                return NotFound();
+            }
+
+            if (User.Identity.Name != existingRabbit.Owner.ToString())
+            {
+                return Forbid();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            await _rabbitService.UpdateRabbitAsync(Rabbit, rabbitRegNo, originRegNo);
+            return RedirectToPage("GetAllRabbits");
+        }
+    }
 }

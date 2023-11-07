@@ -14,6 +14,7 @@ namespace RabbitRegister.Services.RabbitService
         Task<Rabbit> DeleteRabbitAsync(int? rabbitRegNo, int? originRegNo);
         IEnumerable<Rabbit> SearchByName(string str, int breederRegNo);
         IEnumerable<Rabbit> RatingFilter(int breederRegNo, int? maxRating = null, int? minRating = null);
+        IEnumerable<Rabbit> SearchByRegNo(int? rabbitRegNo, int? originRegNo, int breederRegNo);
         IEnumerable<Rabbit> SortById();
         IEnumerable<Rabbit> SortByIdDescending();
         IEnumerable<Rabbit> SortByName();

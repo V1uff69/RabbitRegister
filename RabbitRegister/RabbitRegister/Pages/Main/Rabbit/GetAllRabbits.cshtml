@@ -24,7 +24,6 @@
                 <input type="submit" asp-page-handler="SearchByName" value="Søg" class="btn btn-primary" />
             </div>
         </form>
-
         <!-- Rating filter input fields -->
         <form method="post" class="form-inline mb-3">
 @*            <input type="hidden" name="breederRegNo" value="@Model.BreederRegNo" />
@@ -34,7 +33,15 @@
                 <input type="submit" asp-page-handler="RatingFilter" value="Rating" class="btn btn-primary" />
             </div>
         </form>
-
+        <!-- Søg på RegNo -->
+        <form method="post" class="form-inline">
+            <input type="hidden" name="breederRegNo" value="@Model.BreederRegNo" />
+            <div class="input-group">
+                <input asp-for="RabbitRegNo" class="form-control" value="" placeholder="V-øre ID" />
+                <input asp-for="OriginRegNo" class="form-control" value="" placeholder="H-øre ID" />
+                <input type="submit" asp-page-handler="SearchByRegNo" value="Søg" class="btn btn-primary" />
+            </div>
+        </form>
         <br></br>
     </nav>
 
@@ -48,12 +55,13 @@
 
         <h2 class="w3-center w3-text-white"><b>Mine Kaniner:</b></h2>
 
+        <div>
+            <br>
+            <a class="w3-button w3-ripple w3-green w3-hover-light-green w3-hover-text-white w3-round-large" asp-page="CreateRabbit">Opret Kanin</a> <!--  href="/Main/Rabbit/CreateRabbit/" -->
+        </div>
+        <br>
         <!-- CREATE KNAPPER -->
         <div class="w3-container w3-theme-l5 w3-round-large w3-card w3-padding-large">
-            <div>
-                <br>
-                <a class="w3-button w3-ripple w3-green w3-hover-light-green w3-hover-text-white w3-round-large" asp-page="CreateRabbit">Opret Kanin</a> <!--  href="/Main/Rabbit/CreateRabbit/" -->
-            </div>
             <br>
             <div class="w3-center">
                 <div class="w3-show-inline-block">
@@ -94,15 +102,18 @@
                             }
                             <div class="w3-container">
                                 <h6><b>@Rabbit.Name</b></h6>
-                                <p>Left-ID: @Rabbit.RabbitRegNo</p>
-                                <p> Right-ID: @Rabbit.OriginRegNo </p>
+                                <p>V-øre ID: @Rabbit.RabbitRegNo</p>
+                                <p>H-øre ID: @Rabbit.OriginRegNo </p>
 
-                                <a class="btn-card btn-primary btn-sm mr-1" type="button" title="Edit" asp-page="/Main/Rabbit/EditRabbit" asp-route-rabbitRegNo="@Rabbit.RabbitRegNo" asp-route-originRegNo="@Rabbit.OriginRegNo">
-                                    <i class="fa fa-edit"></i>
-                                </a>
-                                <a class="btn-card btn-danger btn-sm" type="button" title="Delete" asp-page="/Main/Rabbit/DeleteRabbit" asp-route-rabbitRegNo="@Rabbit.RabbitRegNo" asp-route-originRegNo="@Rabbit.OriginRegNo">
-                                    <i class="fa fa-trash"></i>
-                                </a>
+                                @if (User.Identity.Name == Rabbit.Owner.ToString())
+                                {
+                                    <a class="btn-card btn-primary btn-sm mr-1" type="button" title="Edit" asp-page="/Main/Rabbit/EditRabbit" asp-route-rabbitRegNo="@Rabbit.RabbitRegNo" asp-route-originRegNo="@Rabbit.OriginRegNo">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a class="btn-card btn-danger btn-sm" type="button" title="Delete" asp-page="/Main/Rabbit/DeleteRabbit" asp-route-rabbitRegNo="@Rabbit.RabbitRegNo" asp-route-originRegNo="@Rabbit.OriginRegNo">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                }
                             </div>
                         </div>
                     </a>

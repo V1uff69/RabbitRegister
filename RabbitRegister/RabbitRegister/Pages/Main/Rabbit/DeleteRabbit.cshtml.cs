@@ -27,6 +27,11 @@ namespace RabbitRegister.Pages.Main.Rabbit
                 return RedirectToPage("/NotFound");
             }
 
+            if (User.Identity.Name != Rabbit.Owner.ToString())
+            {
+                return Forbid();
+            }
+
             return Page();
         }
 
@@ -38,11 +43,21 @@ namespace RabbitRegister.Pages.Main.Rabbit
         /// <returns>Omdirigerer til GetAllRabbits med avlerens, Avler-ID</returns>
         public async Task<IActionResult> OnPostAsync(int rabbitRegNo, int originRegNo)
         {
-            Model.Rabbit deletedRabbit = await _rabbitService.DeleteRabbitAsync(rabbitRegNo, originRegNo);
-			//if (deletedRabbit == null)
-			//    return RedirectToPage("/NotFound"); //NotFound er ikke defineret endnu
+            var existingRabbit = _rabbitService.GetRabbit(rabbitRegNo, originRegNo);
 
-			return RedirectToPage("GetAllRabbits");
-		}
-	}
+            if (existingRabbit == null)
+            {
+                return RedirectToPage("/NotFound");
+            }
+
+            if (User.Identity.Name != existingRabbit.Owner.ToString())
+            {
+                return Forbid();
+            }
+
+            Model.Rabbit deletedRabbit = await _rabbitService.DeleteRabbitAsync(rabbitRegNo, originRegNo);
+
+            return RedirectToPage("GetAllRabbits");
+        }
+    }
 }
