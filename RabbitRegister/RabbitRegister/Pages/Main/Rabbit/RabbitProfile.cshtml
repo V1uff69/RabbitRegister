@@ -20,16 +20,19 @@
         @if (Model.Rabbit != null)
         {
             <div class="d-flex flex-row justify-content-end" style="margin-bottom: 5px; margin-top: 0px;">
-                <a class="btn-card btn-primary btn-sm mr-1" type="button" title="Edit" asp-page="/Main/Rabbit/EditRabbit" asp-route-rabbitRegNo="@Model.Rabbit.RabbitRegNo" asp-route-originRegNo="@Model.Rabbit.OriginRegNo">
-                    <i class="fa fa-edit"></i>
-                </a>
-                <a class="btn-card btn-danger btn-sm" type="button" title="Delete" asp-page="/Main/Rabbit/DeleteRabbit" asp-route-rabbitRegNo="@Model.Rabbit.RabbitRegNo" asp-route-originRegNo="@Model.Rabbit.OriginRegNo">
-                    <i class="fa fa-trash"></i>
-                </a>
+                @if (User.Identity.Name == Model.Rabbit.Owner.ToString())
+                {
+                    <a class="btn-card btn-primary btn-sm mr-1" type="button" title="Edit" asp-page="/Main/Rabbit/EditRabbit" asp-route-rabbitRegNo="@Model.Rabbit.RabbitRegNo" asp-route-originRegNo="@Model.Rabbit.OriginRegNo">
+                        <i class="fa fa-edit"></i>
+                    </a>
+                    <a class="btn-card btn-danger btn-sm" type="button" title="Delete" asp-page="/Main/Rabbit/DeleteRabbit" asp-route-rabbitRegNo="@Model.Rabbit.RabbitRegNo" asp-route-originRegNo="@Model.Rabbit.OriginRegNo">
+                        <i class="fa fa-trash"></i>
+                    </a>
+                }
             </div>
         }
 
-        <br />
+        <br>
 
         <div class="rabbit-profile row">
             <div class="@*col-sm-4*@ rabbit-profile-left">
@@ -49,7 +52,7 @@
                 </div>
                 <div>
                     <p>
-                        @if (Model.Rabbit != null && User.Identity != null)
+                        @if (Model.Rabbit != null && User.Identity.Name == Model.Rabbit.Owner.ToString())
                         {
                             <button class="btn-primary" value="Klip Kanin" onclick="window.location.href='/Main/Trimming/CreateTrimming?Owner=@User.Identity.Name&RabbitRegNo=@Model.Rabbit.RabbitRegNo&OriginRegNo=@Model.Rabbit.OriginRegNo'"> Klip Kanin </button>
                             <button class="btn-primary" value="Klippe Historik" onclick="window.location.href='/Main/Trimming/GetAllTrimming?RabbitRegNo=@Model.Rabbit.RabbitRegNo&OriginRegNo=@Model.Rabbit.OriginRegNo'"> Klippe Historik</button>
