@@ -64,7 +64,7 @@ namespace RabbitRegister.Model
         public DateTime DateOfBirth { get; set; }
 
         [Display(Name = "Vægt i gram: ")]
-        [Range(typeof(float), minimum: "150", maximum: "2000", ErrorMessage = "Vægten må have værdier imellem: {1} og {2}")]
+        [Range(typeof(int), minimum: "150", maximum: "2000", ErrorMessage = "Vægten må have værdier imellem: {1} og {2}")]
         public int? Weight { get; set; }
 
         [Display(Name = "Bedømmelse: ")]
@@ -117,14 +117,6 @@ namespace RabbitRegister.Model
             SuitableForBreeding = suitableForBreeding;
             CauseOfDeath = causeOfDeath;
             ImageString = imageString;
-        }
-
-        public bool ValidateRace()
-        {
-            var validRaces = new List<string> { "Angora", "Satin-Angora" };
-            return validRaces.Contains(Race);
-        }
-
-        
+        }        
     }
 }

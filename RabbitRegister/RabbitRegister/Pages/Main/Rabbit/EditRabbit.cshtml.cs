@@ -1,8 +1,11 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using RabbitRegister.Migrations;
 using RabbitRegister.Model;
 using RabbitRegister.Services.RabbitService;
+using System.Diagnostics;
+using System.Drawing;
 
 namespace RabbitRegister.Pages.Main.Rabbit
 {
@@ -16,35 +19,38 @@ namespace RabbitRegister.Pages.Main.Rabbit
             _rabbitService = rabbitService;
         }
 
-
         [BindProperty]
-        public Model.Rabbit Rabbit { get; set; }
+        public RabbitDTO RabbitDTO { get; set; }
 
         public IActionResult OnGet(int rabbitRegNo, int originRegNo)
         {
-            Rabbit = _rabbitService.GetRabbit(rabbitRegNo, originRegNo);
+            var existingRabbit = _rabbitService.GetRabbit(rabbitRegNo, originRegNo);
 
-            if (Rabbit == null)
+            if (existingRabbit == null)
             {
                 return NotFound();
             }
 
-            if (User.Identity.Name != Rabbit.Owner.ToString())
+            if (User.Identity.Name != existingRabbit.Owner.ToString())
             {
                 return Forbid();
             }
 
+            // Kopier data fra eksisterende Rabbit til RabbitDTO
+            RabbitDTO = new RabbitDTO
+            {
+                RabbitRegNo = existingRabbit.RabbitRegNo,
+                OriginRegNo = existingRabbit.OriginRegNo,
+                // Kopier de øvrige egenskaber her
+                Name = existingRabbit.Name,
+                Race = existingRabbit.Race,
+                Color = existingRabbit.Color,
+                // Kopier resten af egenskaberne
+            };
+
             return Page();
         }
 
-
-
-        /// <summary>
-        /// Edit en kanins properties ud fra dens Id - bemærk der mangler exceptions for hvilken Avler som kan edit den
-        /// </summary>
-        /// <param name="rabbitRegNo">Første nøgle-del for kaninens composite key(RabbitRegNo)</param>
-        /// <param name="originRegNo">Anden nøgle-del for kaninens composite key</param>
-        /// <returns>Omdirigerer til GetAllRabbits med avlerens, Avler-ID</returns>
         public async Task<IActionResult> OnPostAsync(int rabbitRegNo, int originRegNo)
         {
             var existingRabbit = _rabbitService.GetRabbit(rabbitRegNo, originRegNo);
@@ -64,7 +70,20 @@ namespace RabbitRegister.Pages.Main.Rabbit
                 return Page();
             }
 
-            await _rabbitService.UpdateRabbitAsync(Rabbit, rabbitRegNo, originRegNo);
+            existingRabbit.Name = RabbitDTO.Name;
+            existingRabbit.Race = RabbitDTO.Race;
+            existingRabbit.Color = RabbitDTO.Color;
+            existingRabbit.Sex = RabbitDTO.Sex;
+            existingRabbit.DateOfBirth = RabbitDTO.DateOfBirth;
+            existingRabbit.Weight = RabbitDTO.Weight;
+            existingRabbit.Rating = RabbitDTO.Rating;
+            existingRabbit.DeadOrAlive = RabbitDTO.DeadOrAlive;
+            existingRabbit.IsForSale = RabbitDTO.IsForSale;
+            existingRabbit.SuitableForBreeding = RabbitDTO.SuitableForBreeding;
+            existingRabbit.CauseOfDeath = RabbitDTO.CauseOfDeath;
+            existingRabbit.ImageString = RabbitDTO.ImageString;           
+
+            await _rabbitService.UpdateRabbitAsync(RabbitDTO, rabbitRegNo, originRegNo);
             return RedirectToPage("GetAllRabbits");
         }
     }

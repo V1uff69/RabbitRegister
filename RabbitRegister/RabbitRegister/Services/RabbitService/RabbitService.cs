@@ -122,31 +122,59 @@ namespace RabbitRegister.Services.RabbitService
         /// <param name="rabbitRegNo">Første nøgle-del for kaninens composite key(RabbitRegNo)</param>
         /// <param name="originRegNo">Anden nøgle-del for kaninens composite key</param>
         /// <returns>Asynkron Task, der repræsenterer opdateringsoperationen</returns>
-        public async Task UpdateRabbitAsync(Rabbit rabbit, int rabbitRegNo, int originRegNo)
+        //public async Task UpdateRabbitAsync(Rabbit rabbit, int rabbitRegNo, int originRegNo)
+        //{
+        //    if (rabbit != null)
+        //    {
+        //        Rabbit existingRabbit = _rabbits.FirstOrDefault(r => r.RabbitRegNo == rabbitRegNo && r.OriginRegNo == originRegNo);
+        //        if (existingRabbit != null)
+        //        {
+        //            existingRabbit.Name = rabbit.Name;
+        //            existingRabbit.Race = rabbit.Race;
+        //            existingRabbit.Color = rabbit.Color;
+        //            existingRabbit.Sex = rabbit.Sex;
+        //            existingRabbit.DateOfBirth = rabbit.DateOfBirth;
+        //            existingRabbit.Weight = rabbit.Weight;
+        //            existingRabbit.Rating = rabbit.Rating;
+        //            existingRabbit.DeadOrAlive = rabbit.DeadOrAlive;
+        //            existingRabbit.IsForSale = rabbit.IsForSale;
+        //            existingRabbit.SuitableForBreeding = rabbit.SuitableForBreeding;
+        //            existingRabbit.CauseOfDeath = rabbit.CauseOfDeath;
+        //            existingRabbit.Comments = rabbit.Comments;
+        //            existingRabbit.ImageString = rabbit.ImageString;
+
+        //            await _dbGenericService.UpdateObjectAsync(existingRabbit);
+        //        }
+        //    }
+        //}
+
+        public async Task UpdateRabbitAsync(RabbitDTO rabbitDTO, int rabbitRegNo, int originRegNo)
         {
-            if (rabbit != null)
+            if (rabbitDTO != null)
             {
                 Rabbit existingRabbit = _rabbits.FirstOrDefault(r => r.RabbitRegNo == rabbitRegNo && r.OriginRegNo == originRegNo);
                 if (existingRabbit != null)
                 {
-                    existingRabbit.Name = rabbit.Name;
-                    existingRabbit.Race = rabbit.Race;
-                    existingRabbit.Color = rabbit.Color;
-                    existingRabbit.Sex = rabbit.Sex;
-                    existingRabbit.DateOfBirth = rabbit.DateOfBirth;
-                    existingRabbit.Weight = rabbit.Weight;
-                    existingRabbit.Rating = rabbit.Rating;
-                    existingRabbit.DeadOrAlive = rabbit.DeadOrAlive;
-                    existingRabbit.IsForSale = rabbit.IsForSale;
-                    existingRabbit.SuitableForBreeding = rabbit.SuitableForBreeding;
-                    existingRabbit.CauseOfDeath = rabbit.CauseOfDeath;
-                    existingRabbit.Comments = rabbit.Comments;
-                    existingRabbit.ImageString = rabbit.ImageString;
+                    // Kopier data fra RabbitDTO til det eksisterende Rabbit-objekt
+                    existingRabbit.Name = rabbitDTO.Name;
+                    existingRabbit.Race = rabbitDTO.Race;
+                    existingRabbit.Color = rabbitDTO.Color;
+                    existingRabbit.Sex = rabbitDTO.Sex;
+                    existingRabbit.DateOfBirth = rabbitDTO.DateOfBirth;
+                    existingRabbit.Weight = rabbitDTO.Weight;
+                    existingRabbit.Rating = rabbitDTO.Rating;
+                    existingRabbit.DeadOrAlive = rabbitDTO.DeadOrAlive;
+                    existingRabbit.IsForSale = rabbitDTO.IsForSale;
+                    existingRabbit.SuitableForBreeding = rabbitDTO.SuitableForBreeding;
+                    existingRabbit.CauseOfDeath = rabbitDTO.CauseOfDeath;
+                    existingRabbit.Comments = rabbitDTO.Comments;
+                    existingRabbit.ImageString = rabbitDTO.ImageString;
 
                     await _dbGenericService.UpdateObjectAsync(existingRabbit);
                 }
             }
         }
+
 
         public async Task ChangeOwnership(Rabbit rabbit, int oldOwner, int newOwner)
         {

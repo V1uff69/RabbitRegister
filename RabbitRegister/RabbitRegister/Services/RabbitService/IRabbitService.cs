@@ -10,7 +10,7 @@ namespace RabbitRegister.Services.RabbitService
         Task AddRabbitAsync(RabbitDTO dto, Breeder breeder);
         //Task AddRabbitAsync(Rabbit rabbit, Breeder breeder);
         //Task UpdateRabbitAsync(Rabbit rabbit, int id);
-        Task UpdateRabbitAsync(Rabbit rabbit, int rabbitRegNo, int originRegNo);
+        Task UpdateRabbitAsync(RabbitDTO rabbitDto, int rabbitRegNo, int originRegNo);
         Task<Rabbit> DeleteRabbitAsync(int? rabbitRegNo, int? originRegNo);
         IEnumerable<Rabbit> SearchByName(string str, int breederRegNo);
         IEnumerable<Rabbit> RatingFilter(int breederRegNo, int? maxRating = null, int? minRating = null);

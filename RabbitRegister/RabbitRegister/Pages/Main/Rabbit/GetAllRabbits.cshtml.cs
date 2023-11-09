@@ -91,6 +91,5 @@ namespace RabbitRegister.Pages.Main.Rabbit
 
             return Page();
         }
-
     }
 }

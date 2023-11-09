@@ -17,95 +17,95 @@
 
     <form method="post" asp-page="EditRabbit" asp-page-handler="OnPostAsync">
         <div class="form-group">
-            <label asp-for="Rabbit.Owner" class="control-label"></label>
-            <input asp-for="Rabbit.Owner" class="form-control" readonly="@true" />
+            <label asp-for="RabbitDTO.Owner" class="control-label"></label>
+            <input asp-for="RabbitDTO.Owner" class="form-control" readonly="@true" />
         </div>
 
         <div class="form-group">
-            <label asp-for="Rabbit.RabbitRegNo" class="control-label"></label>
-            <input asp-for="Rabbit.RabbitRegNo" class="form-control" readonly="@true" />
+            <label asp-for="RabbitDTO.RabbitRegNo" class="control-label"></label>
+            <input asp-for="RabbitDTO.RabbitRegNo" class="form-control" readonly="@true" />
         </div>
 
         <div class="form-group">
-            <label asp-for="Rabbit.OriginRegNo" class="control-label"></label>
-            <input asp-for="Rabbit.OriginRegNo" class="form-control" readonly="@true" />
+            <label asp-for="RabbitDTO.OriginRegNo" class="control-label"></label>
+            <input asp-for="RabbitDTO.OriginRegNo" class="form-control" readonly="@true" />
         </div>
 
         <div class="form-group">
-            <label asp-for="Rabbit.Name" class="control-label"></label>
-            <input asp-for="Rabbit.Name" class="form-control" />
-            <span asp-validation-for="Rabbit.Name" class="text-danger"></span>
+            <label asp-for="RabbitDTO.Name" class="control-label"></label>
+            <input asp-for="RabbitDTO.Name" class="form-control" />
+            <span asp-validation-for="RabbitDTO.Name" class="text-danger"></span>
         </div>
 
         <div class="form-group">
-            <label asp-for="Rabbit.Race" class="control-label"></label>
-            <input asp-for="Rabbit.Race" class="form-control" />
-            <span asp-validation-for="Rabbit.Race" class="text-danger"></span>
+            <label asp-for="RabbitDTO.Race" class="control-label"></label>
+            <input asp-for="RabbitDTO.Race" class="form-control" />
+            <span asp-validation-for="RabbitDTO.Race" class="text-danger"></span>
         </div>
 
         <div class="form-group">
-            <label asp-for="Rabbit.Color" class="control-label"></label>
-            <input asp-for="Rabbit.Color" class="form-control" />
-            <span asp-validation-for="Rabbit.Color" class="text-danger"></span>
+            <label asp-for="RabbitDTO.Color" class="control-label"></label>
+            <input asp-for="RabbitDTO.Color" class="form-control" />
+            <span asp-validation-for="RabbitDTO.Color" class="text-danger"></span>
         </div>
 
         <div class="form-group">
-            <label asp-for="Rabbit.Sex" class="control-label"></label>
-            <input asp-for="Rabbit.Sex" class="form-control" />
-            <span asp-validation-for="Rabbit.Sex" class="text-danger"></span>
+            <label asp-for="RabbitDTO.Sex" class="control-label"></label>
+            <input asp-for="RabbitDTO.Sex" class="form-control" />
+            <span asp-validation-for="RabbitDTO.Sex" class="text-danger"></span>
         </div>
 
         <div class="form-group">
-            <label asp-for="Rabbit.DateOfBirth" class="control-label"></label>
-            <input asp-for="Rabbit.DateOfBirth" class="form-control" />
-            <span asp-validation-for="Rabbit.DateOfBirth" class="text-danger"></span>
+            <label asp-for="RabbitDTO.DateOfBirth" class="control-label"></label>
+            <input asp-for="RabbitDTO.DateOfBirth" class="form-control" />
+            <span asp-validation-for="RabbitDTO.DateOfBirth" class="text-danger"></span>
         </div>
 
         <div class="form-group">
-            <label asp-for="Rabbit.Weight" class="control-label"></label>
-            <input asp-for="Rabbit.Weight" class="form-control" />
-            <span asp-validation-for="Rabbit.Weight" class="text-danger"></span>
+            <label asp-for="RabbitDTO.Weight" class="control-label"></label>
+            <input asp-for="RabbitDTO.Weight" class="form-control" />
+            <span asp-validation-for="RabbitDTO.Weight" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label asp-for="Rabbit.Rating" class="control-label"></label>
-            <input asp-for="Rabbit.Rating" class="form-control" />
-            <span asp-validation-for="Rabbit.Rating" class="text-danger"></span>
-        </div>
-
-        <div class="form-group">
-            <label asp-for="Rabbit.DeadOrAlive" class="control-label"></label>
-            <input asp-for="Rabbit.DeadOrAlive" value="Levende" class="form-control" />
-            <span asp-validation-for="Rabbit.DeadOrAlive" class="text-danger"></span>
+            <label asp-for="RabbitDTO.Rating" class="control-label"></label>
+            <input asp-for="RabbitDTO.Rating" class="form-control" />
+            <span asp-validation-for="RabbitDTO.Rating" class="text-danger"></span>
         </div>
 
         <div class="form-group">
-            <label asp-for="Rabbit.IsForSale" class="control-label"></label>
-            <input asp-for="Rabbit.IsForSale" value="Nej" class="form-control" />
-            <span asp-validation-for="Rabbit.IsForSale" class="text-danger"></span>
+            <label asp-for="RabbitDTO.DeadOrAlive" class="control-label"></label>
+            <input asp-for="RabbitDTO.DeadOrAlive" value="Levende" class="form-control" />
+            <span asp-validation-for="RabbitDTO.DeadOrAlive" class="text-danger"></span>
         </div>
 
         <div class="form-group">
-            <label asp-for="Rabbit.SuitableForBreeding" class="control-label"></label>
-            <input asp-for="Rabbit.SuitableForBreeding" class="form-control" />
-            <span asp-validation-for="Rabbit.SuitableForBreeding" class="text-danger"></span>
+            <label asp-for="RabbitDTO.IsForSale" class="control-label"></label>
+            <input asp-for="RabbitDTO.IsForSale" value="Nej" class="form-control" />
+            <span asp-validation-for="RabbitDTO.IsForSale" class="text-danger"></span>
         </div>
 
         <div class="form-group">
-            <label asp-for="Rabbit.CauseOfDeath" class="control-label"></label>
-            <input asp-for="Rabbit.CauseOfDeath" class="form-control" />
-            <span asp-validation-for="Rabbit.CauseOfDeath" class="text-danger"></span>
+            <label asp-for="RabbitDTO.SuitableForBreeding" class="control-label"></label>
+            <input asp-for="RabbitDTO.SuitableForBreeding" class="form-control" />
+            <span asp-validation-for="RabbitDTO.SuitableForBreeding" class="text-danger"></span>
         </div>
 
         <div class="form-group">
-            <label asp-for="Rabbit.Comments" class="control-label"></label>
-            <input asp-for="Rabbit.Comments" class="form-control" />
-            <span asp-validation-for="Rabbit.Comments" class="text-danger"></span>
+            <label asp-for="RabbitDTO.CauseOfDeath" class="control-label"></label>
+            <input asp-for="RabbitDTO.CauseOfDeath" class="form-control" />
+            <span asp-validation-for="RabbitDTO.CauseOfDeath" class="text-danger"></span>
         </div>
 
         <div class="form-group">
-            <label asp-for="Rabbit.ImageString" class="control-label"></label>
-            <input asp-for="Rabbit.ImageString" class="form-control" />
-            <span asp-validation-for="Rabbit.ImageString" class="text-danger"></span>
+            <label asp-for="RabbitDTO.Comments" class="control-label"></label>
+            <input asp-for="RabbitDTO.Comments" class="form-control" />
+            <span asp-validation-for="RabbitDTO.Comments" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="RabbitDTO.ImageString" class="control-label"></label>
+            <input asp-for="RabbitDTO.ImageString" class="form-control" />
+            <span asp-validation-for="RabbitDTO.ImageString" class="text-danger"></span>
         </div>
 
         <p>
